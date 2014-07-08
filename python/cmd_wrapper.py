@@ -1,9 +1,5 @@
 import os
-
 import subprocess
-
-
-
 
 #javac -d bin/ -sourcepath src -cp lib/lucene-core-4.7.1.jar:lib/lucene-analyzers-common-4.7.1.jar:lib/lucene-queryparser-4.7.1.jar:lib/lucene-queries-4.7.1.jar:lib/commons-cli-1.2.jar:lib/commons-cli-1.2-javadoc.jar src/iconfigure/SearchFiles.java
 
@@ -39,8 +35,12 @@ def compile():
         for c in cmd:
             rs += c + ' '
         #print rs
-
         subprocess.call(cmd)
+
+    jar_cmd = ['jar', 
+            'cf', 'cox.jar',
+            bin_dir]
+    subprocess.call(jar_cmd)
 
 def execute_index(index_path, dst_dir, popularity_file):
 #java -cp bin/:lib/lucene-core-4.7.1.jar:lib/lucene-analyzers-common-4.7.1.jar:lib/lucene-queryparser-4.7.1.jar:lib/lucene-queries-4.7.1.jar:lib/commons-cli-1.2.jar:lib/commons-cli-1.2-javadoc.jar iconfigure.SearchFiles
@@ -79,5 +79,4 @@ def execute_search(index_path, input_file, output_file, use_improve):
         cmds += ['-a']
     subprocess.call(cmds)
     return extract_search_outputfile(output_file)
-
 

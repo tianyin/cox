@@ -1,7 +1,3 @@
-package iconfigure;
-
-
-import core.CAnalyzer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -42,7 +38,6 @@ import org.apache.lucene.queries.CustomScoreQuery;
 import org.apache.lucene.queries.function.valuesource.DoubleFieldSource;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
 
 
 /** Simple command-line based search demo. */

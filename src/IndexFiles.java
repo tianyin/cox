@@ -1,5 +1,3 @@
-package iconfigure;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -28,8 +26,6 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import core.CAnalyzer;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -49,7 +45,6 @@ import org.apache.commons.cli.*;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import org.apache.lucene.document.DoubleDocValuesField;
-
 
 
 /**
