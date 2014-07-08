@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-package iconfigure;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;

@@ -1,5 +1,3 @@
-package core;
-
 import java.io.Reader;
 import org.apache.lucene.analysis.util.CharTokenizer;
 import org.apache.lucene.util.Version;

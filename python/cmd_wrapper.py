@@ -1,9 +1,5 @@
 import os
-
 import subprocess
-
-
-
 
 #javac -d bin/ -sourcepath src -cp lib/lucene-core-4.7.1.jar:lib/lucene-analyzers-common-4.7.1.jar:lib/lucene-queryparser-4.7.1.jar:lib/lucene-queries-4.7.1.jar:lib/commons-cli-1.2.jar:lib/commons-cli-1.2-javadoc.jar src/iconfigure/SearchFiles.java
 
@@ -26,7 +22,7 @@ def compile():
     bin_dir = os.path.join(poj_dir, 'bin/')
     if not os.path.exists(bin_dir):
         os.mkdir(bin_dir)
-    src_dir = os.path.join(poj_dir, 'src/utils/')
+    src_dir = os.path.join(poj_dir, 'src/')
     srcs = ['IndexFiles', 'SearchFiles']
     build_cmds = ["javac",
             '-d', bin_dir,
@@ -39,14 +35,18 @@ def compile():
         for c in cmd:
             rs += c + ' '
         #print rs
-
         subprocess.call(cmd)
+
+    jar_cmd = ['jar', 
+            'cf', 'cox.jar',
+            bin_dir]
+    subprocess.call(jar_cmd)
 
 def execute_index(index_path, dst_dir, popularity_file):
 #java -cp bin/:lib/lucene-core-4.7.1.jar:lib/lucene-analyzers-common-4.7.1.jar:lib/lucene-queryparser-4.7.1.jar:lib/lucene-queries-4.7.1.jar:lib/commons-cli-1.2.jar:lib/commons-cli-1.2-javadoc.jar iconfigure.SearchFiles
     cmds = ['java',
             '-cp', os.path.join(poj_dir, 'bin/') + ':' + classpath_for_java(),
-            'utils.IndexFiles']
+            'IndexFiles']
     cmds += ['-i', index_path]
     cmds += ['-d', dst_dir]
     if not popularity_file is None:
@@ -71,7 +71,7 @@ def extract_search_outputfile(output_file):
 def execute_search(index_path, input_file, output_file, use_improve):
     cmds = ['java',
             '-cp', os.path.join(poj_dir, 'bin/') + ':' + classpath_for_java(),
-            'utils.SearchFiles']
+            'SearchFiles']
     cmds += ['-i', index_path]
     cmds += ['-f', input_file]
     cmds += ['-o', output_file]
@@ -79,5 +79,4 @@ def execute_search(index_path, input_file, output_file, use_improve):
         cmds += ['-a']
     subprocess.call(cmds)
     return extract_search_outputfile(output_file)
-
 
