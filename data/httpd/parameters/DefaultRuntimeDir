@@ -1,0 +1,33 @@
+DefaultRuntimeDir
+
+Description:  Base directory for the server run-time files 
+Syntax:   DefaultRuntimeDir  directory-path   
+Default:   DefaultRuntimeDir DEFAULT_REL_RUNTIMEDIR (logs/)  
+Context:  server config 
+Status:  Core 
+Module:  core 
+Compatibility:  Available in Apache 2.4.2 and later 
+
+ The  DefaultRuntimeDir  directive sets the
+    directory in which the server will create various run-time files
+    (shared memory, locks, etc.). If set as a relative path, the full path
+    will be relative to  ServerRoot . 
+
+      Example  
+    DefaultRuntimeDir scratch/ 
+
+
+     The default location of  DefaultRuntimeDir  may be
+    modified by changing the  DEFAULT_REL_RUNTIMEDIR  #define
+    at build time. 
+
+    Note:  ServerRoot  should be specified before this
+   directive is used, otherwise the default value of  ServerRoot 
+   would be used to set the base directory. 
+
+
+ See also 
+   the
+    security tips  for information on how to properly set
+    permissions on the  ServerRoot  
+  

@@ -1,0 +1,21 @@
+NameVirtualHost
+
+Description:  DEPRECATED: Designates an IP address for name-virtual
+hosting 
+Syntax:   NameVirtualHost  addr [: port ]  
+Context:  server config 
+Status:  Core 
+Module:  core 
+
+ Prior to 2.3.11,  NameVirtualHost  was required
+to instruct the server that a particular IP address and port combination
+was usable as a name-based virtual host.  In 2.3.11 and later,
+any time an IP address and port combination is used in multiple virtual
+hosts, name-based virtual hosting is automatically enabled for that address. 
+
+ This directive currently has no effect. 
+
+ See also 
+   Virtual Hosts
+documentation  
+  

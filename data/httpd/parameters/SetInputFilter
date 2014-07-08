@@ -1,0 +1,24 @@
+SetInputFilter
+
+Description:  Sets the filters that will process client requests and POST
+input 
+Syntax:   SetInputFilter  filter [; filter ...]  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Core 
+Module:  core 
+
+ The  SetInputFilter  directive sets the
+    filter or filters which will process client requests and POST
+    input when they are received by the server. This is in addition to
+    any filters defined elsewhere, including the
+      AddInputFilter  
+    directive. 
+
+     If more than one filter is specified, they must be separated
+    by semicolons in the order in which they should process the
+    content. 
+
+ See also 
+   Filters  documentation 
+  

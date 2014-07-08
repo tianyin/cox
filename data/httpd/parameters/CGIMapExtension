@@ -1,0 +1,18 @@
+CGIMapExtension
+
+Description:  Technique for locating the interpreter for CGI
+scripts 
+Syntax:   CGIMapExtension  cgi-path   .extension   
+Context:  directory, .htaccess 
+Override:  FileInfo 
+Status:  Core 
+Module:  core 
+Compatibility:  NetWare only 
+
+ This directive is used to control how Apache httpd finds the
+    interpreter used to run CGI scripts. For example, setting
+     CGIMapExtension sys:\foo.nlm .foo  will
+    cause all CGI script files with a  .foo  extension to
+    be passed to the FOO interpreter. 
+
+ 

@@ -1,0 +1,155 @@
+Options
+
+Description:  Configures what features are available in a particular
+directory 
+Syntax:   Options
+    [+|-] option  [[+|-] option ] ...  
+Default:   Options FollowSymlinks  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Options 
+Status:  Core 
+Module:  core 
+Compatibility:  The default was changed from All to FollowSymlinks in 2.3.11 
+
+ The  Options  directive controls which
+    server features are available in a particular directory. 
+
+      option  can be set to  None , in which
+    case none of the extra features are enabled, or one or more of
+    the following: 
+
+       All  
+
+       All options except for  MultiViews . 
+
+        ExecCGI  
+
+       
+      Execution of CGI scripts using   mod_cgi  
+      is permitted. 
+
+        FollowSymLinks  
+
+       
+      The server will follow symbolic links in this directory. This is
+      the default setting.
+       
+       Even though the server follows the symlink it does  not 
+      change the pathname used to match against   < Directory >   sections. 
+
+       The  FollowSymLinks  and
+       SymLinksIfOwnerMatch    Options   work only in   < Directory >   sections or
+       .htaccess  files. 
+
+       Omitting this option should not be considered a security restriction,
+      since symlink testing is subject to race conditions that make it
+      circumventable. 
+        
+
+        Includes  
+
+       
+      Server-side includes provided by   mod_include  
+      are permitted. 
+
+        IncludesNOEXEC  
+
+       
+
+      Server-side includes are permitted, but the  #exec
+      cmd  and  #exec cgi  are disabled. It is still
+      possible to  #include virtual  CGI scripts from
+        ScriptAlias  ed
+      directories. 
+
+        Indexes  
+
+       
+      If a URL which maps to a directory is requested, and there
+      is no   DirectoryIndex  
+      ( e.g. ,  index.html ) in that directory, then
+        mod_autoindex   will return a formatted listing
+      of the directory. 
+
+        MultiViews  
+
+       
+       Content negotiated 
+      "MultiViews" are allowed using
+        mod_negotiation  .
+        Note   This option gets ignored if set
+      anywhere other than   < Directory >  , as   mod_negotiation  
+      needs real resources to compare against and evaluate from.  
+       
+
+        SymLinksIfOwnerMatch  
+
+       The server will only follow symbolic links for which the
+      target file or directory is owned by the same user id as the
+      link.
+
+        Note 
+       The  FollowSymLinks  and
+       SymLinksIfOwnerMatch    Options   work only in   < Directory >   sections or
+       .htaccess  files. 
+
+       This option should not be considered a security restriction,
+      since symlink testing is subject to race conditions that make it
+      circumventable. 
+         
+      Normally, if multiple  Options  could
+    apply to a directory, then the most specific one is used and
+    others are ignored; the options are not merged. (See  how sections are merged .)
+    However if  all  the options on the
+     Options  directive are preceded by a
+     +  or  -  symbol, the options are
+    merged. Any options preceded by a  +  are added to the
+    options currently in force, and any options preceded by a
+     -  are removed from the options currently in
+    force.  
+
+      Note 
+     Mixing  Options  with a  +  or
+     -  with those without is not valid syntax, and will be
+    rejected during server startup by the syntax check with an abort. 
+     
+
+     For example, without any  +  and  -  symbols: 
+
+     < Directory "/web/docs" >
+  Options Indexes FollowSymLinks
+< /Directory >
+
+< Directory "/web/docs/spec" >
+  Options Includes
+< /Directory > 
+
+
+     then only  Includes  will be set for the
+     /web/docs/spec  directory. However if the second
+     Options  directive uses the  +  and
+     -  symbols: 
+
+     < Directory "/web/docs" >
+  Options Indexes FollowSymLinks
+< /Directory >
+
+< Directory "/web/docs/spec" >
+  Options +Includes -Indexes
+< /Directory > 
+
+
+     then the options  FollowSymLinks  and
+     Includes  are set for the  /web/docs/spec 
+    directory. 
+
+      Note 
+       Using  -IncludesNOEXEC  or
+       -Includes  disables server-side includes completely
+      regardless of the previous setting. 
+     
+
+     The default in the absence of any other settings is
+     FollowSymlinks . 
+
+ 

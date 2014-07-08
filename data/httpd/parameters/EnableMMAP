@@ -1,0 +1,42 @@
+EnableMMAP
+
+Description:  Use memory-mapping to read files during delivery 
+Syntax:   EnableMMAP On|Off  
+Default:   EnableMMAP On  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Core 
+Module:  core 
+
+ This directive controls whether the   httpd   may use
+    memory-mapping if it needs to read the contents of a file during
+    delivery.  By default, when the handling of a request requires
+    access to the data within a file -- for example, when delivering a
+    server-parsed file using   mod_include   -- Apache httpd
+    memory-maps the file if the OS supports it. 
+
+     This memory-mapping sometimes yields a performance improvement.
+    But in some environments, it is better to disable the memory-mapping
+    to prevent operational problems: 
+
+      On some multiprocessor systems, memory-mapping can reduce the
+    performance of the   httpd  . 
+     Deleting or truncating a file while   httpd  
+      has it memory-mapped can cause   httpd   to
+      crash with a segmentation fault.
+     
+      For server configurations that are vulnerable to these problems,
+    you should disable memory-mapping of delivered files by specifying: 
+
+     EnableMMAP Off 
+
+
+     For NFS mounted files, this feature may be disabled explicitly for
+    the offending files by specifying: 
+
+     < Directory "/path-to-nfs-files" >
+  EnableMMAP Off
+< /Directory > 
+
+
+ 

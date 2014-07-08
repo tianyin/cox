@@ -1,0 +1,47 @@
+LimitRequestBody
+
+Description:  Restricts the total size of the HTTP request body sent
+from the client 
+Syntax:   LimitRequestBody  bytes   
+Default:   LimitRequestBody 0  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Core 
+Module:  core 
+
+ This directive specifies the number of  bytes  from 0
+    (meaning unlimited) to 2147483647 (2GB) that are allowed in a
+    request body. See the note below for the limited applicability
+    to proxy requests. 
+
+     The  LimitRequestBody  directive allows
+    the user to set a limit on the allowed size of an HTTP request
+    message body within the context in which the directive is given
+    (server, per-directory, per-file or per-location). If the client
+    request exceeds that limit, the server will return an error
+    response instead of servicing the request. The size of a normal
+    request message body will vary greatly depending on the nature of
+    the resource and the methods allowed on that resource. CGI scripts
+    typically use the message body for retrieving form information.
+    Implementations of the  PUT  method will require
+    a value at least as large as any representation that the server
+    wishes to accept for that resource. 
+
+     This directive gives the server administrator greater
+    control over abnormal client request behavior, which may be
+    useful for avoiding some forms of denial-of-service
+    attacks. 
+
+     If, for example, you are permitting file upload to a particular
+    location, and wish to limit the size of the uploaded file to 100K,
+    you might use the following directive: 
+
+     LimitRequestBody 102400 
+
+
+      For a full description of how this directive is interpreted by
+    proxy requests, see the   mod_proxy   documentation. 
+     
+
+
+ 

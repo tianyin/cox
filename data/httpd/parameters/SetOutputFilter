@@ -1,0 +1,33 @@
+SetOutputFilter
+
+Description:  Sets the filters that will process responses from the
+server 
+Syntax:   SetOutputFilter  filter [; filter ...]  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Core 
+Module:  core 
+
+ The  SetOutputFilter  directive sets the filters
+    which will process responses from the server before they are
+    sent to the client. This is in addition to any filters defined
+    elsewhere, including the
+      AddOutputFilter  
+    directive. 
+
+     For example, the following configuration will process all files
+    in the  /www/data/  directory for server-side
+    includes. 
+
+     < Directory "/www/data/" >
+  SetOutputFilter INCLUDES
+< /Directory > 
+
+
+     If more than one filter is specified, they must be separated
+    by semicolons in the order in which they should process the
+    content. 
+
+ See also 
+   Filters  documentation 
+  

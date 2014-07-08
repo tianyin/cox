@@ -1,0 +1,32 @@
+ServerRoot
+
+Description:  Base directory for the server installation 
+Syntax:   ServerRoot  directory-path   
+Default:   ServerRoot /usr/local/apache  
+Context:  server config 
+Status:  Core 
+Module:  core 
+
+ The  ServerRoot  directive sets the
+    directory in which the server lives. Typically it will contain the
+    subdirectories  conf/  and  logs/ . Relative
+    paths in other configuration directives (such as   Include   or   LoadModule  , for example) are taken as
+    relative to this directory. 
+
+     ServerRoot "/home/httpd" 
+
+
+     The default location of  ServerRoot  may be
+    modified by using the  --prefix  argument to
+      configure  , and
+    most third-party distributions of the server have a different
+    default location from the one listed above. 
+
+
+ See also 
+   the  -d 
+    option to  httpd   
+  the
+    security tips  for information on how to properly set
+    permissions on the  ServerRoot  
+  

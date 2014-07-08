@@ -1,0 +1,28 @@
+<LimitExcept>
+
+Description:  Restrict access controls to all HTTP methods
+except the named ones 
+Syntax:   < LimitExcept  method  [ method ] ...  > ...
+    < /LimitExcept >  
+Context:  directory, .htaccess 
+Override:  AuthConfig, Limit 
+Status:  Core 
+Module:  core 
+
+  < LimitExcept >  and
+     < /LimitExcept >  are used to enclose
+    a group of access control directives which will then apply to any
+    HTTP access method  not  listed in the arguments;
+    i.e., it is the opposite of a   < Limit >   section and can be used to control
+    both standard and nonstandard/unrecognized methods. See the
+    documentation for   < Limit >   for more details. 
+
+     For example: 
+
+     < LimitExcept POST GET >
+  Require valid-user
+< /LimitExcept > 
+
+
+
+ 

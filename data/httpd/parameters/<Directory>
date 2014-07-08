@@ -1,0 +1,120 @@
+<Directory>
+
+Description:  Enclose a group of directives that apply only to the
+named file-system directory, sub-directories, and their contents. 
+Syntax:   < Directory  directory-path  >
+... < /Directory >  
+Context:  server config, virtual host 
+Status:  Core 
+Module:  core 
+
+  < Directory >  and
+     < /Directory >  are used to enclose a group of
+    directives that will apply only to the named directory,
+    sub-directories of that directory, and the files within the respective
+    directories.  Any directive that is allowed
+    in a directory context may be used.  Directory-path  is
+    either the full path to a directory, or a wild-card string using
+    Unix shell-style matching. In a wild-card string,  ?  matches
+    any single character, and  *  matches any sequences of
+    characters. You may also use  []  character ranges. None
+    of the wildcards match a `/' character, so  < Directory
+    /*/public_html >  will not match
+     /home/user/public_html , but  < Directory
+    /home/*/public_html >  will match. Example: 
+
+     < Directory "/usr/local/httpd/htdocs" >
+  Options Indexes FollowSymLinks
+< /Directory > 
+
+
+     
+       Be careful with the  directory-path  arguments:
+      They have to literally match the filesystem path which Apache httpd uses
+      to access the files. Directives applied to a particular
+       < Directory >  will not apply to files accessed from
+      that same directory via a different path, such as via different symbolic
+      links. 
+     
+
+      Regular
+    expressions  can also be used, with the addition of the
+     ~  character. For example: 
+
+     < Directory ~ "^/www/[0-9]{3}" >
+
+< /Directory > 
+
+
+     would match directories in  /www/  that consisted of
+    three numbers. 
+
+     If multiple (non-regular expression)  < Directory >  sections
+    match the directory (or one of its parents) containing a document,
+    then the directives are applied in the order of shortest match
+    first, interspersed with the directives from the  .htaccess  files. For example,
+    with 
+
+     < Directory / >
+  AllowOverride None
+< /Directory >
+
+< Directory "/home" >
+  AllowOverride FileInfo
+< /Directory > 
+
+
+     for access to the document  /home/web/dir/doc.html 
+    the steps are: 
+
+      Apply directive  AllowOverride None 
+      (disabling  .htaccess  files). 
+
+       Apply directive  AllowOverride FileInfo  (for
+      directory  /home ). 
+
+       Apply any  FileInfo  directives in
+       /home/.htaccess ,  /home/web/.htaccess  and
+       /home/web/dir/.htaccess  in that order. 
+      Regular expressions are not considered until after all of the
+    normal sections have been applied. Then all of the regular
+    expressions are tested in the order they appeared in the
+    configuration file. For example, with 
+
+     < Directory ~ "abc$" >
+  # ... directives here ...
+< /Directory > 
+
+
+     the regular expression section won't be considered until after
+    all normal  < Directory > s and
+     .htaccess  files have been applied. Then the regular
+    expression will match on  /home/abc/public_html/abc  and
+    the corresponding  < Directory >  will
+    be applied. 
+
+     Note that the default access for
+     < Directory / >  is to permit all access.
+    This means that Apache httpd will serve any file mapped from an URL. It is
+    recommended that you change this with a block such
+    as  
+
+     < Directory / >
+  Require all denied
+< /Directory > 
+
+
+      and then override this for directories you
+     want  accessible. See the  Security Tips  page for more
+    details.  
+
+     The directory sections occur in the  httpd.conf  file.
+     < Directory >  directives
+    cannot nest, and cannot appear in a   < Limit >   or   < LimitExcept >   section. 
+
+ See also 
+   How < Directory >,
+    < Location > and < Files > sections work  for an
+    explanation of how these different sections are combined when a
+    request is received 
+  

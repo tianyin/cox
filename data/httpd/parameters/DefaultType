@@ -1,0 +1,34 @@
+DefaultType
+
+Description:  This directive has no effect other than to emit warnings
+if the value is not  none . In prior versions, DefaultType
+would specify a default media type to assign to response content for
+which no other media type configuration could be found.
+ 
+Syntax:   DefaultType  media-type|none   
+Default:   DefaultType none  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Core 
+Module:  core 
+Compatibility:  The argument  none  is available in Apache httpd 2.2.7 and later.  All other choices are DISABLED for 2.3.x and later. 
+
+ This directive has been disabled.  For backwards compatibility
+    of configuration files, it may be specified with the value
+     none , meaning no default media type. For example: 
+
+     DefaultType None 
+
+
+      DefaultType None  is only available in
+    httpd-2.2.7 and later. 
+
+     Use the mime.types configuration file and the
+      AddType   to configure media
+    type assignments via file extensions, or the
+      ForceType   directive to configure
+    the media type for specific resources. Otherwise, the server will
+    send the response without a Content-Type header field and the
+    recipient may attempt to guess the media type. 
+
+ 
