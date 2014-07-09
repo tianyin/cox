@@ -1,0 +1,2 @@
+60
+Timeout (in seconds) for the parallel RPCs made in DistributedFileSystem#getFileBlockStorageLocations().

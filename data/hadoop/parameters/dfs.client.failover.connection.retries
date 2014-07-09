@@ -1,0 +1,3 @@
+0
+Expert only. Indicates the number of retries a failover IPC client
+    will make to establish a server connection.

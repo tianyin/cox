@@ -1,0 +1,3 @@
+3
+The periodicity in seconds with which the namenode computes 
+  repliaction work for datanodes.

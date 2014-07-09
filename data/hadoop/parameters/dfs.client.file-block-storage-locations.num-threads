@@ -1,0 +1,2 @@
+10
+Number of threads used for making parallel RPCs in DistributedFileSystem#getFileBlockStorageLocations().

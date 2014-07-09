@@ -1,0 +1,5 @@
+2
+The number of image checkpoint files that will be retained by
+  the NameNode and Secondary NameNode in their storage directories. All edit
+  logs necessary to recover an up-to-date namespace from the oldest retained
+  checkpoint will also be retained.

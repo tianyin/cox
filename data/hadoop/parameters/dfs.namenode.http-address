@@ -1,0 +1,2 @@
+0.0.0.0:50070
+The address and the base port where the dfs namenode web ui will listen on.

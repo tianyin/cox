@@ -1,0 +1,6 @@
+0.999f
+Specifies the percentage of blocks that should satisfy 
+    the minimal replication requirement defined by dfs.namenode.replication.min.
+    Values less than or equal to 0 mean not to wait for any particular
+    percentage of blocks before exiting safemode.
+    Values greater than 1 will make safe mode permanent.
