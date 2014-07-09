@@ -261,6 +261,7 @@ public class SearchFiles {
 	    write.close();
 	    read.close();
         }
+
 	/** Simple command-line based search demo. */
 	public static void main(String[] args) throws Exception {
             log.setUseParentHandlers(false);
@@ -281,6 +282,4 @@ public class SearchFiles {
             //System.out.println("return opts " + opts.size());
             
 	}
-        
-        
-}
+     }   

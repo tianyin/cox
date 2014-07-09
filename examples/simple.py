@@ -13,7 +13,6 @@ httpd_index_dir = os.path.join(httpd_dir, 'index/')
 if not os.path.exists(httpd_index_dir):
     os.mkdir(httpd_index_dir)
 
-
 cmd_wrapper.compile()
 
 if __name__ == '__main__':
