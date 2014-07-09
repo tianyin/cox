@@ -7,7 +7,7 @@ import sys
 #Cox is a java library; here we use the cmd_wrapper to call it in python
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 poj_dir = os.path.dirname(cur_dir)
-sys.path.append(os.path.join(poj_dir, 'python/'))
+sys.path.append(os.path.join(poj_dir, 'python-wrapper/'))
 import cmd_wrapper
 
 #set up the dir
@@ -20,7 +20,7 @@ httpd_index_dir = os.path.join(httpd_dir, 'index/')
 
 if __name__ == '__main__':
     #assume this is the query for which you want to find related parameters
-    query = "return default 443 vhost"
+    query = "proxy forward all request"
     
     """
     Cox works in two stages.
