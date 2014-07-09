@@ -10,25 +10,37 @@ poj_dir = os.path.dirname(cur_dir)
 sys.path.append(os.path.join(poj_dir, 'python/'))
 import cmd_wrapper
 
-#set up a dir to store the indices
-httpd_dir= os.path.join(poj_dir, 'data/httpd/')
+#set up the dir
+#you can also try out Hadoop using 'data/hadoop'
+httpd_dir = os.path.join(poj_dir, 'data/httpd/')
+param_dir = os.path.join(httpd_dir, 'parameters/')
 httpd_index_dir = os.path.join(httpd_dir, 'index/')
-if not os.path.exists(httpd_index_dir):
-    os.mkdir(httpd_index_dir)
 
 #cmd_wrapper.compile()
 
 if __name__ == '__main__':
     #assume this is the query for which you want to find related parameters
     query = "return default 443 vhost"
+    
+    """
+    Cox works in two stages.
+    1. Generates indices based on the manuals (this is a one-time effort)
+    2. Navigate the configuration parameters related to the query
+    """
+    #1. GENERATE THE INDICES
     #we purely rely on the manuals
-    popularity_file = None
-    #ask cox
-    cmd_wrapper.execute_index(httpd_index_dir, os.path.join(httpd_dir, 'parameters/'), popularity_file)
-    #demonstrate the results
+    if not os.path.exists(httpd_index_dir):
+        os.mkdir(httpd_index_dir)
+        popularity_file = None
+        #first we need to generate the indices
+        cmd_wrapper.execute_index(httpd_index_dir, param_dir, popularity_file)
+    
+    #put input and output
     tmp_in_fp = os.path.join(cur_dir, 'tmp.input')
     open(tmp_in_fp, 'w').write(query)
     tmp_out_fp = os.path.join(cur_dir, 'tmp.output')
+
+    #2. NAVIGATION
     cmd_wrapper.execute_search(httpd_index_dir, tmp_in_fp, tmp_out_fp, True)
     res = cmd_wrapper.extract_search_outputfile(tmp_out_fp)
     print res

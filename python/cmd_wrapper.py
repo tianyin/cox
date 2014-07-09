@@ -86,7 +86,6 @@ def execute_search(index_path, input_file, output_file, use_improve):
     cmds += ['-o', output_file]
     if use_improve:
         cmds += ['-a']
-    print cmds
     subprocess.call(cmds)
     return extract_search_outputfile(output_file)
 
