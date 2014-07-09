@@ -1,0 +1,37 @@
+ProxySCGISendfile
+
+Description:  Enable evaluation of  X-Sendfile  pseudo response
+header 
+Syntax:   ProxySCGISendfile On|Off| Headername   
+Default:   ProxySCGISendfile Off  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_proxy_scgi 
+
+ The  ProxySCGISendfile  directive enables the
+    SCGI backend to let files be served directly by the gateway. This is useful
+    for performance purposes &#8212; httpd can use  sendfile  or other
+    optimizations, which are not possible if the file comes over the backend
+    socket.  Additionally, the file contents are not transmitted twice. 
+     The  ProxySCGISendfile  argument determines the
+    gateway behaviour: 
+       Off  
+     No special handling takes place. 
+
+      On  
+     The gateway looks for a backend response header called
+     X-Sendfile  and interprets the value as the filename to serve.
+    The  header is removed from the final response headers. This is equivalent to
+     ProxySCGISendfile X-Sendfile . 
+
+     anything else 
+     Similar to  On , but instead of the hardcoded header name
+     X-Sendfile , the argument is used as the header name. 
+       Example  # Use the default header (X-Sendfile)
+ProxySCGISendfile On
+    
+# Use a different header
+ProxySCGISendfile X-Send-Static 
+ 
+
+ 

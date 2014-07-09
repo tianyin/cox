@@ -1,0 +1,90 @@
+ExtFilterDefine
+
+Description:  Define an external filter 
+Syntax:   ExtFilterDefine  filtername   parameters   
+Context:  server config 
+Status:  Extension 
+Module:  mod_ext_filter 
+
+ The  ExtFilterDefine  directive defines the
+    characteristics of an external filter, including the program to
+    run and its arguments. 
+
+      filtername  specifies the name of the filter being
+    defined. This name can then be used in   SetOutputFilter  
+    directives. It must be unique among all registered filters.
+     At the present time, no error is reported by the
+    register-filter API, so a problem with duplicate names isn't
+    reported to the user.  
+
+     Subsequent parameters can appear in any order and define the
+    external command to run and certain other characteristics. The
+    only required parameter is  cmd= . These parameters
+    are: 
+
+       cmd= cmdline   
+
+       The  cmd=  keyword allows you to specify the
+      external command to run. If there are arguments after the
+      program name, the command line should be surrounded in
+      quotation marks ( e.g. ,  cmd=" /bin/mypgm 
+       arg1   arg2 " .) Normal shell quoting is
+      not necessary since the program is run directly, bypassing the shell.
+      Program arguments are blank-delimited. A backslash can be used to
+      escape blanks which should be part of a program argument. Any
+      backslashes which are part of the argument must be escaped with
+      backslash themselves.  In addition to the standard CGI environment
+      variables, DOCUMENT_URI, DOCUMENT_PATH_INFO, and
+      QUERY_STRING_UNESCAPED will also be set for the program. 
+
+        mode= mode   
+
+       Use  mode=output  (the default) for filters which
+      process the response.  Use  mode=input  for filters
+      which process the request.   mode=input  is available
+      in Apache 2.1 and later. 
+
+        intype= imt   
+
+       This parameter specifies the internet media type ( i.e. ,
+      MIME type) of documents which should be filtered. By default,
+      all documents are filtered. If  intype=  is
+      specified, the filter will be disabled for documents of other
+      types. 
+
+        outtype= imt   
+
+       This parameter specifies the internet media type ( i.e. ,
+      MIME type) of filtered documents. It is useful when the
+      filter changes the internet media type as part of the
+      filtering operation. By default, the internet media type is
+      unchanged. 
+
+        PreservesContentLength  
+
+       The  PreservesContentLength  keyword specifies
+      that the filter preserves the content length. This is not the
+      default, as most filters change the content length. In the
+      event that the filter doesn't modify the length, this keyword
+      should be specified. 
+
+        ftype= filtertype   
+
+       This parameter specifies the numeric value for filter type
+      that the filter should be registered as.  The default value,
+      AP_FTYPE_RESOURCE, is sufficient in most cases.  If the filter
+      needs to operate at a different point in the filter chain than
+      resource filters, then this parameter will be necessary.  See
+      the AP_FTYPE_foo definitions in util_filter.h for appropriate
+      values. 
+
+        disableenv= env   
+
+       This parameter specifies the name of an environment variable
+      which, if set, will disable the filter. 
+
+        enableenv= env   
+
+       This parameter specifies the name of an environment variable
+      which must be set, or the filter will be disabled. 
+      

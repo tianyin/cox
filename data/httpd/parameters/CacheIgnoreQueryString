@@ -1,0 +1,23 @@
+CacheIgnoreQueryString
+
+Description:  Ignore query string when caching 
+Syntax:   CacheIgnoreQueryString On|Off  
+Default:   CacheIgnoreQueryString Off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_cache 
+
+ Ordinarily, requests with query string parameters are cached separately
+    for each unique query string. This is according to RFC 2616/13.9 done only
+    if an expiration time is specified. The
+     CacheIgnoreQueryString  directive tells the cache to
+    cache requests even if no expiration time is specified, and to reply with
+    a cached reply even if the query string differs. From a caching point of
+    view the request is treated as if having no query string when this
+    directive is enabled. 
+
+     CacheIgnoreQueryString On 
+
+
+
+ 

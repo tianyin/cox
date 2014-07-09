@@ -1,0 +1,13 @@
+WatchdogInterval
+
+Description:  Watchdog interval in seconds 
+Syntax:   WatchdogInterval  number-of-seconds   
+Default:   WatchdogInterval 1  
+Context:  server config 
+Status:  Base 
+Module:  mod_watchdog 
+
+ Sets the interval at which the watchdog_step hook runs.  Default is to run every 
+second. 
+
+ 

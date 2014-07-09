@@ -1,0 +1,82 @@
+ProxyHTMLURLMap
+
+Description:  Defines a rule to rewrite HTML links 
+Syntax:   ProxyHTMLURLMap  from-pattern to-pattern [flags] [cond]   
+Context:  server config, virtual host, directory 
+Status:  Base 
+Module:  mod_proxy_html 
+Compatibility:  Version 2.4 and later; available as a third-party
+module for earlier 2.x versions. 
+
+ This is the key directive for rewriting HTML links.  When parsing a document,
+whenever a link target matches  from-pattern , the matching
+portion will be rewritten to  to-pattern , as modified by any
+flags supplied and by the  ProxyHTMLExtended 
+directive. 
+
+ The optional third argument may define any of the following
+ Flags .  Flags are case-sensitive. 
+  h 
+  Ignore HTML links (pass through unchanged)  
+ e 
+  Ignore scripting events (pass through unchanged)  
+ c 
+  Pass embedded script and style sections through untouched.  
+
+ L 
+  Last-match.  If this rule matches, no more rules are applied
+(note that this happens automatically for HTML links).  
+ l 
+  Opposite to L.  Overrides the one-change-only default
+behaviour with HTML links.  
+ R 
+  Use Regular Expression matching-and-replace.   from-pattern 
+is a regexp, and  to-pattern  a replacement string that may be
+based on the regexp.  Regexp memory is supported: you can use brackets ()
+in the  from-pattern  and retrieve the matches with $1 to $9
+in the  to-pattern . 
+
+ If R is not set, it will use string-literal search-and-replace.
+The logic is  starts-with  in HTML links, but
+ contains  in scripting events and embedded script and style sections.
+ 
+ 
+ x 
+  Use POSIX extended Regular Expressions.  Only applicable with R.  
+ i 
+  Case-insensitive matching.  Only applicable with R.  
+
+ n 
+  Disable regexp memory (for speed).  Only applicable with R.  
+ s 
+  Line-based regexp matching.  Only applicable with R.  
+ ^ 
+  Match at start only.  This applies only to string matching
+(not regexps) and is irrelevant to HTML links.  
+ $ 
+  Match at end only.  This applies only to string matching
+(not regexps) and is irrelevant to HTML links.  
+ V 
+  Interpolate environment variables in  to-pattern .
+A string of the form  ${varname|default}  will be replaced by the
+value of environment variable  varname .  If that is unset, it
+is replaced by  default .  The  |default  is optional. 
+ NOTE: interpolation will only be enabled if
+ ProxyHTMLInterp  is  On . 
+ 
+
+ v 
+  Interpolate environment variables in  from-pattern .
+Patterns supported are as above. 
+ NOTE: interpolation will only be enabled if
+ ProxyHTMLInterp  is  On . 
+ 
+  The optional fourth  cond  argument defines a condition
+that will be evaluated per Request, provided
+ ProxyHTMLInterp  is  On .
+If the condition evaluates FALSE the map will not be applied in this request.
+If TRUE, or if no condition is defined, the map is applied. 
+ A  cond  is evaluated by the  Expression Parser .  In addition, the simpler syntax of conditions
+in mod_proxy_html 3.x for HTTPD 2.0 and 2.2 is also supported. 
+
+ 

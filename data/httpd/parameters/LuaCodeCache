@@ -1,0 +1,29 @@
+LuaCodeCache
+
+Description:  Configure the compiled code cache. 
+Syntax:   LuaCodeCache stat|forever|never  
+Default:   LuaCodeCache stat  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Experimental 
+Module:  mod_lua 
+
+ 
+    Specify the behavior of the in-memory code cache. The default
+    is stat, which stats the top level script (not any included
+    ones) each time that file is needed, and reloads it if the
+    modified time indicates it is newer than the one it has
+    already loaded. The other values cause it to keep the file
+    cached forever (don't stat and replace) or to never cache the
+    file. 
+
+     In general stat or forever is good for production, and stat or never
+    for development. 
+
+      Examples:  LuaCodeCache stat
+LuaCodeCache forever
+LuaCodeCache never 
+ 
+
+
+ 

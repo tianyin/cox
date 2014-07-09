@@ -1,0 +1,16 @@
+ReceiveBufferSize
+
+Description:  TCP receive buffer size 
+Syntax:   ReceiveBufferSize  bytes   
+Default:   ReceiveBufferSize 0  
+Context:  server config 
+Status:  MPM 
+Module:    event  ,   mpm_netware  ,   mpm_winnt  ,   mpmt_os2  ,   prefork  ,   worker   
+
+ The server will set the TCP receive buffer size to the number of
+    bytes specified. 
+
+     If set to the value of  0 , the server will use the
+    OS default. 
+
+ 

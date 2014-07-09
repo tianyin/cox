@@ -1,0 +1,23 @@
+ThreadsPerChild
+
+Description:  Number of threads created by each child process 
+Syntax:   ThreadsPerChild  number   
+Default:   See usage for details  
+Context:  server config 
+Status:  MPM 
+Module:    event  ,   mpm_winnt  ,   worker   
+
+ This directive sets the number of threads created by each
+    child process. The child creates these threads at startup and
+    never creates more. If using an MPM like   mpm_winnt  ,
+    where there is only one child process, this number should be high
+    enough to handle the entire load of the server. If using an MPM
+    like   worker  , where there are multiple child processes,
+    the  total  number of threads should be high enough to handle
+    the common load on the server. 
+
+     The default value for  ThreadsPerChild  is
+     64  when used with   mpm_winnt   and
+     25  when used with the others. 
+
+ 

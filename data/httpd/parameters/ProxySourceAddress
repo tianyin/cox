@@ -1,0 +1,13 @@
+ProxySourceAddress
+
+Description:  Set local IP address for outgoing proxy connections 
+Syntax:   ProxySourceAddress  address   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+Compatibility:  Available in version 2.3.9 and later 
+
+ This directive allows to set a specific local address to bind to when connecting
+    to a backend server. 
+
+ 

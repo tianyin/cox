@@ -1,0 +1,15 @@
+AuthLDAPDereferenceAliases
+
+Description:  When will the module de-reference aliases 
+Syntax:   AuthLDAPDereferenceAliases never|searching|finding|always  
+Default:   AuthLDAPDereferenceAliases always  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authnz_ldap 
+
+ This directive specifies when   mod_authnz_ldap   will
+    de-reference aliases during LDAP operations. The default is
+     always . 
+
+ 

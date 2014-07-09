@@ -1,0 +1,33 @@
+AuthFormProvider
+
+Description:  Sets the authentication provider(s) for this location 
+Syntax:   AuthFormProvider  provider-name 
+[ provider-name ] ...  
+Default:   AuthFormProvider file  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_auth_form 
+
+ The  AuthFormProvider  directive sets
+    which provider is used to authenticate the users for this location.
+    The default  file  provider is implemented
+    by the   mod_authn_file   module.  Make sure
+    that the chosen provider module is present in the server. 
+
+      Example  < Location /secure >
+    AuthType form
+    AuthName "private area"
+    AuthFormProvider  dbm
+    AuthDBMType        SDBM
+    AuthDBMUserFile    /www/etc/dbmpasswd
+    Require            valid-user
+    #...
+< /Location > 
+ 
+
+     Providers are implemented by   mod_authn_dbm  ,
+      mod_authn_file  ,   mod_authn_dbd  ,
+      mod_authnz_ldap   and   mod_authn_socache  . 
+
+ 

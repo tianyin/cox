@@ -1,0 +1,32 @@
+LanguagePriority
+
+Description:  The precendence of language variants for cases where
+the client does not express a preference 
+Syntax:   LanguagePriority  MIME-lang  [ MIME-lang ]
+...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_negotiation 
+
+ The  LanguagePriority  sets the precedence
+    of language variants for the case where the client does not
+    express a preference, when handling a Multiviews request. The list
+    of  MIME-lang  are in order of decreasing preference. 
+
+     LanguagePriority en fr de 
+
+
+     For a request for  foo.html , where
+     foo.html.fr  and  foo.html.de  both
+    existed, but the browser did not express a language preference,
+    then  foo.html.fr  would be returned. 
+
+     Note that this directive only has an effect if a 'best'
+    language cannot be determined by any other means or the   ForceLanguagePriority   directive
+    is not  None . In general, the client determines the
+    language preference, not the server. 
+
+ See also 
+    AddLanguage   
+  

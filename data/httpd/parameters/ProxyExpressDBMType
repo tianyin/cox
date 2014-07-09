@@ -1,0 +1,16 @@
+ProxyExpressDBMType
+
+Description:  DBM type of file. 
+Syntax:   ProxyExpressDBMFile < type >  
+Default:   "default"  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy_express 
+Compatibility:  Available in Apache 2.3.13 and later 
+
+ The  ProxyExpressDBMType  directive
+    controls the DBM type expected by the module. The default
+    is the default DBM type created with  
+     httxt2dbm  . 
+     Possible values are (not all may be available at run time): 
+   Value  Description     db    Berkeley DB files     gdbm    GDBM files     ndbm    NDBM files     sdbm    SDBM files (always available)     default    default DBM type    

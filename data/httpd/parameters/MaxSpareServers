@@ -1,0 +1,26 @@
+MaxSpareServers
+
+Description:  Maximum number of idle child server processes 
+Syntax:   MaxSpareServers  number   
+Default:   MaxSpareServers 10  
+Context:  server config 
+Status:  MPM 
+Module:  prefork 
+
+ The  MaxSpareServers  directive sets the
+    desired maximum number of  idle  child server processes. An
+    idle process is one which is not handling a request. If there are
+    more than  MaxSpareServers  idle, then the
+    parent process will kill off the excess processes. 
+
+     Tuning of this parameter should only be necessary on very
+    busy sites. Setting this parameter to a large number is almost
+    always a bad idea. If you are trying to set the value equal to or lower than
+      MinSpareServers  , Apache HTTP Server
+    will automatically adjust it to  MinSpareServers   + 1 . 
+
+ See also 
+    MinSpareServers   
+   StartServers   
+   MaxSpareThreads   
+  

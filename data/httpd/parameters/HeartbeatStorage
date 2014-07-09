@@ -1,0 +1,14 @@
+HeartbeatStorage
+
+Description:  Path to read heartbeat data 
+Syntax:   HeartbeatStorage  file-path   
+Default:   HeartbeatStorage logs/hb.dat  
+Context:  server config 
+Status:  Experimental 
+Module:  mod_lbmethod_heartbeat 
+
+ The  HeartbeatStorage  directive specifies the
+    path to read heartbeat data.  This flat-file is used only when
+      mod_slotmem_shm   is not loaded. 
+
+ 

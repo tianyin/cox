@@ -1,0 +1,30 @@
+ReadmeName
+
+Description:  Name of the file that will be inserted at the end
+of the index listing 
+Syntax:   ReadmeName  filename   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_autoindex 
+
+ The  ReadmeName  directive sets the name
+    of the file that will be appended to the end of the index
+    listing.  Filename  is the name of the file to include, and
+    is taken to be relative to the location being indexed. If
+     Filename  begins with a slash, as in example 2, it will be taken to be
+    relative to the   DocumentRoot  .
+     
+
+     # Example 1
+ReadmeName FOOTER.html 
+
+
+     # Example 2
+ReadmeName /include/FOOTER.html 
+
+
+     See also   HeaderName  , where this behavior is described in greater
+    detail. 
+
+ 

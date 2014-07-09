@@ -1,0 +1,15 @@
+CheckCaseOnly
+
+Description:  Limits the action of the speling module to case corrections 
+Syntax:   CheckCaseOnly on|off  
+Default:   CheckCaseOnly Off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Options 
+Status:  Extension 
+Module:  mod_speling 
+
+ When set, this directive limits the action of the spelling correction to lower/upper case changes.
+    Other potential corrections are not performed. 
+
+
+ 

@@ -1,0 +1,324 @@
+IndexOptions
+
+Description:  Various configuration settings for directory
+indexing 
+Syntax:   IndexOptions  [+|-] option  [[+|-] option ]
+...  
+Default:   By default, no options are enabled.  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_autoindex 
+
+ The  IndexOptions  directive specifies the
+    behavior of the directory indexing.  Option  can be one
+    of 
+
+       AddAltClass  
+       Adds an additional CSS class declaration to each row of the
+      directory listing table when  IndexOptions HTMLTable 
+      is in effect and an  IndexStyleSheet  is defined.
+      Rather than the standard  even  and  odd 
+      classes that would otherwise be applied to each row of the table,
+      a class of  even- ALT   or
+       odd- ALT   where  ALT  is either the
+      standard alt text associated with the file style (eg.  snd ,
+       txt ,  img , etc) or the alt text defined by one of
+      the various  AddAlt*  directives.
+       
+
+        Charset= character-set   ( Apache HTTP Server 2.0.61 and
+      later ) 
+
+       The  Charset  keyword allows you to
+      specify the character set of the generated page. The
+      default is  UTF-8  on Windows and Mac OS X,
+      and  ISO-8859-1  elsewhere.
+      (It depends on whether the underlying file system
+      uses Unicode filenames or not.)
+
+       IndexOptions Charset=UTF-8 
+
+       
+
+        DescriptionWidth=[ n  | *]  
+
+       The  DescriptionWidth  keyword allows you to
+      specify the width of the description column in
+      characters. 
+
+        -DescriptionWidth  (or unset) allows
+        mod_autoindex   to calculate the best width. 
+
+        DescriptionWidth= n   fixes the column width to
+       n  bytes wide. 
+
+        DescriptionWidth=*  grows the column to the
+      width necessary to accommodate the longest description
+      string. 
+
+        See the section on   AddDescription   for dangers
+      inherent in truncating descriptions.  
+
+        FancyIndexing  
+
+       This turns on fancy indexing of directories. 
+
+        FoldersFirst  
+
+       If this option is enabled, subdirectory listings will
+       always  appear first, followed by normal files in the
+      directory. The listing is basically broken into two
+      components, the files and the subdirectories, and each is
+      sorted separately and then displayed subdirectories-first.
+      For instance, if the sort order is descending by name, and
+       FoldersFirst  is enabled, subdirectory
+       Zed  will be listed before subdirectory
+       Beta , which will be listed before normal files
+       Gamma  and  Alpha .  This option
+      only has an effect if   FancyIndexing   is also enabled.  
+
+        HTMLTable  
+
+       This option with  FancyIndexing  constructs
+      a simple table for the fancy directory listing.
+      It is necessary for utf-8 enabled platforms or if file
+      names or description text will alternate between
+      left-to-right and right-to-left reading order. 
+
+        IconsAreLinks  
+
+       This makes the icons part of the anchor for the filename, for
+      fancy indexing. 
+
+        IconHeight[= pixels ]  
+
+       Presence of this option, when used with  IconWidth ,
+      will cause the server to include  height  and
+       width  attributes in the  img  tag for the file
+      icon. This allows browser to precalculate the page layout without having
+      to wait until all the images have been loaded. If no value is given for
+      the option, it defaults to the standard height of the icons supplied
+      with the Apache httpd software. 
+
+        IconWidth[= pixels ]  
+
+       Presence of this option, when used with  IconHeight ,
+      will cause the server to include  height  and
+       width  attributes in the  img  tag for
+      the file icon. This allows browser to precalculate the page
+      layout without having to wait until all the images have been
+      loaded. If no value is given for the option, it defaults to
+      the standard width of the icons supplied with the Apache httpd
+      software. 
+
+        IgnoreCase  
+
+       If this option is enabled, names are sorted in a case-insensitive
+      manner.  For instance, if the sort order is ascending by name, and
+       IgnoreCase  is enabled, file Zeta  will be listed after
+      file alfa (Note: file GAMMA will always be listed before file gamma).
+       
+
+        IgnoreClient  
+
+       This option causes   mod_autoindex   to ignore all
+      query variables from the client, including sort order (implies
+        SuppressColumnSorting  .) 
+
+        NameWidth=[ n 
+               | *]  
+
+       The  NameWidth  keyword allows you to specify the width
+      of the filename column in bytes. 
+
+        -NameWidth  (or unset) allows   mod_autoindex   to calculate the best width, but only up
+      to 20 bytes wide. 
+
+        NameWidth= n   fixes the column width to
+       n  bytes wide. 
+
+        NameWidth=*  grows the column to the necessary
+      width. 
+
+        ScanHTMLTitles  
+
+       This enables the extraction of the title from HTML documents
+      for fancy indexing. If the file does not have a description
+      given by   AddDescription  
+      then httpd will read the document for the value of the
+       title  element. This is CPU and disk intensive. 
+
+        ShowForbidden  
+
+       If specified, Apache httpd will show files normally hidden because
+      the subrequest returned  HTTP_UNAUTHORIZED  or
+       HTTP_FORBIDDEN  
+
+        SuppressColumnSorting  
+
+       If specified, Apache httpd will not make the column headings in a
+      FancyIndexed directory listing into links for sorting. The
+      default behavior is for them to be links; selecting the
+      column heading will sort the directory listing by the values
+      in that column. However, query string arguments which are appended
+      to the URL will still be honored. That behavior is controlled by   IndexOptions
+      IgnoreClient  . 
+
+        SuppressDescription  
+
+       This will suppress the file description in fancy indexing
+      listings. By default, no file descriptions are defined, and
+      so the use of this option will regain 23 characters of screen
+      space to use for something else. See   AddDescription   for information about setting the file
+      description. See also the   DescriptionWidth  
+      index option to limit the size of the description column. 
+
+        SuppressHTMLPreamble  
+
+       If the directory actually contains a file specified by the
+        HeaderName  
+      directive, the module usually includes the contents of the file
+      after a standard HTML preamble ( < html > ,
+       < head > ,  et cetera ). The
+       SuppressHTMLPreamble  option disables this behaviour,
+      causing the module to start the display with the header file
+      contents. The header file must contain appropriate HTML instructions
+      in this case. If there is no header file, the preamble is generated
+      as usual. If you also specify a   ReadmeName  , and if that file
+      exists, The closing < /body >< /html > tags are also
+      ommitted from the output, under the assumption that you'll likely
+      put those closing tags in that file. 
+
+        SuppressIcon  
+
+       This will suppress the icon in fancy indexing listings.
+      Combining both  SuppressIcon  and
+       SuppressRules  yields proper HTML 3.2 output, which
+      by the final specification prohibits  img  and
+       hr  elements from the  pre  block (used to
+      format FancyIndexed listings.) 
+
+        SuppressLastModified  
+
+       This will suppress the display of the last modification date,
+      in fancy indexing listings. 
+
+        SuppressRules 
+       
+
+       This will suppress the horizontal rule lines ( hr 
+      elements) in directory listings. Combining both  SuppressIcon  and
+       SuppressRules  yields proper HTML 3.2 output, which
+      by the final specification prohibits  img  and
+       hr  elements from the  pre  block (used to
+      format FancyIndexed listings.) 
+
+        SuppressSize  
+
+       This will suppress the file size in fancy indexing listings. 
+
+        TrackModified  
+
+       This returns the  Last-Modified  and  ETag 
+      values for the listed directory in the HTTP header. It is only valid
+      if the operating system and file system return appropriate stat()
+      results. Some Unix systems do so, as do OS2's JFS and Win32's
+      NTFS volumes. OS2 and Win32 FAT volumes, for example, do not.
+      Once this feature is enabled, the client or proxy can track
+      changes to the list of files when they perform a  HEAD 
+      request. Note some operating systems correctly track new and
+      removed files, but do not track changes for sizes or dates of
+      the files within the directory.  Changes to the size
+      or date stamp of an existing file will not update the
+       Last-Modified  header on all Unix platforms. 
+      If this is a concern, leave this option disabled. 
+
+        Type= MIME content-type   ( Apache HTTP Server 2.0.61 and
+      later ) 
+
+       The  Type  keyword allows you to
+      specify the MIME content-type of the generated page. The default
+      is  text/html .
+
+       IndexOptions Type=text/plain 
+
+       
+
+        VersionSort 
+      ( Apache HTTP Server 2.0a3 and later ) 
+
+       The  VersionSort  keyword causes files containing
+      version numbers to sort in a natural way. Strings are sorted as
+      usual, except that substrings of digits in the name and
+      description are compared according to their numeric value.
+
+        Example:   
+        foo-1.7 
+        foo-1.7.2 
+        foo-1.7.12 
+        foo-1.8.2 
+        foo-1.8.2a 
+        foo-1.12
+         
+
+       If the number starts with a zero, then it is considered to
+      be a fraction: 
+
+         
+        foo-1.001 
+        foo-1.002 
+        foo-1.030 
+        foo-1.04
+         
+       
+
+        XHTML 
+      ( Apache HTTP Server 2.0.49 and later ) 
+
+       The  XHTML  keyword forces   mod_autoindex  
+      to emit XHTML 1.0 code instead of HTML 3.2. 
+
+       Incremental IndexOptions 
+    
+      Be aware of how multiple  IndexOptions  are
+     handled. 
+
+       Multiple  IndexOptions  directives for a
+     single directory are now merged together. The result of:
+
+      < Directory /foo >
+    IndexOptions HTMLTable
+    IndexOptions SuppressColumnsorting
+< /Directory > 
+
+
+      will be the equivalent of 
+
+      IndexOptions HTMLTable SuppressColumnsorting 
+
+      
+
+      The addition of the incremental syntax ( i.e. , prefixing
+     keywords with  +  or  - ). 
+       Whenever a '+' or '-' prefixed keyword is encountered, it
+     is applied to the current  IndexOptions 
+     settings (which may have been inherited from an upper-level
+     directory). However, whenever an unprefixed keyword is processed, it
+     clears all inherited options and any incremental settings encountered
+     so far. Consider the following example: 
+
+      IndexOptions +ScanHTMLTitles -IconsAreLinks FancyIndexing 
+IndexOptions +SuppressSize 
+
+
+      The net effect is equivalent to  IndexOptions FancyIndexing
+     +SuppressSize , because the unprefixed  FancyIndexing 
+     discarded the incremental keywords before it, but allowed them to
+     start accumulating again afterward. 
+
+      To unconditionally set the  IndexOptions  for
+     a particular directory, clearing the inherited settings, specify
+     keywords without any  +  or  -  prefixes. 
+    
+     

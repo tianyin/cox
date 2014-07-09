@@ -1,0 +1,20 @@
+EnableExceptionHook
+
+Description:  Enables a hook that runs exception handlers
+after a crash 
+Syntax:   EnableExceptionHook On|Off  
+Default:   EnableExceptionHook Off  
+Context:  server config 
+Status:  MPM 
+Module:    event  ,   prefork  ,   worker   
+
+ For safety reasons this directive is only available if the server was
+    configured with the  --enable-exception-hook  option. It
+    enables a hook that allows external modules to plug in and do something
+    after a child crashed. 
+
+     There are already two modules,  mod_whatkilledus  and
+     mod_backtrace  that make use of this hook. Please have a
+    look at Jeff Trawick's  EnableExceptionHook site  for more information about these. 
+
+ 

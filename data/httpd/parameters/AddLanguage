@@ -1,0 +1,53 @@
+AddLanguage
+
+Description:  Maps the given filename extension to the specified content
+language 
+Syntax:   AddLanguage  language-tag   extension 
+[ extension ] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+ The  AddLanguage  directive maps the given
+    filename extension to the specified content language.  Files with the
+    filename  extension  are assigned an HTTP Content-Language
+    value of  language-tag  corresponding to the language
+    identifiers defined by RFC 3066.
+    This directive overrides any mappings that already exist for the same
+     extension . 
+
+      Example  AddEncoding x-compress .Z
+AddLanguage en .en
+AddLanguage fr .fr 
+ 
+
+     Then the document  xxxx.en.Z  will be treated as
+    being a compressed English document (as will the document
+     xxxx.Z.en ). Although the content language is
+    reported to the client, the browser is unlikely to use this
+    information. The  AddLanguage  directive is
+    more useful for  content
+    negotiation , where the server returns one from several documents
+    based on the client's language preference. 
+
+     If multiple language assignments are made for the same
+    extension, the last one encountered is the one that is used.
+    That is, for the case of: 
+
+     AddLanguage en .en
+AddLanguage en-gb .en
+AddLanguage en-us .en 
+
+
+     documents with the extension  .en  would be treated as
+    being  en-us . 
+
+     The  extension  argument is case-insensitive and can
+    be specified with or without a leading dot. Filenames may have  multiple extensions  and the
+     extension  argument will be compared against each of
+    them. 
+
+ See also 
+    mod_negotiation   
+  

@@ -1,0 +1,66 @@
+ScriptAlias
+
+Description:  Maps a URL to a filesystem location and designates the
+target as a CGI script 
+Syntax:   ScriptAlias  URL-path 
+ file-path | directory-path   
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_alias 
+
+ The  ScriptAlias  directive has the same
+    behavior as the   Alias  
+    directive, except that in addition it marks the target directory
+    as containing CGI scripts that will be processed by   mod_cgi  's cgi-script handler. URLs with a case-sensitive
+    (%-decoded) path beginning with  URL-path  will be mapped
+    to scripts beginning with the second argument, which is a full
+    pathname in the local filesystem. 
+
+     ScriptAlias /cgi-bin/ /web/cgi-bin/ 
+
+
+     A request for  http://example.com/cgi-bin/foo  would cause the
+    server to run the script  /web/cgi-bin/foo .  This configuration
+    is essentially equivalent to: 
+     Alias /cgi-bin/ /web/cgi-bin/
+< Location /cgi-bin  >
+    SetHandler cgi-script
+    Options +ExecCGI
+< /Location > 
+
+
+	  ScriptAlias  can also be used in conjunction with
+	a script or handler you have. For example: 
+
+	 ScriptAlias /cgi-bin/ /web/cgi-handler.pl 
+
+
+     In this scenario all files requested in  /cgi-bin/  will be
+    handled by the file you have configured, this allows you to use your own custom
+    handler.  You may want to use this as a wrapper for CGI so that you can add
+    content, or some other bespoke action. 
+
+     It is safer to avoid placing CGI scripts under the
+      DocumentRoot   in order to
+    avoid accidentally revealing their source code if the
+    configuration is ever changed.  The
+     ScriptAlias  makes this easy by mapping a
+    URL and designating CGI scripts at the same time.  If you do
+    choose to place your CGI scripts in a directory already
+    accessible from the web, do not use
+     ScriptAlias .  Instead, use   < Directory >  ,   SetHandler  , and   Options   as in:
+     < Directory /usr/local/apache2/htdocs/cgi-bin  >
+    SetHandler cgi-script
+    Options ExecCGI
+< /Directory > 
+
+    This is necessary since multiple  URL-paths  can map
+    to the same filesystem location, potentially bypassing the
+     ScriptAlias  and revealing the source code
+    of the CGI scripts if they are not restricted by a
+      Directory   section. 
+
+
+ See also 
+   CGI Tutorial  
+  

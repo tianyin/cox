@@ -1,0 +1,23 @@
+AuthzDBDRedirectQuery
+
+Description:  Specify a query to look up a login page for the user 
+Syntax:   AuthzDBDRedirectQuery  query   
+Context:  directory 
+Status:  Extension 
+Module:  mod_authz_dbd 
+
+ Specifies an optional SQL query to use after successful login
+    (or logout) to redirect the user to a URL, which may be
+    specific to the user.  The user's ID will be passed as a single string
+    parameter when the SQL query is executed.  It may be referenced within
+    the query statement using a  %s  format specifier. 
+     AuthzDBDRedirectQuery "SELECT userpage FROM userpages WHERE user = %s" 
+
+     The first column value of the first row returned by the query
+    statement should be a string containing a URL to which to redirect
+    the client.  Subsequent rows will be ignored.  If no rows are returned,
+    the client will not be redirected. 
+     Note that  AuthzDBDLoginToReferer  takes
+    precedence if both are set. 
+
+ 

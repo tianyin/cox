@@ -1,0 +1,55 @@
+AddDescription
+
+Description:  Description to display for a file 
+Syntax:   AddDescription  string file  [ file ] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_autoindex 
+
+ This sets the description to display for a file, for
+      FancyIndexing  .
+     File  is a file extension, partial filename, wild-card
+    expression or full filename for files to describe.
+     String  is enclosed in double quotes ( " ). 
+
+     AddDescription "The planet Mars" mars.gif
+AddDescription "My friend Marshall" friends/mars.gif 
+
+
+     The typical, default description field is 23 bytes wide. 6
+    more bytes are added by the   IndexOptions SuppressIcon   option, 7 bytes are
+    added by the   IndexOptions SuppressSize   option, and 19 bytes are
+    added by the   IndexOptions SuppressLastModified   option.
+    Therefore, the widest default the description column is ever
+    assigned is 55 bytes. 
+
+     Since the  File  argument may be a partial file name,
+    please remember that a too-short partial filename may match
+    unintended files. For example,  le.html  will match the
+    file  le.html  but will also match the file
+     example.html . In the event that there may be ambiguity,
+    use as complete a filename as you can, but keep in mind that the
+    first match encountered will be used, and order your list of
+     AddDescription  directives accordingly. 
+
+     See the  DescriptionWidth    IndexOptions   keyword for details on overriding the size
+    of this column, or allowing descriptions of unlimited length. 
+
+      Caution 
+       Descriptive text defined with  AddDescription 
+      may contain HTML markup, such as tags and character entities. If the
+      width of the description column should happen to truncate a tagged
+      element (such as cutting off the end of a bolded phrase), the
+      results may affect the rest of the directory listing. 
+     
+
+      Arguments with path information 
+       Absolute paths are not currently supported and do not match
+      anything at runtime. Arguments with relative path information,
+      which would normally only be used in htaccess context, are implicitly 
+      prefixed with '*/' to avoid matching partial directory names. 
+     
+
+
+ 

@@ -1,0 +1,22 @@
+AuthLDAPCompareDNOnServer
+
+Description:  Use the LDAP server to compare the DNs 
+Syntax:   AuthLDAPCompareDNOnServer on|off  
+Default:   AuthLDAPCompareDNOnServer on  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authnz_ldap 
+
+ When set,   mod_authnz_ldap   will use the LDAP
+    server to compare the DNs. This is the only foolproof way to
+    compare DNs.    mod_authnz_ldap   will search the
+    directory for the DN specified with the   Require dn   directive, then,
+    retrieve the DN and compare it with the DN retrieved from the user
+    entry. If this directive is not set,
+      mod_authnz_ldap   simply does a string comparison. It
+    is possible to get false negatives with this approach, but it is
+    much faster. Note the   mod_ldap   cache can speed up
+    DN comparison in most situations. 
+
+ 

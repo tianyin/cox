@@ -1,0 +1,19 @@
+ProxyStatus
+
+Description:  Show Proxy LoadBalancer status in mod_status 
+Syntax:   ProxyStatus Off|On|Full  
+Default:   ProxyStatus Off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+Compatibility:  Available in version 2.2 and later 
+
+ This directive determines whether or not proxy
+    loadbalancer status data is displayed via the   mod_status  
+    server-status page. 
+      Note 
+        Full  is synonymous with  On  
+     
+
+
+ 

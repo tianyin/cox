@@ -1,0 +1,28 @@
+LDAPConnectionTimeout
+
+Description:  Specifies the socket connection timeout in seconds 
+Syntax:   LDAPConnectionTimeout  seconds   
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+
+ This directive configures the LDAP_OPT_NETWORK_TIMEOUT (or LDAP_OPT_CONNECT_TIMEOUT)
+    option in the underlying LDAP client library, when available.  This value
+    typically controls how long the LDAP client library will wait for the TCP
+    connection to the LDAP server to complete. 
+
+      If a connection is not successful with the timeout period, either an error will be
+    returned or the LDAP client library will attempt to connect to a secondary LDAP
+    server if one is specified (via a space-separated list of hostnames in the
+      AuthLDAPURL  ). 
+
+     The default is 10 seconds, if the LDAP client library linked with the
+    server supports the LDAP_OPT_NETWORK_TIMEOUT option. 
+
+     LDAPConnectionTimeout is only available when the LDAP client library linked
+    with the server supports the LDAP_OPT_NETWORK_TIMEOUT
+    (or LDAP_OPT_CONNECT_TIMEOUT) option, and the ultimate behavior is
+    dictated entirely by the LDAP client library.
+     
+
+ 

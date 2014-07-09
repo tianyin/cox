@@ -1,0 +1,19 @@
+SSLSessionCacheTimeout
+
+Description:  Number of seconds before an SSL session expires
+in the Session Cache 
+Syntax:   SSLSessionCacheTimeout  seconds   
+Default:   SSLSessionCacheTimeout 300  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive sets the timeout in seconds for the information stored in the
+global/inter-process SSL Session Cache and the OpenSSL internal memory cache.
+It can be set as low as 15 for testing, but should be set to higher
+values like 300 in real life. 
+  Example  SSLSessionCacheTimeout 600 
+ 
+
+ 

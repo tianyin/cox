@@ -1,0 +1,33 @@
+DefaultLanguage
+
+Description:  Defines a default language-tag to be sent in the Content-Language
+header field for all resources in the current context that have not been
+assigned a language-tag by some other means. 
+Syntax:   DefaultLanguage  language-tag   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+ The  DefaultLanguage  directive tells Apache
+    that all resources in the directive's scope ( e.g. , all resources
+    covered by the current   < Directory >   container) that don't have an explicit language
+    extension (such as  .fr  or  .de  as configured
+    by   AddLanguage  ) should be
+    assigned a Content-Language of  language-tag . This allows
+    entire directory trees to be marked as containing Dutch content, for
+    instance, without having to rename each file. Note that unlike using
+    extensions to specify languages,  DefaultLanguage 
+    can only specify a single language. 
+
+     If no  DefaultLanguage  directive is in force
+    and a file does not have any language extensions as configured
+    by   AddLanguage  , then no
+    Content-Language header field will be generated. 
+
+      Example  DefaultLanguage en 
+ 
+
+ See also 
+    mod_negotiation   
+  

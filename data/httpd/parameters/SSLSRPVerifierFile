@@ -1,0 +1,28 @@
+SSLSRPVerifierFile
+
+Description:  Path to SRP verifier file 
+Syntax:   SSLSRPVerifierFile  file-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available in httpd 2.4.4 and later, if using OpenSSL 1.0.1 or
+later 
+
+ 
+This directive enables TLS-SRP and sets the path to the OpenSSL SRP (Secure
+Remote Password) verifier file containing TLS-SRP usernames, verifiers, salts,
+and group parameters. 
+  Example   
+SSLSRPVerifierFile "/path/to/file.srpv"
+   
+ 
+The verifier file can be created with the  openssl  command line
+utility: 
+  Creating the SRP verifier file   
+openssl srp -srpvfile passwd.srpv -userinfo "some info" -add username
+   
+  The value given with the optional  -userinfo  parameter is
+avalable in the  SSL_SRP_USERINFO  request environment variable. 
+
+
+ 

@@ -1,0 +1,15 @@
+LDAPRetries
+
+Description:  Configures the number of LDAP server retries. 
+Syntax:   LDAPRetries  number-of-retries   
+Default:   LDAPRetries 3  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+
+ The server will retry failed LDAP requests up to
+     LDAPRetries  times.  Setting this
+    directive to 0 disables retries. 
+     LDAP errors such as timeouts and refused connections are retryable. 
+
+ 

@@ -1,0 +1,50 @@
+ForceLanguagePriority
+
+Description:  Action to take if a single acceptable document is not
+found 
+Syntax:   ForceLanguagePriority None|Prefer|Fallback [Prefer|Fallback]  
+Default:   ForceLanguagePriority Prefer  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_negotiation 
+
+ The  ForceLanguagePriority  directive uses
+    the given   LanguagePriority   to satisfy
+    negotiation where the server could otherwise not return a single
+    matching document. 
+
+      ForceLanguagePriority Prefer  uses
+     LanguagePriority  to serve a one valid result, rather
+    than returning an HTTP result 300 (MULTIPLE CHOICES) when there
+    are several equally valid choices.  If the directives below were
+    given, and the user's  Accept-Language  header assigned
+     en  and  de  each as quality  .500 
+    (equally acceptable) then the first matching variant,  en ,
+    will be served. 
+
+     LanguagePriority en fr de
+ForceLanguagePriority Prefer 
+
+
+      ForceLanguagePriority Fallback  uses
+      LanguagePriority   to
+    serve a valid result, rather than returning an HTTP result 406
+    (NOT ACCEPTABLE). If the directives below were given, and the user's
+     Accept-Language  only permitted an  es 
+    language response, but such a variant isn't found, then the first
+    variant from the   LanguagePriority   list below will be served. 
+
+     LanguagePriority en fr de
+ForceLanguagePriority Fallback 
+
+
+     Both options,  Prefer  and  Fallback , may be
+    specified, so either the first matching variant from   LanguagePriority   will be served if
+    more than one variant is acceptable, or first available document will
+    be served if none of the variants matched the client's acceptable list
+    of languages. 
+
+ See also 
+    AddLanguage   
+  

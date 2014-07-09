@@ -1,0 +1,14 @@
+DeflateMemLevel
+
+Description:  How much memory should be used by zlib for compression 
+Syntax:   DeflateMemLevel  value   
+Default:   DeflateMemLevel 9  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_deflate 
+
+ The  DeflateMemLevel  directive specifies
+    how much memory should be used by zlib for compression
+    (a value between 1 and 9). 
+
+ 

@@ -1,0 +1,68 @@
+Satisfy
+
+Description:  Interaction between host-level access control and
+user authentication 
+Syntax:   Satisfy Any|All  
+Default:   Satisfy All  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_access_compat 
+Compatibility:  Influenced by   < Limit >   and   < LimitExcept >   in version 2.0.51 and
+later 
+
+ Access policy if both   Allow   and   Require   used. The parameter can be
+    either  All  or  Any . This directive is only
+    useful if access to a particular area is being restricted by both
+    username/password  and  client host address. In this case
+    the default behavior ( All ) is to require that the client
+    passes the address access restriction  and  enters a valid
+    username and password. With the  Any  option the client will be
+    granted access if they either pass the host restriction or enter a
+    valid username and password. This can be used to password restrict
+    an area, but to let clients from particular addresses in without
+    prompting for a password. 
+
+     For example, if you wanted to let people on your network have
+    unrestricted access to a portion of your website, but require that
+    people outside of your network provide a password, you could use a
+    configuration similar to the following: 
+
+     Require valid-user
+Allow from 192.168.1
+Satisfy Any 
+
+
+     
+    Another frequent use of the  Satisfy  directive
+    is to relax access restrictions for a subdirectory:
+     
+
+     < Directory /var/www/private >
+    Require valid-user
+< /Directory >
+
+< Directory /var/www/private/public >
+    Allow from all
+    Satisfy Any
+< /Directory > 
+
+
+     In the above example, authentication will be required for the
+     /var/www/private  directory, but will not be required
+    for the  /var/www/private/public  directory. 
+
+     Since version 2.0.51  Satisfy  directives can
+    be restricted to particular methods by   < Limit >   and   < LimitExcept >   sections. 
+
+       Merging of configuration sections 
+       When any directive provided by this module is used in a new 
+      configuration section, no directives provided by this module are
+      inherited from previous configuration sections. 
+     
+
+
+ See also 
+    Allow   
+   Require   
+  

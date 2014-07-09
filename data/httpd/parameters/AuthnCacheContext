@@ -1,0 +1,29 @@
+AuthnCacheContext
+
+Description:  Specify a context string for use in the cache key 
+Syntax:   AuthnCacheContext  directory|server|custom-string   
+Default:   directory  
+Context:  directory 
+Status:  Base 
+Module:  mod_authn_socache 
+
+ This directive specifies a string to be used along with the supplied
+    username (and realm in the case of Digest Authentication) in constructing
+    a cache key.  This serves to disambiguate identical usernames serving
+    different authentication areas on the server. 
+     Two special values for this are  directory , which uses
+    the directory context of the request as a string, and  server 
+    which uses the virtual host name. 
+     The default is  directory , which is also the most
+    conservative setting.  This is likely to be less than optimal, as it
+    (for example) causes  $app-base ,  $app-base/images ,
+     $app-base/scripts  and  $app-base/media  each to
+    have its own separate cache key.  A better policy is to name the
+     AuthnCacheContext  for the password
+    provider: for example a  htpasswd  file or database table. 
+     Contexts can be shared across different areas of a server, where
+    credentials are shared.  However, this has potential to become a vector
+    for cross-site or cross-application security breaches, so this directive
+    is not permitted in  .htaccess  contexts. 
+
+ 

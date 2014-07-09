@@ -1,0 +1,39 @@
+<RequireNone>
+
+Description:  Enclose a group of authorization directives of which none
+must succeed for the enclosing directive to not fail. 
+Syntax:   < RequireNone > ... < /RequireNone >  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_authz_core 
+
+  < RequireNone >  and
+     < /RequireNone >  are used to enclose a group of
+    authorization directives of which none must succeed
+    in order for the
+     < RequireNone >  directive to
+    not fail. 
+
+     If one or more of the directives contained within the
+     < RequireNone >  directive succeed,
+    then the  < RequireNone >  directive
+    fails.  In all other cases, it returns a neutral result.  Thus as with
+    the other negated authorization directive  Require not ,
+    it can never independently
+    authorize a request because it can never return a successful result.
+    It can be used, however, to restrict the set of users who are
+    authorized to access a resource. 
+
+     Because negated authorization directives are unable to
+    return a successful result, they can not significantly influence
+    the result of a  < RequireNone > 
+    directive.  Therefore negated authorization directives
+    are not permitted within a
+     < RequireNone >  directive. 
+
+ See also 
+   Authorization Containers  
+  Authentication, Authorization,
+    and Access Control  
+  

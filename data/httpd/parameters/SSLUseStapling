@@ -1,0 +1,29 @@
+SSLUseStapling
+
+Description:  Enable stapling of OCSP responses in the TLS handshake 
+Syntax:   SSLUseStapling on|off  
+Default:   SSLUseStapling off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available if using OpenSSL 0.9.8h or later 
+
+ This option enables OCSP stapling, as defined by the "Certificate
+Status Request" TLS extension specified in RFC 6066. If enabled (and
+requested by the client), mod_ssl will include an OCSP response
+for its own certificate in the TLS handshake. Configuring an
+  SSLStaplingCache   is a
+prerequisite for enabling OCSP stapling. 
+
+ OCSP stapling relieves the client of querying the OCSP responder
+on its own, but it should be noted that with the RFC 6066 specification,
+the server's  CertificateStatus  reply may only include an
+OCSP response for a single cert. For server certificates with intermediate
+CA certificates in their chain (the typical case nowadays),
+stapling in its current implementation therefore only partially achieves the
+stated goal of "saving roundtrips and resources" - see also
+ RFC 6961 
+(TLS Multiple Certificate Status Extension).
+ 
+
+ 

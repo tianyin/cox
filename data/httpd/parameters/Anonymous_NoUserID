@@ -1,0 +1,16 @@
+Anonymous_NoUserID
+
+Description:  Sets whether the userID field may be empty 
+Syntax:   Anonymous_NoUserID On|Off  
+Default:   Anonymous_NoUserID Off  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authn_anon 
+
+ When set  On , users can leave the userID (and
+    perhaps the password field) empty. This can be very convenient for
+    MS-Explorer users who can just hit return or click directly on the
+    OK button; which seems a natural reaction. 
+
+ 

@@ -1,0 +1,19 @@
+SSLCompression
+
+Description:  Enable compression on the SSL level 
+Syntax:   SSLCompression on|off  
+Default:   SSLCompression off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available in httpd 2.4.3 and later, if using OpenSSL 0.9.8 or later;
+virtual host scope available if using OpenSSL 1.0.0 or later.
+The default used to be  on  in version 2.4.3. 
+
+ This directive allows to enable compression on the SSL level. 
+ 
+ Enabling compression causes security issues in most setups (the so called
+CRIME attack). 
+ 
+
+ 

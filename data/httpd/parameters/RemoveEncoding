@@ -1,0 +1,39 @@
+RemoveEncoding
+
+Description:  Removes any content encoding associations for a set of file
+extensions 
+Syntax:   RemoveEncoding  extension  [ extension ]
+...  
+Context:  virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+ The  RemoveEncoding  directive removes any
+    encoding associations for files with the given extensions. This
+    allows  .htaccess  files in subdirectories to undo
+    any associations inherited from parent directories or the
+    server config files. An example of its use might be: 
+
+      /foo/.htaccess:  AddEncoding x-gzip .gz
+AddType text/plain .asc
+< Files *.gz.asc >
+    RemoveEncoding .gz
+< /Files > 
+ 
+
+     This will cause  foo.gz  to be marked as being
+    encoded with the gzip method, but  foo.gz.asc  as an
+    unencoded plaintext file. 
+
+      Note 
+        RemoveEncoding  directives are processed
+       after  any   AddEncoding  
+      directives, so it is possible they may undo the effects of the latter
+      if both occur within the same directory configuration. 
+     
+
+     The  extension  argument is case-insensitive and can
+    be specified with or without a leading dot. 
+
+ 

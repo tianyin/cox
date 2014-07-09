@@ -1,0 +1,18 @@
+CacheDefaultExpire
+
+Description:  The default duration to cache a document when no expiry date is specified. 
+Syntax:   CacheDefaultExpire  seconds   
+Default:   CacheDefaultExpire 3600 (one hour)  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_cache 
+
+ The  CacheDefaultExpire  directive specifies a default time,
+    in seconds, to cache a document if neither an expiry date nor last-modified date are provided
+    with the document. The value specified with the  CacheMaxExpire 
+    directive does  not  override this setting. 
+
+     CacheDefaultExpire 86400 
+
+
+ 

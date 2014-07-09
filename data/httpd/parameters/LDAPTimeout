@@ -1,0 +1,24 @@
+LDAPTimeout
+
+Description:  Specifies the timeout for LDAP search and bind operations, in seconds 
+Syntax:   LDAPTimeout  seconds   
+Default:   LDAPTimeout 60  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+Compatibility:  Apache HTTP Server 2.3.5 and later 
+
+ This directive configures the timeout for bind and search operations, as well as
+    the LDAP_OPT_TIMEOUT option in the underlying LDAP client library, when available. 
+
+      If the timeout expires, httpd will retry in case an existing connection has
+    been silently dropped by a firewall. However, performance will be much better if
+    the firewall is configured to send TCP RST packets instead of silently dropping
+    packets. 
+
+     
+     Timeouts for ldap compare operations requires an SDK with LDAP_OPT_TIMEOUT, such as OpenLDAP  >= 2.4.4. 
+     
+
+
+ 

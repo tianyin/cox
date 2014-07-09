@@ -1,0 +1,18 @@
+SSILegacyExprParser
+
+Description:  Enable compatibility mode for conditional expressions. 
+Syntax:   SSILegacyExprParser on|off  
+Default:   SSILegacyExprParser off  
+Context:  directory, .htaccess 
+Status:  Base 
+Module:  mod_include 
+Compatibility:  Available in version 2.3.13 and later. 
+
+ As of version 2.3.13,   mod_include   has switched to the
+    new  ap_expr  syntax for conditional expressions
+    in  #if  flow control elements.  This directive allows to
+    switch to the  old syntax  which is compatible
+    with Apache HTTPD version 2.2.x and earlier.
+     
+
+ 

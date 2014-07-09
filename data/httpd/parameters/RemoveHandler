@@ -1,0 +1,31 @@
+RemoveHandler
+
+Description:  Removes any handler associations for a set of file
+extensions 
+Syntax:   RemoveHandler  extension  [ extension ]
+...  
+Context:  virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+ The  RemoveHandler  directive removes any
+    handler associations for files with the given extensions. This allows
+     .htaccess  files in subdirectories to undo any
+    associations inherited from parent directories or the server
+    config files. An example of its use might be: 
+
+      /foo/.htaccess:  AddHandler server-parsed .html 
+ 
+
+      /foo/bar/.htaccess:  RemoveHandler .html 
+ 
+
+     This has the effect of returning  .html  files in
+    the  /foo/bar  directory to being treated as normal
+    files, rather than as candidates for parsing (see the   mod_include   module). 
+
+     The  extension  argument is case-insensitive and can
+    be specified with or without a leading dot. 
+
+ 

@@ -1,0 +1,16 @@
+SSLHonorCipherOrder
+
+Description:  Option to prefer the server's cipher preference order 
+Syntax:   SSLHonorCipherOrder on|off  
+Default:   SSLHonorCipherOrder off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ When choosing a cipher during an SSLv3 or TLSv1 handshake, normally
+the client's preference is used.  If this directive is enabled, the
+server's preference will be used instead. 
+  Example  SSLHonorCipherOrder on 
+ 
+
+ 

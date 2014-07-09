@@ -1,0 +1,19 @@
+CacheLockMaxAge
+
+Description:  Set the maximum possible age of a cache lock. 
+Syntax:   CacheLockMaxAge  integer   
+Default:   CacheLockMaxAge 5  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_cache 
+
+ The  CacheLockMaxAge  directive specifies the maximum
+  age of any cache lock. 
+
+   A lock older than this value in seconds will be ignored, and the next
+  incoming request will be given the opportunity to re-establish the lock.
+  This mechanism prevents a slow client taking an excessively long time to refresh
+  an entity. 
+
+
+ 

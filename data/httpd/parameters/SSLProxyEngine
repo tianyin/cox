@@ -1,0 +1,28 @@
+SSLProxyEngine
+
+Description:  SSL Proxy Engine Operation Switch 
+Syntax:   SSLProxyEngine on|off  
+Default:   SSLProxyEngine off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive toggles the usage of the SSL/TLS Protocol Engine for proxy. This
+is usually used inside a   < VirtualHost >   section to enable SSL/TLS for proxy
+usage in a particular virtual host. By default the SSL/TLS Protocol Engine is
+disabled for proxy both for the main server and all configured virtual hosts. 
+
+ Note that the SSLProxyEngine directive should not, in
+general, be included in a virtual host that will be acting as a
+forward proxy (using < Proxy > or < ProxyRequest > directives.
+SSLProxyEngine is not required to enable a forward proxy server to
+proxy SSL/TLS requests. 
+
+  Example  < VirtualHost _default_:443 >
+    SSLProxyEngine on
+    #...
+< /VirtualHost > 
+ 
+
+ 

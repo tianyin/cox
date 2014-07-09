@@ -1,0 +1,19 @@
+xml2EncDefault
+
+Description:  Sets a default encoding to assume when absolutely no information
+can be  automatically detected  
+Syntax:   xml2EncDefault  name   
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Base 
+Module:  mod_xml2enc 
+Compatibility:  Version 2.4.0 and later; available as a third-party
+module for earlier versions. 
+
+ If you are processing data with known encoding but no encoding
+    information, you can set this default to help mod_xml2enc process
+    the data correctly.  For example, to work with the default value
+    of Latin1 ( iso-8859-1  specified in HTTP/1.0, use 
+     xml2EncDefault iso-8859-1 
+
+
+ 

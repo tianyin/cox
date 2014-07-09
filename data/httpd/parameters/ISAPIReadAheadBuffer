@@ -1,0 +1,18 @@
+ISAPIReadAheadBuffer
+
+Description:  Size of the Read Ahead Buffer sent to ISAPI
+extensions 
+Syntax:   ISAPIReadAheadBuffer  size   
+Default:   ISAPIReadAheadBuffer 49152  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_isapi 
+
+ Defines the maximum size of the Read Ahead Buffer sent to
+    ISAPI extensions when they are initially invoked. All remaining
+    data must be retrieved using the  ReadClient  callback; some
+    ISAPI extensions may not support the  ReadClient  function.
+    Refer questions to the ISAPI extension's author. 
+
+ 

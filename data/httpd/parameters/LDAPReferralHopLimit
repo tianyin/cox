@@ -1,0 +1,19 @@
+LDAPReferralHopLimit
+
+Description:  The maximum number of referral hops to chase before terminating an LDAP query. 
+Syntax:   LDAPReferralHopLimit  number   
+Default:   SDK dependent, typically between 5 and 10  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_ldap 
+
+ This directive, if enabled by the  LDAPReferrals  directive,
+    limits the number of referral hops that are followed before terminating an
+    LDAP query. 
+
+ 
+  Support for this tunable is uncommon in LDAP SDKs. 
+ 
+
+ 

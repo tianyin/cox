@@ -1,0 +1,23 @@
+FilterDeclare
+
+Description:  Declare a smart filter 
+Syntax:   FilterDeclare  filter-name   [type]   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Options 
+Status:  Base 
+Module:  mod_filter 
+
+ This directive declares an output filter together with a
+    header or environment variable that will determine runtime
+    configuration.  The first argument is a  filter-name 
+    for use in   FilterProvider  ,
+      FilterChain   and
+      FilterProtocol   directives. 
+
+     The final (optional) argument
+    is the type of filter, and takes values of  ap_filter_type 
+    - namely  RESOURCE  (the default),  CONTENT_SET ,
+     PROTOCOL ,  TRANSCODE ,  CONNECTION 
+    or  NETWORK . 
+
+ 

@@ -1,0 +1,47 @@
+DeflateFilterNote
+
+Description:  Places the compression ratio in a note for logging 
+Syntax:   DeflateFilterNote [ type ]  notename   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_deflate 
+
+ The  DeflateFilterNote  directive
+    specifies that a note about compression ratios should be attached
+    to the request. The name of the note is the value specified for
+    the directive. You can use that note for statistical purposes by
+    adding the value to your  access log . 
+
+      Example        DeflateFilterNote ratio
+    
+      LogFormat '"%r" %b (%{ratio}n) "%{User-agent}i"' deflate
+      CustomLog logs/deflate_log deflate 
+ 
+
+     If you want to extract more accurate values from your logs, you
+    can use the  type  argument to specify the type of data
+    left as note for logging.  type  can be one of: 
+
+       Input  
+       Store the byte count of the filter's input stream in the note. 
+
+        Output  
+       Store the byte count of the filter's output stream in the note. 
+
+        Ratio  
+       Store the compression ratio ( output/input * 100 )
+      in the note. This is the default, if the  type  argument
+      is omitted. 
+      Thus you may log it this way: 
+
+      Accurate Logging  DeflateFilterNote Input instream
+DeflateFilterNote Output outstream
+DeflateFilterNote Ratio ratio
+
+LogFormat '"%r" %{outstream}n/%{instream}n (%{ratio}n%%)' deflate
+CustomLog logs/deflate_log deflate 
+ 
+
+ See also 
+    mod_log_config   
+  

@@ -1,0 +1,15 @@
+SSLStaplingResponderTimeout
+
+Description:  Timeout for OCSP stapling queries 
+Syntax:   SSLStaplingResponderTimeout  seconds   
+Default:   SSLStaplingResponderTimeout 10  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available if using OpenSSL 0.9.8h or later 
+
+ This option sets the timeout for queries to OCSP responders when
+  SSLUseStapling   is enabled
+and mod_ssl is querying a responder for OCSP stapling purposes. 
+
+ 

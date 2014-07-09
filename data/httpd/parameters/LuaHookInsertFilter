@@ -1,0 +1,11 @@
+LuaHookInsertFilter
+
+Description:  Provide a hook for the insert_filter phase of request processing 
+Syntax:   LuaHookInsertFilter  /path/to/lua/script.lua hook_function_name  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Experimental 
+Module:  mod_lua 
+
+ Not Yet Implemented 
+ 

@@ -1,0 +1,50 @@
+LuaHookTranslateName
+
+Description:  Provide a hook for the translate name phase of request processing 
+Syntax:   LuaHookTranslateName  /path/to/lua/script.lua  hook_function_name [early|late]  
+Context:  server config, virtual host 
+Override:  All 
+Status:  Experimental 
+Module:  mod_lua 
+Compatibility:  The optional third argument is supported in 2.3.15 and later 
+
+ 
+    Add a hook (at APR_HOOK_MIDDLE) to the translate name phase of
+    request processing. The hook function receives a single
+    argument, the request_rec, and should return a status code,
+    which is either an HTTP error code, or the constants defined
+    in the apache2 module: apache2.OK, apache2.DECLINED, or
+    apache2.DONE.  
+
+     For those new to hooks, basically each hook will be invoked
+    until one of them returns apache2.OK. If your hook doesn't
+    want to do the translation it should just return
+    apache2.DECLINED. If the request should stop processing, then
+    return apache2.DONE. 
+
+     Example: 
+
+ # httpd.conf
+LuaHookTranslateName /scripts/conf/hooks.lua silly_mapper 
+
+
+ -- /scripts/conf/hooks.lua --
+require "apache2"
+function silly_mapper(r)
+    if r.uri == "/" then
+        r.filename = "/var/www/home.lua"
+        return apache2.OK
+    else
+        return apache2.DECLINED
+    end
+end 
+
+
+     Context  This directive is not valid in   < Directory >  ,   < Files >  , or htaccess
+   context.  
+
+     Ordering  The optional arguments "early" or "late" 
+   control when this script runs relative to other modules.  
+
+
+ 

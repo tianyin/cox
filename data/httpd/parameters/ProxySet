@@ -1,0 +1,46 @@
+ProxySet
+
+Description:  Set various Proxy balancer or member parameters 
+Syntax:   ProxySet  url   key=value [key=value ...]   
+Context:  directory 
+Status:  Extension 
+Module:  mod_proxy 
+Compatibility:  ProxySet is only available in Apache HTTP Server 2.2
+  and later. 
+
+ This directive is used as an alternate method of setting any of the
+    parameters available to Proxy balancers and workers normally done via the
+      ProxyPass   directive. If used
+    within a  < Proxy  balancer url|worker url  > 
+    container directive, the  url  argument is not required. As a side
+    effect the respective balancer or worker gets created. This can be useful
+    when doing reverse proxying via a
+      RewriteRule   instead of a
+      ProxyPass   directive. 
+
+      < Proxy balancer://hotcluster >
+    BalancerMember http://www2.example.com:8080 loadfactor=1
+    BalancerMember http://www3.example.com:8080 loadfactor=2
+    ProxySet lbmethod=bytraffic
+< /Proxy > 
+ 
+
+     < Proxy http://backend >
+    ProxySet keepalive=On
+< /Proxy > 
+
+
+     ProxySet balancer://foo lbmethod=bytraffic timeout=15 
+
+
+     ProxySet ajp://backend:7001 timeout=15 
+
+
+     Warning 
+       Keep in mind that the same parameter key can have a different meaning
+      depending whether it is applied to a balancer or a worker as shown by the two
+      examples above regarding timeout. 
+    
+
+
+ 

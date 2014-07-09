@@ -1,0 +1,69 @@
+ProxyPassReverse
+
+Description:  Adjusts the URL in HTTP response headers sent from a reverse
+proxied server 
+Syntax:   ProxyPassReverse [ path ]  url 
+[ interpolate ]  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_proxy 
+
+ This directive lets Apache httpd adjust the URL in the  Location ,
+     Content-Location  and  URI  headers on HTTP
+    redirect responses. This is essential when Apache httpd is used as a
+    reverse proxy (or gateway) to avoid by-passing the reverse proxy
+    because of HTTP redirects on the backend servers which stay behind
+    the reverse proxy. 
+
+     Only the HTTP response headers specifically mentioned above
+    will be rewritten. Apache httpd will not rewrite other response
+    headers, nor will it by default rewrite URL references inside HTML pages.
+    This means that if the proxied content contains absolute URL
+    references, they will by-pass the proxy. To rewrite HTML content to
+    match the proxy, you must load and enable   mod_proxy_html  .
+     
+
+      path  is the name of a local virtual path.  url  is a
+    partial URL for the remote server - the same way they are used for the
+      ProxyPass   directive. 
+
+     For example, suppose the local server has address
+     http://example.com/ ; then 
+
+     ProxyPass         /mirror/foo/ http://backend.example.com/
+ProxyPassReverse  /mirror/foo/ http://backend.example.com/
+ProxyPassReverseCookieDomain  backend.example.com  public.example.com
+ProxyPassReverseCookiePath  /  /mirror/foo/ 
+
+
+     will not only cause a local request for the
+     http://example.com/mirror/foo/bar  to be internally converted
+    into a proxy request to  http://backend.example.com/bar 
+    (the functionality  ProxyPass  provides here). It also takes care
+    of redirects the server  backend.example.com  sends: when
+     http://backend.example.com/bar  is redirected by him to
+     http://backend.example.com/quux  Apache httpd adjusts this to
+     http://example.com/mirror/foo/quux  before forwarding the HTTP
+    redirect response to the client. Note that the hostname used for
+    constructing the URL is chosen in respect to the setting of the   UseCanonicalName   directive. 
+
+     Note that this  ProxyPassReverse  directive can
+    also be used in conjunction with the proxy pass-through feature
+    ( RewriteRule ...  [P] ) from   mod_rewrite  
+    because it doesn't depend on a corresponding   ProxyPass   directive. 
+
+     The optional  interpolate  keyword, used together with
+     ProxyPassInterpolateEnv , enables interpolation
+    of environment variables specified using the format  ${VARNAME} .
+    Note that interpolation is not supported within the scheme portion of a
+    URL. 
+
+     When used inside a   < Location >   section, the first argument is omitted and the local
+    directory is obtained from the   < Location >  . The same occurs inside a   < LocationMatch >   section, but will probably not work as
+    intended, as ProxyPassReverse will interpret the regexp literally as a
+    path; if needed in this situation, specify the ProxyPassReverse outside
+    the section, or in a separate   < Location >   section. 
+
+     This directive is not supported in   < Directory >   or   < Files >   sections. 
+
+ 

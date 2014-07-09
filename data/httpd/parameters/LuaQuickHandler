@@ -1,0 +1,20 @@
+LuaQuickHandler
+
+Description:  Provide a hook for the quick handler of request processing 
+Syntax:   LuaQuickHandler /path/to/script.lua hook_function_name  
+Context:  server config, virtual host 
+Override:  All 
+Status:  Experimental 
+Module:  mod_lua 
+
+ 
+    This phase is run immediately after the request has been mapped to a virtal host, 
+    and can be used to either do some request processing before the other phases kick 
+    in, or to serve a request without the need to translate, map to storage et cetera. 
+    As this phase is run before anything else, directives such as   < Location >   or   < Directory >   are void in this phase, just as 
+    URIs have not been properly parsed yet.
+     
+     Context  This directive is not valid in   < Directory >  ,   < Files >  , or htaccess
+   context.  
+
+ 

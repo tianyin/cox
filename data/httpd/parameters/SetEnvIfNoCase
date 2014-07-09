@@ -1,0 +1,26 @@
+SetEnvIfNoCase
+
+Description:  Sets environment variables based on attributes of the request
+without respect to case 
+Syntax:   SetEnvIfNoCase  attribute regex
+        [!]env-variable [= value ]
+    [[!] env-variable [= value ]] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_setenvif 
+
+ The  SetEnvIfNoCase  is semantically identical to
+    the   SetEnvIf   directive,
+    and differs only in that the regular expression matching is
+    performed in a case-insensitive manner. For example: 
+ SetEnvIfNoCase Host Example\.Org site=example 
+
+
+     This will cause the  site  environment variable
+    to be set to " example " if the HTTP request header
+    field  Host:  was included and contained
+     Example.Org ,  example.org , or any other
+    combination. 
+
+ 

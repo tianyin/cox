@@ -1,0 +1,26 @@
+CacheDirLevels
+
+Description:  The number of levels of subdirectories in the
+cache. 
+Syntax:   CacheDirLevels  levels   
+Default:   CacheDirLevels 2  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_cache_disk 
+
+ The  CacheDirLevels  directive sets the number
+    of subdirectory levels in the cache. Cached data will be saved this
+    many directory levels below the   CacheRoot   directory. 
+     A high value for  CacheDirLevels  combined
+    with a low value for  CacheDirLength  will result in
+    a relatively deep hierarchy, with a small number of subdirectories at each
+    level. 
+
+     
+       The result of  CacheDirLevels *
+        CacheDirLength   must
+      not be higher than 20. 
+     
+
+
+ 

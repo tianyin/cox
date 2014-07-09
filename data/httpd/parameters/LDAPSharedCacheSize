@@ -1,0 +1,15 @@
+LDAPSharedCacheSize
+
+Description:  Size in bytes of the shared-memory cache 
+Syntax:   LDAPSharedCacheSize  bytes   
+Default:   LDAPSharedCacheSize 500000  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+
+ Specifies the number of bytes to allocate for the shared
+    memory cache. The default is 500kb. If set to 0, shared memory
+    caching will not be used and every HTTPD process will create its
+    own cache. 
+
+ 

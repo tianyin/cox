@@ -1,0 +1,17 @@
+ModemStandard
+
+Description:  Modem standard to simulate 
+Syntax:   ModemStandard V.21|V.26bis|V.32|V.92  
+Context:  directory 
+Status:  Experimental 
+Module:  mod_dialup 
+
+ Specify what modem standard you wish to simulate. 
+
+ < Location /mysite >
+    ModemStandard V.26bis
+< /Location > 
+
+
+
+ 

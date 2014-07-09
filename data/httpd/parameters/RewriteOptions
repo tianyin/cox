@@ -1,0 +1,131 @@
+RewriteOptions
+
+Description:  Sets some special options for the rewrite engine 
+Syntax:   RewriteOptions  Options   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Extension 
+Module:  mod_rewrite 
+Compatibility:   MaxRedirects  is no longer available in version 2.1 and
+later 
+
+ The  RewriteOptions  directive sets some
+      special options for the current per-server or per-directory
+      configuration. The  Option  string can currently
+      only be one of the following: 
+
+         Inherit  
+       
+
+       This forces the current configuration to inherit the
+      configuration of the parent. In per-virtual-server context,
+      this means that the maps, conditions and rules of the main
+      server are inherited. In per-directory context this means
+      that conditions and rules of the parent directory's
+       .htaccess  configuration or
+        < Directory >  
+      sections are inherited. The inherited rules are virtually copied
+      to the section where this directive is being used. If used in
+      combination with local rules, the inherited rules are copied behind
+      the local rules. The position of this directive - below or above
+      of local rules - has no influence on this behavior. If local
+      rules forced the rewriting to stop, the inherited rules won't
+      be processed. 
+
+       
+      Rules inherited from the parent scope are applied
+       after  rules specified in the child scope.
+       
+       
+
+        InheritBefore  
+       
+        Like  Inherit  above, but the rules from the parent scope
+      are applied  before  rules specified in the child scope. 
+      Available in Apache HTTP Server 2.3.10 and later. 
+       
+
+        InheritDown  
+       
+
+       If this option is enabled, all child configurations will inherit
+      the configuration of the current configuration. It is equivalent to
+      specifying  RewriteOptions Inherit  in all child
+      configurations. See the  Inherit  option for more details
+      on how the parent-child relationships are handled. 
+      Available in Apache HTTP Server 2.4.8 and later. 
+       
+
+        InheritDownBefore  
+       
+
+       Like  InheritDown  above, but the rules from the current
+      scope are applied  before  rules specified in any child's
+      scope. 
+      Available in Apache HTTP Server 2.4.8 and later. 
+       
+
+        IgnoreInherit  
+       
+
+       This option forces the current and child configurations to ignore
+      all rules that would be inherited from a parent specifying
+       InheritDown  or  InheritDownBefore . 
+      Available in Apache HTTP Server 2.4.8 and later. 
+       
+
+        AllowNoSlash  
+       
+       By default,   mod_rewrite   will ignore URLs that map to a
+      directory on disk but lack a trailing slash, in the expectation that
+      the   mod_dir   module will issue the client with a redirect to
+      the canonical URL with a trailing slash. 
+      
+       When the   DirectorySlash   directive
+      is set to off, the  AllowNoSlash  option can be enabled to ensure
+      that rewrite rules are no longer ignored. This option makes it possible to
+      apply rewrite rules within .htaccess files that match the directory without
+      a trailing slash, if so desired. 
+      Available in Apache HTTP Server 2.4.0 and later. 
+       
+
+        AllowAnyURI  
+       
+
+       When   RewriteRule  
+      is used in  VirtualHost  or server context with
+      version 2.2.22 or later of httpd,   mod_rewrite  
+      will only process the rewrite rules if the request URI is a  URL-path .  This avoids
+      some security issues where particular rules could allow
+      "surprising" pattern expansions (see  CVE-2011-3368 
+      and  CVE-2011-4317 ).
+      To lift the restriction on matching a URL-path, the
+       AllowAnyURI  option can be enabled, and
+        mod_rewrite   will apply the rule set to any
+      request URI string, regardless of whether that string matches
+      the URL-path grammar required by the HTTP specification. 
+      Available in Apache HTTP Server 2.4.3 and later. 
+
+       
+       Security Warning  
+
+       Enabling this option will make the server vulnerable to
+      security issues if used with rewrite rules which are not
+      carefully authored.  It is  strongly recommended 
+      that this option is not used.  In particular, beware of input
+      strings containing the ' @ ' character which could
+      change the interpretation of the transformed URI, as per the
+      above CVE names. 
+       
+       
+
+        MergeBase  
+       
+
+       With this option, the value of   RewriteBase   is copied from where it's explicitly defined
+      into any sub-directory or sub-location that doesn't define its own
+        RewriteBase  . This was the
+      default behavior in 2.4.0 through 2.4.3, and the flag to restore it is
+      available Apache HTTP Server 2.4.4 and later. 
+       
+        

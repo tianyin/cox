@@ -1,0 +1,22 @@
+TransferLog
+
+Description:  Specify location of a log file 
+Syntax:   TransferLog  file | pipe   
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_log_config 
+
+ This directive has exactly the same arguments and effect as
+    the   CustomLog  
+    directive, with the exception that it does not allow the log format
+    to be specified explicitly or for conditional logging of requests.
+    Instead, the log format is determined by the most recently specified
+      LogFormat   directive
+    which does not define a nickname. Common Log Format is used if no
+    other format has been specified. 
+
+      Example  LogFormat "%h %l %u %t \"%r\" % >s %b \"%{Referer}i\" \"%{User-agent}i\""
+TransferLog logs/access_log 
+ 
+
+ 

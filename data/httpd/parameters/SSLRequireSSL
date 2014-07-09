@@ -1,0 +1,20 @@
+SSLRequireSSL
+
+Description:  Deny access when SSL is not used for the
+HTTP request 
+Syntax:   SSLRequireSSL  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive forbids access unless HTTP over SSL (i.e. HTTPS) is enabled for
+the current connection. This is very handy inside the SSL-enabled virtual
+host or directories for defending against configuration errors that expose
+stuff that should be protected. When this directive is present all requests
+are denied which are not using SSL. 
+  Example  SSLRequireSSL 
+ 
+
+ 

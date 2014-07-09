@@ -1,0 +1,13 @@
+LDAPSharedCacheFile
+
+Description:  Sets the shared memory cache file 
+Syntax:   LDAPSharedCacheFile  directory-path/filename   
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+
+ Specifies the directory path and file name of the shared memory
+    cache file. If not set, anonymous shared memory will be used if the
+    platform supports it. 
+
+ 

@@ -1,0 +1,26 @@
+SSITimeFormat
+
+Description:  Configures the format in which date strings are
+displayed 
+Syntax:   SSITimeFormat  formatstring   
+Default:   SSITimeFormat "%A, %d-%b-%Y %H:%M:%S %Z"  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Base 
+Module:  mod_include 
+
+ This directive changes the format in which date strings are displayed
+    when echoing  DATE  environment variables. The
+     formatstring  is as in  strftime(3)  from the
+    C standard library. 
+
+     This directive has the same effect as the  < !--#config
+    timefmt= formatstring  -- >  element. 
+
+     SSITimeFormat "%R, %B %d, %Y" 
+
+
+     The above directive would cause times to be displayed in the
+    format "22:26, June 14, 2002". 
+
+ 

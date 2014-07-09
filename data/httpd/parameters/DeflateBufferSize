@@ -1,0 +1,14 @@
+DeflateBufferSize
+
+Description:  Fragment size to be compressed at one time by zlib 
+Syntax:   DeflateBufferSize  value   
+Default:   DeflateBufferSize 8096  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_deflate 
+
+ The  DeflateBufferSize  directive specifies
+    the size in bytes of the fragments that zlib should compress at one
+    time. 
+
+ 

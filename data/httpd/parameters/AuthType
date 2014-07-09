@@ -1,0 +1,54 @@
+AuthType
+
+Description:  Type of user authentication 
+Syntax:   AuthType None|Basic|Digest|Form  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_authn_core 
+
+ This directive selects the type of user authentication for a
+    directory. The authentication types available are  None ,
+     Basic  (implemented by
+      mod_auth_basic  ),  Digest 
+    (implemented by   mod_auth_digest  ), and
+     Form  (implemented by   mod_auth_form  ). 
+
+     To implement authentication, you must also use the   AuthName   and   Require   directives.  In addition, the
+    server must have an authentication-provider module such as
+      mod_authn_file   and an authorization module such
+    as   mod_authz_user  . 
+
+     The authentication type  None  disables authentication.
+    When authentication is enabled, it is normally inherited by each
+    subsequent  configuration section ,
+    unless a different authentication type is specified.  If no
+    authentication is desired for a subsection of an authenticated
+    section, the authentication type  None  may be used;
+    in the following example, clients may access the
+     /www/docs/public  directory without authenticating: 
+
+     < Directory /www/docs >
+    AuthType Basic
+    AuthName Documents
+    AuthBasicProvider file
+    AuthUserFile /usr/local/apache/passwd/passwords
+    Require valid-user
+< /Directory >
+
+< Directory /www/docs/public >
+    AuthType None
+    Require all granted
+< /Directory > 
+
+
+     When disabling authentication, note that clients which have
+    already authenticated against another portion of the server's document
+    tree will typically continue to send authentication HTTP headers
+    or cookies with each request, regardless of whether the server
+    actually requires authentication for every resource. 
+
+ See also 
+   Authentication, Authorization,
+    and Access Control  
+  

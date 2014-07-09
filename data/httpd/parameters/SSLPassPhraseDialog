@@ -1,0 +1,79 @@
+SSLPassPhraseDialog
+
+Description:  Type of pass phrase dialog for encrypted private
+keys 
+Syntax:   SSLPassPhraseDialog  type   
+Default:   SSLPassPhraseDialog builtin  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+When Apache starts up it has to read the various Certificate (see
+  SSLCertificateFile  ) and
+Private Key (see   SSLCertificateKeyFile  ) files of the
+SSL-enabled virtual servers. Because for security reasons the Private
+Key files are usually encrypted, mod_ssl needs to query the
+administrator for a Pass Phrase in order to decrypt those files. This
+query can be done in two ways which can be configured by
+ type : 
+   builtin 
+     
+    This is the default where an interactive terminal dialog occurs at startup
+    time just before Apache detaches from the terminal. Here the administrator
+    has to manually enter the Pass Phrase for each encrypted Private Key file.
+    Because a lot of SSL-enabled virtual hosts can be configured, the
+    following reuse-scheme is used to minimize the dialog: When a Private Key
+    file is encrypted, all known Pass Phrases (at the beginning there are
+    none, of course) are tried. If one of those known Pass Phrases succeeds no
+    dialog pops up for this particular Private Key file. If none succeeded,
+    another Pass Phrase is queried on the terminal and remembered for the next
+    round (where it perhaps can be reused). 
+     
+    This scheme allows mod_ssl to be maximally flexible (because for N encrypted
+    Private Key files you  can  use N different Pass Phrases - but then
+    you have to enter all of them, of course) while minimizing the terminal
+    dialog (i.e. when you use a single Pass Phrase for all N Private Key files
+    this Pass Phrase is queried only once).  
+
+  |/path/to/program [args...] 
+
+    This mode allows an external program to be used which acts as a
+   pipe to a particular input device; the program is sent the standard
+   prompt text used for the  builtin  mode on
+    stdin , and is expected to write password strings on
+    stdout .  If several passwords are needed (or an
+   incorrect password is entered), additional prompt text will be
+   written subsequent to the first password being returned, and more
+   passwords must then be written back.  
+
+  exec:/path/to/program 
+     
+    Here an external program is configured which is called at startup for each
+    encrypted Private Key file. It is called with two arguments (the first is
+    of the form `` servername:portnumber '', the second is either
+    `` RSA '', `` DSA '', `` ECC '' or an
+    integer index starting at 3 if more than three keys are configured), which
+    indicate for which server and algorithm it has to print the corresponding
+    Pass Phrase to  stdout . In versions 2.4.8 (unreleased)
+    and 2.4.9, it is called with one argument, a string of the
+    form `` servername:portnumber:index '' (with  index 
+    being a zero-based integer number), which indicate the server, TCP port
+    and certificate number.  The intent is that this external
+    program first runs security checks to make sure that the system is not
+    compromised by an attacker, and only when these checks were passed
+    successfully it provides the Pass Phrase. 
+     
+    Both these security checks, and the way the Pass Phrase is determined, can
+    be as complex as you like. Mod_ssl just defines the interface: an
+    executable program which provides the Pass Phrase on  stdout .
+    Nothing more or less! So, if you're really paranoid about security, here
+    is your interface. Anything else has to be left as an exercise to the
+    administrator, because local security requirements are so different. 
+     
+    The reuse-algorithm above is used here, too. In other words: The external
+    program is called only once per unique Pass Phrase.  
+   Example  SSLPassPhraseDialog exec:/usr/local/apache/sbin/pp-filter 
+ 
+
+ 

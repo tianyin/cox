@@ -1,0 +1,29 @@
+VirtualDocumentRoot
+
+Description:  Dynamically configure the location of the document root
+for a given virtual host 
+Syntax:   VirtualDocumentRoot  interpolated-directory |none  
+Default:   VirtualDocumentRoot none  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_vhost_alias 
+
+ The  VirtualDocumentRoot  directive allows you to
+    determine where Apache HTTP Server will find your documents based on the
+    value of the server name. The result of expanding
+     interpolated-directory  is used as the root of the
+    document tree in a similar manner to the   DocumentRoot   directive's argument.
+    If  interpolated-directory  is  none  then
+     VirtualDocumentRoot  is turned off. This directive
+    cannot be used in the same context as   VirtualDocumentRootIP  . 
+
+  Note 
+ VirtualDocumentRoot  will override any   DocumentRoot   directives you may have put in the same 
+context or child contexts. Putting a  VirtualDocumentRoot  
+in the global server scope will effectively override   DocumentRoot   directives in any virtual hosts defined later 
+on, unless you set  VirtualDocumentRoot  to  None  
+in each virtual host.
+ 
+
+
+ 

@@ -1,0 +1,13 @@
+DBDMax
+
+Description:  Maximum number of connections 
+Syntax:   DBDMax  number   
+Default:   DBDMax 10  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_dbd 
+
+ Set the hard maximum number of connections per process
+    (threaded platforms only). 
+
+ 

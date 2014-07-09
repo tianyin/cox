@@ -1,0 +1,16 @@
+SSLStaplingErrorCacheTimeout
+
+Description:  Number of seconds before expiring invalid responses in the OCSP stapling cache 
+Syntax:   SSLStaplingErrorCacheTimeout  seconds   
+Default:   SSLStaplingErrorCacheTimeout 600  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available if using OpenSSL 0.9.8h or later 
+
+ Sets the timeout in seconds before  invalid  responses
+in the OCSP stapling cache (configured through   SSLStaplingCache  ) will expire.
+To set the cache timeout for valid responses, see
+  SSLStaplingStandardCacheTimeout  . 
+
+ 

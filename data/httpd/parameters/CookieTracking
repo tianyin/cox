@@ -1,0 +1,23 @@
+CookieTracking
+
+Description:  Enables tracking cookie 
+Syntax:   CookieTracking on|off  
+Default:   CookieTracking off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Extension 
+Module:  mod_usertrack 
+
+ When   mod_usertrack   is loaded, and
+     CookieTracking on  is set, Apache will send a
+    user-tracking cookie for all new requests. This directive can
+    be used to turn this behavior on or off on a per-server or
+    per-directory basis. By default, enabling
+      mod_usertrack   will  not 
+    activate cookies.  
+
+     CookieTracking on 
+
+
+
+ 

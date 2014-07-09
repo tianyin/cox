@@ -1,0 +1,17 @@
+BalancerGrowth
+
+Description:  Number of additional Balancers that can be added Post-configuration 
+Syntax:   BalancerGrowth  #   
+Default:   BalancerGrowth 5  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+Compatibility:  BalancerGrowth is only available in Apache HTTP Server 2.3.13
+  and later. 
+
+ This directive allows for growth potential in the number of
+    Balancers available for a virtualhost in addition to the
+    number pre-configured. It only takes effect if there is at
+    least 1 pre-configured Balancer. 
+
+ 

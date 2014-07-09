@@ -1,0 +1,25 @@
+SessionDBDCookieName2
+
+Description:  Name and attributes for the RFC2965 cookie storing the session ID 
+Syntax:   SessionDBDCookieName2  name   attributes   
+Default:   none  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_session_dbd 
+
+ The  SessionDBDCookieName2  directive specifies the name and
+    optional attributes of an RFC2965 compliant cookie inside which the session ID will
+    be stored. RFC2965 cookies are set using the  Set-Cookie2  HTTP header.
+     
+
+     An optional list of cookie attributes can be specified, as per the example below.
+    These attributes are inserted into the cookie as is, and are not interpreted by
+    Apache. Ensure that your attributes are defined correctly as per the cookie specification.
+     
+
+      Cookie2 with attributes  Session On
+SessionDBDCookieName2 session path=/private;domain=example.com;httponly;secure;version=1; 
+ 
+
+
+ 

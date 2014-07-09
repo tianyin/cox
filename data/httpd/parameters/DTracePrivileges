@@ -1,0 +1,19 @@
+DTracePrivileges
+
+Description:  Determines whether the privileges required by dtrace are enabled. 
+Syntax:   DTracePrivileges On|Off  
+Default:   DTracePrivileges Off  
+Context:  server config 
+Status:  Experimental 
+Module:  mod_privileges 
+Compatibility:  Available on Solaris 10 and OpenSolaris with
+non-threaded MPMs (  prefork   or custom MPM). 
+
+ This server-wide directive determines whether Apache will run with
+    the  privileges  required to run
+     dtrace .
+    Note that  DTracePrivileges On  will not in itself
+    activate DTrace, but  DTracePrivileges Off  will prevent
+    it working. 
+
+ 

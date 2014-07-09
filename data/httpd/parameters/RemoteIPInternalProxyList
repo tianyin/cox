@@ -1,0 +1,25 @@
+RemoteIPInternalProxyList
+
+Description:  Declare client intranet IP addresses trusted to present the RemoteIPHeader value 
+Syntax:   RemoteIPInternalProxyList  filename   
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_remoteip 
+
+ The   RemoteIPInternalProxyList   directive specifies
+    a file parsed at startup, and builds a list of addresses (or address blocks)
+    to trust as presenting a valid RemoteIPHeader value of the useragent IP. 
+
+     The ' # ' hash character designates a comment line, otherwise
+    each whitespace or newline separated entry is processed identically to
+    the   RemoteIPInternalProxy   directive. 
+
+      Internal (Load Balancer) Example  RemoteIPHeader X-Client-IP
+RemoteIPInternalProxyList conf/trusted-proxies.lst 
+ 
+
+      conf/trusted-proxies.lst contents  # Our internally trusted proxies;
+10.0.2.0/24         #Everyone in the testing group
+gateway.localdomain #The front end balancer  
+
+ 

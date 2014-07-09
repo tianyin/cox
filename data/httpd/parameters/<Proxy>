@@ -1,0 +1,46 @@
+<Proxy>
+
+Description:  Container for directives applied to proxied resources 
+Syntax:   < Proxy  wildcard-url  > ...< /Proxy >  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+
+ Directives placed in  < Proxy > 
+    sections apply only to matching proxied content.  Shell-style wildcards are
+    allowed. 
+
+     For example, the following will allow only hosts in
+     yournetwork.example.com  to access content via your proxy
+    server: 
+
+     < Proxy * >
+  Require host yournetwork.example.com
+< /Proxy > 
+
+
+     The following example will process all files in the  foo 
+    directory of  example.com  through the  INCLUDES 
+    filter when they are sent through the proxy server: 
+
+    < Proxy http://example.com/foo/* >
+  SetOutputFilter INCLUDES
+< /Proxy > 
+
+
+      Differences from the Location configuration section 
+       A backend URL matches the configuration section if it begins with the 
+      the  wildcard-url  string, even if the last path segment in the
+      directive only matches a prefix of the backend URL.  For example, 
+      < Proxy http://example.com/foo > matches all of 
+      http://example.com/foo, http://example.com/foo/bar, and 
+      http://example.com/foobar.  The matching of the final URL differs
+      from the behavior of the   < Location >   section, which for purposes of this note 
+      treats the final path component as if it ended in a slash. 
+       For more control over the matching, see  < ProxyMatch > . 
+     
+
+
+ See also 
+    < ProxyMatch >   
+  

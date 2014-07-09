@@ -1,0 +1,20 @@
+<AuthnProviderAlias>
+
+Description:  Enclose a group of directives that represent an
+extension of a base authentication provider and referenced by
+the specified alias 
+Syntax:   < AuthnProviderAlias  baseProvider Alias  >
+... < /AuthnProviderAlias >  
+Context:  server config 
+Status:  Base 
+Module:  mod_authn_core 
+
+  < AuthnProviderAlias >  and
+     < /AuthnProviderAlias >  are used to enclose a group of
+    authentication directives that can be referenced by the alias name
+    using one of the directives   
+    AuthBasicProvider   or   
+    AuthDigestProvider  . 
+
+
+ 

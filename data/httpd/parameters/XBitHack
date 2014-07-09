@@ -1,0 +1,44 @@
+XBitHack
+
+Description:  Parse SSI directives in files with the execute bit
+set 
+Syntax:   XBitHack on|off|full  
+Default:   XBitHack off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Options 
+Status:  Base 
+Module:  mod_include 
+
+ The  XBitHack  directive controls the parsing
+    of ordinary html documents. This directive only affects files associated
+    with the  MIME-type   text/html .  XBitHack  can take on the following values: 
+
+       off  
+       No special treatment of executable files. 
+
+        on  
+       Any  text/html  file that has the user-execute bit
+      set will be treated as a server-parsed html document. 
+
+        full  
+       As for  on  but also test the group-execute bit.
+      If it is set, then set the  Last-modified  date of the
+      returned file to be the last modified time of the file. If
+      it is not set, then no last-modified date is sent. Setting
+      this bit allows clients and proxies to cache the result of
+      the request.
+
+        Note 
+       You would not want to use the full option, unless you assure the
+      group-execute bit is unset for every SSI script which might  #include  a CGI or otherwise produces different output on
+      each hit (or could potentially change on subsequent requests). 
+
+       The   SSILastModified  
+      directive takes precedence over the
+        XBitHack   directive when
+        SSILastModified   is set to
+       on . 
+       
+
+       
+      

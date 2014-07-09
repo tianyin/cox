@@ -1,0 +1,21 @@
+CacheSocacheMinTime
+
+Description:  The maximum time (in seconds) for a document to be placed in the
+cache 
+Syntax:   CacheSocacheMinTime  seconds   
+Default:   CacheSocacheMinTime 600  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_cache_socache 
+Compatibility:  Available in Apache 2.5 and later 
+
+ The  CacheSocacheMinTime  directive sets the
+    amount of seconds beyond the freshness lifetime of the response that the
+    response should be cached for in the shared object cache. If a response is
+    only stored for its freshness lifetime, there will be no opportunity to
+    revalidate the response to make it fresh again. 
+
+     CacheSocacheMinTime 600 
+
+
+ 

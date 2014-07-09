@@ -1,0 +1,92 @@
+Redirect
+
+Description:  Sends an external redirect asking the client to fetch
+a different URL 
+Syntax:   Redirect [ status ]  URL-path 
+ URL   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_alias 
+
+ The Redirect directive maps an old URL into a new one by asking
+    the client to refetch the resource at the new location. 
+
+     The old  URL-path  is a case-sensitive (%-decoded) path
+    beginning with a slash.  A relative path is not allowed. 
+
+     The new  URL  may be either an absolute URL beginning
+    with a scheme and hostname, or a URL-path beginning with a slash.
+    In this latter case the scheme and hostname of the current server will
+    be added. 
+
+     Then any request beginning with  URL-Path  will return a
+    redirect request to the client at the location of the target
+     URL .  Additional path information beyond the matched
+     URL-Path  will be appended to the target URL. 
+
+     # Redirect to a URL on a different host
+Redirect /service http://foo2.example.com/service
+
+# Redirect to a URL on the same host
+Redirect /one /two 
+
+
+     If the client requests  http://example.com/service/foo.txt ,
+    it will be told to access
+     http://foo2.example.com/service/foo.txt 
+	instead. This includes requests with  GET  parameters, such as
+     http://example.com/service/foo.pl?q=23&amp;a=42 ,
+    it will be redirected to
+     http://foo2.example.com/service/foo.pl?q=23&amp;a=42 .
+	Note that  POST s will be discarded. 
+	Only complete path segments are matched, so the above
+    example would not match a request for
+     http://example.com/servicefoo.txt .  For more complex matching
+    using regular expressions, see the   RedirectMatch   directive. 
+
+
+      Note 
+     Redirect directives take precedence over Alias and ScriptAlias
+    directives, irrespective of their ordering in the configuration
+    file.  
+
+     If no  status  argument is given, the redirect will
+    be "temporary" (HTTP status 302). This indicates to the client
+    that the resource has moved temporarily. The  status 
+    argument can be used to return other HTTP status codes: 
+
+      permanent 
+
+       Returns a permanent redirect status (301) indicating that
+      the resource has moved permanently. 
+
+       temp 
+
+       Returns a temporary redirect status (302). This is the
+      default. 
+
+       seeother 
+
+       Returns a "See Other" status (303) indicating that the
+      resource has been replaced. 
+
+       gone 
+
+       Returns a "Gone" status (410) indicating that the
+      resource has been permanently removed. When this status is
+      used the  URL  argument should be omitted. 
+      Other status codes can be returned by giving the numeric
+    status code as the value of  status . If the status is
+    between 300 and 399, the  URL  argument must be present.
+    If the status is  not  between 300 and 399, the
+     URL  argument must be omitted. The status must be a valid
+    HTTP status code, known to the Apache HTTP Server (see the function
+     send_error_response  in http_protocol.c). 
+
+     Redirect permanent /one http://example.com/two
+Redirect 303 /three http://example.com/other 
+
+
+
+ 

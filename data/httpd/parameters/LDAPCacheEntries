@@ -1,0 +1,15 @@
+LDAPCacheEntries
+
+Description:  Maximum number of entries in the primary LDAP cache 
+Syntax:   LDAPCacheEntries  number   
+Default:   LDAPCacheEntries 1024  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+
+ Specifies the maximum size of the primary LDAP cache. This
+    cache contains successful search/binds. Set it to 0 to turn off
+    search/bind caching. The default size is 1024 cached
+    searches. 
+
+ 

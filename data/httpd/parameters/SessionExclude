@@ -1,0 +1,25 @@
+SessionExclude
+
+Description:  Define URL prefixes for which a session is ignored 
+Syntax:   SessionExclude  path   
+Default:   none  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_session 
+
+ The  SessionExclude  directive allows sessions to
+    be disabled relative to URL prefixes only. This can be used to make a
+    website more efficient, by targeting a more precise URL space for which
+    a session should be maintained. By default, all URLs within the directory
+    or location are included in the session. The
+      SessionExclude   directive takes
+    precedence over the
+      SessionInclude   directive. 
+
+      Warning 
+     This directive has a similar purpose to the  path  attribute
+    in HTTP cookies, but should not be confused with this attribute. This
+    directive does not set the  path  attribute, which must be
+    configured separately.  
+
+ 

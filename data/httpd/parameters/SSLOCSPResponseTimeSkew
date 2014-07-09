@@ -1,0 +1,13 @@
+SSLOCSPResponseTimeSkew
+
+Description:  Maximum allowable time skew for OCSP response validation 
+Syntax:   SSLOCSPResponseTimeSkew  seconds   
+Default:   SSLOCSPResponseTimeSkew 300  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ This option sets the maximum allowable time skew for OCSP responses
+(when checking their  thisUpdate  and  nextUpdate  fields). 
+
+ 

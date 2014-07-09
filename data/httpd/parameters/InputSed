@@ -1,0 +1,13 @@
+InputSed
+
+Description:  Sed command to filter request data (typically  POST  data) 
+Syntax:   InputSed  sed-command   
+Context:  directory, .htaccess 
+Status:  Experimental 
+Module:  mod_sed 
+
+ The  InputSed  directive specifies the  sed  command
+    to execute on the request data e.g.,  POST  data.
+     
+
+ 

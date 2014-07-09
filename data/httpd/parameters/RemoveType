@@ -1,0 +1,37 @@
+RemoveType
+
+Description:  Removes any content type associations for a set of file
+extensions 
+Syntax:   RemoveType  extension  [ extension ]
+...  
+Context:  virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+ The  RemoveType  directive removes any
+     media type  associations for files with
+    the given extensions. This allows  .htaccess  files in
+    subdirectories to undo any associations inherited from parent
+    directories or the server config files. An example of its use
+    might be: 
+
+      /foo/.htaccess:  RemoveType .cgi 
+ 
+
+     This will remove any special handling of  .cgi 
+    files in the  /foo/  directory and any beneath it,
+    causing responses containing those files to omit the HTTP
+    Content-Type header field. 
+
+      Note 
+        RemoveType  directives are processed
+       after  any   AddType  
+      directives, so it is possible they may undo the effects of the
+      latter if both occur within the same directory configuration. 
+     
+
+     The  extension  argument is case-insensitive and can
+    be specified with or without a leading dot. 
+
+ 

@@ -1,0 +1,25 @@
+AuthFormSize
+
+Description:  The largest size of the form in bytes that will be parsed for the login details 
+Syntax:   AuthFormSize  size   
+Default:   8192  
+Context:  directory 
+Status:  Base 
+Module:  mod_auth_form 
+Compatibility:  Available in Apache HTTP Server 2.3.0 and later 
+
+ The   AuthFormSize   directive specifies
+    the maximum size of the body of the request that will be parsed to find the login form. 
+
+     If a login request arrives that exceeds this size, the whole request will be aborted
+    with the HTTP response code  HTTP_REQUEST_TOO_LARGE . 
+
+     If you have populated the form with fields described by
+      AuthFormMethod  ,
+      AuthFormMimetype   and
+      AuthFormBody  , you probably want to set this
+    field to a similar size as the   KeptBodySize  
+    directive. 
+
+
+ 

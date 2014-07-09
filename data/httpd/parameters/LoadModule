@@ -1,0 +1,23 @@
+LoadModule
+
+Description:  Links in the object file or library, and adds to the list
+of active modules 
+Syntax:   LoadModule  module filename   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_so 
+
+ The LoadModule directive links in the object file or library
+     filename  and adds the module structure named
+     module  to the list of active modules.  Module 
+    is the name of the external variable of type
+     module  in the file, and is listed as the  Module Identifier 
+    in the module documentation. Example: 
+
+     LoadModule status_module modules/mod_status.so 
+
+
+     loads the named module from the modules subdirectory of the
+    ServerRoot. 
+
+ 

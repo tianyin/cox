@@ -1,0 +1,28 @@
+ProxyHTMLExtended
+
+Description:  Determines whether to fix links in inline scripts, stylesheets,
+and scripting events. 
+Syntax:   ProxyHTMLExtended  On|Off   
+Default:   ProxyHTMLExtended Off  
+Context:  server config, virtual host, directory 
+Status:  Base 
+Module:  mod_proxy_html 
+Compatibility:  Version 2.4 and later; available as a third-party
+for earlier 2.x versions 
+
+ Set to  Off , HTML links are rewritten according to the
+ ProxyHTMLURLMap  directives, but links appearing
+in Javascript and CSS are ignored. 
+ Set to  On , all scripting events (as determined by
+ ProxyHTMLEvents ) and embedded scripts or
+stylesheets are also processed by the  ProxyHTMLURLMap 
+rules, according to the flags set for each rule.  Since this requires more
+parsing, performance will be best if you only enable it when strictly necessary.
+  
+You'll also need to take care over patterns matched, since the parser has no
+knowledge of what is a URL within an embedded script or stylesheet.
+In particular, extended matching of  /  is likely to lead to
+false matches.
+ 
+
+ 

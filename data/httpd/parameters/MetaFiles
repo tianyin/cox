@@ -1,0 +1,13 @@
+MetaFiles
+
+Description:  Activates CERN meta-file processing 
+Syntax:   MetaFiles on|off  
+Default:   MetaFiles off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Extension 
+Module:  mod_cern_meta 
+
+ Turns on/off Meta file processing on a per-directory basis. 
+
+ 

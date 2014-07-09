@@ -1,0 +1,354 @@
+RewriteRule
+
+Description:  Defines rules for the rewriting engine 
+Syntax:   RewriteRule
+       Pattern   Substitution  [ flags ]  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Extension 
+Module:  mod_rewrite 
+
+ The  RewriteRule  directive is the real
+      rewriting workhorse. The directive can occur more than once,
+      with each instance defining a single rewrite rule. The
+      order in which these rules are defined is important - this is the order
+      in which they will be applied at run-time. 
+
+         Pattern   is
+      a perl compatible  regular
+      expression . On the first RewriteRule, it is matched against
+      the (%-decoded)  URL-path  (or 
+       file-path , depending 
+      on the context) of the request. Subsequent patterns are matched against the 
+      output of the last matching RewriteRule. 
+
+   What is matched?  
+       In   VirtualHost   context,
+      The  Pattern  will initially be matched against the part of the
+      URL after the hostname and port, and before the query string (e.g. "/app1/index.html"). 
+
+       In   Directory   and htaccess context,
+      the  Pattern  will initially be matched against the
+       filesystem  path, after removing the prefix that led the server
+      to the current  RewriteRule  (e.g. "app1/index.html"
+      or "index.html" depending on where the directives are defined). 
+
+       If you wish to match against the hostname, port, or query string, use a
+        RewriteCond   with the
+       %{HTTP_HOST} ,  %{SERVER_PORT} , or
+       %{QUERY_STRING}  variables respectively. 
+
+ 
+
+  Per-directory Rewrites 
+  The rewrite engine may be used in  .htaccess  files and in   < Directory >   sections, with some additional
+complexity. 
+
+ To enable the rewrite engine in this context, you need to set
+" RewriteEngine On "  and 
+" Options FollowSymLinks " must be enabled. If your
+administrator has disabled override of  FollowSymLinks  for
+a user's directory, then you cannot use the rewrite engine. This
+restriction is required for security reasons. 
+
+ When using the rewrite engine in  .htaccess  files the
+per-directory prefix (which always is the same for a specific
+directory) is automatically  removed  for the RewriteRule pattern matching
+and automatically  added  after any relative (not starting with a
+slash or protocol name) substitution encounters the end of a rule set.
+See the   RewriteBase  
+directive for more information regarding what prefix will be added back to
+relative substitutions. 
+
+  If you wish to match against the full URL-path in a per-directory
+(htaccess) RewriteRule, use the  %{REQUEST_URI}  variable in
+a  RewriteCond . 
+
+ The removed prefix always ends with a slash, meaning the matching occurs against a string which
+ never  has a leading slash.  Therefore, a  Pattern  with  ^/  never
+matches in per-directory context. 
+
+ Although rewrite rules are syntactically permitted in   < Location >   and   < Files >   sections, this
+should never be necessary and is unsupported. 
+  
+
+       For some hints on  regular
+      expressions , see
+      the  mod_rewrite
+      Introduction . 
+
+       In mod_rewrite, the NOT character
+      (' ! ') is also available as a possible pattern
+      prefix. This enables you to negate a pattern; to say, for instance:
+      `` if the current URL does  NOT  match this
+      pattern ''. This can be used for exceptional cases, where
+      it is easier to match the negative pattern, or as a last
+      default rule. 
+
+  Note 
+When using the NOT character to negate a pattern, you cannot include
+grouped wildcard parts in that pattern. This is because, when the
+pattern does NOT match (ie, the negation matches), there are no
+contents for the groups. Thus, if negated patterns are used, you
+cannot use  $N  in the substitution string!
+ 
+
+       The   Substitution   of a
+      rewrite rule is the string that replaces the original URL-path that
+      was matched by  Pattern .  The  Substitution  may
+      be a: 
+
+        file-system path 
+
+         Designates the location on the file-system of the resource
+        to be delivered to the client.  Substitutions are only
+        treated as a file-system path when the rule is configured in 
+        server (virtualhost) context and the first component of the
+        path in the substitution exists in the file-system 
+
+         URL-path 
+
+         A   DocumentRoot  -relative path to the
+        resource to be served. Note that   mod_rewrite  
+        tries to guess whether you have specified a file-system path
+        or a URL-path by checking to see if the first segment of the
+        path exists at the root of the file-system. For example, if
+        you specify a  Substitution  string of
+         /www/file.html , then this will be treated as a
+        URL-path  unless  a directory named  www 
+        exists at the root or your file-system (or, in the case of 
+        using rewrites in a  .htaccess  file, relative to
+        your document root), in which case it will
+        be treated as a file-system path. If you wish other
+        URL-mapping directives (such as   Alias  ) to be applied to the
+        resulting URL-path, use the  [PT]  flag as
+        described below. 
+
+         Absolute URL 
+
+         If an absolute URL is specified,
+          mod_rewrite   checks to see whether the
+        hostname matches the current host. If it does, the scheme and
+        hostname are stripped out and the resulting path is treated as
+        a URL-path. Otherwise, an external redirect is performed for
+        the given URL. To force an external redirect back to the
+        current host, see the  [R]  flag below. 
+
+          -  (dash) 
+
+         A dash indicates that no substitution should be performed
+        (the existing path is passed through untouched). This is used
+        when a flag (see below) needs to be applied without changing
+        the path. 
+
+        In addition to plain text, the  Substitution  string can include 
+
+        back-references ( $N ) to the RewriteRule
+        pattern 
+
+         back-references ( %N ) to the last matched
+        RewriteCond pattern 
+
+         server-variables as in rule condition test-strings
+        ( %{VARNAME} ) 
+
+          mapping-function  calls
+        ( ${mapname:key|default} ) 
+        Back-references are identifiers of the form
+       $  N 
+      ( N =0..9), which will be replaced
+      by the contents of the  N th group of the
+      matched  Pattern . The server-variables are the same
+      as for the  TestString  of a  RewriteCond 
+      directive. The mapping-functions come from the
+       RewriteMap  directive and are explained there.
+      These three types of variables are expanded in the order above. 
+
+       Rewrite rules are applied to the results of previous rewrite
+      rules, in the order in which they are defined
+      in the config file. The URL-path or file-system path (see  "What is matched?" , above) is  completely
+      replaced  by the  Substitution  and the
+      rewriting process continues until all rules have been applied,
+      or it is explicitly terminated by an
+         L   flag ,
+      or other flag which implies immediate termination, such as
+        END   or
+        F  . 
+
+       Modifying the Query String 
+       By default, the query string is passed through unchanged. You
+      can, however, create URLs in the substitution string containing
+      a query string part. Simply use a question mark inside the
+      substitution string to indicate that the following text should
+      be re-injected into the query string. When you want to erase an
+      existing query string, end the substitution string with just a
+      question mark. To combine new and old query strings, use the
+       [QSA]  flag. 
+      
+
+       Additionally you can set special  actions  to be performed by
+      appending   [  flags  ]  
+      as the third argument to the  RewriteRule 
+      directive.  Flags  is a comma-separated list, surround by square
+      brackets, of any of the flags in the following table. More
+      details, and examples, for each flag, are available in the  Rewrite Flags document . 
+
+       Flag and syntax 
+         Function 
+       B 
+         Escape non-alphanumeric characters  before  applying
+        the transformation.   details ...   
+       chain|C 
+         Rule is chained to the following rule. If the rule fails,
+        the rule(s) chained to it will be skipped.   details ...   
+       cookie|CO= NAME : VAL  
+         Sets a cookie in the client browser. Full syntax is:
+        CO= NAME : VAL : domain [: lifetime [: path [: secure [: httponly ]]]]   details ...  
+         
+       discardpath|DPI 
+         Causes the PATH_INFO portion of the rewritten URI to be
+        discarded.   details
+        ...   
+       END 
+         Stop the rewriting process immediately and don't apply any
+        more rules. Also prevents further execution of rewrite rules
+        in per-directory and .htaccess context. (Available in 2.3.9 and later)
+          details ...   
+       env|E=[!] VAR [: VAL ] 
+         Causes an environment variable  VAR  to be set (to the
+        value  VAL  if provided). The form ! VAR  causes
+        the environment variable  VAR  to be unset.
+          details ...   
+       forbidden|F 
+         Returns a 403 FORBIDDEN response to the client browser.
+          details ...   
+       gone|G 
+         Returns a 410 GONE response to the client browser.   details ...   
+       Handler|H= Content-handler  
+         Causes the resulting URI to be sent to the specified
+         Content-handler  for processing.   details ...   
+       last|L 
+         Stop the rewriting process immediately and don't apply any
+        more rules. Especially note caveats for per-directory and
+        .htaccess context (see also the END flag).   details ...   
+       next|N 
+         Re-run the rewriting process, starting again with the first
+        rule, using the result of the ruleset so far as a starting
+        point.   details
+        ...   
+       nocase|NC 
+         Makes the pattern comparison case-insensitive.
+          details ...   
+       noescape|NE 
+         Prevent mod_rewrite from applying hexcode escaping of
+        special characters in the result of the rewrite.   details ...   
+       nosubreq|NS 
+         Causes a rule to be skipped if the current request is an
+        internal sub-request.   details ...   
+       proxy|P 
+         Force the substitution URL to be internally sent as a proxy
+        request.   details
+        ...   
+       passthrough|PT 
+         Forces the resulting URI to be passed back to the URL
+        mapping engine for processing of other URI-to-filename
+        translators, such as  Alias  or
+         Redirect .   details ...   
+       qsappend|QSA 
+         Appends any query string from the original request URL to 
+        any query string created in the rewrite target.  details ...   
+       qsdiscard|QSD 
+         Discard any query string attached to the incoming URI.
+          details
+        ...   
+       redirect|R[= code ] 
+         Forces an external redirect, optionally with the specified
+        HTTP status code.   details ...  
+         
+       skip|S= num  
+         Tells the rewriting engine to skip the next  num 
+        rules if the current rule matches.   details ...   
+       type|T= MIME-type  
+         Force the  MIME-type  of the target file
+        to be the specified type.   details ...   
+        Home directory expansion 
+  When the substitution string begins with a string
+resembling "/~user" (via explicit text or backreferences), mod_rewrite performs
+home directory expansion independent of the presence or configuration
+of   mod_userdir  . 
+
+  This expansion does not occur when the  PT 
+flag is used on the   RewriteRule  
+directive. 
+ 
+
+
+      Here are all possible substitution combinations and their
+      meanings: 
+
+        Inside per-server configuration
+      ( httpd.conf ) 
+       for request `` GET
+      /somepath/pathinfo '':   
+
+   Given Rule 
+ Resulting Substitution 
+   ^/somepath(.*) otherpath$1 
+ invalid, not supported 
+   ^/somepath(.*) otherpath$1  [R] 
+ invalid, not supported 
+   ^/somepath(.*) otherpath$1  [P] 
+ invalid, not supported 
+   ^/somepath(.*) /otherpath$1 
+ /otherpath/pathinfo 
+   ^/somepath(.*) /otherpath$1 [R] 
+ http://thishost/otherpath/pathinfo via external redirection 
+   ^/somepath(.*) /otherpath$1 [P] 
+ doesn't make sense, not supported 
+   ^/somepath(.*) http://thishost/otherpath$1 
+ /otherpath/pathinfo 
+   ^/somepath(.*) http://thishost/otherpath$1 [R] 
+ http://thishost/otherpath/pathinfo via external redirection 
+   ^/somepath(.*) http://thishost/otherpath$1 [P] 
+ doesn't make sense, not supported 
+   ^/somepath(.*) http://otherhost/otherpath$1 
+ http://otherhost/otherpath/pathinfo via external redirection 
+   ^/somepath(.*) http://otherhost/otherpath$1 [R] 
+ http://otherhost/otherpath/pathinfo via external redirection (the [R] flag is redundant) 
+   ^/somepath(.*) http://otherhost/otherpath$1 [P] 
+ http://otherhost/otherpath/pathinfo via internal proxy 
+    Inside per-directory configuration for
+       /somepath  
+       ( /physical/path/to/somepath/.htaccess , with
+       RewriteBase /somepath ) 
+       for request `` GET
+      /somepath/localpath/pathinfo '':   
+
+   Given Rule 
+ Resulting Substitution 
+   ^localpath(.*) otherpath$1 
+ /somepath/otherpath/pathinfo 
+   ^localpath(.*) otherpath$1  [R] 
+ http://thishost/somepath/otherpath/pathinfo via external
+redirection 
+   ^localpath(.*) otherpath$1  [P] 
+ doesn't make sense, not supported 
+   ^localpath(.*) /otherpath$1 
+ /otherpath/pathinfo 
+   ^localpath(.*) /otherpath$1 [R] 
+ http://thishost/otherpath/pathinfo via external redirection 
+   ^localpath(.*) /otherpath$1 [P] 
+ doesn't make sense, not supported 
+   ^localpath(.*) http://thishost/otherpath$1 
+ /otherpath/pathinfo 
+   ^localpath(.*) http://thishost/otherpath$1 [R] 
+ http://thishost/otherpath/pathinfo via external redirection 
+   ^localpath(.*) http://thishost/otherpath$1 [P] 
+ doesn't make sense, not supported 
+   ^localpath(.*) http://otherhost/otherpath$1 
+ http://otherhost/otherpath/pathinfo via external redirection 
+   ^localpath(.*) http://otherhost/otherpath$1 [R] 
+ http://otherhost/otherpath/pathinfo via external redirection (the [R] flag is redundant) 
+   ^localpath(.*) http://otherhost/otherpath$1 [P] 
+ http://otherhost/otherpath/pathinfo via internal proxy 
+   

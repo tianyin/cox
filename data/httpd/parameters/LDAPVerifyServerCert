@@ -1,0 +1,14 @@
+LDAPVerifyServerCert
+
+Description:  Force server certificate verification 
+Syntax:   LDAPVerifyServerCert  On|Off   
+Default:   LDAPVerifyServerCert On  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+
+ Specifies whether to force the verification of a
+    server certificate when establishing an SSL connection to the
+    LDAP server. 
+
+ 

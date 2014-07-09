@@ -1,0 +1,52 @@
+ThreadStackSize
+
+Description:  The size in bytes of the stack used by threads handling
+client connections 
+Syntax:   ThreadStackSize  size   
+Default:   65536 on NetWare; varies on other operating systems  
+Context:  server config 
+Status:  MPM 
+Module:    event  ,   mpm_netware  ,   mpmt_os2  ,   mpm_winnt  ,   worker  ,   event   
+Compatibility:  Available in Apache HTTP Server 2.1 and later 
+
+ The  ThreadStackSize  directive sets the
+    size of the stack (for autodata) of threads which handle client
+    connections and call modules to help process those connections.
+    In most cases the operating system default for stack size is
+    reasonable, but there are some conditions where it may need to be
+    adjusted: 
+
+      On platforms with a relatively small default thread stack size
+      (e.g., HP-UX), Apache httpd may crash when using some third-party modules
+      which use a relatively large amount of autodata storage.  Those
+      same modules may have worked fine on other platforms where the
+      default thread stack size is larger.  This type of crash is
+      resolved by setting  ThreadStackSize  to a
+      value higher than the operating system default.  This type of
+      adjustment is necessary only if the provider of the third-party
+      module specifies that it is required, or if diagnosis of an Apache httpd
+      crash indicates that the thread stack size was too small. 
+
+       On platforms where the default thread stack size is
+      significantly larger than necessary for the web server
+      configuration, a higher number of threads per child process
+      will be achievable if  ThreadStackSize  is
+      set to a value lower than the operating system default.  This type
+      of adjustment should only be made in a test environment which allows
+      the full set of web server processing can be exercised, as there
+      may be infrequent requests which require more stack to process.
+      The minimum required stack size strongly depends on the modules
+      used, but any change in the web server configuration can invalidate
+      the current  ThreadStackSize  setting. 
+
+       On Linux, this directive can only be used to increase the default
+      stack size, as the underlying system call uses the value as a
+       minimum  stack size.  The (often large) soft limit for
+       ulimit -s  (8MB if unlimited) is used as the default stack
+      size. 
+      It is recommended to not reduce  ThreadStackSize 
+    unless a high number of threads per child process is needed. On some
+    platforms (including Linux), a setting of 128000 is already too low and
+    causes crashes with some common modules. 
+
+ 

@@ -1,0 +1,15 @@
+LuaPackageCPath
+
+Description:  Add a directory to lua's package.cpath 
+Syntax:   LuaPackageCPath /path/to/include/?.soa  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Experimental 
+Module:  mod_lua 
+
+ Add a path to lua's shared library search path. Follows the same
+    conventions as lua. This just munges the package.cpath in the
+    lua vms. 
+
+
+ 

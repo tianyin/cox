@@ -1,0 +1,27 @@
+ScriptSock
+
+Description:  The filename prefix of the socket to use for communication with
+the cgi daemon 
+Syntax:   ScriptSock  file-path   
+Default:   ScriptSock cgisock  
+Context:  server config 
+Status:  Base 
+Module:  mod_cgid 
+
+ This directive sets the filename prefix of the socket to use for
+    communication with the CGI daemon, an extension corresponding to
+    the process ID of the server will be appended. The socket will be opened
+    using the permissions of the user who starts Apache (usually
+    root). To maintain the security of communications with CGI
+    scripts, it is important that no other user has permission to
+    write in the directory where the socket is located. 
+
+     If  file-path  is not an absolute path, the location specified
+    will be relative to the value of 
+      DefaultRuntimeDir  . 
+
+      Example  ScriptSock /var/run/cgid.sock 
+ 
+
+
+ 

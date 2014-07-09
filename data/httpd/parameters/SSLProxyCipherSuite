@@ -1,0 +1,16 @@
+SSLProxyCipherSuite
+
+Description:  Cipher Suite available for negotiation in SSL
+proxy handshake 
+Syntax:   SSLProxyCipherSuite  cipher-spec   
+Default:   SSLProxyCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+EXP  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_ssl 
+
+ Equivalent to  SSLCipherSuite , but for the proxy connection.
+Please refer to   SSLCipherSuite  
+for additional information. 
+
+ 

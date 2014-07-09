@@ -1,0 +1,18 @@
+SSLStaplingResponseMaxAge
+
+Description:  Maximum allowable age for OCSP stapling responses 
+Syntax:   SSLStaplingResponseMaxAge  seconds   
+Default:   SSLStaplingResponseMaxAge -1  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available if using OpenSSL 0.9.8h or later 
+
+ This option sets the maximum allowable age ("freshness") when
+considering OCSP responses for stapling purposes, i.e. when
+  SSLUseStapling   is turned on.
+The default value ( -1 ) does not enforce a maximum age,
+which means that OCSP responses are considered valid as long as their
+ nextUpdate  field is in the future. 
+
+ 

@@ -1,0 +1,35 @@
+RedirectMatch
+
+Description:  Sends an external redirect based on a regular expression match
+of the current URL 
+Syntax:   RedirectMatch [ status ]  regex 
+ URL   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_alias 
+
+ This directive is equivalent to   Redirect  , but makes use of
+     regular expressions ,
+    instead of simple prefix matching. The
+    supplied regular expression is matched against the URL-path, and
+    if it matches, the server will substitute any parenthesized
+    matches into the given string and use it as a filename. For
+    example, to redirect all GIF files to like-named JPEG files on
+    another server, one might use: 
+
+     RedirectMatch (.*)\.gif$ http://other.example.com$1.jpg 
+
+
+     The considerations related to the difference between
+      Alias   and
+      AliasMatch  
+    also apply to the difference between
+      Redirect   and
+      RedirectMatch  .
+    See   AliasMatch   for
+    details. 
+
+
+
+ 
