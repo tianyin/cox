@@ -1,0 +1,39 @@
+redirect domain.com www.domain.com opposite,Redirect
+proxy http requests https server backend,ProxyRequests
+proxy forward requests,ProxyRequests
+apache listen host,<VirtualHost>
+remove trailing slash,DirectorySlash
+apache considers file extension cgi script,AddHandler
+check http_referer query_string,RewriteCond
+disable medium weak low strength ciphers apache mod_ssl,SSLCipherSuite;SSLProtocol
+tunnel http https,mod_proxy_connect
+catch 500 status return 404,ErrorDocument
+example1 instances replaced domain,mod_rewrite
+redirect http https,mod_alias
+reduce number reading requests,Timeout
+control timeout time https,Timeout
+server htaccess,AllowOverride
+prevent users php source code,Allow;Deny
+path url different log file,CustomLog;ErrorLog
+log requests mod proxy,mod_forensic
+rewrite path url path url,RewriteCond;RewriteRule
+recorded apache access log,SetEnvIf;CustomLog
+redirect rewrite fqdn url setting servername,UseCanonicalName
+serve different local index page multiple virtualhosts,NameVirtualHost
+server pages default documentroot domain name,NameVirtualHost;VirtualHost
+error access logs written apache logs directory,ErrorLog;CustomLog
+prevent users accessing directly path url directory,mod_rewrite;RewriteCond
+alias url apache hosts,<VirtualHost>
+make apache's error log show information,LogLevel
+stop mod_deflate logging php error log,LogLevel
+approach point requests ip 403,RewriteEngine;RewriteRule
+apache log sample requests,SetEnvIf
+ignore heartbeat apache access logs,SetEnvIf;CustomLog
+different authentication site apache2,Location;mod_alias;mod_rewrite
+make apache case insensitive,mod_rewrite
+different apache options http header present,RewriteCond
+write htpasswd file redirects users directories,mod_rewrite
+apache 2 redirect subdomains list,RewriteMap
+directory listings 403 forbidden,Options
+passing url varible mod rewrite,RewriteCond
+add multiple domains dedicated server,VirtualHost

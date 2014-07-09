@@ -1,0 +1,37 @@
+"""redirect url to url""",Redirect
+"""proxy http requests""",ProxyRequests
+"""forward proxy request""",ProxyRequests
+"""Listen on different host""",VirtualHost
+"""remove trailing slash""",DirectorySlash
+"""cgi .to extension""",AddHandler
+"""check the HTTP_REFERER QUERY_STRING""",RewriteCond
+"""MEDIUM and WEAK LOW strength ciphers""","SSLCipherSuite
+SSLProtocol"
+"""Tunnel HTTP through HTTPS""",mod_proxy
+"""replace url with domain""",mod_rewrite
+"""reduce reading requests""",TimeOut
+"""error access log location""","ErrorLog, CustomLog"
+"""timeout for https""",TimeOut
+"""more information in log""",LogLevel
+"""enable htaccess""",AllowOverride
+"""stop logging to error log""",LogLevel
+"""prevent users from accessing PHP source code""","Allow, Deny"
+"""set directory listings 403 forbidden""",Options Index
+"""point requests to the IP error code""","RewriteEngine, RewriteRule"
+"""preventing users from accessing directory""","mod_rewrite, RewriteCond"
+"""add multiple domains to server""",VirtualHost
+"""log to different places""","CustomLog, ErrorLog"
+"""log requests of mod proxy""",mod_forensic
+"""alias a URL without using hosts""",VirtualHost
+"""Passing a URL as a variable via mod rewrite""",RewriteCond
+"""log a sample of requests""",SetEnvIf
+"""different domain name different behavior""",NameVirtualHost
+"""different domain name different behavior""",NameVirtualHost
+"""Ignore heartbeat in Apache access logs""","SetEnvIf, CustomLog"
+"""make domain name case insensitive""",RewriteRule
+"""IfHeader feature""",RewriteCond
+"""different authentication for same site"""," Location, Aliases, mod_rewrite"
+"""conditional rewrite url to url""","RewriteEngine, RewriteRule"
+"""decide what is recorded in access log""","SetEnvIf 
+CustomLog"
+"""Redirect Subdomains in Given List""",RedirectMap
