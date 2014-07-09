@@ -1,0 +1,25 @@
+increasing number mysql connections,max_connections
+datetime format changed mysql 5.0 5.1,sql-mode
+utf8 collation information_schema latin1_swedish databases,character-set-server;collation-server
+enable general logging mysql,general_log;general_log_file
+mysql server running unix socket,skip-networking
+connection mysql encrypted,ssl
+disable mysql cache queries similar amount time time,query_cache_size
+identify queries causing joins indexes,log-queries-not-using-indexes
+timeout control session,interactive_timeout;wait_timeout
+shrinking innodb data files big innodb table,innodb_file_per_table
+persistent connections timeout,interactive_timeout;wait_timeout
+change data directory databases stored,datadir
+mysql accepting connections wp,max_connect_errors
+speed mysql import,innodb_buffer_pool_size;innodb_flush_log_at_trx_commit
+wait_timeout connections named pipes,interactive_timeout
+encrypt network channel protocol servers mysql,ssl
+speed mysql inserts,max_heap_table_size;tmp_table_size
+connect mysql server server ip,skip-networking
+tcp port openning,skip-networking
+issues connecting remotely,bind-address
+make mysql find databases,datadir
+path url,datadir
+optimal setup bulk csv import,innodb_flush_log_at_trx_commit;innodb_buffer_pool_size
+mysql connection default character,default-character-set;character_set_server
+speed restore individual inserts slow,key_buffer_size
