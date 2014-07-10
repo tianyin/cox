@@ -1,0 +1,3 @@
+true
+true, if job needs job-setup and job-cleanup.
+                false, otherwise

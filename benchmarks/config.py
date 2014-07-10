@@ -9,7 +9,11 @@ class EvalConfig:
 
         self.sw_name        = sw
         self.parameter_dir  = param_path
-        self.opt2mod_map    = Opt2ModuleMapping(o2mmap)
+    
+        if o2mmap:
+            self.opt2mod_map = Opt2ModuleMapping(o2mmap)
+        else:
+            self.opt2mod_map = None
 
         self.input_file     = os.path.join(base_dir, sw+'_java_input.txt')
 
@@ -33,7 +37,7 @@ class EvalConfig:
         for line in fh:
             lns = line.split(',')
             name = lns[0]
-            value = float(lns[1])/100
+            value = float(lns[1])
             res[name] = value
 
         fh = open(norm_pop_file, 'w')
@@ -46,7 +50,7 @@ class EvalConfig:
         This function normalizes the test cases for benchmarking
         """
         if rename_file:
-            rename_map = build_rename_map(rename_file) 
+            rename_map = self.build_rename_map(rename_file) 
     
         res = {}
         with open(testcase, 'rb') as csvfile:
@@ -95,16 +99,16 @@ class EvalConfig:
 #            'n_mysql_java_input.txt', 'n_mysql_benchmark.csv',
 #            lambda d: d.replace('-', '_'))
 
-    def build_rename_maps(self, rename_file):
+    def build_rename_map(self, rename_file):
         # http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/DeprecatedProperties.html
         """
         Hadoop has a freqent renaming of its configuration parameters,
         so we need to standarize the name in the evaluation.
         This is not need for real usage
         """
-        name_fp = os.path.join(data_dir, rename_file) #'hadoop_rename.txt')
+        #name_fp = os.path.join(self.data_dir, rename_file) #'hadoop_rename.txt')
         maps = {}
-        with open(name_fp, 'r') as fp:
+        with open(rename_file, 'r') as fp:
             for line in fp:
                 lns = line.replace('\n', '').split('\t')
                 maps[lns[0]] = lns[1]

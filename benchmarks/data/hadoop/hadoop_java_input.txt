@@ -1,0 +1,26 @@
+number reduce tasks launch job command line
+general java options started task
+change hdfs block size file existing hdfs
+backing namenode data
+logs deleted quickly
+file permissions hadoop os level
+multiple reduce jobs
+append functionality hadoop
+control number map tasks nodes
+pass gz file file input mapreduce job
+different hadoop.tmp.dir master slaves
+block size
+namenode online timeout 30 seconds accepts writes
+limit space hadoop slave node
+set replication factor file
+java heap space error pfpgrowth
+reduce mapred.map.tasks
+default timeout datanode
+heartbeat timout tasktracker
+increase heap size command line
+container 200m heap space resize
+start hdfs safe mode
+maximum size physical memory container
+shortent start namenode pass safemode phase
+privilege user
+speed replication process

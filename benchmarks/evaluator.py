@@ -40,7 +40,7 @@ def eval(config):
         os.mkdir(config.index_pop_path)
 
     if do_normal:
-        print 'evaluating cox purely on manuals'
+        print 'evaluating Cox purely on manuals'
         cmd_wrapper.execute_index(config.index_path,
                 config.parameter_dir,
                 None)
@@ -51,7 +51,7 @@ def eval(config):
         #    print str(k) + ' : ' + str(v)
 
     if do_popularity:
-        print 'evaluating cox with popularity information'
+        print 'evaluating Cox with popularity information'
         if not os.path.exists(config.pop_file_path):
              print 'no popularity file exists, return'
              return

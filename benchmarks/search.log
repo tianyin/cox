@@ -1,156 +1,104 @@
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query ignore heartbeat apache access logs
-Jul 10, 2014 2:56:13 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query number reduce tasks launch job command line
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query approach point requests ip 403
-Jul 10, 2014 2:56:13 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query general java options started task
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query apache log sample requests
-Jul 10, 2014 2:56:13 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query change hdfs block size file existing hdfs
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query make apache's error log show information
-Jul 10, 2014 2:56:13 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query backing namenode data
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query write htpasswd file redirects users directories
-Jul 10, 2014 2:56:13 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query logs deleted quickly
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 21
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query file permissions hadoop os level
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query disable medium weak low strength ciphers apache mod_ssl
-Jul 10, 2014 2:56:13 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query multiple reduce jobs
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query path url different log file
-Jul 10, 2014 2:56:13 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query append functionality hadoop
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 16
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query control number map tasks nodes
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:13 PM SearchFiles search_main
-INFO: searching query redirect http https
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query pass gz file file input mapreduce job
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query reduce number reading requests
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query different hadoop.tmp.dir master slaves
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 18
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query block size
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 44
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query namenode online timeout 30 seconds accepts writes
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query add multiple domains dedicated server
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query limit space hadoop slave node
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query catch 500 status return 404
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query set replication factor file
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query tunnel http https
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query java heap space error pfpgrowth
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 18
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query reduce mapred.map.tasks
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 30
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query default timeout datanode
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query example1 instances replaced domain
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
-INFO: match cases 46
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query apache listen host
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query heartbeat timout tasktracker
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 24
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query increase heap size command line
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 24
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query container 200m heap space resize
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 19
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query start hdfs safe mode
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 30
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query maximum size physical memory container
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query stop mod_deflate logging php error log
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query shortent start namenode pass safemode phase
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query proxy http requests https server backend
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query redirect rewrite fqdn url setting servername
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query apache considers file extension cgi script
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query apache 2 redirect subdomains list
-Jul 10, 2014 2:56:14 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:14 PM SearchFiles search_main
-INFO: searching query different authentication site apache2
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query serve different local index page multiple virtualhosts
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query rewrite path url path url
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query proxy forward requests
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query recorded apache access log
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query prevent users accessing directly path url directory
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query alias url apache hosts
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query server pages default documentroot domain name
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query server htaccess
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query passing url varible mod rewrite
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query control timeout time https
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query log requests mod proxy
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query make apache case insensitive
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query error access logs written apache logs directory
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query redirect domain.com www.domain.com opposite
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 32
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query remove trailing slash
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query prevent users php source code
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query directory listings 403 forbidden
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query different apache options http header present
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 50
-Jul 10, 2014 2:56:15 PM SearchFiles search_main
-INFO: searching query check http_referer query_string
-Jul 10, 2014 2:56:15 PM SearchFiles doPagingSearch
-INFO: match cases 35
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query privilege user
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 26
+Jul 10, 2014 4:29:43 PM SearchFiles search_main
+INFO: searching query speed replication process
+Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+INFO: match cases 29

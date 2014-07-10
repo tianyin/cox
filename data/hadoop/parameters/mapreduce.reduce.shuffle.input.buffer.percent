@@ -1,0 +1,3 @@
+0.70
+The percentage of memory to be allocated from the maximum heap
+  size to storing map outputs during the shuffle.

@@ -1,0 +1,4 @@
+5000
+The interval, in milliseconds, for which the tasktracker waits
+   between two cycles of monitoring its tasks' memory usage. Used only if
+   tasks' memory management is enabled via mapred.tasktracker.tasks.maxmemory.

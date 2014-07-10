@@ -1,0 +1,3 @@
+local
+The runtime framework for executing MapReduce jobs.
+  Can be one of local, classic or yarn.

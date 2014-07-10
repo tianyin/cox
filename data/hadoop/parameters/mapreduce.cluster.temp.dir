@@ -1,0 +1,2 @@
+${hadoop.tmp.dir}/mapred/temp
+A shared directory for temporary files.

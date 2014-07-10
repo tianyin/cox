@@ -1,0 +1,2 @@
+/tmp/hadoop-yarn/staging
+The staging dir used while submitting jobs.

@@ -1,0 +1,2 @@
+false
+Whether to use SSL for for the Shuffle HTTP endpoints.

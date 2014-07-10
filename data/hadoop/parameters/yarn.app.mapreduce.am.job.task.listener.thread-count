@@ -1,0 +1,3 @@
+30
+The number of threads used to handle RPC calls in the 
+    MR AppMaster from remote tasks

@@ -1,0 +1,5 @@
+1.0
+The number of standard deviations by which a Task 
+  Tracker's ave map and reduce progress-rates (finishTime-dispatchTime)
+  must be lower than the average of all successful map/reduce task's for
+  the TT to be considered too slow to give a speculative task to.

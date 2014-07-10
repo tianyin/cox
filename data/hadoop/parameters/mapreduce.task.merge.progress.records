@@ -1,0 +1,3 @@
+10000
+The number of records to process during merge before
+   sending a progress notification to the TaskTracker.

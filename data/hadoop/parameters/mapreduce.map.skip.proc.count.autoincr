@@ -1,0 +1,7 @@
+true
+The flag which if set to true, 
+    SkipBadRecords.COUNTER_MAP_PROCESSED_RECORDS is incremented 
+    by MapRunner after invoking the map function. This value must be set to 
+    false for applications which process the records asynchronously 
+    or buffer the input records. For example streaming. 
+    In such cases applications should increment this counter on their own.

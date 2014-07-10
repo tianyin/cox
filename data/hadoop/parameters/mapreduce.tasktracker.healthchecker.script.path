@@ -1,0 +1,5 @@
+Absolute path to the script which is
+  periodicallyrun by the node health monitoring service to determine if
+  the node is healthy or not. If the value of this key is empty or the
+  file does not exist in the location configured here, the node health
+  monitoring service is not started.

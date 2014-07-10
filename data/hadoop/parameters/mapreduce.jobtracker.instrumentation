@@ -1,0 +1,2 @@
+org.apache.hadoop.mapred.JobTrackerMetricsInst
+Expert: The instrumentation class to associate with each JobTracker.

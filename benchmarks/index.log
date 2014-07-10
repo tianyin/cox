@@ -1,4 +1,4 @@
-Jul 10, 2014 2:56:10 PM IndexFiles indexDir
-INFO: Indexing to directory /home/tixu/Cox/benchmarks/data/httpd/index_pop/
-Jul 10, 2014 2:56:13 PM IndexFiles indexDir
-SEVERE: Indexing time: '2,795' milliseconds 
+Jul 10, 2014 4:29:41 PM IndexFiles indexDir
+INFO: Indexing to directory /home/tixu/Cox/benchmarks/data/hadoop/index_pop/
+Jul 10, 2014 4:29:43 PM IndexFiles indexDir
+SEVERE: Indexing time: '1,504' milliseconds 

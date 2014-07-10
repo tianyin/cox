@@ -1,0 +1,3 @@
+3
+The number of client retries to the RM/HS before
+    throwing exception. This is a layer above the ipc.

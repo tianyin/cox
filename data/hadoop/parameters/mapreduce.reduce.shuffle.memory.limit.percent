@@ -1,0 +1,3 @@
+0.25
+Expert: Maximum percentage of the in-memory limit that a
+  single shuffle can consume

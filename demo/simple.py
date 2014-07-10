@@ -12,15 +12,15 @@ import cmd_wrapper
 
 #set up the dir
 #you can also try out Hadoop using 'data/hadoop'
-httpd_dir = os.path.join(poj_dir, 'data/httpd/')
+httpd_dir = os.path.join(poj_dir, 'data/hadoop/')
 param_dir = os.path.join(httpd_dir, 'parameters/')
 httpd_index_dir = os.path.join(httpd_dir, 'index/')
 
-cmd_wrapper.compile()
+#cmd_wrapper.compile()
 
 if __name__ == '__main__':
     #assume this is the query for which you want to find related parameters
-    query = "proxy forward all request"
+    query = "general java options started task"
     
     """
     Cox works in two stages.
@@ -30,8 +30,9 @@ if __name__ == '__main__':
     #1. GENERATE THE INDICES
     #we purely rely on the manuals
     if not os.path.exists(httpd_index_dir):
+        print 'buiding index at', httpd_index_dir
         os.mkdir(httpd_index_dir)
-        popularity_file = None
+        popularity_file = '/home/tixu/Cox/benchmarks/data/hadoop/hadoop_popularity.txt'
         #first we need to generate the indices
         cmd_wrapper.execute_index(httpd_index_dir, param_dir, popularity_file)
     
