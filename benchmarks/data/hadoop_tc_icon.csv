@@ -1,0 +1,26 @@
+start hdfs safe mode,dfs.namenode.safemode.threshold-pct;dfs.namenode.safemode.extension
+different hadoop.tmp.dir master slaves,mapred.local.dir
+append functionality hadoop,dfs.support.append
+limit space hadoop slave node,dfs.datanode.du.reserved;dfs.datanode.du.pct
+block size,dfs.blocksize
+change hdfs block size file existing hdfs,dfs.block.size
+java heap space error pfpgrowth,mapred.child.java.opts
+file permissions hadoop os level,dfs.permission.enable
+control number map tasks nodes,mapred.tasktracker.map.tasks.maximum;mapred.tasktracker.reduce.tasks.maximum
+maximum size physical memory container,mapreduce.map.memory.mb;mapreduce.reduce.memory.mb
+number reduce tasks launch job command line,mapreduce.job.reduces
+heartbeat timout tasktracker,mapred.tasktracker.expiry.interval;mapred.tasktracker.expiry.intervalnterval
+multiple reduce jobs,mapreduce.job.reduces
+pass gz file file input mapreduce job,io.compression.codecs
+general java options started task,mapred.child.java.opts
+speed replication process,dfs.namenode.replication.interval
+logs deleted quickly,yarn.nodemanager.log.retain-seconds
+default timeout datanode,heartbeat.recheck.interval
+privilege user,dfs.permissions.supergroup;dfs.permissions
+backing namenode data,dfs.name.dir
+namenode online timeout 30 seconds accepts writes,dfs.safemode.extension
+reduce mapred.map.tasks,mapred.min.split.size
+increase heap size command line,mapreduce.map.memory.mb;mapreduce.reduce.memory.mb
+container 200m heap space resize,mapreduce.map.memory.mb;mapreduce.map.java.opts;mapreduce.reduce.memory.mb;mapreduce.reduce.java.opts
+shortent start namenode pass safemode phase,dfs.namenode.safemode.extension
+set replication factor file,dfs.replication
