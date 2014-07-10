@@ -1,4 +1,4 @@
-Jul 10, 2014 1:26:08 PM IndexFiles indexDir
-INFO: Indexing to directory /home/tixu/Cox/data/httpd/index_with_popularity/
-Jul 10, 2014 1:26:09 PM IndexFiles indexDir
-SEVERE: Indexing time: '1,736' milliseconds 
+Jul 10, 2014 2:56:10 PM IndexFiles indexDir
+INFO: Indexing to directory /home/tixu/Cox/benchmarks/data/httpd/index_pop/
+Jul 10, 2014 2:56:13 PM IndexFiles indexDir
+SEVERE: Indexing time: '2,795' milliseconds 
