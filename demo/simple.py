@@ -16,7 +16,7 @@ httpd_dir = os.path.join(poj_dir, 'data/httpd/')
 param_dir = os.path.join(httpd_dir, 'parameters/')
 httpd_index_dir = os.path.join(httpd_dir, 'index/')
 
-#cmd_wrapper.compile()
+cmd_wrapper.compile()
 
 if __name__ == '__main__':
     #assume this is the query for which you want to find related parameters

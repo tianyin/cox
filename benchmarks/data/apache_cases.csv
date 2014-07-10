@@ -21,7 +21,7 @@ SSLProtocol"
 """preventing users from accessing directory""","mod_rewrite, RewriteCond"
 """add multiple domains to server""",VirtualHost
 """log to different places""","CustomLog, ErrorLog"
-"""log requests of mod proxy""",mod_forensic
+"""log requests of mod proxy""",mod_log_forensic
 """alias a URL without using hosts""",VirtualHost
 """Passing a URL as a variable via mod rewrite""",RewriteCond
 """log a sample of requests""",SetEnvIf
