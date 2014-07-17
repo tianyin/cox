@@ -1,0 +1,5 @@
+HTTP_ONLY
+This configures the HTTP endpoint for JobHistoryServer web UI.
+    The following values are supported:
+    - HTTP_ONLY : Service is provided only on http
+    - HTTPS_ONLY : Service is provided only on https

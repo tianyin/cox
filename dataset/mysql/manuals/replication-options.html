@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.6 Reference Manual :: 16.1.4 Replication and Binary Logging Options and Variables</title>
+
+    
+    <link rel="stylesheet" media="screen" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="projection" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="print" href="/common/css/print.css?v=20111230" />
+
+            <link rel="stylesheet" href="/doc/docs.css" />
+        
+    
+    
+    
+    <link rel="contents" href="index.html" title="MySQL Manual" /><link rel="start" href="index.html" title="MySQL Manual" /><link rel="prev" href="replication-gtids-restrictions.html" title="16.1.3.4 Restrictions on Replication with GTIDs"/><link rel="next" href="replication-options-table.html?ff=nopfpls" title="16.1.4.1 Replication and Binary Logging Option and Variable Reference"/><link rel="up" href="replication-configuration.html" title="16.1 Replication Configuration"/>        <link rel="shortcut icon" href="/common/themes/sakila/favicon.ico" />
+
+        <script src="/common/js/clear_search_text.js"></script>
+
+    
+        
+    
+    
+</head>
+
+<body class="doc" >
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header" >
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="/common/logos/logo-mysql-110x57.png" alt="MySQL" width="110" height="57" /></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input type="text" id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" />
+			<input type="hidden" id="search_dest" name="group" value="MySQL"/>
+			<input type="image" src="/common/themes/sakila/search_g.png" id="go" alt="Search" title="Search" />
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login" >
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Freplication-options.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="/common/icons/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20" /></a>&nbsp;
+                <a href="https://plus.google.com/+mysql"><img src="/common/icons/googleplus.png" alt="Google+" title="Join Google+ to follow MySQL" width="20" height="20" /></a>&nbsp;
+                <a href="https://twitter.com/#!/mysql"><img src="/common/icons/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20" /></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="/common/icons/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br />
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a  href="/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.7/en/replication-options.html" >MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.6 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.5/en/replication-options.html" >MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.1/en/replication-options.html" >MySQL 5.1 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.0/en/replication-options.html" >MySQL 5.0 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/4.1/en/replication-options.html" >MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br />
+		<input id="searchq" type="text" name="q" value="" size="14" />
+		<input id="searchsubmit" type="submit" value="Go" />
+		<input id="searchgroup" type="hidden" name="group" value="MySQL" />
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar" >
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="index.html"> MySQL 5.6 Reference Manual</a> :: <a href="replication.html">16 Replication</a> :: <a href="replication-configuration.html">16.1 Replication Configuration</a> :: 16.1.4 Replication and Binary Logging Options and Variables</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="replication-gtids-restrictions.html" title="Previous Section">&laquo; 16.1.3.4 Restrictions on Replication with GTIDs</a></div>
+		<hr size="1" noshade="noshade" align="center" width="40" style="margin: 0px auto 2px auto" />		<a style="text-decoration: none" href="replication-options-table.html" title="Next Section">16.1.4.1 Replication and Binary Logging Option and Variable Reference  &raquo;</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');"  onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="replication-configuration.html">16.1 Replication Configuration</a></li><li><a href="replication-howto.html">16.1.1 How to Set Up Replication</a></li>
+<li><a href="replication-formats.html">16.1.2 Replication Formats</a></li>
+<li><a href="replication-gtids.html">16.1.3 Replication with Global Transaction Identifiers</a></li>
+<li class="self">16.1.4 Replication and Binary Logging Options and Variables
+<ul class="children">
+<li><a href="replication-options-table.html">16.1.4.1 Replication and Binary Logging Option and Variable Reference</a></li>
+<li><a href="replication-options-master.html">16.1.4.2 Replication Master Options and Variables</a></li>
+<li><a href="replication-options-slave.html">16.1.4.3 Replication Slave Options and Variables</a></li>
+<li><a href="replication-options-binary-log.html">16.1.4.4 Binary Log Options and Variables</a></li>
+<li><a href="replication-options-gtids.html">16.1.4.5 Global Transaction ID Options and Variables</a></li>
+</ul>
+</li>
+<li><a href="replication-administration.html">16.1.5 Common Replication Administration Tasks</a></li>
+</ul>
+
+			</ul>		
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="replication-options"></a>16.1.4. Replication and Binary Logging Options and Variables</h3>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<p><small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-0'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-0'); return false;}">+/-</a>]</small></p>
+<dl id="tocdetail-0"><dt><span class="section"><a href="replication-options-table.html">16.1.4.1. Replication and Binary Logging Option and Variable Reference</a></span></dt><dt><span class="section"><a href="replication-options-master.html">16.1.4.2. Replication Master Options and Variables</a></span></dt><dt><span class="section"><a href="replication-options-slave.html">16.1.4.3. Replication Slave Options and Variables</a></span></dt><dt><span class="section"><a href="replication-options-binary-log.html">16.1.4.4. Binary Log Options and Variables</a></span></dt><dt><span class="section"><a href="replication-options-gtids.html">16.1.4.5. Global Transaction ID Options and Variables</a></span></dt></dl>
+</div>
+<p>
+    The next few sections contain information about
+    <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> options and server variables that are used
+    in replication and for controlling the binary log. Options and
+    variables for use on replication masters and replication slaves are
+    covered separately, as are options and variables relating to binary
+    logging. A set of quick-reference tables providing basic information
+    about these options and variables is also included (in the next
+    section following this one).
+  </p><p><a name="option_mysqld_server-id"></a>
+    <a class="indexterm" name="idm47327508943328"></a>
+
+    <a class="indexterm" name="idm47327508941840"></a>
+
+    Of particular importance is the
+    <a class="link" href="replication-options.html#option_mysqld_server-id"><code class="option">--server-id</code></a> option.
+</p>
+<div class="informaltable">
+<table summary="Options for server-id" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--server-id=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">server-id</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="server-system-variables.html#sysvar_server_id">server_id</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">0</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">0 .. 4294967295</code></td></tr></tbody></table>
+</div>
+<p>
+    This option is common to both master and slave replication servers,
+    and is used in replication to enable master and slave servers to
+    identify themselves uniquely. For additional information, see
+    <a class="xref" href="replication-options-master.html" title="16.1.4.2. Replication Master Options and Variables">Section 16.1.4.2, “Replication Master Options and Variables”</a>, and
+    <a class="xref" href="replication-options-slave.html" title="16.1.4.3. Replication Slave Options and Variables">Section 16.1.4.3, “Replication Slave Options and Variables”</a>.
+  </p><p>
+    On the master and each slave, you <span class="emphasis"><em>must</em></span> use the
+    <a class="link" href="replication-options.html#option_mysqld_server-id"><code class="option">--server-id</code></a> option to establish a
+    unique replication ID in the range from 1 to
+    2<sup>32</sup> – 1. <span class="quote">“<span class="quote">Unique</span>”</span>,
+    means that each ID must be different from every other ID in use by
+    any other replication master or slave. Example:
+    <code class="literal">server-id=3</code>.
+  </p><p>
+    If you omit <a class="link" href="replication-options.html#option_mysqld_server-id"><code class="option">--server-id</code></a>, the default
+    ID is 0, in which case the master refuses connections from all
+    slaves, and slaves refuse to connect to the master. In MySQL
+    5.6, whether the server ID is set to 0 explicitly or
+    the default is allowed to be used, the server sets the
+    <code class="literal">server_id</code> system variable to 1; this is a known
+    issue that is fixed in MySQL 5.7.
+  </p><p>
+    For more information, see
+    <a class="xref" href="replication-howto-slavebaseconfig.html" title="16.1.1.2. Setting the Replication Slave Configuration">Section 16.1.1.2, “Setting the Replication Slave Configuration”</a>.
+  </p><p><a name="sysvar_server_uuid"></a>
+    <a class="indexterm" name="idm47327508907088"></a>
+
+    <a class="indexterm" name="idm47327508905584"></a>
+
+    <a class="link" href="replication-options.html#sysvar_server_uuid"><code class="literal">server_uuid</code></a>
+  </p><p>
+    Beginning with MySQL 5.6, the server generates a true UUID in
+    addition to the <a class="link" href="replication-options.html#option_mysqld_server-id"><code class="option">--server-id</code></a> supplied
+    by the user. This is available as the global, read-only variable
+    <a class="link" href="replication-options.html#sysvar_server_uuid"><code class="literal">server_uuid</code></a>.
+</p>
+<div class="informaltable">
+<table summary="Options for server_uuid" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.0</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+    When starting, the MySQL server automatically obtains a UUID as
+    follows:
+</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1"><li class="listitem"><p>
+        <a class="indexterm" name="idm47327508883072"></a>
+
+        Attempt to read and use the UUID written in the file
+        <code class="filename"><em class="replaceable"><code>data_dir</code></em>/auto.cnf</code>
+        (where <em class="replaceable"><code>data_dir</code></em> is the server's
+        data directory); exit on success.
+      </p></li><li class="listitem"><p>
+        Otherwise, generate a new UUID and save it to this file,
+        creating the file if necessary.
+</p></li></ol>
+</div>
+<p>
+    The <code class="filename">auto.cnf</code> file has a format similar to that
+    used for <code class="filename">my.cnf</code> or <code class="filename">my.ini</code>
+    files. In MySQL 5.6, <code class="filename">auto.cnf</code> has
+    only a single <code class="literal">[auto]</code> section containing a single
+    <a class="link" href="replication-options.html#sysvar_server_uuid"><code class="literal">server_uuid</code></a> setting and value; the
+    file's contents appear similar to what is shown here:
+  </p><pre class="programlisting">
+[auto]
+server_uuid=8a94f357-aab4-11df-86ab-c80aa9429562
+</pre>
+<div xmlns="http://www.w3.org/1999/xhtml" class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p xmlns="">
+      The <code class="filename">auto.cnf</code> file is automatically generated;
+      you should not attempt to write or modify this file.
+</p>
+</div>
+<p>
+    Also beginning with MySQL 5.6, when using MySQL replication, masters
+    and slaves know one another's UUIDs. The value of a
+    slave's UUID can be seen in the output of
+    <a class="link" href="show-slave-hosts.html" title="13.7.5.34. SHOW SLAVE HOSTS Syntax"><code class="literal">SHOW SLAVE HOSTS</code></a>. Once
+    <a class="link" href="start-slave.html" title="13.4.2.5. START SLAVE Syntax"><code class="literal">START SLAVE</code></a> has been executed (but
+    not before), the value of the master's UUID is available on the
+    slave in the output of <a class="link" href="show-slave-status.html" title="13.7.5.35. SHOW SLAVE STATUS Syntax"><code class="literal">SHOW SLAVE
+    STATUS</code></a>.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+      Issuing a <a class="link" href="stop-slave.html" title="13.4.2.6. STOP SLAVE Syntax"><code class="literal">STOP SLAVE</code></a> or
+      <a class="link" href="reset-slave.html" title="13.4.2.3. RESET SLAVE Syntax"><code class="literal">RESET SLAVE</code></a> statement does
+      <span class="emphasis"><em>not</em></span> reset the master's UUID as used on
+      the slave.
+</p>
+</div>
+<p>
+    In MySQL 5.6.5 and later, a server's
+    <code class="literal">server_uuid</code> is also used in GTIDs for
+    transactions originating on that server. For more information, see
+    <a class="xref" href="replication-gtids.html" title="16.1.3. Replication with Global Transaction Identifiers">Section 16.1.3, “Replication with Global Transaction Identifiers”</a>.
+  </p><p>
+    When starting, the slave I/O thread generates an error and aborts if
+    its master's UUID is equal to its own unless the
+    <a class="link" href="replication-options-slave.html#option_mysqld_replicate-same-server-id"><code class="option">--replicate-same-server-id</code></a> option has
+    been set. In addition, the slave I/O thread generates a warning if
+    either of the following is true:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+        No master having the expected
+        <a class="link" href="replication-options.html#sysvar_server_uuid"><code class="literal">server_uuid</code></a> exists.
+      </p></li><li class="listitem"><p>
+        The master's <a class="link" href="replication-options.html#sysvar_server_uuid"><code class="literal">server_uuid</code></a>
+        has changed, although no <a class="link" href="change-master-to.html" title="13.4.2.1. CHANGE MASTER TO Syntax"><code class="literal">CHANGE MASTER
+        TO</code></a> statement has ever been executed.
+</p></li></ul>
+</div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+      The addition of the <a class="link" href="replication-options.html#sysvar_server_uuid"><code class="literal">server_uuid</code></a>
+      system variable in MySQL 5.6 does not change the
+      requirement for setting a unique
+      <a class="link" href="replication-options.html#option_mysqld_server-id"><code class="option">--server-id</code></a> for each MySQL server
+      as part of preparing and running MySQL replication, as described
+      earlier in this section.
+</p>
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2014, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="replication-gtids-restrictions.html" title="16.1.3.4 Restrictions on Replication with GTIDs">Previous</a> / <a rel="next" href="replication-options-table.html" title="16.1.4.1 Replication and Binary Logging Option and Variable Reference">Next</a> / <a rel="up" href="replication-configuration.html" title="16.1 Replication Configuration">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear" /><!--UdmComment--><div id="comments"><h1>User Comments</h1><table id="c1102" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by kit chen on September 16 2002 9:42am</td><td align="right">[<a href="/doc/mysql/comment.php?id=1102&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=1102">Edit</a>]</td></tr></table><p class="commenttext">If you're attempting to use both<br />replicate-do-db=from_name<br />and<br />replicate-rewrite-db=from_name-&gt;to_name<br />be aware that you need to actually say<br />replicate-do-db=to_name<br />because the rewrite rule apparently happens before<br />the do-db rule.<br /><br />thanks to Therion on opn/freenode for<br />troubleshooting this with me.<br /></p><table id="c1346" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Michael Babcock on November 8 2002 7:03am</td><td align="right">[<a href="/doc/mysql/comment.php?id=1346&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=1346">Edit</a>]</td></tr></table><p class="commenttext">I was about to post the same comment, but as it<br />applies to replicate-wild-do-table.<br /><br />replicate-wild-do-table = LocalTableName.%<br />replicate-rewrite-db = RemoteTableName -&gt;<br />LocalTableName<br /></p><table id="c1434" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Ken Allan on November 25 2002 3:51pm</td><td align="right">[<a href="/doc/mysql/comment.php?id=1434&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=1434">Edit</a>]</td></tr></table><p class="commenttext">Be really careful with the use of the<br />replicate-wild-do-table=db_name.% configuration<br />option. In 4.0.4, this option caused updates to<br />any specified tables to not work for me.<br /><br />I had read in the documentation that this was<br />needed for cross database updates, but it was<br />causing my same database updates to fail.<br /><br />I had the following options set in my slave my.cnf:<br />server-id       = 16<br />master-host     = 64.xx.xx.xx<br />master-user     = replicator<br />master-password = *****<br />replicate-wild-do-table = banner.%<br />replicate-do-db = banner<br />report-host     = 64.xx.xx.xx<br /><br />Also, worth mentioning is that there seems to be<br />some limit in the server-id's, initially i set my<br />server-id to 15001 and this caused replication to<br />fail silently to even start up. Changed it to 16,<br />and it works perfectly, all this despite the<br />alleged limit of 2^32-1.<br /><br /></p><table id="c2783" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Fajar Nugraha on June 9 2003 1:42am</td><td align="right">[<a href="/doc/mysql/comment.php?id=2783&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=2783">Edit</a>]</td></tr></table><p class="commenttext">I have this setup working :<br /><br />A -&gt; B -&gt; A<br /><br />I got in running with mysql 4.0.13-max, using MyISAM and InnoDB tables.<br /><br />Here's how I do it on A:<br />- enable bin-log (just add log-bin in /etc/my.cnf. Restart mysqld if necessary.)<br />- create a replication user on A (I give it all privileges. You probably shouldn't do that).<br />- execute query<br />FLUSH TABLES WITH READ LOCK;<br />- do<br />tar -cvf /tmp/mysql-snapshot.tar /path/to/data-dir<br />- execute query<br />SHOW MASTER STATUS;<br />write down the result for <br />- modify /etc/my.cnf to include <br />server-id=&lt;number-of-your-choice&gt;<br />- shutdown mysqld on A (my root is password-protected, and I do it from another terminal)<br />mysqladmin -uroot -p shutdown<br />- start it back up<br /><br />on B (make sure there are NO update queries on B at this point):<br />- make sure mysqld is dead<br />- copy and untar mysql-snapshot.tar created earlier<br />- copy my.cnf from A, put DIFFERENT number in server_id.<br />- start mysqld (make sure binary log is enabled)<br />- execute queries (this is where you put the values you got earlier from SHOW MASTER STATUS on A):<br />STOP SLAVE;<br />CHANGE MASTER TO MASTER_HOST='&lt;A host name&gt;',<br /> MASTER_USER='&lt;replication user name&gt;',<br /> MASTER_PASSWORD='&lt;replication password&gt;',<br /> MASTER_LOG_FILE='&lt;recorded log file name&gt;',<br /> MASTER_LOG_POS=&lt;recorded log offset&gt;;<br />START SLAVE;<br />- execute query<br />SHOW MASTER STATUS;<br />write down the values<br /><br />At this point you got A-&gt;B replication<br /><br />on A again:<br />- copy B's *.bin.* (binary logs), put it in A's data dir<br />- execute queries (this is where you put the values you got earlier from SHOW MASTER STATUS on B):<br />STOP SLAVE;<br />CHANGE MASTER TO MASTER_HOST='&lt;B host name&gt;',<br /> MASTER_USER='&lt;replication user name&gt;',<br /> MASTER_PASSWORD='&lt;replication password&gt;',<br /> MASTER_LOG_FILE='&lt;recorded log file name&gt;',<br /> MASTER_LOG_POS=&lt;recorded log offset&gt;;<br />START SLAVE;<br /><br />And you're done! If you do what I do, you will have the same user on both A and B, and this replication setup :<br /><br />A -&gt; B -&gt; A<br /><br />You can now execute any query on any of them, and it will appear on both. You can even call it a mysql cluster.<br /></p><table id="c3044" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Steve Rapaport on July 22 2003 3:47am</td><td align="right">[<a href="/doc/mysql/comment.php?id=3044&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=3044">Edit</a>]</td></tr></table><p class="commenttext">Very nice, but remember that in my experience, setting up a working replication is the EASY part.  The hard part is always what to do after one machine fails, to reset both<br />and restart the replication properly.<br /><br />With A-&gt;B replication this is easy -- either switch masters as described in the Replication FAQ, or copy the slave back to the master, reset all the logs, and start again.<br /><br />With A-&gt;B-&gt;A replication I would never be certain that I had reset correctly, or even that all my last transactions before the failure were all on the same machine!  So I wouldn't do it.  It's a low-reliability system, which kind of defeats the purpose (for me) of replication.<br /></p><table id="c7158" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Paul Howell on January 31 2006 4:41am</td><td align="right">[<a href="/doc/mysql/comment.php?id=7158&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=7158">Edit</a>]</td></tr></table><p class="commenttext">Fajar Nugraha has a great tip a few comments above me, however, he is missing one important step.  On B, you need to do another GRANT to create a user so that A can access B as a slave.<br /></p><table id="c8465" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Justin Swanhart on March 15 2007 5:12am</td><td align="right">[<a href="/doc/mysql/comment.php?id=8465&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=8465">Edit</a>]</td></tr></table><p class="commenttext"><br />slave-skip-errors is _not_ a good idea on dual-masters.  If you have a dual-master setup you must ensure that writes go to one master, or that you run version 5+ and use the auto_increment offset and increment options.<br /><br />If you use the slave-skip-errors option suggested by a previous commenter you will end up with hopelessly inconsistent data. With the slave-skip-errors set as suggested there will be records on one machine with the same primary key id, but different column values.<br /><br />It is also difficult to ascertain the proper log positions when trying to restore a failed master when both masters are written to.<br /></p><table id="c9916" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by ZoltÃ¡n PÃ³sfai on January 12 2009 4:20pm</td><td align="right">[<a href="/doc/mysql/comment.php?id=9916&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=9916">Edit</a>]</td></tr></table><p class="commenttext">The above ABA setup has a couple of shortcomings everyone has to be aware before using it. (I've been using it for years...)<br /><br />Never use both sides for writes as statements need time to get to the slave. For example:<br /> - Sending two update on the same value makes it unpredictable which one will be the final one (you may even end up with different values on the two sides)<br /> - Doing queries that use auto-incremented fields may give different results depending on which node you are when you just incremented the field.  <br /> - If sync breaks you loose the executed but not replicated queries on one side. If the sync breaks because of connection error between A-B but they are reachable from clients, you may en up with a completely screwed up db! (example client-&gt;frontend, replication-&gt;backend)<br /><br />This setup is more a kind of HA/switchover setup than clustering...<br /><br />If you want HA and clustering and use only 'basic' mysql features do:<br /><br /> - ABA setup in failover setup <br /> - add VRRP'ed IP seen by slave farm as master (and same users to A and B; you may as well fire up the ABA setup for the 'mysql' db)<br /> - separate rw and ro operations in clients, use A(B) for writes and use the slave farm for ro<br /> - loadbalance between slaves (choose you flavour for lb)<br /><br /></p><p><a href="/doc/mysql/comment.php?sect=replication-options">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="replication-gtids-restrictions.html" title="16.1.3.4 Restrictions on Replication with GTIDs">Previous</a> / <a rel="next" href="replication-options-table.html" title="16.1.4.1 Replication and Binary Logging Option and Variable Reference">Next</a> / <a rel="up" href="replication-configuration.html" title="16.1 Replication Configuration">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+ </div> 
+</div> 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives/">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input type="text" id="f_q" name="q" value="" class="swap_value" onfocus="clearSearchText();" />
+	    <input type="hidden"  name="group" value="MySQL"/>
+	    <input type="image" src="/common/themes/sakila/footer_search_g.png" id="f_go" alt="Search" title="Search" />
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="/common/logos/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22" /></a>&nbsp;&nbsp;<span>&copy; 2014, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="/common/js/metrics/s_code_remote.js"></script>
+
+</body>
+</html>

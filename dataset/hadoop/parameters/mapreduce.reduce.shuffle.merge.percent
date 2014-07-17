@@ -1,0 +1,5 @@
+0.66
+The usage threshold at which an in-memory merge will be
+  initiated, expressed as a percentage of the total memory allocated to
+  storing in-memory map outputs, as defined by
+  mapreduce.reduce.shuffle.input.buffer.percent.

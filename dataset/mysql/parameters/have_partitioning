@@ -1,0 +1,1 @@
+This variable was removed in MySQL 5.6.1. Use           SHOW PLUGINS instead. For more           information, see ChapterÂ 18, Partitioning. 

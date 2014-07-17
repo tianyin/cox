@@ -1,0 +1,21 @@
+RemoteIPInternalProxy
+
+Description:  Declare client intranet IP addresses trusted to present the RemoteIPHeader value 
+Syntax:   RemoteIPInternalProxy  proxy-ip | proxy-ip/subnet | hostname  ...  
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_remoteip 
+
+ The   RemoteIPInternalProxy   directive adds one
+    or more addresses (or address blocks) to trust as presenting a valid
+    RemoteIPHeader value of the useragent IP.  Unlike the
+      RemoteIPTrustedProxy   directive, any IP address
+    presented in this header, including private intranet addresses, are
+    trusted when passed from these proxies. 
+
+      Internal (Load Balancer) Example  RemoteIPHeader X-Client-IP
+RemoteIPInternalProxy 10.0.2.0/24
+RemoteIPInternalProxy gateway.localdomain 
+ 
+
+ 

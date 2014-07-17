@@ -1,0 +1,21 @@
+MimeMagicFile
+
+Description:  Enable MIME-type determination based on file contents
+using the specified magic file 
+Syntax:   MimeMagicFile  file-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_mime_magic 
+
+ The  MimeMagicFile  directive can be used to
+    enable this module, the default file is distributed at
+     conf/magic . Non-rooted paths are relative to the
+      ServerRoot  . Virtual hosts will use
+    the same file as the main server unless a more specific setting is
+    used, in which case the more specific setting overrides the main
+    server's file. 
+
+      Example  MimeMagicFile conf/magic 
+ 
+
+ 

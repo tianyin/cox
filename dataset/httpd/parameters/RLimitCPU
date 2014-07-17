@@ -1,0 +1,33 @@
+RLimitCPU
+
+Description:  Limits the CPU consumption of processes launched
+by Apache httpd children 
+Syntax:   RLimitCPU  seconds |max [ seconds |max]  
+Default:   Unset; uses operating system defaults  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Core 
+Module:  core 
+
+ Takes 1 or 2 parameters. The first parameter sets the soft
+    resource limit for all processes and the second parameter sets
+    the maximum resource limit. Either parameter can be a number,
+    or  max  to indicate to the server that the limit should
+    be set to the maximum allowed by the operating system
+    configuration. Raising the maximum resource limit requires that
+    the server is running as  root , or in the initial startup
+    phase. 
+
+     This applies to processes forked off from Apache httpd children
+    servicing requests, not the Apache httpd children themselves. This
+    includes CGI scripts and SSI exec commands, but not any
+    processes forked off from the Apache httpd parent such as piped
+    logs. 
+
+     CPU resource limits are expressed in seconds per
+    process. 
+
+ See also 
+    RLimitMEM   
+   RLimitNPROC   
+  

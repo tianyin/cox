@@ -1,0 +1,36 @@
+<RequireAny>
+
+Description:  Enclose a group of authorization directives of which one
+must succeed for the enclosing directive to succeed. 
+Syntax:   < RequireAny > ... < /RequireAny >  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_authz_core 
+
+  < RequireAny >  and
+     < /RequireAny >  are used to enclose a group of
+    authorization directives of which one must succeed in order for
+    the  < RequireAny >  directive to
+    succeed. 
+
+     If one or more of the directives contained within the
+     < RequireAny >  directive succeed,
+    then the  < RequireAny >  directive
+    succeeds.  If none succeed and none fail, then it returns a
+    neutral result.  In all other cases, it fails. 
+
+     Because negated authorization directives are unable to
+    return a successful result, they can not significantly influence
+    the result of a  < RequireAny > 
+    directive.  (At most they could cause the directive to fail in
+    the case where they failed and all other directives returned a
+    neutral value.)  Therefore negated authorization directives
+    are not permitted within a  < RequireAny > 
+    directive. 
+
+ See also 
+   Authorization Containers  
+  Authentication, Authorization,
+    and Access Control  
+  

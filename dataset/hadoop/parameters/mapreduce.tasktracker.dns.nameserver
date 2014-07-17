@@ -1,0 +1,4 @@
+default
+The host name or IP address of the name server (DNS)
+  which a TaskTracker should use to determine the host name used by
+  the JobTracker for communication and display purposes.

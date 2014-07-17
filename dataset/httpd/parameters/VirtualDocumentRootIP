@@ -1,0 +1,17 @@
+VirtualDocumentRootIP
+
+Description:  Dynamically configure the location of the document root
+for a given virtual host 
+Syntax:   VirtualDocumentRootIP  interpolated-directory |none  
+Default:   VirtualDocumentRootIP none  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_vhost_alias 
+
+ The  VirtualDocumentRootIP  directive is like the
+      VirtualDocumentRoot  
+    directive, except that it uses the IP address of the server end
+    of the connection for directory interpolation instead of the server
+    name. 
+
+ 

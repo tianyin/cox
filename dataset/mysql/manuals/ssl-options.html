@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.6 Reference Manual :: 6.3.10.4 SSL Command Options</title>
+
+    
+    <link rel="stylesheet" media="screen" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="projection" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="print" href="/common/css/print.css?v=20111230" />
+
+            <link rel="stylesheet" href="/doc/docs.css" />
+        
+    
+    
+    
+    <link rel="contents" href="index.html" title="MySQL Manual" /><link rel="start" href="index.html" title="MySQL Manual" /><link rel="prev" href="using-ssl-connections.html" title="6.3.10.3 Using SSL Connections"/><link rel="next" href="creating-ssl-certs.html?ff=nopfpls" title="6.3.10.5 Setting Up SSL Certificates and Keys for MySQL"/><link rel="up" href="ssl-connections.html" title="6.3.10 Using SSL for Secure Connections"/>        <link rel="shortcut icon" href="/common/themes/sakila/favicon.ico" />
+
+        <script src="/common/js/clear_search_text.js"></script>
+
+    
+        
+    
+    
+</head>
+
+<body class="doc" >
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header" >
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="/common/logos/logo-mysql-110x57.png" alt="MySQL" width="110" height="57" /></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input type="text" id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" />
+			<input type="hidden" id="search_dest" name="group" value="MySQL"/>
+			<input type="image" src="/common/themes/sakila/search_g.png" id="go" alt="Search" title="Search" />
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login" >
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Fssl-options.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="/common/icons/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20" /></a>&nbsp;
+                <a href="https://plus.google.com/+mysql"><img src="/common/icons/googleplus.png" alt="Google+" title="Join Google+ to follow MySQL" width="20" height="20" /></a>&nbsp;
+                <a href="https://twitter.com/#!/mysql"><img src="/common/icons/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20" /></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="/common/icons/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br />
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a  href="/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.7/en/ssl-options.html" >MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.6 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.5/en/ssl-options.html" >MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.1/en/ssl-options.html" >MySQL 5.1 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.0/en/ssl-options.html" >MySQL 5.0 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/4.1/en/ssl-options.html" >MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br />
+		<input id="searchq" type="text" name="q" value="" size="14" />
+		<input id="searchsubmit" type="submit" value="Go" />
+		<input id="searchgroup" type="hidden" name="group" value="MySQL" />
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar" >
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="index.html"> MySQL 5.6 Reference Manual</a> :: <a href="security.html">6 Security</a> :: <a href="user-account-management.html">6.3 MySQL User Account Management</a> :: <a href="ssl-connections.html">6.3.10 Using SSL for Secure Connections</a> :: 6.3.10.4 SSL Command Options</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="using-ssl-connections.html" title="Previous Section">&laquo; 6.3.10.3 Using SSL Connections</a></div>
+		<hr size="1" noshade="noshade" align="center" width="40" style="margin: 0px auto 2px auto" />		<a style="text-decoration: none" href="creating-ssl-certs.html" title="Next Section">6.3.10.5 Setting Up SSL Certificates and Keys for MySQL  &raquo;</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');"  onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="ssl-connections.html">6.3.10 Using SSL for Secure Connections</a></li><li><a href="ssl-basics.html">6.3.10.1 Basic SSL Concepts</a></li>
+<li><a href="configuring-for-ssl.html">6.3.10.2 Configuring MySQL for SSL</a></li>
+<li><a href="using-ssl-connections.html">6.3.10.3 Using SSL Connections</a></li>
+<li class="self">6.3.10.4 SSL Command Options</li>
+<li><a href="creating-ssl-certs.html">6.3.10.5 Setting Up SSL Certificates and Keys for MySQL</a></li>
+</ul>
+
+			</ul>		
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="ssl-options"></a>6.3.10.4. SSL Command Options</h4>
+
+</div>
+
+</div>
+
+</div>
+<a class="indexterm" name="idm47327565131968"></a><p>
+        This section describes options that specify whether to use SSL
+        and the names of SSL certificate and key files. These options
+        can be given on the command line or in an option file. They are
+        not available unless MySQL has been built with SSL support. See
+        <a class="xref" href="configuring-for-ssl.html" title="6.3.10.2. Configuring MySQL for SSL">Section 6.3.10.2, “Configuring MySQL for SSL”</a>. For examples of suggested
+        use and how to check whether a connection is secure, see
+        <a class="xref" href="using-ssl-connections.html" title="6.3.10.3. Using SSL Connections">Section 6.3.10.3, “Using SSL Connections”</a>.
+</p>
+<div class="table">
+<a name="idm47327565128624"></a><p class="title"><b>Table 6.16. SSL Option/Variable Summary</b></p>
+<div class="table-contents">
+<table summary="SSL Option/Variable Summary" border="1"><colgroup><col class="name"><col class="cmd-line"><col class="option_file"><col class="system_var"><col class="status_var"><col class="var_scope"><col class="dynamic"></colgroup><thead><tr><th scope="col">Name</th><th scope="col">Cmd-Line</th><th scope="col">Option file</th><th scope="col">System Var</th><th scope="col">Status Var</th><th scope="col">Var Scope</th><th scope="col">Dynamic</th></tr></thead><tbody><tr><td scope="row"><a class="link" href="server-system-variables.html#sysvar_have_openssl">have_openssl</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="server-system-variables.html#sysvar_have_ssl">have_ssl</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl">skip-ssl</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td> </td><td> </td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl">ssl</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td> </td><td> </td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-ca">ssl-ca</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"> - <span class="emphasis"><em>Variable</em></span>: <a class="link" href="server-system-variables.html#sysvar_ssl_ca">ssl_ca</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-capath">ssl-capath</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"> - <span class="emphasis"><em>Variable</em></span>: <a class="link" href="server-system-variables.html#sysvar_ssl_capath">ssl_capath</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-cert">ssl-cert</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"> - <span class="emphasis"><em>Variable</em></span>: <a class="link" href="server-system-variables.html#sysvar_ssl_cert">ssl_cert</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-cipher">ssl-cipher</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"> - <span class="emphasis"><em>Variable</em></span>: <a class="link" href="server-system-variables.html#sysvar_ssl_cipher">ssl_cipher</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-crl">ssl-crl</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"> - <span class="emphasis"><em>Variable</em></span>: <a class="link" href="server-system-variables.html#sysvar_ssl_crl">ssl_crl</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-crlpath">ssl-crlpath</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"> - <span class="emphasis"><em>Variable</em></span>: <a class="link" href="server-system-variables.html#sysvar_ssl_crlpath">ssl_crlpath</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-key">ssl-key</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"> - <span class="emphasis"><em>Variable</em></span>: <a class="link" href="server-system-variables.html#sysvar_ssl_key">ssl_key</a></td><td> </td><td> </td><td>Yes</td><td> </td><td>Global</td><td>No</td></tr><tr><td scope="row"><a class="link" href="ssl-options.html#option_general_ssl-verify-server-cert">ssl-verify-server-cert</a></td><td>Yes</td><td>Yes</td><td> </td><td> </td><td> </td><td> </td></tr></tbody></table>
+</div>
+
+</div>
+<br class="table-break">
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="option_general_ssl"></a>
+            <a class="indexterm" name="idm47327565055360"></a>
+
+            <a class="indexterm" name="idm47327565054288"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>
+          </p><p>
+            For the server, this option specifies that the server
+            permits but does not require SSL connections.
+          </p><p>
+            For a client program, this option permits but does not
+            require the client to connect to the server using SSL.
+            Therefore, this option is not sufficient in itself to cause
+            an SSL connection to be used. For example, if you specify
+            this option for a client program but the server has not been
+            configured to permit SSL connections, an unencrypted
+            connection is used.
+          </p><p>
+            As a recommended set of options to enable SSL connections,
+            use at least <a class="link" href="ssl-options.html#option_general_ssl-cert"><code class="option">--ssl-cert</code></a> and
+            <a class="link" href="ssl-options.html#option_general_ssl-key"><code class="option">--ssl-key</code></a> on the server side
+            and <a class="link" href="ssl-options.html#option_general_ssl-ca"><code class="option">--ssl-ca</code></a> on the client
+            side. See <a class="xref" href="using-ssl-connections.html" title="6.3.10.3. Using SSL Connections">Section 6.3.10.3, “Using SSL Connections”</a>.
+          </p><p>
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a> may be implied by
+            other <code class="option">--ssl-<em class="replaceable"><code>xxx</code></em></code>
+            options, as indicated in the descriptions for those options.
+          </p><p>
+            The <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a> option can be
+            given in its negated form to override other SSL options and
+            indicate that SSL should <span class="emphasis"><em>not</em></span> be used.
+            To do this, specify the option as
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl=0</code></a> or a synonym
+            (<a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--skip-ssl</code></a>,
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--disable-ssl</code></a>).
+            For example, you might have SSL options specified in the
+            <code class="literal">[client]</code> group of your option file to use
+            SSL connections by default when you invoke MySQL client
+            programs. To use an unencrypted connection instead, invoke
+            the client program with
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--skip-ssl</code></a>
+            on the command line to override the options in the option
+            file.
+          </p><p>
+            To require use of an SSL connection for a MySQL account,
+            issue a <a class="link" href="grant.html" title="13.7.1.4. GRANT Syntax"><code class="literal">GRANT</code></a> statement for
+            the account that includes at least a <code class="literal">REQUIRE
+            SSL</code> clause. Connections for the account will be
+            rejected unless MySQL supports SSL connections and the
+            server and client have been started with the proper SSL
+            options.
+          </p><p>
+            The <code class="literal">REQUIRE</code> clause permits other
+            SSL-related options, which can be used to enforce stricter
+            requirements than <code class="literal">REQUIRE SSL</code>. For
+            additional details about which SSL command options may or
+            must be specified by clients that connect using accounts
+            configured using the various <code class="literal">REQUIRE</code>
+            options, see the description of <code class="literal">REQUIRE</code>
+            in <a class="xref" href="grant.html" title="13.7.1.4. GRANT Syntax">Section 13.7.1.4, “<code class="literal">GRANT</code> Syntax”</a>.
+          </p></li><li class="listitem"><p><a name="option_general_ssl-ca"></a>
+            <a class="indexterm" name="idm47327565031520"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-ca"><code class="option">--ssl-ca=<em class="replaceable"><code>file_name</code></em></code></a>
+          </p><p>
+            The path to a file in PEM format that contains a list of
+            trusted SSL certificate authorities. This option implies
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>.
+          </p><p>
+            If you use SSL when establishing a client connection, to
+            tell the client not to authenticate the server certificate,
+            specify neither <a class="link" href="ssl-options.html#option_general_ssl-ca"><code class="option">--ssl-ca</code></a> nor
+            <a class="link" href="ssl-options.html#option_general_ssl-capath"><code class="option">--ssl-capath</code></a>. The server
+            still verifies the client according to any applicable
+            requirements established using
+            <a class="link" href="grant.html" title="13.7.1.4. GRANT Syntax"><code class="literal">GRANT</code></a> statements for the
+            client account, and it still uses any
+            <a class="link" href="ssl-options.html#option_general_ssl-ca"><code class="option">--ssl-ca</code></a> or
+            <a class="link" href="ssl-options.html#option_general_ssl-capath"><code class="option">--ssl-capath</code></a> option values
+            specified at server startup.
+          </p></li><li class="listitem"><p><a name="option_general_ssl-capath"></a>
+            <a class="indexterm" name="idm47327565021824"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-capath"><code class="option">--ssl-capath=<em class="replaceable"><code>dir_name</code></em></code></a>
+          </p><p>
+            The path to a directory that contains trusted SSL
+            certificate authority certificates in PEM format. This
+            option implies <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>.
+          </p><p>
+            If you use SSL when establishing a client connection, to
+            tell the client not to authenticate the server certificate,
+            specify neither <a class="link" href="ssl-options.html#option_general_ssl-ca"><code class="option">--ssl-ca</code></a> nor
+            <a class="link" href="ssl-options.html#option_general_ssl-capath"><code class="option">--ssl-capath</code></a>. The server
+            still verifies the client according to any applicable
+            requirements established using
+            <a class="link" href="grant.html" title="13.7.1.4. GRANT Syntax"><code class="literal">GRANT</code></a> statements for the
+            client account, and it still uses any
+            <a class="link" href="ssl-options.html#option_general_ssl-ca"><code class="option">--ssl-ca</code></a> or
+            <a class="link" href="ssl-options.html#option_general_ssl-capath"><code class="option">--ssl-capath</code></a> option values
+            specified at server startup.
+          </p><p>
+            MySQL distributions built with OpenSSL support the
+            <a class="link" href="ssl-options.html#option_general_ssl-capath"><code class="option">--ssl-capath</code></a> option.
+            Distributions built with yaSSL do not because yaSSL does not
+            look in any directory and does not follow a chained
+            certificate tree. yaSSL requires that all components of the
+            CA certificate tree be contained within a single CA
+            certificate tree and that each certificate in the file has a
+            unique SubjectName value. To work around this yaSSL
+            limitation, concatenate the individual certificate files
+            comprising the certificate tree into a new file and specify
+            that file as the value of the
+            <a class="link" href="ssl-options.html#option_general_ssl-ca"><code class="option">--ssl-ca</code></a> option.
+          </p></li><li class="listitem"><p><a name="option_general_ssl-cert"></a>
+            <a class="indexterm" name="idm47327565009328"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-cert"><code class="option">--ssl-cert=<em class="replaceable"><code>file_name</code></em></code></a>
+          </p><p>
+            The name of the SSL certificate file in PEM format to use
+            for establishing a secure connection. This option implies
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>.
+          </p></li><li class="listitem"><p><a name="option_general_ssl-cipher"></a>
+            <a class="indexterm" name="idm47327565004688"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-cipher"><code class="option">--ssl-cipher=<em class="replaceable"><code>cipher_list</code></em></code></a>
+          </p><p>
+            A list of permissible ciphers to use for SSL encryption. If
+            no cipher in the list is supported, SSL connections will not
+            work. This option implies
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>.
+          </p><p>
+            For greatest portability,
+            <em class="replaceable"><code>cipher_list</code></em> should be a list of
+            one or more cipher names, separated by colons. This format
+            is understood both by OpenSSL and yaSSL. Examples:
+          </p><pre class="programlisting">
+--ssl-cipher=AES128-SHA
+--ssl-cipher=DHE-RSA-AES256-SHA:AES128-SHA
+</pre><p>
+            OpenSSL supports a more flexible syntax for specifying
+            ciphers, as described in the OpenSSL documentation at
+            <a class="ulink" href="http://www.openssl.org/docs/apps/ciphers.html" target="_top">http://www.openssl.org/docs/apps/ciphers.html</a>.
+            However, yaSSL does not, so attempts to use that extended
+            syntax fail for a MySQL distribution built with yaSSL.
+          </p><p>
+            For OpenSSL, the supported ciphers may depend on which
+            version your server is linked against. For example, the list
+            might include these ciphers:
+          </p><pre class="programlisting">
+AES256-GCM-SHA384
+AES256-SHA
+AES256-SHA256
+CAMELLIA256-SHA
+DES-CBC3-SHA
+DHE-DSS-AES256-GCM-SHA384
+DHE-DSS-AES256-SHA
+DHE-DSS-AES256-SHA256
+DHE-DSS-CAMELLIA256-SHA
+DHE-RSA-AES256-GCM-SHA384
+DHE-RSA-AES256-SHA
+DHE-RSA-AES256-SHA256
+DHE-RSA-CAMELLIA256-SHA
+ECDH-ECDSA-AES256-GCM-SHA384
+ECDH-ECDSA-AES256-SHA
+ECDH-ECDSA-AES256-SHA384
+ECDH-ECDSA-DES-CBC3-SHA
+ECDH-RSA-AES256-GCM-SHA384
+ECDH-RSA-AES256-SHA
+ECDH-RSA-AES256-SHA384
+ECDH-RSA-DES-CBC3-SHA
+ECDHE-ECDSA-AES128-GCM-SHA256
+ECDHE-ECDSA-AES128-SHA
+ECDHE-ECDSA-AES128-SHA256
+ECDHE-ECDSA-AES256-GCM-SHA384
+ECDHE-ECDSA-AES256-SHA
+ECDHE-ECDSA-AES256-SHA384
+ECDHE-ECDSA-DES-CBC3-SHA
+ECDHE-RSA-AES128-GCM-SHA256
+ECDHE-RSA-AES128-SHA
+ECDHE-RSA-AES128-SHA256
+ECDHE-RSA-AES256-GCM-SHA384
+ECDHE-RSA-AES256-SHA
+ECDHE-RSA-AES256-SHA384
+ECDHE-RSA-DES-CBC3-SHA
+EDH-DSS-DES-CBC3-SHA
+EDH-RSA-DES-CBC3-SHA
+PSK-3DES-EDE-CBC-SHA
+PSK-AES256-CBC-SHA
+SRP-DSS-3DES-EDE-CBC-SHA
+SRP-DSS-AES-128-CBC-SHA
+SRP-DSS-AES-256-CBC-SHA
+SRP-RSA-3DES-EDE-CBC-SHA
+SRP-RSA-AES-128-CBC-S
+SRP-RSA-AES-256-CBC-SHA
+</pre><p>
+            yaSSL supports these ciphers:
+          </p><pre class="programlisting">
+AES128-RMD
+AES128-SHA
+AES256-RMD
+AES256-SHA
+DES-CBC-SHA
+DES-CBC3-RMD
+DES-CBC3-SHA
+DHE-RSA-AES128-RMD
+DHE-RSA-AES128-SHA
+DHE-RSA-AES256-RMD
+DHE-RSA-AES256-SHA
+DHE-RSA-DES-CBC3-RMD
+EDH-RSA-DES-CBC-SHA
+EDH-RSA-DES-CBC3-SHA
+RC4-MD5
+RC4-SHA
+</pre><p>
+            To verify exactly which ciphers a given server supports,
+            check the value of the
+            <a class="link" href="server-status-variables.html#statvar_Ssl_cipher_list"><code class="literal">Ssl_cipher_list</code></a> status
+            variable using this query:
+          </p><pre class="programlisting">
+SHOW STATUS LIKE 'Ssl_cipher_list';
+</pre></li><li class="listitem"><p><a name="option_general_ssl-crl"></a>
+            <a class="indexterm" name="idm47327564990192"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-crl"><code class="option">--ssl-crl=<em class="replaceable"><code>file_name</code></em></code></a>
+          </p><p>
+            The path to a file containing certificate revocation lists
+            in PEM format. This option implies
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>.
+          </p><p>
+            If neither <a class="link" href="ssl-options.html#option_general_ssl-crl"><code class="option">--ssl-crl</code></a> nor
+            <a class="link" href="ssl-options.html#option_general_ssl-crlpath"><code class="option">--ssl-crlpath</code></a> is given, no
+            CRL checks are performed, even if the CA path contains
+            certificate revocation lists.
+          </p><p>
+            MySQL distributions built with OpenSSL support the
+            <a class="link" href="ssl-options.html#option_general_ssl-crl"><code class="option">--ssl-crl</code></a> option.
+            Distributions built with yaSSL do not because revocation
+            lists do not work with yaSSL.
+          </p><p>
+            This option was added in MySQL 5.6.3.
+          </p></li><li class="listitem"><p><a name="option_general_ssl-crlpath"></a>
+            <a class="indexterm" name="idm47327564981424"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-crlpath"><code class="option">--ssl-crlpath=<em class="replaceable"><code>dir_name</code></em></code></a>
+          </p><p>
+            The path to a directory that contains files containing
+            certificate revocation lists in PEM format. This option
+            implies <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>.
+          </p><p>
+            If neither <a class="link" href="ssl-options.html#option_general_ssl-crl"><code class="option">--ssl-crl</code></a> nor
+            <a class="link" href="ssl-options.html#option_general_ssl-crlpath"><code class="option">--ssl-crlpath</code></a> is given, no
+            CRL checks are performed, even if the CA path contains
+            certificate revocation lists.
+          </p><p>
+            MySQL distributions built with OpenSSL support the
+            <a class="link" href="ssl-options.html#option_general_ssl-crlpath"><code class="option">--ssl-crlpath</code></a> option.
+            Distributions built with yaSSL do not because revocation
+            lists do not work with yaSSL.
+          </p><p>
+            This option was added in MySQL 5.6.3.
+          </p></li><li class="listitem"><p><a name="option_general_ssl-key"></a>
+            <a class="indexterm" name="idm47327564972608"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-key"><code class="option">--ssl-key=<em class="replaceable"><code>file_name</code></em></code></a>
+          </p><p>
+            The name of the SSL key file in PEM format to use for
+            establishing a secure connection. This option implies
+            <a class="link" href="ssl-options.html#option_general_ssl"><code class="option">--ssl</code></a>.
+          </p><p>
+            If the MySQL distribution was built using OpenSSL or (as of
+            MySQL 5.6.3) yaSSL and the key file is protected by a
+            passphrase, the program prompts the user for the passphrase.
+            The password must be given interactively; it cannot be
+            stored in a file. If the passphrase is incorrect, the
+            program continues as if it could not read the key. Before
+            MySQL 5.6.3, if the MySQL distribution was built using yaSSL
+            and the key file is protected by a passphrase, an error
+            occurs.
+          </p></li><li class="listitem"><p><a name="option_general_ssl-verify-server-cert"></a>
+            <a class="indexterm" name="idm47327564966992"></a>
+
+            <a class="link" href="ssl-options.html#option_general_ssl-verify-server-cert"><code class="option">--ssl-verify-server-cert</code></a>
+          </p><p>
+            This option is available for client programs only, not the
+            server. It causes the client to check the server's Common
+            Name value in the certificate that the server sends to the
+            client. The client verifies that name against the host name
+            the client uses for connecting to the server, and the
+            connection fails if there is a mismatch. This feature can be
+            used to prevent man-in-the-middle attacks. Verification is
+            disabled by default.
+</p></li></ul>
+</div>
+
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2014, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="using-ssl-connections.html" title="6.3.10.3 Using SSL Connections">Previous</a> / <a rel="next" href="creating-ssl-certs.html" title="6.3.10.5 Setting Up SSL Certificates and Keys for MySQL">Next</a> / <a rel="up" href="ssl-connections.html" title="6.3.10 Using SSL for Secure Connections">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear" /><!--UdmComment--><div id="comments"><h1>User Comments</h1><table id="c5427" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Andreas Ley on December 15 2004 1:46pm</td><td align="right">[<a href="/doc/mysql/comment.php?id=5427&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=5427">Edit</a>]</td></tr></table><p class="commenttext">It's not obvious  from the documentation how to use an encrypted connection, but authenticate using passwords. Specifying --ssl (beside REQUIRE SSL) won't work, you have to use --ssl-ca, but you can omit --ssl-key and --ssl-cert from the client options. You can use anything as CA, even --ssl-ca=/dev/null - at least MySQL 4.1.7 won't check the certificate, so beware, it's encrypted, but not secured!<br /></p><table id="c8630" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Christopher Weldon on May 20 2007 3:23am</td><td align="right">[<a href="/doc/mysql/comment.php?id=8630&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=8630">Edit</a>]</td></tr></table><p class="commenttext">The comment posted right below this one also serves for the server as well. Using all the appropriate options (--ssl, --ssl-ca,--ssl-key,--ssl-cert,--ssl-cipher) will still leave ssl disabled (have_openssl DISABLED). DO NOT USE --ssl when trying to start a server (at least with 5.0.40). <br /></p><table id="c9606" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Jan MÃ¶nnich on July 17 2008 9:20am</td><td align="right">[<a href="/doc/mysql/comment.php?id=9606&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=9606">Edit</a>]</td></tr></table><p class="commenttext">It seems that neither --ssl-ca nor --ssl-cert allows the server to send the complete CA chain during handshake. Unfortunately the server seems to handle just one CA which isn't sufficient for most scenarios (just have a look on https://www.sun.com for example, a certification hierarchy with more than 1 CA certificate is odinary today).<br /></p><table id="c10371" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Brian Slesinsky on September 11 2009 8:55pm</td><td align="right">[<a href="/doc/mysql/comment.php?id=10371&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=10371">Edit</a>]</td></tr></table><p class="commenttext">With a MySQL 4 client connecting to a MySQL 4 server, if the server isn't checking client-side certs, it was sufficient to do something like this to use SSL:<br /><br />mysql -h hostname -u user -p --ssl-ca=/dev/null<br /><br />This no longer works with a MySQL 5 client. It appears have to supply --ssl-cert and --ssl-key even when connecting to a MySQL 4 server that doesn't care about them.<br /></p><table id="c10440" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Allen Lee on October 22 2009 11:10pm</td><td align="right">[<a href="/doc/mysql/comment.php?id=10440&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=10440">Edit</a>]</td></tr></table><p class="commenttext">Another commenter mentioned that `mysql --ssl` is not enough to get you connected to the mysqld over ssl. However, if you do:<br /><br />mysql --ssl-cipher=DHE-RSA-AES256-SHA:AES128-SHA<br /><br />then it will connect over ssl without having to specify any key, ca-crt or other stuff that you may not care about if you just want to type your password over ssl.<br /></p><table id="c11667" class="commentdetails" summary="" width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>Posted by Pete French on January 12 2011 12:14pm</td><td align="right">[<a href="/doc/mysql/comment.php?id=11667&amp;action=delete">Delete</a>] [<a href="/doc/mysql/comment.php?id=11667">Edit</a>]</td></tr></table><p class="commenttext">As of mysql 5.5 the above trick does not seem to work anymore (just specifying a cipher). Indeed I have not yet found a way to make the 5.5 command line connect using SSL at all (to either a 5.5 server or a 5.1 server). Similarly SSL replicattion breaks after the upgrade.<br /></p><p><a href="/doc/mysql/comment.php?sect=ssl-options">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="using-ssl-connections.html" title="6.3.10.3 Using SSL Connections">Previous</a> / <a rel="next" href="creating-ssl-certs.html" title="6.3.10.5 Setting Up SSL Certificates and Keys for MySQL">Next</a> / <a rel="up" href="ssl-connections.html" title="6.3.10 Using SSL for Secure Connections">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+ </div> 
+</div> 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives/">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input type="text" id="f_q" name="q" value="" class="swap_value" onfocus="clearSearchText();" />
+	    <input type="hidden"  name="group" value="MySQL"/>
+	    <input type="image" src="/common/themes/sakila/footer_search_g.png" id="f_go" alt="Search" title="Search" />
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="/common/logos/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22" /></a>&nbsp;&nbsp;<span>&copy; 2014, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="/common/js/metrics/s_code_remote.js"></script>
+
+</body>
+</html>

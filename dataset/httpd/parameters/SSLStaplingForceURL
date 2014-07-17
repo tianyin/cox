@@ -1,0 +1,14 @@
+SSLStaplingForceURL
+
+Description:  Override the OCSP responder URI specified in the certificate's AIA extension 
+Syntax:   SSLStaplingForceURL  uri   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available if using OpenSSL 0.9.8h or later 
+
+ This directive overrides the URI of an OCSP responder as obtained from
+the authorityInfoAccess (AIA) extension of the certificate.
+Of potential use when going through a proxy for retrieving OCSP queries. 
+
+ 

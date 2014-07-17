@@ -1,0 +1,15 @@
+AuthFormLocation
+
+Description:  The name of a form field carrying a URL to redirect to on successful login 
+Syntax:   AuthFormLocation  fieldname   
+Default:   httpd_location  
+Context:  directory 
+Status:  Base 
+Module:  mod_auth_form 
+Compatibility:  Available in Apache HTTP Server 2.3.0 and later 
+
+ The   AuthFormLocation   directive specifies
+    the name of an HTML field which, if present, will contain a URL to redirect the browser to
+    should login be successful. 
+
+ 

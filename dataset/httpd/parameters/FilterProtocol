@@ -1,0 +1,52 @@
+FilterProtocol
+
+Description:  Deal with correct HTTP protocol handling 
+Syntax:   FilterProtocol  filter-name  [ provider-name ]
+     proto-flags   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Options 
+Status:  Base 
+Module:  mod_filter 
+
+ This directs   mod_filter   to deal with ensuring the
+    filter doesn't run when it shouldn't, and that the HTTP response
+    headers are correctly set taking into account the effects of the
+    filter. 
+
+     There are two forms of this directive.  With three arguments, it
+    applies specifically to a  filter-name  and a
+     provider-name  for that filter.
+    With two arguments it applies to a  filter-name  whenever the
+    filter runs  any  provider. 
+
+     Flags specified with this directive are merged with the flags 
+    that underlying providers may have registerd with 
+      mod_filter  . For example, a filter may internally specify
+    the equivalent of  change=yes , but a particular 
+    configuration of the module can override with  change=no .
+     
+
+      proto-flags  is one or more of 
+
+       change=yes|no  
+     Specifies whether the filter changes the content, including possibly 
+    the content length.  The "no" argument is supported in 2.4.7 and later. 
+
+      change=1:1  
+     The filter changes the content, but will not change the content
+    length 
+
+      byteranges=no  
+     The filter cannot work on byteranges and requires complete input 
+
+      proxy=no  
+     The filter should not run in a proxy context 
+
+      proxy=transform  
+     The filter transforms the response in a manner incompatible with
+    the HTTP  Cache-Control: no-transform  header. 
+
+      cache=no  
+     The filter renders the output uncacheable (eg by introducing randomised
+    content changes) 
+      

@@ -1,0 +1,26 @@
+SSLCertificateKeyFile
+
+Description:  Server PEM-encoded private key file 
+Syntax:   SSLCertificateKeyFile  file-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive points to the PEM-encoded private key file for the
+server (the private key may also be combined with the certificate in the
+  SSLCertificateFile  , but this practice
+is discouraged). If the contained private key is encrypted, the pass phrase
+dialog is forced at startup time. 
+
+ 
+The directive can be used multiple times (referencing different filenames)
+to support multiple algorithms for server authentication. For each
+  SSLCertificateKeyFile  
+directive, there must be a matching  SSLCertificateFile 
+directive. 
+
+  Example  SSLCertificateKeyFile /usr/local/apache2/conf/ssl.key/server.key 
+ 
+
+ 

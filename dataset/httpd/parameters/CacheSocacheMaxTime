@@ -1,0 +1,20 @@
+CacheSocacheMaxTime
+
+Description:  The maximum time (in seconds) for a document to be placed in the
+cache 
+Syntax:   CacheSocacheMaxTime  seconds   
+Default:   CacheSocacheMaxTime 86400  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_cache_socache 
+Compatibility:  Available in Apache 2.4.5 and later 
+
+ The  CacheSocacheMaxTime  directive sets the
+    maximum freshness lifetime, in seconds, for a document to be stored in
+    the cache. This value overrides the freshness lifetime defined for the
+    document by the HTTP protocol. 
+
+     CacheSocacheMaxTime 86400 
+
+
+ 

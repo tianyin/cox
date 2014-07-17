@@ -1,0 +1,82 @@
+SSLRandomSeed
+
+Description:  Pseudo Random Number Generator (PRNG) seeding
+source 
+Syntax:   SSLRandomSeed  context   source 
+[ bytes ]  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This configures one or more sources for seeding the Pseudo Random Number
+Generator (PRNG) in OpenSSL at startup time ( context  is
+ startup ) and/or just before a new SSL connection is established
+( context  is  connect ). This directive can only be used
+in the global server context because the PRNG is a global facility. 
+ 
+The following  source  variants are available: 
+   builtin 
+      This is the always available builtin seeding source. Its usage
+    consumes minimum CPU cycles under runtime and hence can be always used
+    without drawbacks. The source used for seeding the PRNG contains of the
+    current time, the current process id and (when applicable) a randomly
+    chosen 1KB extract of the inter-process scoreboard structure of Apache.
+    The drawback is that this is not really a strong source and at startup
+    time (where the scoreboard is still not available) this source just
+    produces a few bytes of entropy. So you should always, at least for the
+    startup, use an additional seeding source.  
+  file:/path/to/source 
+     
+    This variant uses an external file  /path/to/source  as the
+    source for seeding the PRNG. When  bytes  is specified, only the
+    first  bytes  number of bytes of the file form the entropy (and
+     bytes  is given to  /path/to/source  as the first
+    argument). When  bytes  is not specified the whole file forms the
+    entropy (and  0  is given to  /path/to/source  as
+    the first argument). Use this especially at startup time, for instance
+    with an available  /dev/random  and/or
+     /dev/urandom  devices (which usually exist on modern Unix
+    derivatives like FreeBSD and Linux). 
+     
+     But be careful : Usually  /dev/random  provides only as
+    much entropy data as it actually has, i.e. when you request 512 bytes of
+    entropy, but the device currently has only 100 bytes available two things
+    can happen: On some platforms you receive only the 100 bytes while on
+    other platforms the read blocks until enough bytes are available (which
+    can take a long time). Here using an existing  /dev/urandom  is
+    better, because it never blocks and actually gives the amount of requested
+    data. The drawback is just that the quality of the received data may not
+    be the best.  
+
+  exec:/path/to/program 
+     
+    This variant uses an external executable
+     /path/to/program  as the source for seeding the
+    PRNG. When  bytes  is specified, only the first
+     bytes  number of bytes of its  stdout  contents
+    form the entropy. When  bytes  is not specified, the
+    entirety of the data produced on  stdout  form the
+    entropy. Use this only at startup time when you need a very strong
+    seeding with the help of an external program (for instance as in
+    the example above with the  truerand  utility you can
+    find in the mod_ssl distribution which is based on the AT&amp;T
+     truerand  library). Using this in the connection context
+    slows down the server too dramatically, of course.  So usually you
+    should avoid using external programs in that context.  
+  egd:/path/to/egd-socket  (Unix only)
+     
+    This variant uses the Unix domain socket of the
+    external Entropy Gathering Daemon (EGD) (see  http://www.lothar.com/tech
+    /crypto/ ) to seed the PRNG. Use this if no random device exists
+    on your platform.  
+   Example  SSLRandomSeed startup builtin
+SSLRandomSeed startup file:/dev/random
+SSLRandomSeed startup file:/dev/urandom 1024
+SSLRandomSeed startup exec:/usr/local/bin/truerand 16
+SSLRandomSeed connect builtin
+SSLRandomSeed connect file:/dev/random
+SSLRandomSeed connect file:/dev/urandom 1024 
+ 
+
+ 

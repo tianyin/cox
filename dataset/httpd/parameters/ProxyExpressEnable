@@ -1,0 +1,14 @@
+ProxyExpressEnable
+
+Description:  Enable the module functionality. 
+Syntax:   ProxyExpressEnable [on|off]  
+Default:   off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy_express 
+Compatibility:  Available in Apache 2.3.13 and later 
+
+ The  ProxyExpressEnable  directive
+    controls whether the module will be active. 
+
+ 

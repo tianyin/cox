@@ -1,0 +1,28 @@
+BrowserMatchNoCase
+
+Description:  Sets environment variables conditional on User-Agent without
+respect to case 
+Syntax:   BrowserMatchNoCase   regex [!]env-variable [= value ]
+    [[!] env-variable [= value ]] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_setenvif 
+
+ The  BrowserMatchNoCase  directive is
+    semantically identical to the   BrowserMatch   directive.
+    However, it provides for case-insensitive matching. For
+    example: 
+ BrowserMatchNoCase mac platform=macintosh
+BrowserMatchNoCase win platform=windows 
+
+
+     The  BrowserMatch  and
+     BrowserMatchNoCase  directives are special cases of
+    the   SetEnvIf   and   SetEnvIfNoCase  
+    directives. The following two lines have the same effect: 
+ BrowserMatchNoCase Robot is_a_robot
+SetEnvIfNoCase User-Agent Robot is_a_robot 
+
+
+ 

@@ -1,0 +1,4 @@
+0
+The minimum size chunk that map input should be split
+  into.  Note that some file formats may have minimum split sizes that
+  take priority over this setting.

@@ -1,0 +1,22 @@
+AuthLDAPRemoteUserAttribute
+
+Description:  Use the value of the attribute returned during the user
+query to set the REMOTE_USER environment variable 
+Syntax:   AuthLDAPRemoteUserAttribute uid  
+Default:   none  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authnz_ldap 
+
+ If this directive is set, the value of the
+     REMOTE_USER  environment variable will be set to the
+    value of the attribute specified. Make sure that this attribute is
+    included in the list of attributes in the AuthLDAPUrl definition,
+    otherwise this directive will have no effect. This directive, if
+    present, takes precedence over AuthLDAPRemoteUserIsDN. This
+    directive is useful should you want people to log into a website
+    using an email address, but a backend application expects the
+    username as a userid. 
+
+ 

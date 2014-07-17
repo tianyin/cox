@@ -1,0 +1,24 @@
+StartThreads
+
+Description:  Number of threads created on startup 
+Syntax:   StartThreads  number   
+Default:   See usage for details  
+Context:  server config 
+Status:  MPM 
+Module:    mpm_netware   
+
+ Number of threads created on startup. As the
+    number of threads is dynamically controlled depending on the
+    load, (see
+      MinSpareThreads  ,
+      MaxSpareThreads  ,
+      MinSpareServers  ,   MaxSpareServers  )
+    there is usually little reason to adjust this
+    parameter. 
+
+     For   mpm_netware   the default is
+     StartThreads 50  and, since there is only a single
+    process, this is the total number of threads created at startup to
+    serve requests. 
+
+ 

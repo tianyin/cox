@@ -1,0 +1,28 @@
+<Macro>
+
+Description:  Define a configuration file macro 
+Syntax:   
+< Macro  name  [ par1  ..  parN ] >
+... < /Macro >  
+Context:  server config, virtual host, directory 
+Status:  Base 
+Module:  mod_macro 
+
+ The  Macro  directive controls the definition of
+    a macro within the server runtime configuration files.
+    The first argument is the name of the macro.
+    Other arguments are parameters to the macro. It is good practice to prefix
+    parameter names with any of ' $%@ ', and not macro names
+    with such characters.
+     
+
+     < Macro LocalAccessPolicy >
+    Require ip 10.2.16.0/24
+< /Macro >
+
+< Macro RestrictedAccessPolicy $ipnumbers >
+    Require ip $ipnumbers
+< /Macro > 
+
+
+ 

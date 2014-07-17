@@ -1,0 +1,17 @@
+AuthnCacheEnable
+
+Description:  Enable Authn caching configured anywhere 
+Syntax:   AuthnCacheEnable  
+Context:  server config 
+Override:  None 
+Status:  Base 
+Module:  mod_authn_socache 
+
+ This directive is not normally necessary: it is implied if
+    authentication cacheing is enabled anywhere in  httpd.conf .
+    However, if it is not enabled anywhere in  httpd.conf 
+    it will by default not be initialised, and is therefore not
+    available in a  .htaccess  context.  This directive
+    ensures it is initialised so it can be used in  .htaccess . 
+
+ 

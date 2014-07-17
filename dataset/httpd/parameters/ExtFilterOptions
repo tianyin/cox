@@ -1,0 +1,32 @@
+ExtFilterOptions
+
+Description:  Configure   mod_ext_filter   options 
+Syntax:   ExtFilterOptions  option  [ option ] ...  
+Default:   ExtFilterOptions NoLogStderr  
+Context:  directory 
+Status:  Extension 
+Module:  mod_ext_filter 
+
+ The  ExtFilterOptions  directive specifies
+    special processing options for   mod_ext_filter  .
+     Option  can be one of 
+
+       LogStderr | NoLogStderr  
+
+       The  LogStderr  keyword specifies that
+      messages written to standard error by the external filter
+      program will be saved in the Apache error log.
+       NoLogStderr  disables this feature. 
+
+        Onfail=[abort|remove]  
+       Determines how to proceed if the external filter program
+      cannot be started.  With  abort  (the default value)
+      the request will be aborted.  With  remove , the
+      filter is removed and the request continues without it. 
+      ExtFilterOptions LogStderr 
+
+
+     Messages written to the filter's standard error will be stored
+    in the Apache error log. 
+
+ 

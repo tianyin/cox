@@ -1,0 +1,421 @@
+ProxyPass
+
+Description:  Maps remote servers into the local server URL-space 
+Syntax:   ProxyPass [ path ] !| url  [ key=value 
+   [key=value  ...]] [nocanon] [interpolate] [noquery]  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_proxy 
+
+ This directive allows remote servers to be mapped into the
+    space of the local server; the local server does not act as a
+    proxy in the conventional sense, but appears to be a mirror of the
+    remote server. The local server is often called a  reverse
+    proxy  or  gateway . The  path  is the name of
+    a local virtual path;  url  is a partial URL for the
+    remote server and cannot include a query string. 
+
+      Note:  This directive cannot be used within a 
+     < Directory >  context. 
+
+     The   ProxyRequests   directive should
+    usually be set  off  when using
+     ProxyPass . 
+
+     Support for using a Unix Domain Socket is available by using a target
+    which prepends  unix:/path/lis.sock| . For example, to proxy
+    HTTP and target the UDS at /home/www/socket you would use
+     unix:/home/www.socket|http://localhost/whatever/ . 
+
+      Note:  The path associated with the  unix: 
+    URL is  DefaultRuntimeDir  aware. 
+
+     Suppose the local server has address  http://example.com/ ;
+    then 
+
+     < Location /mirror/foo/ >
+    ProxyPass http://backend.example.com/
+< /Location > 
+
+
+     will cause a local request for
+     http://example.com/mirror/foo/bar  to be internally converted
+    into a proxy request to  http://backend.example.com/bar . 
+
+     The following alternative syntax is possible, however it can carry a
+    performance penalty when present in very large numbers. The advantage of
+    the below syntax is that it allows for dynamic control via the
+     Balancer Manager  interface: 
+
+     ProxyPass /mirror/foo/ http://backend.example.com/ 
+
+
+     
+     If the first argument ends with a trailing  / , the second
+       argument should also end with a trailing  /  and vice
+       versa. Otherwise the resulting requests to the backend may miss some
+       needed slashes and do not deliver the expected results.
+     
+     
+
+     The  !  directive is useful in situations where you don't want
+    to reverse-proxy a subdirectory,  e.g.  
+
+     < Location /mirror/foo/ >
+    ProxyPass http://backend.example.com/
+< /Location >
+< Location /mirror/foo/i >
+    ProxyPass !
+< /Location > 
+
+
+     ProxyPass /mirror/foo/i !
+ProxyPass /mirror/foo http://backend.example.com 
+
+
+     will proxy all requests to  /mirror/foo  to
+     backend.example.com   except  requests made to
+     /mirror/foo/i . 
+
+      Ordering ProxyPass Directives 
+       The configured   ProxyPass  
+      and   ProxyPassMatch  
+      rules are checked in the order of configuration. The first rule that
+      matches wins. So usually you should sort conflicting
+        ProxyPass   rules starting with the
+      longest URLs first. Otherwise later rules for longer URLS will be hidden
+      by any earlier rule which uses a leading substring of the URL. Note that
+      there is some relation with worker sharing. In contrast, only one
+        ProxyPass   directive can be placed
+      in a   Location   block, and the most
+      specific location will take precedence. 
+
+       For the same reasons exclusions must come  before  the
+      general  ProxyPass  directives. 
+
+      
+
+     In Apache HTTP Server 2.1 and later, mod_proxy supports pooled
+    connections to a backend server.  Connections created on demand
+    can be retained in a pool for future use.  Limits on the pool size
+    and other settings can be coded on
+    the  ProxyPass  directive
+    using   key=value  parameters, described in the table
+    below. 
+
+     By default, mod_proxy will allow and retain the maximum number of
+    connections that could be used simultaneously by that web server child
+    process.  Use the  max  parameter to reduce the number from
+    the default.  Use the  ttl  parameter to set an optional
+    time to live; connections which have been unused for at least
+     ttl  seconds will be closed.   ttl  can be used
+    to avoid using a connection which is subject to closing because of the
+    backend server's keep-alive timeout. 
+
+     The pool of connections is maintained per web server child
+    process, and  max  and other settings are not coordinated
+    among all child processes, except when only one child process is allowed
+    by configuration or MPM design. 
+
+      Example  ProxyPass /example http://backend.example.com max=20 ttl=120 retry=300 
+ 
+
+       BalancerMember parameters      Parameter 
+         Default 
+         Description    min 
+         0 
+         Minimum number of connection pool entries, unrelated to the
+    actual number of connections.  This only needs to be modified from the
+    default for special circumstances where heap memory associated with the
+    backend connections should be preallocated or retained.    max 
+         1...n 
+         Maximum number of connections that will be allowed to the
+    backend server. The default for this limit is the number of threads
+    per process in the active MPM. In the Prefork MPM, this is always 1,
+    while with other MPMs it is controlled by the
+     ThreadsPerChild  directive.    smax 
+         max 
+         Retained connection pool entries above this limit are freed
+    during certain operations if they have been unused for longer than
+    the time to live, controlled by the  ttl  parameter.  If
+    the connection pool entry has an associated connection, it will be
+    closed.  This only needs to be modified from the default for special
+    circumstances where connection pool entries and any associated
+    connections which have exceeded the time to live need to be freed or
+    closed more aggressively.    acquire 
+         - 
+         If set this will be the maximum time to wait for a free
+    connection in the connection pool, in milliseconds. If there are no free
+    connections in the pool the Apache httpd will return  SERVER_BUSY 
+    status to the client.
+        connectiontimeout 
+         timeout 
+         Connect timeout in seconds.
+        The number of seconds Apache httpd waits for the creation of a connection to
+        the backend to complete. By adding a postfix of ms the timeout can be
+        also set in milliseconds.
+        disablereuse 
+         Off 
+         This parameter should be used when you want to force mod_proxy
+    to immediately close a connection to the backend after being used, and
+    thus, disable its persistent connection and pool for that backend.
+    This helps in various situations where a firewall between Apache
+    httpd and
+    the backend server (regardless of protocol) tends to silently
+    drop connections or when backends themselves may be under round-
+    robin DNS. To disable connection pooling reuse,
+    set this property value to  On .
+        flushpackets 
+         off 
+         Determines whether the proxy module will auto-flush the output
+        brigade after each "chunk" of data. 'off' means that it will flush
+        only when needed, 'on' means after each chunk is sent and
+        'auto' means poll/wait for a period of time and flush if
+        no input has been received for 'flushwait' milliseconds.
+        Currently this is in effect only for AJP.
+        flushwait 
+         10 
+         The time to wait for additional input, in milliseconds, before
+        flushing the output brigade if 'flushpackets' is 'auto'.
+        iobuffersize 
+         8192 
+         Adjusts the size of the internal scratchpad IO buffer. This allows you
+        to override the  ProxyIOBufferSize  for a specific worker.
+        This must be at least 512 or set to 0 for the system default of 8192.
+        keepalive 
+         Off 
+          This parameter should be used when you have a firewall between your
+    Apache httpd and the backend server, who tend to drop inactive connections.
+    This flag will tell the Operating System to send  KEEP_ALIVE 
+    messages on inactive connections  and thus prevent the firewall to drop the connection.
+    To enable keepalive set this property value to  On .  
+     The frequency of initial and subsequent TCP keepalive probes
+    depends on global OS settings, and may be as high as 2 hours. To be useful,
+    the frequency configured in the OS must be smaller than the threshold used
+    by the firewall. 
+        lbset 
+         0 
+         Sets the load balancer cluster set that the worker is a member
+         of. The load balancer will try all members of a lower numbered
+         lbset before trying higher numbered ones.
+        ping 
+         0 
+         Ping property tells the webserver to "test" the connection to
+        the backend before forwarding the request. For AJP, it causes
+          mod_proxy_ajp  to send a  CPING 
+        request on the ajp13 connection (implemented on Tomcat 3.3.2+, 4.1.28+
+        and 5.0.13+). For HTTP, it causes   mod_proxy_http  
+        to send a  100-Continue  to the backend (only valid for
+        HTTP/1.1 - for non HTTP/1.1 backends, this property has no
+        effect). In both cases the parameter is the delay in seconds to wait
+        for the reply.
+        This feature has been added to avoid problems with hung and
+        busy backends.
+        This will increase the network traffic during the normal operation
+        which could be an issue, but it will lower the
+        traffic in case some of the cluster nodes are down or busy.
+        By adding a postfix of ms the delay can be also set in
+        milliseconds.
+        receivebuffersize 
+         0 
+         Adjusts the size of the explicit (TCP/IP) network buffer size for
+        proxied connections. This allows you to override the
+         ProxyReceiveBufferSize  for a specific worker.
+        This must be at least 512 or set to 0 for the system default.
+        redirect 
+         - 
+         Redirection Route of the worker. This value is usually
+        set dynamically to enable safe removal of the node from
+        the cluster. If set all requests without session id will be
+        redirected to the BalancerMember that has route parameter
+        equal as this value.
+        retry 
+         60 
+         Connection pool worker retry timeout in seconds.
+    If the connection pool worker to the backend server is in the error state,
+    Apache httpd will not forward any requests to that server until the timeout
+    expires. This enables to shut down the backend server for maintenance,
+    and bring it back online later. A value of 0 means always retry workers
+    in an error state with no timeout.
+        route 
+         - 
+         Route of the worker when used inside load balancer.
+        The route is a value appended to session id.
+        status 
+         - 
+         Single letter value defining the initial status of
+        this worker.
+           D: Worker is disabled and will not accept any requests.    S: Worker is administratively stopped.    I: Worker is in ignore-errors mode, and will always be considered available.    H: Worker is in hot-standby mode and will only be used if no other
+                    viable workers are available.    E: Worker is in an error state.    N: Worker is in drain mode, and will only accept existing sticky sessions
+                    destined for itself and ignore all other requests.   Status
+        can be set (which is the default) by prepending with '+' or
+        cleared by prepending with '-'.
+        Thus, a setting of 'S-E' sets this worker to Stopped and
+        clears the in-error flag.
+        timeout 
+           ProxyTimeout   
+         Connection timeout in seconds.
+        The number of seconds Apache httpd waits for data sent by / to the backend.
+        ttl 
+         - 
+         Time to live for inactive connections and associated connection
+        pool entries, in seconds.  Once reaching this limit, a
+        connection will not be used again; it will be closed at some
+        later time.
+        If the Proxy directive scheme starts with the
+     balancer://  (eg:  balancer://cluster ,
+    any path information is ignored)  then a virtual worker that does not really
+    communicate with the backend server will be created. Instead it is responsible
+    for the management of several "real" workers. In that case the special set of
+    parameters can be add to this virtual worker. See   mod_proxy_balancer  
+    for more information about how the balancer works.
+     
+       Balancer parameters      Parameter 
+         Default 
+         Description    lbmethod 
+         byrequests 
+         Balancer load-balance method. Select the load-balancing scheduler
+        method to use. Either  byrequests , to perform weighted
+        request counting,  bytraffic , to perform weighted
+        traffic byte count balancing, or  bybusyness , to perform
+        pending request balancing. Default is  byrequests .
+        maxattempts 
+         One less than the number of workers, or 1 with a single worker. 
+         Maximum number of failover attempts before giving up.
+        nofailover 
+         Off 
+         If set to  On  the session will break if the worker is in
+        error state or disabled. Set this value to On if backend servers do not
+        support session replication.
+        stickysession 
+         - 
+         Balancer sticky session name. The value is usually set to something
+        like  JSESSIONID  or  PHPSESSIONID ,
+        and it depends on the backend application server that support sessions.
+        If the backend application server uses different name for cookies
+        and url encoded id (like servlet containers) use | to to separate them.
+        The first part is for the cookie the second for the path. 
+        Available in Apache HTTP Server 2.4.4 and later.
+        stickysessionsep 
+         "." 
+         Sets the separation symbol in the session cookie. Some backend application servers
+        do not use the '.' as the symbol. For example the Oracle Weblogic server uses 
+        '!'. The correct symbol can be set using this option. The setting of 'Off'
+        signifies that no symbol is used.
+        scolonpathdelim 
+         Off 
+         If set to  On  the semi-colon character ';' will be
+        used as an additional sticky session path delimiter/separator. This
+        is mainly used to emulate mod_jk's behavior when dealing with paths such
+        as  JSESSIONID=6736bcf34;foo=aabfa 
+        timeout 
+         0 
+         Balancer timeout in seconds. If set this will be the maximum time
+        to wait for a free worker. Default is not to wait.
+        failonstatus 
+         - 
+         A single or comma-separated list of HTTP status codes. If set this will
+        force the worker into error state when the backend returns any status code
+        in the list. Worker recovery behaves the same as other worker errors.
+        failontimeout 
+         Off 
+         If set, an IO read timeout after a request is sent to the backend will
+        force the worker into error state. Worker recovery behaves the same as other
+        worker errors. 
+        Available in Apache HTTP Server 2.4.5 and later.
+        nonce 
+         < auto > 
+         The protective nonce used in the  balancer-manager  application page.
+        The default is to use an automatically determined UUID-based
+        nonce, to provide for further protection for the page. If set,
+        then the nonce is set to that value. A setting of  None 
+        disables all nonce checking.
+      Note 
+       In addition to the nonce, the  balancer-manager  page
+      should be protected via an ACL. 
+     
+         growth 
+         0 
+         Number of additional BalancerMembers to allow to be added
+        to this balancer in addition to those defined at configuration.
+        forcerecovery 
+         On 
+         Force the immediate recovery of all workers without considering the
+        retry parameter of the workers if all workers of a balancer are
+        in error state. There might be cases where an already overloaded backend
+        can get into deeper trouble if the recovery of all workers is enforced
+        without considering the retry parameter of each worker. In this case
+        set to  Off . 
+        Available in Apache HTTP Server 2.4.2 and later.
+        A sample balancer setup 
+     ProxyPass /special-area http://special.example.com smax=5 max=10
+ProxyPass / balancer://mycluster/ stickysession=JSESSIONID|jsessionid nofailover=On
+< Proxy balancer://mycluster >
+    BalancerMember ajp://1.2.3.4:8009
+    BalancerMember ajp://1.2.3.5:8009 loadfactor=20
+    # Less powerful server, don't send as many requests there,
+    BalancerMember ajp://1.2.3.6:8009 loadfactor=5
+< /Proxy > 
+
+
+     Setting up a hot-standby, that will only be used if no other
+     members are available 
+     ProxyPass / balancer://hotcluster/
+< Proxy balancer://hotcluster >
+    BalancerMember ajp://1.2.3.4:8009 loadfactor=1
+    BalancerMember ajp://1.2.3.5:8009 loadfactor=2
+    # The server below is on hot standby
+    BalancerMember ajp://1.2.3.6:8009 status=+H
+    ProxySet lbmethod=bytraffic
+< /Proxy > 
+
+
+     Normally, mod_proxy will canonicalise ProxyPassed URLs.
+    But this may be incompatible with some backends, particularly those
+    that make use of  PATH_INFO .  The optional  nocanon 
+    keyword suppresses this, and passes the URL path "raw" to the
+    backend.  Note that may affect the security of your backend, as it
+    removes the normal limited protection against URL-based attacks
+    provided by the proxy. 
+
+     Normally, mod_proxy will include the query string when
+    generating the  SCRIPT_FILENAME  environment variable.
+    The optional  noquery  keyword (available in
+    httpd 2.4.1 and later) prevents this. 
+
+     When used inside a   < Location >   section, the first argument is omitted and the local
+    directory is obtained from the   < Location >  . The same will occur inside a
+      < LocationMatch >   section,
+    however ProxyPass does not interpret the regexp as such, so it is necessary
+    to use  ProxyPassMatch  in this situation instead. 
+
+     This directive is not supported in   < Directory >   or   < Files >   sections. 
+
+     If you require a more flexible reverse-proxy configuration, see the
+      RewriteRule   directive with the
+     [P]  flag. 
+
+     The optional  interpolate  keyword, in combination with
+     ProxyPassInterpolateEnv  causes the ProxyPass
+    to interpolate environment variables, using the syntax
+     ${VARNAME} .  Note that many of the standard CGI-derived
+    environment variables will not exist when this interpolation happens,
+    so you may still have to resort to   mod_rewrite  
+    for complex rules.  Also note that interpolation is not supported
+    within the scheme portion of a URL.  Dynamic determination of the
+    scheme can be accomplished with   mod_rewrite   as in the
+    following example. 
+
+     RewriteEngine On
+
+RewriteCond %{HTTPS} =off
+RewriteRule . - [E=protocol:http]
+RewriteCond %{HTTPS} =on
+RewriteRule . - [E=protocol:https]
+
+RewriteRule ^/mirror/foo/(.*) %{ENV:protocol}://backend.example.com/$1 [P]
+ProxyPassReverse  /mirror/foo/ http://backend.example.com/
+ProxyPassReverse  /mirror/foo/ https://backend.example.com/ 
+
+
+ 

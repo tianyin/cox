@@ -1,0 +1,34 @@
+DirectoryIndexRedirect
+
+Description:  Configures an external redirect for directory indexes.
+ 
+Syntax:   DirectoryIndexRedirect on | off | permanent | temp | seeother |
+ 3xx-code 
+  
+Default:   DirectoryIndexRedirect off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_dir 
+Compatibility:  Available in version 2.3.14 and later 
+
+ By default, the  DirectoryIndex  is selected
+    and returned transparently to the client.   DirectoryIndexRedirect  causes an external redirect
+    to instead be issued. 
+
+     The argument can be: 
+       on : issues a 302 redirection to the index resource. 
+       off : does not issue a redirection. This is the legacy behaviour of mod_dir. 
+       permanent : issues a 301 (permanent) redirection to the index resource. 
+       temp : this has the same effect as  on  
+       seeother : issues a 303 redirection (also known as "See Other") to the index resource. 
+       3xx-code : issues a redirection marked by the chosen 3xx code. 
+       Example  DirectoryIndexRedirect on 
+ 
+
+     A request for  http://example.com/docs/  would
+    return a temporary redirect to  http://example.com/docs/index.html 
+    if it exists. 
+
+
+ 

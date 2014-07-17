@@ -1,0 +1,53 @@
+TypesConfig
+
+Description:  The location of the  mime.types  file 
+Syntax:   TypesConfig  file-path   
+Default:   TypesConfig conf/mime.types  
+Context:  server config 
+Status:  Base 
+Module:  mod_mime 
+
+ The  TypesConfig  directive sets the
+    location of the  media types 
+    configuration file.  File-path  is relative to the
+      ServerRoot  . This file sets
+    the default list of mappings from filename extensions to content
+    types. Most administrators use the  mime.types  file
+    provided by their OS, which associates common filename
+    extensions with the official list of IANA registered media types
+    maintained at  http://www.iana.org/assignments/media-types/index.html 
+    as well as a large number of unofficial types.  This
+    simplifies the  httpd.conf  file by providing the
+    majority of media-type definitions, and may be overridden by
+      AddType   directives as
+    needed. You should not edit the  mime.types  file,
+    because it may be replaced when you upgrade your server. 
+
+     The file contains lines in the format of the arguments to
+    an   AddType   directive: 
+
+       
+       media-type  [ extension ] ...
+       
+
+     The case of the extension does not matter. Blank lines, and lines
+    beginning with a hash character ( # ) are ignored.
+    Empty lines are there for completeness (of the mime.types file).
+    Apache httpd can still determine these types with   mod_mime_magic  .
+     
+
+     
+      Please do  not  send requests to the Apache HTTP
+      Server Project to add any new entries in the distributed
+       mime.types  file unless (1) they are already
+      registered with IANA, and (2) they use widely accepted,
+      non-conflicting filename extensions across platforms.
+       category/x-subtype  requests will be automatically
+      rejected, as will any new two-letter extensions as they will
+      likely conflict later with the already crowded language and
+      character set namespace.
+     
+
+ See also 
+    mod_mime_magic   
+  

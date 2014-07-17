@@ -1,0 +1,29 @@
+CacheReadTime
+
+Description:  The minimum time (in milliseconds) that should elapse while reading
+  before data is sent downstream 
+Syntax:   CacheReadTime  milliseconds   
+Default:   CacheReadTime 0  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_cache_disk 
+
+ The  CacheReadTime  directive sets the minimum amount
+    of elapsed time that should pass before making an attempt to send data
+    downstream to the client. During the time period, data will be buffered
+    before sending the result to the client. This can improve performance when
+    caching content from a reverse proxy. 
+
+     The default of zero disables this option. 
+
+     This directive only takes effect when the data is being saved to the
+    cache, as opposed to data being served from the cache. It is recommended
+    that this option be used alongside the
+      CacheReadSize   directive to
+    ensure that the server does not buffer excessively should data arrive faster
+    than expected. 
+
+     CacheReadTime 1000 
+
+
+ 

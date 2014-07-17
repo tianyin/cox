@@ -1,0 +1,30 @@
+AuthDigestDomain
+
+Description:  URIs that are in the same protection space for digest
+authentication 
+Syntax:   AuthDigestDomain  URI  [ URI ] ...  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_auth_digest 
+
+ The  AuthDigestDomain  directive allows
+    you to specify one or more URIs which are in the same protection
+    space ( i.e.  use the same realm and username/password info).
+    The specified URIs are prefixes; the client will assume
+    that all URIs "below" these are also protected by the same
+    username/password. The URIs may be either absolute URIs ( i.e. 
+    including a scheme, host, port, etc.) or relative URIs. 
+
+     This directive  should  always be specified and
+    contain at least the (set of) root URI(s) for this space.
+    Omitting to do so will cause the client to send the
+    Authorization header for  every request  sent to this
+    server. 
+
+     The URIs specified can also point to different servers, in
+    which case clients (which understand this) will then share
+    username/password info across multiple servers without
+    prompting the user each time.  
+
+ 

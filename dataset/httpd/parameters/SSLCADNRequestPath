@@ -1,0 +1,23 @@
+SSLCADNRequestPath
+
+Description:  Directory of PEM-encoded CA Certificates for
+defining acceptable CA names 
+Syntax:   SSLCADNRequestPath  directory-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ This optional directive can be used to specify the set of
+ acceptable CA names  which will be sent to the client when a
+client certificate is requested.  See the   SSLCADNRequestFile   directive for more
+details. 
+
+ The files in this directory have to be PEM-encoded and are accessed
+through hash filenames. So usually you can't just place the
+Certificate files there: you also have to create symbolic links named
+ hash-value  .N . And you should always make sure
+this directory contains the appropriate symbolic links. 
+  Example  SSLCADNRequestPath /usr/local/apache2/conf/ca-names.crt/ 
+ 
+
+ 

@@ -1,0 +1,14 @@
+DBDriver
+
+Description:  Specify an SQL driver 
+Syntax:   DBDriver  name   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_dbd 
+
+ Selects an apr_dbd driver by name.  The driver must be installed
+    on your system (on most systems, it will be a shared object or dll).
+    For example,  DBDriver mysql  will select the MySQL
+    driver in apr_dbd_mysql.so. 
+
+ 

@@ -1,0 +1,29 @@
+BalancerMember
+
+Description:  Add a member to a load balancing group 
+Syntax:   BalancerMember [ balancerurl ]  url  [ key=value [key=value ...]]   
+Context:  directory 
+Status:  Extension 
+Module:  mod_proxy 
+Compatibility:  BalancerMember is only available in Apache HTTP Server 2.2
+        and later. 
+
+ This directive adds a member to a load balancing group. It could be used
+            within a  < Proxy  balancer:// ... >  container
+            directive, and can take any of the key value pair parameters available to
+              ProxyPass   directives. 
+         One additional parameter is available only to  BalancerMember  directives:
+             loadfactor . This is the member load factor - a number between 1
+            (default) and 100, which defines the weighted load to be applied to the
+            member in question. 
+         The  balancerurl  is only needed when not in
+             < Proxy  balancer:// ... > 
+            container directive. It corresponds to the url of a balancer defined in
+              ProxyPass   directive. 
+         The path component of the balancer URL in any
+             < Proxy  balancer:// ... >  container directive
+            is ignored. 
+         Trailing slashes should typically be removed from the URL of a
+             BalancerMember . 
+    
+ 

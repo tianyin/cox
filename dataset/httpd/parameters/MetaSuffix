@@ -1,0 +1,23 @@
+MetaSuffix
+
+Description:  File name suffix for the file containing CERN-style
+meta information 
+Syntax:   MetaSuffix  suffix   
+Default:   MetaSuffix .meta  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Extension 
+Module:  mod_cern_meta 
+
+ Specifies the file name suffix for the file containing the
+    meta information. For example, the default values for the two
+    directives will cause a request to
+     DOCUMENT_ROOT/somedir/index.html  to look in
+     DOCUMENT_ROOT/somedir/.web/index.html.meta  and
+    will use its contents to generate additional MIME header
+    information. 
+
+      Example:  MetaSuffix .meta 
+ 
+
+ 

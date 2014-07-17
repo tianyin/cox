@@ -1,0 +1,1 @@
+The maximum permissible setting for           sort_buffer_size is           4GBâ1. Larger values are permitted for 64bit platforms           (except 64bit Windows, for which large values are truncated           to 4GBâ1 with a warning). 

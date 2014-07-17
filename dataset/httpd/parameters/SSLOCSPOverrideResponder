@@ -1,0 +1,14 @@
+SSLOCSPOverrideResponder
+
+Description:  Force use of the default responder URI for OCSP validation 
+Syntax:   SSLOCSPOverrideResponder on|off  
+Default:   SSLOCSPOverrideResponder off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ This option forces the configured default OCSP responder to be used
+during OCSP certificate validation, regardless of whether the
+certificate being validated references an OCSP responder. 
+
+ 

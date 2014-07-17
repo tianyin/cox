@@ -1,0 +1,1 @@
+The value to be returned from           LAST_INSERT_ID(). This is           stored in the binary log when you use           LAST_INSERT_ID() in a statement           that updates a table. Setting this variable does not update           the value returned by the           mysql_insert_id() C API           function. 

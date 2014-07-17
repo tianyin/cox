@@ -1,0 +1,30 @@
+SSLProxyCheckPeerName
+
+Description:  Configure host name checking for remote server certificates
+ 
+Syntax:   SSLProxyCheckPeerName on|off  
+Default:   SSLProxyCheckPeerName on  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Apache HTTP Server 2.4.5 and later 
+
+ 
+This directive configures host name checking for server certificates
+when mod_ssl is acting as an SSL client. The check will
+succeed if the host name from the request URI is found in
+either the subjectAltName extension or (one of) the CN attribute(s)
+in the certificate's subject. If the check fails, the SSL request
+is aborted and a 502 status code (Bad Gateway) is returned.
+The directive supersedes   SSLProxyCheckPeerCN  ,
+which only checks for the expected host name in the first CN attribute.
+ 
+ 
+Wildcard matching is supported in one specific flavor: subjectAltName entries
+of type dNSName or CN attributes starting with  *.  will match
+for any DNS name with the same number of labels and the same suffix
+(i.e.,  *.example.org  matches for  foo.example.org ,
+but not for  foo.bar.example.org ).
+ 
+
+ 

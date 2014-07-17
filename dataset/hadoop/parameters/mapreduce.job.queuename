@@ -1,0 +1,6 @@
+default
+Queue to which a job is submitted. This must match one of the
+    queues defined in mapred-queues.xml for the system. Also, the ACL setup
+    for the queue must allow the current user to submit a job to the queue.
+    Before specifying a queue, ensure that the system is configured with 
+    the queue, and access is allowed for submitting jobs to the queue.

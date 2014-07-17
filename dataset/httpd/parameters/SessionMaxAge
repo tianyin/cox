@@ -1,0 +1,21 @@
+SessionMaxAge
+
+Description:  Define a maximum age in seconds for a session 
+Syntax:   SessionMaxAge  maxage   
+Default:   SessionMaxAge 0  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_session 
+
+ The  SessionMaxAge  directive defines a time limit
+    for which a session will remain valid. When a session is saved, this time
+    limit is reset and an existing session can be continued. If a session
+    becomes older than this limit without a request to the server to refresh
+    the session, the session will time out and be removed. Where a session is
+    used to stored user login details, this has the effect of logging the user
+    out automatically after the given time. 
+
+     Setting the maxage to zero disables session expiry. 
+
+ 

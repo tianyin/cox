@@ -1,0 +1,5 @@
+1048576
+Minimum block size in bytes, enforced by the Namenode at create
+      time. This prevents the accidental creation of files with tiny block
+      sizes (and thus many blocks), which can degrade
+      performance.

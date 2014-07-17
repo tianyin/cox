@@ -1,0 +1,18 @@
+VirtualScriptAlias
+
+Description:  Dynamically configure the location of the CGI directory for
+a given virtual host 
+Syntax:   VirtualScriptAlias  interpolated-directory |none  
+Default:   VirtualScriptAlias none  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_vhost_alias 
+
+ The  VirtualScriptAlias  directive allows you to
+    determine where Apache httpd will find CGI scripts in a similar
+    manner to   VirtualDocumentRoot   does for other documents. It matches
+    requests for URIs starting  /cgi-bin/ , much like   ScriptAlias  
+     /cgi-bin/  would. 
+
+
+ 

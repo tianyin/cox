@@ -1,0 +1,27 @@
+SSLRenegBufferSize
+
+Description:  Set the size for the SSL renegotiation buffer 
+Syntax:   SSLRenegBufferSize  bytes   
+Default:   SSLRenegBufferSize 131072  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_ssl 
+
+ If an SSL renegotiation is required in per-location context, for
+example, any use of   SSLVerifyClient   in a Directory or
+Location block, then   mod_ssl   must buffer any HTTP
+request body into memory until the new SSL handshake can be performed.
+This directive can be used to set the amount of memory that will be
+used for this buffer.  
+
+  
+Note that in many configurations, the client sending the request body
+will be untrusted so a denial of service attack by consumption of
+memory must be considered when changing this configuration setting.
+  
+
+  Example  SSLRenegBufferSize 262144 
+ 
+
+ 

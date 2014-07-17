@@ -1,0 +1,3 @@
+604800000
+Job history files older than this many milliseconds will
+  be deleted when the history cleaner runs. Defaults to 604800000 (1 week).

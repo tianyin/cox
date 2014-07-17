@@ -1,0 +1,32 @@
+ProxyRequests
+
+Description:  Enables forward (standard) proxy requests 
+Syntax:   ProxyRequests On|Off  
+Default:   ProxyRequests Off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+
+ This allows or prevents Apache httpd from functioning as a forward proxy
+    server. (Setting ProxyRequests to  Off  does not disable use of
+    the   ProxyPass   directive.) 
+
+     In a typical reverse proxy or gateway configuration, this
+    option should be set to
+     Off . 
+
+     In order to get the functionality of proxying HTTP or FTP sites, you
+    need also   mod_proxy_http   or   mod_proxy_ftp  
+    (or both) present in the server. 
+
+     In order to get the functionality of (forward) proxying HTTPS sites, you
+    need   mod_proxy_connect   enabled in the server. 
+
+      Warning 
+       Do not enable proxying with   ProxyRequests   until you have  secured your server .  Open proxy servers are dangerous
+      both to your network and to the Internet at large. 
+     
+
+ See also 
+   Forward and Reverse Proxies/Gateways  
+  

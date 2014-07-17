@@ -1,0 +1,16 @@
+HeartbeatMaxServers
+
+Description:  Specifies the maximum number of servers that will be sending 
+heartbeat requests to this server 
+Syntax:   HeartbeatMaxServers  number-of-servers   
+Default:   HeartbeatMaxServers 10  
+Context:  server config 
+Status:  Experimental 
+Module:  mod_heartmonitor 
+
+ The  HeartbeatMaxServers  directive specifies the
+    maximum number of servers that will be sending requests to this monitor
+    server.  It is used to control the size of the shared memory allocated
+    to store the heartbeat info when   mod_slotmem_shm   is in use. 
+
+ 

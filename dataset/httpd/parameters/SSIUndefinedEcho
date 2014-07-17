@@ -1,0 +1,17 @@
+SSIUndefinedEcho
+
+Description:  String displayed when an unset variable is echoed 
+Syntax:   SSIUndefinedEcho  string   
+Default:   SSIUndefinedEcho "(none)"  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Base 
+Module:  mod_include 
+
+ This directive changes the string that   mod_include  
+    displays when a variable is not set and "echoed". 
+
+     SSIUndefinedEcho "< !-- undef -- >" 
+
+
+ 

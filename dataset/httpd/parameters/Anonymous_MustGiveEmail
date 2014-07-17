@@ -1,0 +1,14 @@
+Anonymous_MustGiveEmail
+
+Description:  Specifies whether blank passwords are allowed 
+Syntax:   Anonymous_MustGiveEmail On|Off  
+Default:   Anonymous_MustGiveEmail On  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authn_anon 
+
+ Specifies whether the user must specify an email address as
+    the password. This prohibits blank passwords. 
+
+ 

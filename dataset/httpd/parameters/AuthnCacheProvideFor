@@ -1,0 +1,21 @@
+AuthnCacheProvideFor
+
+Description:  Specify which authn provider(s) to cache for 
+Syntax:   AuthnCacheProvideFor  authn-provider  [...]  
+Default:   None  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_authn_socache 
+
+ This directive specifies an authentication provider or providers
+    to cache for.  Credentials found by a provider not listed in an
+    AuthnCacheProvideFor directive will not be cached. 
+
+     For example, to cache credentials found by   mod_authn_dbd  
+    or by a custom provider  myprovider , but leave those looked
+    up by lightweight providers like file or dbm lookup alone: 
+     AuthnCacheProvideFor dbd myprovider 
+
+
+ 

@@ -1,0 +1,23 @@
+SSLProxyCARevocationPath
+
+Description:  Directory of PEM-encoded CA CRLs for
+Remote Server Auth 
+Syntax:   SSLProxyCARevocationPath  directory-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive sets the directory where you keep the Certificate Revocation
+Lists (CRL) of Certification Authorities (CAs) whose remote servers you deal with.
+These are used to revoke the remote server certificate on Remote Server Authentication. 
+ 
+The files in this directory have to be PEM-encoded and are accessed through
+hash filenames. So usually you have not only to place the CRL files there.
+Additionally you have to create symbolic links named
+ hash-value  .rN . And you should always make sure this directory
+contains the appropriate symbolic links. 
+  Example  SSLProxyCARevocationPath /usr/local/apache2/conf/ssl.crl/ 
+ 
+
+ 

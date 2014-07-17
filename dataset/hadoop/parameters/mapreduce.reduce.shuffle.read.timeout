@@ -1,0 +1,4 @@
+180000
+Expert: The maximum amount of time (in milli seconds) reduce
+  task waits for map output data to be available for reading after obtaining
+  connection.

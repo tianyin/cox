@@ -1,0 +1,35 @@
+AuthBasicProvider
+
+Description:  Sets the authentication provider(s) for this location 
+Syntax:   AuthBasicProvider  provider-name 
+[ provider-name ] ...  
+Default:   AuthBasicProvider file  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_auth_basic 
+
+ The  AuthBasicProvider  directive sets
+    which provider is used to authenticate the users for this location.
+    The default  file  provider is implemented
+    by the   mod_authn_file   module.  Make sure
+    that the chosen provider module is present in the server. 
+      Example  < Location /secure >
+    AuthType basic
+    AuthName "private area"
+    AuthBasicProvider  dbm
+    AuthDBMType        SDBM
+    AuthDBMUserFile    /www/etc/dbmpasswd
+    Require            valid-user
+< /Location > 
+ 
+      Providers are queried in order until a provider finds a match
+    for the requested username, at which point this sole provider will
+    attempt to check the password.  A failure to verify the password does
+    not result in control being passed on to subsequent providers. 
+
+     Providers are implemented by   mod_authn_dbm  ,
+      mod_authn_file  ,   mod_authn_dbd  ,
+      mod_authnz_ldap   and   mod_authn_socache  . 
+
+ 

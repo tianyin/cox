@@ -1,0 +1,16 @@
+ISAPIAppendLogToQuery
+
+Description:  Record  HSE_APPEND_LOG_PARAMETER  requests from
+ISAPI extensions to the query field 
+Syntax:   ISAPIAppendLogToQuery on|off  
+Default:   ISAPIAppendLogToQuery on  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_isapi 
+
+ Record  HSE_APPEND_LOG_PARAMETER  requests from ISAPI
+    extensions to the query field (appended to the   CustomLog    %q 
+    component). 
+
+ 

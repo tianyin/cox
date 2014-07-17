@@ -1,0 +1,43 @@
+User
+
+Description:  The userid under which the server will answer
+requests 
+Syntax:   User  unix-userid   
+Default:   User #-1  
+Context:  server config 
+Status:  Base 
+Module:  mod_unixd 
+
+ The  User  directive sets the user ID as
+    which the server will answer requests. In order to use this
+    directive, the server must be run initially as  root .
+    If you start the server as a non-root user, it will fail to change
+    to the lesser privileged user, and will instead continue to run as
+    that original user. If you do start the server as  root ,
+    then it is normal for the parent process to remain running as root.
+     Unix-userid  is one of: 
+
+      A username 
+       Refers to the given user by name. 
+
+       # followed by a user number. 
+       Refers to a user by its number. 
+      The user should have no privileges that result in it being
+    able to access files that are not intended to be visible to the
+    outside world, and similarly, the user should not be able to
+    execute code that is not meant for HTTP requests. It is
+    recommended that you set up a new user and group specifically for
+    running the server. Some admins use user  nobody , but
+    this is not always desirable, since the  nobody  user
+    can have other uses on the system. 
+
+      Security 
+       Don't set  User  (or   Group  ) to  root  unless
+      you know exactly what you are doing, and what the dangers are. 
+     
+
+
+ See also 
+    VHostUser   
+   SuexecUserGroup   
+  

@@ -1,0 +1,1 @@
+Formerly, a value of fdatasync also           specified the default behavior. This value was removed, due to           confusion that a value of fdatasync caused           fsync() system calls rather than           fdatasync() for flushing. To obtain the           default value now, do not set any value for           innodb_flush_method at           startup. 

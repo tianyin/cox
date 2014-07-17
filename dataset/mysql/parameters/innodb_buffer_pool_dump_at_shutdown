@@ -1,0 +1,1 @@
+Specifies whether to record the pages cached in the InnoDB           buffer pool when the           MySQL server is shut down, to shorten the           warmup process at the next           restart. Typically used in combination with           innodb_buffer_pool_load_at_startup. 

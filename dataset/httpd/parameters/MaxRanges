@@ -1,0 +1,30 @@
+MaxRanges
+
+Description:  Number of ranges allowed before returning the complete
+resource  
+Syntax:   MaxRanges default | unlimited | none |  number-of-ranges   
+Default:   MaxRanges 200  
+Context:  server config, virtual host, directory 
+Status:  Core 
+Module:  core 
+Compatibility:  Available in Apache HTTP Server 2.3.15 and later 
+
+ The  MaxRanges  directive
+    limits the number of HTTP ranges the server is willing to
+    return to the client. If more ranges than permitted are requested,
+    the complete resource is returned instead. 
+
+       default  
+       Limits the number of ranges to a compile-time default of 200. 
+
+        none  
+       Range headers are ignored. 
+
+        unlimited  
+       The server does not limit the number of ranges it is
+          willing to satisfy. 
+
+        number-of-ranges  
+       A positive number representing the maximum number of ranges the
+      server is willing to satisfy. 
+      

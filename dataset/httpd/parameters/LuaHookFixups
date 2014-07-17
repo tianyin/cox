@@ -1,0 +1,15 @@
+LuaHookFixups
+
+Description:  Provide a hook for the fixups phase of a request
+processing 
+Syntax:   LuaHookFixups  /path/to/lua/script.lua hook_function_name  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Experimental 
+Module:  mod_lua 
+
+ 
+    Just like LuaHookTranslateName, but executed at the fixups phase
+ 
+
+ 

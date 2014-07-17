@@ -1,0 +1,42 @@
+AddDefaultCharset
+
+Description:  Default charset parameter to be added when a response
+content-type is  text/plain  or  text/html  
+Syntax:   AddDefaultCharset On|Off| charset   
+Default:   AddDefaultCharset Off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Core 
+Module:  core 
+
+ This directive specifies a default value for the media type
+    charset parameter (the name of a character encoding) to be added
+    to a response if and only if the response's content-type is either
+     text/plain  or  text/html .  This should override
+    any charset specified in the body of the response via a  META 
+    element, though the exact behavior is often dependent on the user's client
+    configuration. A setting of  AddDefaultCharset Off 
+    disables this functionality.  AddDefaultCharset On  enables
+    a default charset of  iso-8859-1 . Any other value is assumed
+    to be the  charset  to be used, which should be one of the
+     IANA registered
+    charset values  for use in Internet media types (MIME types).
+    For example: 
+
+     AddDefaultCharset utf-8 
+
+
+      AddDefaultCharset  should only be used when all
+    of the text resources to which it applies are known to be in that
+    character encoding and it is too inconvenient to label their charset
+    individually. One such example is to add the charset parameter
+    to resources containing generated content, such as legacy CGI
+    scripts, that might be vulnerable to cross-site scripting attacks
+    due to user-provided data being included in the output.  Note, however,
+    that a better solution is to just fix (or delete) those scripts, since
+    setting a default charset does not protect users that have enabled
+    the "auto-detect character encoding" feature on their browser. 
+
+ See also 
+    AddCharset   
+  

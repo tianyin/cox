@@ -1,0 +1,30 @@
+CacheIgnoreCacheControl
+
+Description:  Ignore request to not serve cached content to client 
+Syntax:   CacheIgnoreCacheControl On|Off  
+Default:   CacheIgnoreCacheControl Off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_cache 
+
+ Ordinarily, requests containing a Cache-Control: no-cache or
+    Pragma: no-cache header value will not be served from the cache.  The
+     CacheIgnoreCacheControl  directive allows this
+    behavior to be overridden.   CacheIgnoreCacheControl On 
+    tells the server to attempt to serve the resource from the cache even
+    if the request contains no-cache header values.  Resources requiring
+    authorization will  never  be cached. 
+
+     CacheIgnoreCacheControl On 
+
+
+      Warning: 
+       This directive will allow serving from the cache even if the client has
+       requested that the document not be served from the cache.  This might
+       result in stale content being served.
+     
+
+ See also 
+    CacheStorePrivate   
+   CacheStoreNoStore   
+  

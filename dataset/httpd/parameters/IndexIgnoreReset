@@ -1,0 +1,29 @@
+IndexIgnoreReset
+
+Description:  Empties the list of files to hide when listing
+a directory 
+Syntax:   IndexIgnoreReset ON|OFF  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_autoindex 
+Compatibility:  2.3.10 and later 
+
+ The  IndexIgnoreReset  directive removes
+    any files ignored by  IndexIgnore  otherwise
+    inherited from other configuration sections.  
+
+     < Directory /var/www >
+    IndexIgnore *.bak .??* *~ *# HEADER* README* RCS CVS *,v *,t
+< /Directory >
+< Directory /var/www/backups >
+    IndexIgnoreReset ON
+    IndexIgnore .??* *# HEADER* README* RCS CVS *,v *,t
+< /Directory > 
+
+
+       Review the default configuration for a list of
+    patterns that you might want to explicitly ignore after using this
+    directive.  
+
+ 

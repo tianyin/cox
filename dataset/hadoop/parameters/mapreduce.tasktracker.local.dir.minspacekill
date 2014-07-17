@@ -1,0 +1,7 @@
+0
+If the space in mapreduce.cluster.local.dir drops under this, 
+    do not ask more tasks until all the current ones have finished and 
+    cleaned up. Also, to save the rest of the tasks we have running, 
+    kill one of them, to clean up some space. Start with the reduce tasks,
+    then go with the ones that have finished the least.
+    Value in bytes.

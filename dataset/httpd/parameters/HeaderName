@@ -1,0 +1,55 @@
+HeaderName
+
+Description:  Name of the file that will be inserted at the top
+of the index listing 
+Syntax:   HeaderName  filename   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_autoindex 
+
+ The  HeaderName  directive sets the name
+    of the file that will be inserted at the top of the index
+    listing.  Filename  is the name of the file to include. 
+
+     HeaderName HEADER.html 
+
+
+     
+       Both HeaderName and   ReadmeName   now treat
+       Filename  as a URI path relative to the one used to
+      access the directory being indexed. If  Filename  begins
+      with a slash, it will be taken to be relative to the   DocumentRoot  . 
+
+       HeaderName /include/HEADER.html 
+
+
+        Filename  must resolve to a document with a major
+      content type of  text/*  ( e.g. ,
+       text/html ,  text/plain , etc.). This means
+      that  filename  may refer to a CGI script if the script's
+      actual file type (as opposed to its output) is marked as
+       text/html  such as with a directive like: 
+
+       AddType text/html .cgi 
+
+
+        Content negotiation 
+      will be performed if   Options  
+       MultiViews  is in effect. If  filename  resolves
+      to a static  text/html  document (not a CGI script) and
+      either one of the   options  
+       Includes  or  IncludesNOEXEC  is enabled,
+      the file will be processed for server-side includes (see the
+        mod_include   documentation). 
+     
+
+     If the file specified by  HeaderName  contains
+    the beginnings of an HTML document (< html >, < head >, etc.)
+    then you will probably want to set   IndexOptions
+    +SuppressHTMLPreamble  , so that these tags are not
+    repeated. 
+
+ See also 
+    ReadmeName   
+  

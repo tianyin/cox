@@ -1,0 +1,20 @@
+ProxyHTMLLinks
+
+Description:  Specify HTML elements that have URL attributes to be rewritten. 
+Syntax:   ProxyHTMLLinks  element attribute [attribute2 ...]   
+Context:  server config, virtual host, directory 
+Status:  Base 
+Module:  mod_proxy_html 
+Compatibility:  Version 2.4 and later; available as a third-party
+for earlier 2.x versions 
+
+ Specifies elements that have URL attributes that should be rewritten
+using standard  ProxyHTMLURLMap s.  You will need one
+ProxyHTMLLinks directive per element, but it can have any number of attributes. 
+ Normally you'll set this globally.  If you set ProxyHTMLLinks in more than
+one scope so that one overrides the other, you'll need to specify a complete
+set in each of those scopes. 
+ A default configuration is supplied in  proxy-html.conf 
+and defines the HTML links for standard HTML 4 and XHTML 1. 
+
+ 

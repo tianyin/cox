@@ -1,0 +1,30 @@
+MaxRangeReversals
+
+Description:  Number of range reversals (eg:  100-200,50-70 ) allowed before returning the complete
+        resource  
+Syntax:   MaxRangeReversals default | unlimited | none |  number-of-ranges   
+Default:   MaxRangeReversals 20  
+Context:  server config, virtual host, directory 
+Status:  Core 
+Module:  core 
+Compatibility:  Available in Apache HTTP Server 2.3.15 and later 
+
+ The  MaxRangeReversals  directive
+            limits the number of HTTP Range reversals the server is willing to
+            return to the client. If more ranges reversals than permitted are requested,
+            the complete resource is returned instead. 
+
+           default  
+             Limits the number of range reversals to a compile-time default of 20. 
+
+              none  
+             No Range reversals headers are allowed. 
+
+              unlimited  
+             The server does not limit the number of range reversals it is
+                willing to satisfy. 
+
+              number-of-ranges  
+             A positive number representing the maximum number of range reversals the
+                server is willing to satisfy. 
+          

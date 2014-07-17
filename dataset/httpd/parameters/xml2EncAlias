@@ -1,0 +1,16 @@
+xml2EncAlias
+
+Description:  Recognise Aliases for encoding values 
+Syntax:   xml2EncAlias  charset alias [alias ...]   
+Context:  server config 
+Status:  Base 
+Module:  mod_xml2enc 
+
+ This server-wide directive aliases one or more encoding to another
+    encoding.  This enables encodings not recognised by libxml2 to be handled
+    internally by libxml2's encoding support using the translation table for
+    a recognised encoding.  This serves two purposes: to support character sets
+    (or names) not recognised either by libxml2 or iconv, and to skip
+    conversion for an encoding where it is known to be unnecessary. 
+
+ 

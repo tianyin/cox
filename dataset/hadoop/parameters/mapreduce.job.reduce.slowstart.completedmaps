@@ -1,0 +1,3 @@
+0.05
+Fraction of the number of maps in the job which should be 
+  complete before reduces are scheduled for the job.

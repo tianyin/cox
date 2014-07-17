@@ -1,0 +1,1 @@
+The server attempts to obtain the number of file descriptors           using the maximum of those three values. If that many           descriptors cannot be obtained, the server attempts to obtain           as many as the system will permit.  On Unix, the value cannot be set less than ulimit           n. 

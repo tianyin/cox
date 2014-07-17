@@ -1,0 +1,144 @@
+AllowOverride
+
+Description:  Types of directives that are allowed in
+ .htaccess  files 
+Syntax:   AllowOverride All|None| directive-type 
+[ directive-type ] ...  
+Default:   AllowOverride None (2.3.9 and later), AllowOverride All (2.3.8 and earlier)  
+Context:  directory 
+Status:  Core 
+Module:  core 
+
+ When the server finds an  .htaccess  file (as
+    specified by   AccessFileName  )
+    it needs to know which directives declared in that file can override
+    earlier configuration directives. 
+
+      Only available in < Directory > sections 
+     AllowOverride  is valid only in
+      < Directory >  
+    sections specified without regular expressions, not in   < Location >  ,   < DirectoryMatch >   or
+      < Files >   sections.
+     
+
+     When this directive is set to  None  and   AllowOverrideList   is set to
+     None   .htaccess  files are
+    completely ignored. In this case, the server will not even attempt
+    to read  .htaccess  files in the filesystem. 
+
+     When this directive is set to  All , then any
+    directive which has the .htaccess  Context  is allowed in
+     .htaccess  files. 
+
+     The  directive-type  can be one of the following
+    groupings of directives. 
+
+      AuthConfig 
+
+       
+
+      Allow use of the authorization directives (  AuthDBMGroupFile  ,
+        AuthDBMUserFile  ,
+        AuthGroupFile  ,
+        AuthName  ,
+        AuthType  ,   AuthUserFile  ,   Require  ,  etc. ). 
+
+       FileInfo 
+
+       
+      Allow use of the directives controlling document types
+     (  ErrorDocument  ,
+        ForceType  ,
+        LanguagePriority  ,
+        SetHandler  ,
+        SetInputFilter  ,
+        SetOutputFilter  , and
+        mod_mime   Add* and Remove* directives),
+      document meta data (  Header  ,   RequestHeader  ,   SetEnvIf  ,   SetEnvIfNoCase  ,   BrowserMatch  ,   CookieExpires  ,   CookieDomain  ,   CookieStyle  ,   CookieTracking  ,   CookieName  ),
+        mod_rewrite   directives (  RewriteEngine  ,   RewriteOptions  ,   RewriteBase  ,   RewriteCond  ,   RewriteRule  ),
+        mod_alias   directives (  Redirect  ,   RedirectTemp  ,   RedirectPermanent  ,   RedirectMatch  ), and
+        Action   from
+        mod_actions  .
+       
+
+       Indexes 
+
+       
+      Allow use of the directives controlling directory indexing
+      (  AddDescription  ,
+        AddIcon  ,   AddIconByEncoding  ,
+        AddIconByType  ,
+        DefaultIcon  ,   DirectoryIndex  ,   FancyIndexing  ,   HeaderName  ,   IndexIgnore  ,   IndexOptions  ,   ReadmeName  ,
+       etc. ). 
+
+       Limit 
+
+       
+      Allow use of the directives controlling host access (  Allow  ,   Deny   and   Order  ). 
+
+       Nonfatal=[Override|Unknown|All] 
+
+       
+      Allow use of AllowOverride option to treat syntax errors in
+      .htaccess as non-fatal: instead of causing an Internal Server
+      Error, disallowed or unrecognised directives will be ignored
+      and a warning logged:
+         Nonfatal=Override  treats directives
+              forbidden by AllowOverride as non-fatal. 
+            Nonfatal=Unknown  treats unknown directives
+              as non-fatal.  This covers typos and directives implemented
+              by a module that's not present. 
+            Nonfatal=All  treats both the above as non-fatal. 
+        Note that a syntax error in a valid directive will still cause
+      an internal server error. 
+        Security 
+          Nonfatal errors may have security implications for .htaccess users.
+          For example, if AllowOverride disallows AuthConfig, users'
+          configuration designed to restrict access to a site will be disabled.
+       
+       
+
+       Options[= Option ,...] 
+
+       
+      Allow use of the directives controlling specific directory
+      features (  Options   and
+        XBitHack  ).
+      An equal sign may be given followed by a comma (but no spaces)
+      separated lists of options that may be set using the   Options   command.
+
+        Implicit disabling of Options 
+       Even though the list of options that may be used in .htaccess files
+         can be limited with this directive, as long as any   Options   directive is allowed any
+         other inherited option can be disabled by using the non-relative
+         syntax.  In other words, this mechanism cannot force a specific option
+         to remain  set  while allowing any others to be set.
+        
+
+         
+      AllowOverride Options=Indexes,MultiViews
+         
+       
+      Example: 
+
+     AllowOverride AuthConfig Indexes 
+
+
+     In the example above all directives that are neither in the group
+     AuthConfig  nor  Indexes  cause an internal
+    server error. 
+
+      For security and performance reasons, do not set
+     AllowOverride  to anything other than  None 
+    in your  < Directory / >  block. Instead, find (or
+    create) the  < Directory >  block that refers to the
+    directory where you're actually planning to place a
+     .htaccess  file. 
+     
+
+ See also 
+    AccessFileName   
+   AllowOverrideList   
+  Configuration Files  
+  .htaccess Files  
+  

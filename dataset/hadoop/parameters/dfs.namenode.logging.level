@@ -1,0 +1,4 @@
+info
+The logging level for dfs namenode. Other values are "dir" (trace
+    namespace mutations), "block" (trace block under/over replications
+    and block creations/deletions), or "all".

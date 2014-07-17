@@ -1,0 +1,38 @@
+SessionCryptoPassphrase
+
+Description:  The key used to encrypt the session 
+Syntax:   SessionCryptoPassphrase  secret  [  secret  ... ]   
+Default:   none  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Experimental 
+Module:  mod_session_crypto 
+Compatibility:  Available in Apache 2.3.0 and later 
+
+ The  SessionCryptoPassphrase  directive specifies the keys
+    to be used to enable symmetrical encryption on the contents of the session before
+    writing the session, or decrypting the contents of the session after reading the
+    session. 
+
+     Keys are more secure when they are long, and consist of truly random characters.
+    Changing the key on a server has the effect of invalidating all existing sessions. 
+
+     Multiple keys can be specified in order to support key rotation. The first key
+    listed will be used for encryption, while all keys listed will be attempted for
+    decryption. To rotate keys across multiple servers over a period of time, add a new
+    secret to the end of the list, and once rolled out completely to all servers, remove
+    the first key from the start of the list. 
+
+     As of version 2.4.7 if the value begins with  exec:  the resulting command
+    will be executed and the first line returned to standard output by the program will be
+    used as the key. 
+  #key used as-is
+SessionCryptoPassphrase secret
+
+#Run /path/to/program to get key
+SessionCryptoPassphrase exec:/path/to/program
+
+#Run /path/to/otherProgram and provide arguments
+SessionCryptoPassphrase "exec:/path/to/otherProgram argument1"  
+
+
+ 

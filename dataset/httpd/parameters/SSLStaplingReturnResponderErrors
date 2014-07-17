@@ -1,0 +1,16 @@
+SSLStaplingReturnResponderErrors
+
+Description:  Pass stapling related OCSP errors on to client 
+Syntax:   SSLStaplingReturnResponderErrors on|off  
+Default:   SSLStaplingReturnResponderErrors on  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+Compatibility:  Available if using OpenSSL 0.9.8h or later 
+
+ When enabled, mod_ssl will pass responses from unsuccessful
+stapling related OCSP queries (such as status errors, expired responses etc.)
+on to the client. If set to  off , no stapled responses
+for failed queries will be included in the TLS handshake. 
+
+ 

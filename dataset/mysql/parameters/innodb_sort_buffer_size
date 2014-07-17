@@ -1,0 +1,1 @@
+For parallel sorts on an index, multiply by the           innodb_ft_sort_pll_degree           setting: 

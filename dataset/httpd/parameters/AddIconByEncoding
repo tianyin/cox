@@ -1,0 +1,25 @@
+AddIconByEncoding
+
+Description:  Icon to display next to files selected by MIME
+content-encoding 
+Syntax:   AddIconByEncoding  icon   MIME-encoding 
+[ MIME-encoding ] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_autoindex 
+
+ This sets the icon to display next to files with   FancyIndexing  .
+     Icon  is either a (%-escaped) relative URL to the icon,
+    a fully qualified remote URL,
+    or of the format  ( alttext , url ) 
+    where  alttext  is the text tag given for an icon for
+    non-graphical browsers. 
+
+      MIME-encoding  is a valid content-encoding, such as
+     x-compress . 
+
+     AddIconByEncoding /icons/compress.png x-compress 
+
+
+ 

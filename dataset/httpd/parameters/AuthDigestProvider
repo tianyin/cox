@@ -1,0 +1,22 @@
+AuthDigestProvider
+
+Description:  Sets the authentication provider(s) for this location 
+Syntax:   AuthDigestProvider  provider-name 
+[ provider-name ] ...  
+Default:   AuthDigestProvider file  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_auth_digest 
+
+ The  AuthDigestProvider  directive sets
+    which provider is used to authenticate the users for this location.
+    The default  file  provider is implemented
+    by the   mod_authn_file   module.  Make sure
+    that the chosen provider module is present in the server. 
+
+     See   mod_authn_dbm  ,   mod_authn_file  ,
+      mod_authn_dbd   and   mod_authn_socache  
+    for providers. 
+
+ 

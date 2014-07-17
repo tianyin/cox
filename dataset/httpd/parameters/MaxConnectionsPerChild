@@ -1,0 +1,24 @@
+MaxConnectionsPerChild
+
+Description:  Limit on the number of connections that an individual child server
+will handle during its life 
+Syntax:   MaxConnectionsPerChild  number   
+Default:   MaxConnectionsPerChild 0  
+Context:  server config 
+Status:  MPM 
+Module:    event  ,   mpm_netware  ,   mpm_winnt  ,   mpmt_os2  ,   prefork  ,   worker   
+Compatibility:  Available Apache HTTP Server 2.3.9 and later. The old name
+ MaxRequestsPerChild  is still supported. 
+
+ The  MaxConnectionsPerChild  directive sets
+    the limit on the number of connections that an individual child
+    server process will handle. After
+     MaxConnectionsPerChild  connections, the child
+    process will die. If  MaxConnectionsPerChild  is
+     0 , then the process will never expire. 
+
+     Setting  MaxConnectionsPerChild  to a
+    non-zero value limits the amount of memory that process can consume
+    by (accidental) memory leakage. 
+
+ 

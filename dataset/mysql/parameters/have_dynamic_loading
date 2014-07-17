@@ -1,0 +1,1 @@
+YES if mysqld supports           dynamic loading of plugins, NO if not. 

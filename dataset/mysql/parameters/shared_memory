@@ -1,0 +1,1 @@
+(Windows only.) Whether the server permits sharedmemory           connections.  Enable sharedmemory connections by local clients. This option           is available only on Windows. 

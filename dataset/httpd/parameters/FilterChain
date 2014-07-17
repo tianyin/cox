@@ -1,0 +1,32 @@
+FilterChain
+
+Description:  Configure the filter chain 
+Syntax:   FilterChain [+=-@!] filter-name   ...   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Options 
+Status:  Base 
+Module:  mod_filter 
+
+ This configures an actual filter chain, from declared filters.
+     FilterChain  takes any number of arguments,
+    each optionally preceded with a single-character control that
+    determines what to do: 
+
+       + filter-name   
+     Add  filter-name  to the end of the filter chain 
+
+      @ filter-name   
+     Insert  filter-name  at the start of the filter chain 
+
+      - filter-name   
+     Remove  filter-name  from the filter chain 
+
+      = filter-name   
+     Empty the filter chain and insert  filter-name  
+
+      !  
+     Empty the filter chain 
+
+       filter-name   
+     Equivalent to  + filter-name   
+      

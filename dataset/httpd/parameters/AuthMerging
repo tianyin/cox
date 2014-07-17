@@ -1,0 +1,66 @@
+AuthMerging
+
+Description:  Controls the manner in which each configuration section's
+authorization logic is combined with that of preceding configuration
+sections. 
+Syntax:   AuthMerging Off | And | Or  
+Default:   AuthMerging Off  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_authz_core 
+
+ When authorization is enabled, it is normally inherited by each
+    subsequent  configuration section ,
+    unless a different set of authorization directives is specified.
+    This is the default action, which corresponds to an explicit setting
+    of  AuthMerging Off . 
+
+     However, there may be circumstances in which it is desirable
+    for a configuration section's authorization to be combined with
+    that of its predecessor while configuration sections are being
+    merged.  Two options are available for this case,  And 
+    and  Or . 
+
+     When a configuration section contains  AuthMerging And 
+    or  AuthMerging Or ,
+    its authorization logic is combined with that of the nearest
+    predecessor (according to the overall order of configuration sections)
+    which also contains authorization logic as if the two sections
+    were jointly contained within a
+      < RequireAll >   or
+      < RequireAny >  
+    directive, respectively. 
+
+     The setting of  AuthMerging  is not
+    inherited outside of the configuration section in which it appears.
+    In the following example, only users belonging to group  alpha 
+    may access  /www/docs .  Users belonging to either
+    groups  alpha  or  beta  may access
+     /www/docs/ab .  However, the default  Off 
+    setting of  AuthMerging  applies to the
+      < Directory >  
+    configuration section for  /www/docs/ab/gamma , so
+    that section's authorization directives override those of the
+    preceding sections.  Thus only users belong to the group
+     gamma  may access  /www/docs/ab/gamma . 
+
+     < Directory /www/docs >
+    AuthType Basic
+    AuthName Documents
+    AuthBasicProvider file
+    AuthUserFile /usr/local/apache/passwd/passwords
+    Require group alpha
+< /Directory >
+
+< Directory /www/docs/ab >
+    AuthMerging Or
+    Require group beta
+< /Directory >
+
+< Directory /www/docs/ab/gamma >
+    Require group gamma
+< /Directory > 
+
+
+ 

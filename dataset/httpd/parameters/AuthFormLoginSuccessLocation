@@ -1,0 +1,22 @@
+AuthFormLoginSuccessLocation
+
+Description:  The URL of the page to be redirected to should login be successful 
+Syntax:   AuthFormLoginSuccessLocation  url   
+Default:   none  
+Context:  directory 
+Status:  Base 
+Module:  mod_auth_form 
+Compatibility:  Available in Apache HTTP Server 2.3.0 and later. The use of the expression
+parser hass been added in 2.4.4. 
+
+ The   AuthFormLoginSuccessLocation   directive
+    specifies the URL to redirect to should the user have logged in successfully. The value is
+    parsed using the  ap_expr  parser before being sent to the client.
+    This directive can be overridden if a form field has been defined containing another URL
+    using the   AuthFormLocation   directive. 
+
+     Use this directive if you have a dedicated login URL, and you have not embedded the
+    destination page in the login form. 
+
+
+ 

@@ -1,0 +1,15 @@
+IdentityCheckTimeout
+
+Description:  Determines the timeout duration for ident requests 
+Syntax:   IdentityCheckTimeout  seconds   
+Default:   IdentityCheckTimeout 30  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_ident 
+
+ This directive specifies the timeout duration of an ident
+    request. The default value of 30 seconds is recommended by  RFC 1413 , mainly because
+    of possible network latency. However, you may want to adjust the
+    timeout value according to your local network speed. 
+
+ 

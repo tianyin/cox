@@ -1,0 +1,17 @@
+UnsetEnv
+
+Description:  Removes variables from the environment 
+Syntax:   UnsetEnv  env-variable  [ env-variable ]
+...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_env 
+
+ Removes one or more internal environment variables from those passed
+    on to CGI scripts and SSI pages. 
+
+      Example  UnsetEnv LD_LIBRARY_PATH 
+ 
+
+ 

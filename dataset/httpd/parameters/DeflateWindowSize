@@ -1,0 +1,14 @@
+DeflateWindowSize
+
+Description:  Zlib compression window size 
+Syntax:   DeflateWindowSize  value   
+Default:   DeflateWindowSize 15  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_deflate 
+
+ The  DeflateWindowSize  directive specifies the
+    zlib compression window size (a value between 1 and 15). Generally, the
+    higher the window size, the higher can the compression ratio be expected. 
+
+ 

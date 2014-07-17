@@ -1,0 +1,57 @@
+<IfVersion>
+
+Description:  contains version dependent configuration 
+Syntax:   < IfVersion [[!] operator ]  version  > ...
+< /IfVersion >  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Extension 
+Module:  mod_version 
+
+ The  < IfVersion >  section encloses
+    configuration directives which are executed only if the
+      httpd   version
+    matches the desired criteria. For normal (numeric) comparisons the
+     version  argument has the format
+      major [. minor [. patch ]] , e.g.
+     2.1.0  or  2.2 .  minor  and
+     patch  are optional. If these numbers are omitted, they are
+    assumed to be zero. The following numerical  operator s are
+    possible: 
+
+        operator   description     =  or  ==  
+         httpd version is equal      >  
+         httpd version is greater than      >=  
+         httpd version is greater or equal     <   
+         httpd version is less than     < =  
+         httpd version is less or equal     Example  < IfVersion  >= 2.3 >
+    # this happens only in versions greater or
+    # equal 2.3.0.
+< /IfVersion > 
+ 
+
+     Besides the numerical comparison it is possible to match a
+     regular expression 
+    against the httpd version. There are two ways to write it: 
+
+        operator   description     =  or  ==  
+          version  has the form
+             / regex /      ~  
+          version  has the form
+              regex       Example  < IfVersion = /^2.4.[01234]$/ >
+    # e.g. workaround for buggy versions
+< /IfVersion > 
+ 
+
+     In order to reverse the meaning, all operators can be preceded by an
+    exclamation mark ( ! ): 
+
+     < IfVersion !~ ^2.4.[01234]$ >
+    # not for those versions
+< /IfVersion > 
+
+
+     If the  operator  is omitted, it is assumed to be
+     = . 
+
+ 

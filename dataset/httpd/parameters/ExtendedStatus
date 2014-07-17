@@ -1,0 +1,33 @@
+ExtendedStatus
+
+Description:  Keep track of extended status information for each
+request 
+Syntax:   ExtendedStatus On|Off  
+Default:   ExtendedStatus Off[*]  
+Context:  server config 
+Status:  Core 
+Module:  core 
+
+ This option tracks additional data per worker about the
+    currently executing request, and a utilization summary; you
+    can see these variables during runtime by configuring
+      mod_status  .  Note that other modules may
+    rely on this scoreboard. 
+
+     This setting applies to the entire server, and cannot be
+    enabled or disabled on a virtualhost-by-virtualhost basis.
+    The collection of extended status information can slow down
+    the server.  Also note that this setting cannot be changed
+    during a graceful restart. 
+
+     
+     Note that loading   mod_status   will change
+    the default behavior to ExtendedStatus On, while other
+    third party modules may do the same.  Such modules rely on
+    collecting detailed information about the state of all workers.
+    The default is changed by   mod_status   beginning
+    with version 2.3.6; the previous default was always Off. 
+     
+
+
+ 

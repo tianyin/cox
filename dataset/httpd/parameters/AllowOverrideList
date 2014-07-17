@@ -1,0 +1,56 @@
+AllowOverrideList
+
+Description:  Individual directives that are allowed in
+ .htaccess  files 
+Syntax:   AllowOverrideList None| directive 
+[ directive-type ] ...  
+Default:   AllowOverrideList None  
+Context:  directory 
+Status:  Core 
+Module:  core 
+
+ When the server finds an  .htaccess  file (as
+    specified by   AccessFileName  )
+    it needs to know which directives declared in that file can override
+    earlier configuration directives. 
+
+      Only available in < Directory > sections 
+     AllowOverrideList  is valid only in
+      < Directory >  
+    sections specified without regular expressions, not in   < Location >  ,   < DirectoryMatch >   or
+      < Files >   sections.
+     
+
+     When this directive is set to  None  and   AllowOverride   is set to  None ,
+    then  .htaccess  files are completely
+    ignored.  In this case, the server will not even attempt to read
+     .htaccess  files in the filesystem. 
+
+     Example: 
+
+     AllowOverride None
+AllowOverrideList Redirect RedirectMatch 
+
+
+     In the example above only the  Redirect  and
+     RedirectMatch  directives are allowed. All others will
+    cause an internal server error. 
+
+     Example: 
+
+     AllowOverride AuthConfig
+AllowOverrideList CookieTracking CookieName 
+
+
+     In the example above   AllowOverride
+       grants permission to the  AuthConfig 
+    directive grouping and  AllowOverrideList  grants
+    permission to only two directives from the  FileInfo  directive
+    grouping. All others will cause an internal server error. 
+
+ See also 
+    AccessFileName   
+   AllowOverride   
+  Configuration Files  
+  .htaccess Files  
+  

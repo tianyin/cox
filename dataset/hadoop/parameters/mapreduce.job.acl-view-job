@@ -1,0 +1,29 @@
+
+Job specific access-control list for 'viewing' the job. It is
+    only used if authorization is enabled in Map/Reduce by setting the
+    configuration property mapreduce.cluster.acls.enabled to true.
+    This specifies the list of users and/or groups who can view private details
+    about the job. For specifying a list of users and groups the
+    format to use is "user1,user2 group1,group". If set to '*', it allows all
+    users/groups to modify this job. If set to ' '(i.e. space), it allows
+    none. This configuration is used to guard some of the job-views and at
+    present only protects APIs that can return possibly sensitive information
+    of the job-owner like
+      o job-level counters
+      o task-level counters
+      o tasks' diagnostic information
+      o task-logs displayed on the TaskTracker web-UI and
+      o job.xml showed by the JobTracker's web-UI
+    Every other piece of information of jobs is still accessible by any other
+    user, for e.g., JobStatus, JobProfile, list of jobs in the queue, etc.
+
+    Irrespective of this ACL configuration, (a) job-owner, (b) the user who
+    started the cluster, (c) members of an admin configured supergroup
+    configured via mapreduce.cluster.permissions.supergroup and (d) queue
+    administrators of the queue to which this job was submitted to configured
+    via acl-administer-jobs for the specific queue in mapred-queues.xml can
+    do all the view operations on a job.
+
+    By default, nobody else besides job-owner, the user who started the
+    cluster, memebers of supergroup and queue administrators can perform
+    view operations on a job.

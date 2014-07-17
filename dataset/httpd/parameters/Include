@@ -1,0 +1,63 @@
+Include
+
+Description:  Includes other configuration files from within
+the server configuration files 
+Syntax:   Include  file-path | directory-path | wildcard   
+Context:  server config, virtual host, directory 
+Status:  Core 
+Module:  core 
+Compatibility:  Directory
+wildcard matching available in 2.3.6 and later 
+
+ This directive allows inclusion of other configuration files
+    from within the server configuration files. 
+
+     Shell-style ( fnmatch() ) wildcard characters can be used
+    in the filename or directory parts of the path to include several files
+    at once, in alphabetical order. In addition, if
+     Include  points to a directory, rather than a file,
+    Apache httpd will read all files in that directory and any subdirectory.
+    However, including entire directories is not recommended, because it is
+    easy to accidentally leave temporary files in a directory that can cause
+      httpd   to fail. Instead, we encourage you to use the
+    wildcard syntax shown below, to include files that match a particular
+    pattern, such as *.conf, for example. 
+
+     The   Include   directive will
+     fail with an error  if a wildcard expression does not
+    match any file. The   IncludeOptional  
+    directive can be used if non-matching wildcards should be ignored. 
+
+     The file path specified may be an absolute path, or may be relative
+    to the   ServerRoot   directory. 
+
+     Examples: 
+
+     Include /usr/local/apache2/conf/ssl.conf
+Include /usr/local/apache2/conf/vhosts/*.conf 
+
+
+     Or, providing paths relative to your   ServerRoot   directory: 
+
+     Include conf/ssl.conf
+Include conf/vhosts/*.conf 
+
+
+     Wildcards may be included in the directory or file portion of the
+    path. This example will fail if there is no subdirectory in conf/vhosts
+    that contains at least one *.conf file: 
+
+     Include conf/vhosts/*/*.conf 
+
+
+     Alternatively, the following command will just be ignored in case of
+    missing files or directories: 
+
+     IncludeOptional conf/vhosts/*/*.conf 
+
+
+
+ See also 
+    IncludeOptional   
+   apachectl   
+  

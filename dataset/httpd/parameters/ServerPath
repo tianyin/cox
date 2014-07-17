@@ -1,0 +1,15 @@
+ServerPath
+
+Description:  Legacy URL pathname for a name-based virtual host that
+is accessed by an incompatible browser 
+Syntax:   ServerPath  URL-path   
+Context:  virtual host 
+Status:  Core 
+Module:  core 
+
+ The  ServerPath  directive sets the legacy
+    URL pathname for a host, for use with  name-based virtual hosts . 
+
+ See also 
+   Apache HTTP Server Virtual Host documentation  
+  

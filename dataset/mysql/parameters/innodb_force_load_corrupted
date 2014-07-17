@@ -1,0 +1,1 @@
+Lets InnoDB load tables at startup that are marked as           corrupted. Use only during troubleshooting, to recover data           that is otherwise inaccessible. When troubleshooting is           complete, turn this setting back off and restart the server. 

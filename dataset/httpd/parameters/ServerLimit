@@ -1,0 +1,48 @@
+ServerLimit
+
+Description:  Upper limit on configurable number of processes 
+Syntax:   ServerLimit  number   
+Default:   See usage for details  
+Context:  server config 
+Status:  MPM 
+Module:    event  ,   prefork  ,   worker   
+
+ For the   prefork   MPM, this directive sets the
+    maximum configured value for   MaxRequestWorkers   for the lifetime of the
+    Apache httpd process.  For the   worker   MPM, this directive
+    in combination with   ThreadLimit   sets
+    the maximum configured value for   MaxRequestWorkers   for the lifetime of the
+    Apache httpd process.  Any attempts to change this directive during a
+    restart will be ignored, but   MaxRequestWorkers   can be modified during
+    a restart. 
+
+     Special care must be taken when using this directive.  If
+     ServerLimit  is set to a value much higher
+    than necessary, extra, unused shared memory will be allocated.  If
+    both  ServerLimit  and   MaxRequestWorkers   are set to values
+    higher than the system can handle, Apache httpd may not start or the
+    system may become unstable. 
+
+     With the   prefork   MPM, use this directive only
+    if you need to set   MaxRequestWorkers   higher than 256 (default).
+    Do not set the value of this directive any higher than what you
+    might want to set   MaxRequestWorkers   to. 
+
+     With   worker  , use this directive only
+    if your   MaxRequestWorkers   and
+      ThreadsPerChild  
+    settings require more than 16 server processes (default). Do not set
+    the value of this directive any higher than the number of server
+    processes required by what you may want for   MaxRequestWorkers    and   ThreadsPerChild  . 
+
+      Note 
+       There is a hard limit of  ServerLimit 20000  compiled
+      into the server (for the   prefork   MPM 200000). This is
+      intended to avoid nasty effects caused by typos. To increase it
+      even further past this limit, you will need to modify the value of
+      MAX_SERVER_LIMIT in the mpm source file and rebuild the server. 
+     
+
+ See also 
+   Stopping and Restarting Apache HTTP Server  
+  

@@ -1,0 +1,1 @@
+This variable indicates the number of digits by which to           increase the scale of the result of division operations           performed with the           / operator.           The default value is 4. The minimum and maximum values are 0           and 30, respectively. The following example illustrates the           effect of increasing the default value. 

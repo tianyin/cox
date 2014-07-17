@@ -1,0 +1,43 @@
+<Else>
+
+Description:  Contains directives that apply only if the condition of a
+previous   < If >   or
+  < ElseIf >   section is not
+satisfied by a request at runtime 
+Syntax:   < Else > ... < /Else >  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Core 
+Module:  core 
+
+ The  < Else >  applies the enclosed
+    directives if and only if the most recent
+     < If >  or
+     < ElseIf >  section
+    in the same scope has not been applied.
+    For example: In  
+
+     < If "-z req('Host')" >
+  # ...
+< /If >
+< Else >
+  # ...
+< /Else > 
+
+
+      The  < If >  would match HTTP/1.0
+        requests without a  Host:  header and the
+         < Else >  would match requests
+        with a  Host:  header. 
+
+
+ See also 
+    < If >   
+   < ElseIf >   
+  How < Directory >, < Location >,
+    < Files > sections work  for an explanation of how these
+    different sections are combined when a request is received.
+     < If > ,
+     < ElseIf > , and
+     < Else >  are applied last. 
+  

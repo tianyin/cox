@@ -1,0 +1,41 @@
+<LocationMatch>
+
+Description:  Applies the enclosed directives only to regular-expression
+matching URLs 
+Syntax:   < LocationMatch
+     regex  > ... < /LocationMatch >  
+Context:  server config, virtual host 
+Status:  Core 
+Module:  core 
+
+ The  < LocationMatch >  directive
+    limits the scope of the enclosed directives by URL, in an identical manner
+    to   < Location >  . However,
+    it takes a  regular expression 
+    as an argument instead of a simple string. For example: 
+
+     < LocationMatch "/(extra|special)/data" >
+    # ...
+< /LocationMatch > 
+
+
+     would match URLs that contained the substring  /extra/data 
+    or  /special/data . 
+
+     From 2.4.8 onwards, named groups and backreferences are captured and
+    written to the environment with the corresponding name prefixed with
+    "MATCH_" and in upper case. This allows elements of URLs to be referenced
+    from within  expressions  and modules like
+      mod_rewrite  . In order to prevent confusion, numbered
+    (unnamed) backreferences are ignored. Use named groups instead. 
+
+ < LocationMatch ^/combined/(?< sitename >[^/]+) >
+    require ldap-group cn=%{env:MATCH_SITENAME},ou=combined,o=Example
+< /LocationMatch > 
+
+
+ See also 
+   How < Directory >, < Location >
+    and < Files > sections work  for an explanation of how these
+    different sections are combined when a request is received 
+  

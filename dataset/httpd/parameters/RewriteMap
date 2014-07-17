@@ -1,0 +1,80 @@
+RewriteMap
+
+Description:  Defines a mapping function for key-lookup 
+Syntax:   RewriteMap  MapName   MapType : MapSource 
+  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_rewrite 
+
+ The  RewriteMap  directive defines a
+       Rewriting Map  which can be used inside rule
+      substitution strings by the mapping-functions to
+      insert/substitute fields through a key lookup. The source of
+      this lookup can be of various types. 
+
+       The   MapName   is
+      the name of the map and will be used to specify a
+      mapping-function for the substitution strings of a rewriting
+      rule via one of the following constructs: 
+
+       
+          ${   MapName   : 
+         LookupKey   }   ${   MapName   : 
+         LookupKey   |   DefaultValue 
+         }  
+       
+
+       When such a construct occurs, the map  MapName  is
+      consulted and the key  LookupKey  is looked-up. If the
+      key is found, the map-function construct is substituted by
+       SubstValue . If the key is not found then it is
+      substituted by  DefaultValue  or by the empty string
+      if no  DefaultValue  was specified. Empty values
+      behave as if the key was absent, therefore it is not possible
+      to distinguish between empty-valued keys and absent keys. 
+
+       For example, you might define a
+       RewriteMap  as: 
+
+       RewriteMap examplemap txt:/path/to/file/map.txt 
+
+
+       You would then be able to use this map in a
+       RewriteRule  as follows: 
+
+       RewriteRule ^/ex/(.*) ${examplemap:$1} 
+
+
+       The following combinations for  MapType  and
+       MapSource  can be used: 
+
+      txt 
+         A plain text file containing space-separated key-value
+        pairs, one per line. ( Details ... ) 
+
+     rnd 
+         Randomly selects an entry from a plain text file ( Details ... ) 
+
+     dbm 
+         Looks up an entry in a dbm file containing name, value
+        pairs. Hash is constructed from a plain text file format using
+        the   httxt2dbm  
+        utility.  ( Details ... ) 
+
+     int 
+         One of the four available internal functions provided by
+         RewriteMap : toupper, tolower, escape or
+        unescape. ( Details ... ) 
+
+     prg 
+         Calls an external program or script to process the
+        rewriting. ( Details ... ) 
+
+     dbd or fastdbd 
+         A SQL SELECT statement to be performed to look up the
+        rewrite target. ( Details ... ) 
+      Further details, and numerous examples, may be found in the  RewriteMap HowTo  
+
+
+ 

@@ -1,0 +1,20 @@
+ProxyReceiveBufferSize
+
+Description:  Network buffer size for proxied HTTP and FTP
+connections 
+Syntax:   ProxyReceiveBufferSize  bytes   
+Default:   ProxyReceiveBufferSize 0  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+
+ The  ProxyReceiveBufferSize  directive specifies an
+    explicit (TCP/IP) network buffer size for proxied HTTP and FTP connections,
+    for increased throughput. It has to be greater than  512  or set
+    to  0  to indicate that the system's default buffer size should
+    be used. 
+
+      Example  ProxyReceiveBufferSize 2048 
+ 
+
+ 

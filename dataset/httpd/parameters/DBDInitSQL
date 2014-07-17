@@ -1,0 +1,14 @@
+DBDInitSQL
+
+Description:  Execute an SQL statement after connecting to a database 
+Syntax:   DBDInitSQL  "SQL statement"   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_dbd 
+
+ Modules, that wish it, can have one or more SQL statements 
+    executed when a connection to a database is created. Example 
+    usage could be initializing certain values or adding a log 
+    entry when a new connection is made to the database. 
+
+ 

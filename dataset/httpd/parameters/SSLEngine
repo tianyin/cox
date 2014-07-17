@@ -1,0 +1,25 @@
+SSLEngine
+
+Description:  SSL Engine Operation Switch 
+Syntax:   SSLEngine on|off|optional  
+Default:   SSLEngine off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive toggles the usage of the SSL/TLS Protocol Engine. This
+is should be used inside a   < VirtualHost >   section to enable SSL/TLS for a
+that virtual host. By default the SSL/TLS Protocol Engine is
+disabled for both the main server and all configured virtual hosts. 
+  Example  < VirtualHost _default_:443 >
+SSLEngine on
+#...
+< /VirtualHost > 
+ 
+ In Apache 2.1 and later,  SSLEngine  can be set to
+ optional . This enables support for
+ RFC 2817 , Upgrading to TLS
+Within HTTP/1.1. At this time no web browsers support RFC 2817. 
+
+ 

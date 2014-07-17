@@ -1,0 +1,14 @@
+false
+In some workloads, the data read from HDFS is known to be significantly
+        large enough that it is unlikely to be useful to cache it in the
+        operating system buffer cache. In this case, the DataNode may be
+        configured to automatically purge all data from the buffer cache
+        after it is delivered to the client. This behavior is automatically
+        disabled for workloads which read only short sections of a block
+        (e.g HBase random-IO workloads).
+
+        This may improve performance for some workloads by freeing buffer
+        cache spage usage for more cacheable data.
+
+        If the Hadoop native libraries are not available, this configuration
+        has no effect.

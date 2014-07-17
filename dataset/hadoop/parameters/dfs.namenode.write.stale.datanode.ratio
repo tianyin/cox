@@ -1,0 +1,4 @@
+0.5f
+When the ratio of number stale datanodes to total datanodes marked
+    is greater than this ratio, stop avoiding writing to stale nodes so
+    as to prevent causing hotspots.

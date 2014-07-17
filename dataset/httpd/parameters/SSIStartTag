@@ -1,0 +1,32 @@
+SSIStartTag
+
+Description:  String that starts an include element 
+Syntax:   SSIStartTag  tag   
+Default:   SSIStartTag "< !--#"  
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_include 
+
+ This directive changes the string that   mod_include  
+    looks for to mark an include element to process. 
+
+     You may want to use this option if you have 2 servers parsing the
+    output of a file each processing different commands (possibly at
+    different times). 
+
+           SSIStartTag "< %" 
+      SSIEndTag   "% >" 
+
+
+     The example given above, which also specifies a matching
+      SSIEndTag  , will
+    allow you to use SSI directives as shown in the example
+    below: 
+
+      SSI directives with alternate start and end tags   
+      < %printenv % >
+       
+
+ See also 
+    SSIEndTag   
+  

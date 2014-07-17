@@ -1,0 +1,23 @@
+SSLProxyCACertificatePath
+
+Description:  Directory of PEM-encoded CA Certificates for
+Remote Server Auth 
+Syntax:   SSLProxyCACertificatePath  directory-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive sets the directory where you keep the Certificates of
+Certification Authorities (CAs) whose remote servers you deal with. These are used to
+verify the remote server certificate on Remote Server Authentication. 
+ 
+The files in this directory have to be PEM-encoded and are accessed through
+hash filenames. So usually you can't just place the Certificate files
+there: you also have to create symbolic links named
+ hash-value  .N . And you should always make sure this directory
+contains the appropriate symbolic links. 
+  Example  SSLProxyCACertificatePath /usr/local/apache2/conf/ssl.crt/ 
+ 
+
+ 

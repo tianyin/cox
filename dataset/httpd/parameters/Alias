@@ -1,0 +1,61 @@
+Alias
+
+Description:  Maps URLs to filesystem locations 
+Syntax:   Alias  URL-path 
+ file-path | directory-path   
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_alias 
+
+ The  Alias  directive allows documents to
+    be stored in the local filesystem other than under the
+      DocumentRoot  . URLs with a
+    (%-decoded) path beginning with  URL-path  will be mapped
+    to local files beginning with  directory-path .  The
+     URL-path  is case-sensitive, even on case-insensitive
+    file systems. 
+
+     Alias /image /ftp/pub/image 
+
+
+     A request for  http://example.com/image/foo.gif  would cause
+    the server to return the file  /ftp/pub/image/foo.gif .  Only
+    complete path segments are matched, so the above alias would not match a
+    request for  http://example.com/imagefoo.gif .  For more complex
+    matching using regular expressions, see the   AliasMatch   directive. 
+
+     Note that if you include a trailing / on the
+     URL-path  then the server will require a trailing / in
+    order to expand the alias. That is, if you use 
+
+     Alias /icons/ /usr/local/apache/icons/ 
+
+
+     then the url  /icons  will not be aliased, as it lacks
+    that trailing /. Likewise, if you omit the slash on the
+     URL-path  then you must also omit it from the
+     file-path . 
+
+     Note that you may need to specify additional   < Directory >   sections which
+    cover the  destination  of aliases.  Aliasing occurs before
+      < Directory >   sections
+    are checked, so only the destination of aliases are affected.
+    (Note however   < Location >  
+    sections are run through once before aliases are performed, so
+    they will apply.) 
+
+     In particular, if you are creating an  Alias  to a
+    directory outside of your   DocumentRoot  , you may need to explicitly
+    permit access to the target directory. 
+
+     Alias /image /ftp/pub/image
+< Directory /ftp/pub/image >
+    Require all granted
+< /Directory > 
+
+
+     Any number slashes in the  URL-path  parameter 
+    matches any number of slashes in the requested URL-path. 
+
+
+ 

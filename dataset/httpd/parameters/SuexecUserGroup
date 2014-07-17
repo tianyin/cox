@@ -1,0 +1,21 @@
+SuexecUserGroup
+
+Description:  User and group for CGI programs to run as 
+Syntax:   SuexecUserGroup  User Group   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_suexec 
+
+ The  SuexecUserGroup  directive allows you
+    to specify a user and group for CGI programs to run as. Non-CGI
+    requests are still processed with the user specified in the   User   directive. 
+
+      Example  SuexecUserGroup nobody nogroup 
+ 
+
+     Startup will fail if this directive is specified but the suEXEC
+    feature is disabled. 
+
+ See also 
+    Suexec   
+  

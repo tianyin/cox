@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.6 Reference Manual :: 21.12 Performance Schema System Variables</title>
+
+    
+    <link rel="stylesheet" media="screen" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="projection" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="print" href="/common/css/print.css?v=20111230" />
+
+            <link rel="stylesheet" href="/doc/docs.css" />
+        
+    
+    
+    
+    <link rel="contents" href="index.html" title="MySQL Manual" /><link rel="start" href="index.html" title="MySQL Manual" /><link rel="prev" href="performance-schema-options.html" title="21.11 Performance Schema Command Options"/><link rel="next" href="performance-schema-status-variables.html?ff=nopfpls" title="21.13 Performance Schema Status Variables"/><link rel="up" href="performance-schema.html" title="21 MySQL Performance Schema"/>        <link rel="shortcut icon" href="/common/themes/sakila/favicon.ico" />
+
+        <script src="/common/js/clear_search_text.js"></script>
+
+    
+        
+    
+    
+</head>
+
+<body class="doc" >
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header" >
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="/common/logos/logo-mysql-110x57.png" alt="MySQL" width="110" height="57" /></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input type="text" id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" />
+			<input type="hidden" id="search_dest" name="group" value="MySQL"/>
+			<input type="image" src="/common/themes/sakila/search_g.png" id="go" alt="Search" title="Search" />
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login" >
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Fperformance-schema-system-variables.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="/common/icons/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20" /></a>&nbsp;
+                <a href="https://plus.google.com/+mysql"><img src="/common/icons/googleplus.png" alt="Google+" title="Join Google+ to follow MySQL" width="20" height="20" /></a>&nbsp;
+                <a href="https://twitter.com/#!/mysql"><img src="/common/icons/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20" /></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="/common/icons/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br />
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a  href="/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.7/en/performance-schema-system-variables.html" >MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.6 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.5/en/performance-schema-system-variables.html" >MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 5.1 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 5.0 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br />
+		<input id="searchq" type="text" name="q" value="" size="14" />
+		<input id="searchsubmit" type="submit" value="Go" />
+		<input id="searchgroup" type="hidden" name="group" value="MySQL" />
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar" >
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="index.html"> MySQL 5.6 Reference Manual</a> :: <a href="performance-schema.html">21 MySQL Performance Schema</a> :: 21.12 Performance Schema System Variables</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="performance-schema-options.html" title="Previous Section">&laquo; 21.11 Performance Schema Command Options</a></div>
+		<hr size="1" noshade="noshade" align="center" width="40" style="margin: 0px auto 2px auto" />		<a style="text-decoration: none" href="performance-schema-status-variables.html" title="Next Section">21.13 Performance Schema Status Variables  &raquo;</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');"  onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="performance-schema.html">21 MySQL Performance Schema</a></li><li><a href="performance-schema-quick-start.html">21.1 Performance Schema Quick Start</a></li>
+<li><a href="performance-schema-configuration.html">21.2 Performance Schema Configuration</a></li>
+<li><a href="performance-schema-queries.html">21.3 Performance Schema Queries</a></li>
+<li><a href="performance-schema-instrument-naming.html">21.4 Performance Schema Instrument Naming Conventions</a></li>
+<li><a href="performance-schema-status-monitoring.html">21.5 Performance Schema Status Monitoring</a></li>
+<li><a href="performance-schema-atom-molecule-events.html">21.6 Performance Schema Atom and Molecule Events</a></li>
+<li><a href="performance-schema-statement-digests.html">21.7 Performance Schema Statement Digests</a></li>
+<li><a href="performance-schema-table-characteristics.html">21.8 Performance Schema General Table Characteristics</a></li>
+<li><a href="performance-schema-table-descriptions.html">21.9 Performance Schema Table Descriptions</a></li>
+<li><a href="performance-schema-option-variable-reference.html">21.10 Performance Schema Option and Variable Reference</a></li>
+<li><a href="performance-schema-options.html">21.11 Performance Schema Command Options</a></li>
+<li class="self">21.12 Performance Schema System Variables</li>
+<li><a href="performance-schema-status-variables.html">21.13 Performance Schema Status Variables</a></li>
+<li><a href="performance-schema-and-plugins.html">21.14 Performance Schema and Plugins</a></li>
+<li><a href="performance-schema-examples.html">21.15 Using the Performance Schema to Diagnose Problems</a></li>
+</ul>
+
+			</ul>		
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title"><a name="performance-schema-system-variables"></a>21.12. Performance Schema System Variables</h2>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      The Performance Schema implements several system variables that
+      provide configuration information:
+    </p><pre class="programlisting">
+mysql&gt; <strong class="userinput"><code>SHOW VARIABLES LIKE 'perf%';</code></strong>
++--------------------------------------------------------+---------+
+| Variable_name                                          | Value   |
++--------------------------------------------------------+---------+
+| performance_schema                                     | ON      |
+| performance_schema_accounts_size                       | 100     |
+| performance_schema_digests_size                        | 200     |
+| performance_schema_events_stages_history_long_size     | 10000   |
+| performance_schema_events_stages_history_size          | 10      |
+| performance_schema_events_statements_history_long_size | 10000   |
+| performance_schema_events_statements_history_size      | 10      |
+| performance_schema_events_waits_history_long_size      | 10000   |
+| performance_schema_events_waits_history_size           | 10      |
+| performance_schema_hosts_size                          | 100     |
+| performance_schema_max_cond_classes                    | 80      |
+| performance_schema_max_cond_instances                  | 1000    |
+| performance_schema_max_file_classes                    | 50      |
+| performance_schema_max_file_handles                    | 32768   |
+| performance_schema_max_file_instances                  | 10000   |
+| performance_schema_max_mutex_classes                   | 200     |
+| performance_schema_max_mutex_instances                 | 1000000 |
+| performance_schema_max_rwlock_classes                  | 30      |
+| performance_schema_max_rwlock_instances                | 1000000 |
+| performance_schema_max_socket_classes                  | 10      |
+| performance_schema_max_socket_instances                | 1000    |
+| performance_schema_max_stage_classes                   | 150     |
+| performance_schema_max_statement_classes               | 165     |
+| performance_schema_max_table_handles                   | 10000   |
+| performance_schema_max_table_instances                 | 1000    |
+| performance_schema_max_thread_classes                  | 50      |
+| performance_schema_max_thread_instances                | 1000    |
+| performance_schema_session_connect_attrs_size          | 512     |
+| performance_schema_setup_actors_size                   | 100     |
+| performance_schema_setup_objects_size                  | 100     |
+| performance_schema_users_size                          | 100     |
++--------------------------------------------------------+---------+
+</pre><p>
+      Performance Schema system variables can be set at server startup
+      on the command line or in option files, and many can be set at
+      runtime. See
+      <a class="xref" href="performance-schema-option-variable-reference.html" title="21.10. Performance Schema Option and Variable Reference">Section 21.10, “Performance Schema Option and Variable Reference”</a>.
+    </p><p>
+      As of MySQL 5.6.6, the Performance Schema automatically sizes the
+      values of several of its parameters at server startup if they are
+      not set explicitly. For more information, see
+      <a class="xref" href="performance-schema-startup-configuration.html" title="21.2.2. Performance Schema Startup Configuration">Section 21.2.2, “Performance Schema Startup Configuration”</a>.
+    </p><p>
+      Performance Schema system variables have the following meanings:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="sysvar_performance_schema"></a>
+          <a class="indexterm" name="idm47327470553552"></a>
+
+          <a class="indexterm" name="idm47327470552464"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema"><code class="literal">performance_schema</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema">performance_schema</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">ON</code></td></tr></tbody></table>
+</div>
+<p>
+          The value of this variable is <code class="literal">ON</code> or
+          <code class="literal">OFF</code> to indicate whether the Performance
+          Schema is enabled. By default, the value is
+          <code class="literal">ON</code> by default as of MySQL 5.6.6 and
+          <code class="literal">OFF</code> before that. At server startup, you can
+          specify this variable with no value or a value of
+          <code class="literal">ON</code> or 1 to enable it, or with a value of
+          <code class="literal">OFF</code> or 0 to disable it.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_accounts_size"></a>
+          <a class="indexterm" name="idm47327470516928"></a>
+
+          <a class="indexterm" name="idm47327470515824"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size"><code class="literal">performance_schema_accounts_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_accounts_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_accounts_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_accounts_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">0 .. 1048576</code></td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">-1 .. 1048576</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the
+          <a class="link" href="accounts-table.html" title="21.9.7.1. The accounts Table"><code class="literal">accounts</code></a> table. If this variable
+          is 0, the Performance Schema does not maintain connection
+          statistics in the <a class="link" href="accounts-table.html" title="21.9.7.1. The accounts Table"><code class="literal">accounts</code></a> table.
+          This variable was added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_digests_size"></a>
+          <a class="indexterm" name="idm47327470476368"></a>
+
+          <a class="indexterm" name="idm47327470475264"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size"><code class="literal">performance_schema_digests_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_digests_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_digests_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_digests_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">-1 .. 1048576</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of rows in the
+          <a class="link" href="statement-summary-tables.html" title="21.9.9.3. Statement Summary Tables"><code class="literal">events_statements_summary_by_digest</code></a>
+          table. This variable was added in MySQL 5.6.5. If this maximum
+          is exceeded such that a digest cannot be instrumented, the
+          Performance Schema increments the
+          <a class="link" href="performance-schema-status-variables.html#statvar_Performance_schema_digest_lost"><code class="literal">Performance_schema_digest_lost</code></a>
+          status variable.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_events_stages_history_long_size"></a>
+          <a class="indexterm" name="idm47327470444320"></a>
+
+          <a class="indexterm" name="idm47327470443200"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size"><code class="literal">performance_schema_events_stages_history_long_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_events_stages_history_long_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_events_stages_history_long_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_events_stages_history_long_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the
+          <a class="link" href="events-stages-history-long-table.html" title="21.9.5.3. The events_stages_history_long Table"><code class="literal">events_stages_history_long</code></a> table.
+          This variable was added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_events_stages_history_size"></a>
+          <a class="indexterm" name="idm47327470408944"></a>
+
+          <a class="indexterm" name="idm47327470407824"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_size"><code class="literal">performance_schema_events_stages_history_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_events_stages_history_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_events_stages_history_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_events_stages_history_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_size">performance_schema_events_stages_history_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows per thread in the
+          <a class="link" href="events-stages-history-table.html" title="21.9.5.2. The events_stages_history Table"><code class="literal">events_stages_history</code></a> table. This
+          variable was added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_events_statements_history_long_size"></a>
+          <a class="indexterm" name="idm47327470373616"></a>
+
+          <a class="indexterm" name="idm47327470372496"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_long_size"><code class="literal">performance_schema_events_statements_history_long_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_events_statements_history_long_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_events_statements_history_long_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_events_statements_history_long_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_long_size">performance_schema_events_statements_history_long_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the
+          <a class="link" href="events-statements-history-long-table.html" title="21.9.6.3. The events_statements_history_long Table"><code class="literal">events_statements_history_long</code></a>
+          table. This variable was added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_events_statements_history_size"></a>
+          <a class="indexterm" name="idm47327470338208"></a>
+
+          <a class="indexterm" name="idm47327470337088"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_size"><code class="literal">performance_schema_events_statements_history_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_events_statements_history_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_events_statements_history_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_events_statements_history_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_size">performance_schema_events_statements_history_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows per thread in the
+          <a class="link" href="events-statements-history-table.html" title="21.9.6.2. The events_statements_history Table"><code class="literal">events_statements_history</code></a> table.
+          This variable was added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_events_waits_history_long_size"></a>
+          <a class="indexterm" name="idm47327470302832"></a>
+
+          <a class="indexterm" name="idm47327470301712"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_long_size"><code class="literal">performance_schema_events_waits_history_long_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_events_waits_history_long_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_events_waits_history_long_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_events_waits_history_long_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_long_size">performance_schema_events_waits_history_long_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the
+          <a class="link" href="events-waits-history-long-table.html" title="21.9.4.3. The events_waits_history_long Table"><code class="literal">events_waits_history_long</code></a> table.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_events_waits_history_size"></a>
+          <a class="indexterm" name="idm47327470269344"></a>
+
+          <a class="indexterm" name="idm47327470268224"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_size"><code class="literal">performance_schema_events_waits_history_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_events_waits_history_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_events_waits_history_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_events_waits_history_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_size">performance_schema_events_waits_history_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows per thread in the
+          <a class="link" href="events-waits-history-table.html" title="21.9.4.2. The events_waits_history Table"><code class="literal">events_waits_history</code></a> table.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_hosts_size"></a>
+          <a class="indexterm" name="idm47327470235936"></a>
+
+          <a class="indexterm" name="idm47327470234832"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_hosts_size"><code class="literal">performance_schema_hosts_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_hosts_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_hosts_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_hosts_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_hosts_size">performance_schema_hosts_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">0 .. 1048576</code></td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">-1 .. 1048576</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the <a class="link" href="hosts-table.html" title="21.9.7.2. The hosts Table"><code class="literal">hosts</code></a>
+          table. If this variable is 0, the Performance Schema does not
+          maintain connection statistics in the
+          <a class="link" href="hosts-table.html" title="21.9.7.2. The hosts Table"><code class="literal">hosts</code></a> table. This variable was
+          added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_cond_classes"></a>
+          <a class="indexterm" name="idm47327470195376"></a>
+
+          <a class="indexterm" name="idm47327470194272"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_cond_classes"><code class="literal">performance_schema_max_cond_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_cond_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_cond_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_cond_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_cond_classes">performance_schema_max_cond_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">80</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of condition instruments.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_cond_instances"></a>
+          <a class="indexterm" name="idm47327470169360"></a>
+
+          <a class="indexterm" name="idm47327470168256"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_cond_instances"><code class="literal">performance_schema_max_cond_instances</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_cond_instances" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_cond_instances=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_cond_instances</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_cond_instances">performance_schema_max_cond_instances</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of instrumented condition objects.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_file_classes"></a>
+          <a class="indexterm" name="idm47327470136848"></a>
+
+          <a class="indexterm" name="idm47327470135744"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_classes"><code class="literal">performance_schema_max_file_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_file_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_file_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_file_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_classes">performance_schema_max_file_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">50</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of file instruments.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_file_handles"></a>
+          <a class="indexterm" name="idm47327470110832"></a>
+
+          <a class="indexterm" name="idm47327470109728"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_handles"><code class="literal">performance_schema_max_file_handles</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_file_handles" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_file_handles=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_file_handles</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_handles">performance_schema_max_file_handles</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">32768</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of opened file objects.
+        </p><p>
+          The value of
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_handles"><code class="literal">performance_schema_max_file_handles</code></a>
+          should be greater than the value of
+          <a class="link" href="server-system-variables.html#sysvar_open_files_limit"><code class="literal">open_files_limit</code></a>:
+          <a class="link" href="server-system-variables.html#sysvar_open_files_limit"><code class="literal">open_files_limit</code></a> affects the
+          maximum number of open file handles the server can support and
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_handles"><code class="literal">performance_schema_max_file_handles</code></a>
+          affects how many of these file handles can be instrumented.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_file_instances"></a>
+          <a class="indexterm" name="idm47327470080672"></a>
+
+          <a class="indexterm" name="idm47327470079568"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_instances"><code class="literal">performance_schema_max_file_instances</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_file_instances" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_file_instances=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_file_instances</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_file_instances">performance_schema_max_file_instances</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of instrumented file objects.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_mutex_classes"></a>
+          <a class="indexterm" name="idm47327470048176"></a>
+
+          <a class="indexterm" name="idm47327470047072"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes"><code class="literal">performance_schema_max_mutex_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_mutex_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_mutex_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_mutex_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_classes">performance_schema_max_mutex_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">200</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of mutex instruments.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_mutex_instances"></a>
+          <a class="indexterm" name="idm47327470022144"></a>
+
+          <a class="indexterm" name="idm47327470021040"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_instances"><code class="literal">performance_schema_max_mutex_instances</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_mutex_instances" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_mutex_instances=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_mutex_instances</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_mutex_instances">performance_schema_max_mutex_instances</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of instrumented mutex objects.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_rwlock_classes"></a>
+          <a class="indexterm" name="idm47327469989648"></a>
+
+          <a class="indexterm" name="idm47327469988544"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_rwlock_classes"><code class="literal">performance_schema_max_rwlock_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_rwlock_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_rwlock_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_rwlock_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_rwlock_classes">performance_schema_max_rwlock_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">20</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of rwlock instruments.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_rwlock_instances"></a>
+          <a class="indexterm" name="idm47327469963616"></a>
+
+          <a class="indexterm" name="idm47327469962512"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_rwlock_instances"><code class="literal">performance_schema_max_rwlock_instances</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_rwlock_instances" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_rwlock_instances=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_rwlock_instances</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_rwlock_instances">performance_schema_max_rwlock_instances</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of instrumented rwlock objects.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_socket_classes"></a>
+          <a class="indexterm" name="idm47327469931120"></a>
+
+          <a class="indexterm" name="idm47327469930016"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_socket_classes"><code class="literal">performance_schema_max_socket_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_socket_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_socket_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_socket_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_socket_classes">performance_schema_max_socket_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of socket instruments. This variable was
+          added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_socket_instances"></a>
+          <a class="indexterm" name="idm47327469903200"></a>
+
+          <a class="indexterm" name="idm47327469902096"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_socket_instances"><code class="literal">performance_schema_max_socket_instances</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_socket_instances" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_socket_instances=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_socket_instances</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_socket_instances">performance_schema_max_socket_instances</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of instrumented socket objects. This
+          variable was added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_stage_classes"></a>
+          <a class="indexterm" name="idm47327469868800"></a>
+
+          <a class="indexterm" name="idm47327469867696"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_stage_classes"><code class="literal">performance_schema_max_stage_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_stage_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_stage_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_stage_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_stage_classes">performance_schema_max_stage_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">150</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of stage instruments. This variable was
+          added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_statement_classes"></a>
+          <a class="indexterm" name="idm47327469840832"></a>
+
+          <a class="indexterm" name="idm47327469839712"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_statement_classes"><code class="literal">performance_schema_max_statement_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_statement_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_statement_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_statement_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_statement_classes">performance_schema_max_statement_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">autosized</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of statement instruments. The default value
+          is calculated at server build time based on the number of
+          commands in the client/server protocol and the number of SQL
+          statement types supported by the server.
+        </p><p>
+          This variable should not be changed, unless to set it to 0 to
+          disable all statement instrumentation and save all memory
+          associated with it. Setting the variable to nonzero values
+          other than the default has no benefit; in particular, values
+          larger than the default cause more memory to be allocated then
+          is needed.
+        </p><p>
+          This variable was added in MySQL 5.6.3.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_table_handles"></a>
+          <a class="indexterm" name="idm47327469811392"></a>
+
+          <a class="indexterm" name="idm47327469810288"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_table_handles"><code class="literal">performance_schema_max_table_handles</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_table_handles" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_table_handles=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_table_handles</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_table_handles">performance_schema_max_table_handles</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">100000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of opened table objects.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_table_instances"></a>
+          <a class="indexterm" name="idm47327469778896"></a>
+
+          <a class="indexterm" name="idm47327469777792"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_table_instances"><code class="literal">performance_schema_max_table_instances</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_table_instances" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_table_instances=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_table_instances</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_table_instances">performance_schema_max_table_instances</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">50000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of instrumented table objects.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_thread_classes"></a>
+          <a class="indexterm" name="idm47327469746400"></a>
+
+          <a class="indexterm" name="idm47327469745296"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_thread_classes"><code class="literal">performance_schema_max_thread_classes</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_thread_classes" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_thread_classes=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_thread_classes</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_thread_classes">performance_schema_max_thread_classes</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">50</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of thread instruments.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_max_thread_instances"></a>
+          <a class="indexterm" name="idm47327469720368"></a>
+
+          <a class="indexterm" name="idm47327469719264"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_thread_instances"><code class="literal">performance_schema_max_thread_instances</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_max_thread_instances" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_max_thread_instances=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_max_thread_instances</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_thread_instances">performance_schema_max_thread_instances</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1000</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr></tbody></table>
+</div>
+<p>
+          The maximum number of instrumented thread objects. The value
+          controls the size of the <a class="link" href="threads-table.html" title="21.9.10.3. The threads Table"><code class="literal">threads</code></a>
+          table. If this maximum is exceeded such that a thread cannot
+          be instrumented, the Performance Schema increments the
+          <a class="link" href="performance-schema-status-variables.html#statvar_Performance_schema_thread_instances_lost"><code class="literal">Performance_schema_thread_instances_lost</code></a>
+          status variable.
+        </p><p>
+          The <a class="link" href="server-system-variables.html#sysvar_max_connections"><code class="literal">max_connections</code></a> system
+          variable affects how many threads are run in the server.
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_thread_instances"><code class="literal">performance_schema_max_thread_instances</code></a>
+          affects how many of these running threads can be instrumented.
+          The default value of
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_thread_instances"><code class="literal">performance_schema_max_thread_instances</code></a>
+          is autosized based on the value of
+          <a class="link" href="server-system-variables.html#sysvar_max_connections"><code class="literal">max_connections</code></a>.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_session_connect_attrs_size"></a>
+          <a class="indexterm" name="idm47327469681808"></a>
+
+          <a class="indexterm" name="idm47327469680688"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_session_connect_attrs_size"><code class="literal">performance_schema_session_connect_attrs_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_session_connect_attrs_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.6</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_session_connect_attrs_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_session_connect_attrs_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_session_connect_attrs_size">performance_schema_session_connect_attrs_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">-1 .. 1048576</code></td></tr></tbody></table>
+</div>
+<p>
+          The amount of preallocated memory per thread used to hold
+          connection attribute strings. If the connection attribute
+          strings are larger than the reserved storage, the
+          <a class="link" href="performance-schema-status-variables.html#statvar_Performance_schema_session_connect_attrs_lost"><code class="literal">Performance_schema_session_connect_attrs_lost</code></a>
+          status variable is incremented. This variable was added in
+          MySQL 5.6.7.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_setup_actors_size"></a>
+          <a class="indexterm" name="idm47327469650432"></a>
+
+          <a class="indexterm" name="idm47327469649328"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_setup_actors_size"><code class="literal">performance_schema_setup_actors_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_setup_actors_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.1</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_setup_actors_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_setup_actors_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_setup_actors_size">performance_schema_setup_actors_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">100</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the
+          <a class="link" href="setup-actors-table.html" title="21.9.2.1. The setup_actors Table"><code class="literal">setup_actors</code></a> table.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_setup_objects_size"></a>
+          <a class="indexterm" name="idm47327469621728"></a>
+
+          <a class="indexterm" name="idm47327469620624"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_setup_objects_size"><code class="literal">performance_schema_setup_objects_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_setup_objects_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.1</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_setup_objects_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_setup_objects_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_setup_objects_size">performance_schema_setup_objects_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">100</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the
+          <a class="link" href="setup-objects-table.html" title="21.9.2.4. The setup_objects Table"><code class="literal">setup_objects</code></a> table.
+        </p></li><li class="listitem"><p><a name="sysvar_performance_schema_users_size"></a>
+          <a class="indexterm" name="idm47327469593040"></a>
+
+          <a class="indexterm" name="idm47327469591936"></a>
+
+          <a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_users_size"><code class="literal">performance_schema_users_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for performance_schema_users_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.3</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--performance_schema_users_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">performance_schema_users_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_users_size">performance_schema_users_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">10</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">0 .. 1048576</code></td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">-1 (autosized)</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">-1 .. 1048576</code></td></tr></tbody></table>
+</div>
+<p>
+          The number of rows in the <a class="link" href="users-table.html" title="21.9.7.3. The users Table"><code class="literal">users</code></a>
+          table. If this variable is 0, the Performance Schema does not
+          maintain connection statistics in the
+          <a class="link" href="users-table.html" title="21.9.7.3. The users Table"><code class="literal">users</code></a> table. This variable was
+          added in MySQL 5.6.3.
+</p></li></ul>
+</div>
+
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2014, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="performance-schema-options.html" title="21.11 Performance Schema Command Options">Previous</a> / <a rel="next" href="performance-schema-status-variables.html" title="21.13 Performance Schema Status Variables">Next</a> / <a rel="up" href="performance-schema.html" title="21 MySQL Performance Schema">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear" /><!--UdmComment--><div id="comments"><h1>User Comments</h1><p><a href="/doc/mysql/comment.php?sect=performance-schema-system-variables">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="performance-schema-options.html" title="21.11 Performance Schema Command Options">Previous</a> / <a rel="next" href="performance-schema-status-variables.html" title="21.13 Performance Schema Status Variables">Next</a> / <a rel="up" href="performance-schema.html" title="21 MySQL Performance Schema">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+ </div> 
+</div> 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives/">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input type="text" id="f_q" name="q" value="" class="swap_value" onfocus="clearSearchText();" />
+	    <input type="hidden"  name="group" value="MySQL"/>
+	    <input type="image" src="/common/themes/sakila/footer_search_g.png" id="f_go" alt="Search" title="Search" />
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="/common/logos/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22" /></a>&nbsp;&nbsp;<span>&copy; 2014, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="/common/js/metrics/s_code_remote.js"></script>
+
+</body>
+</html>

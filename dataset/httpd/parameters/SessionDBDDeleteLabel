@@ -1,0 +1,15 @@
+SessionDBDDeleteLabel
+
+Description:  The SQL query to use to remove sessions from the database 
+Syntax:   SessionDBDDeleteLabel  label   
+Default:   SessionDBDDeleteLabel deletesession  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_session_dbd 
+
+ The  SessionDBDDeleteLabel  directive sets the default delete
+    query label to be used to delete an expired or empty session. This label must have been previously
+    defined using the   DBDPrepareSQL   directive. 
+
+
+ 

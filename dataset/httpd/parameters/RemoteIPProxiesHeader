@@ -1,0 +1,21 @@
+RemoteIPProxiesHeader
+
+Description:  Declare the header field which will record all intermediate IP addresses 
+Syntax:   RemoteIPProxiesHeader  HeaderFieldName   
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_remoteip 
+
+ The   RemoteIPProxiesHeader   directive specifies
+    a header into which   mod_remoteip   will collect a list of
+    all of the intermediate client IP addresses trusted to resolve the useragent
+    IP of the request. Note that intermediate
+      RemoteIPTrustedProxy   addresses are recorded in
+    this header, while any intermediate
+      RemoteIPInternalProxy   addresses are discarded. 
+
+      Example  RemoteIPHeader X-Forwarded-For
+RemoteIPProxiesHeader X-Forwarded-By 
+ 
+
+ 

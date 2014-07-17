@@ -1,0 +1,14 @@
+xml2StartParse
+
+Description:  Advise the parser to skip leading junk. 
+Syntax:   xml2StartParse  element [element ...]   
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Base 
+Module:  mod_xml2enc 
+
+ Specify that the markup parser should start at the first instance
+    of any of the elements specified.  This can be used as a workaround
+    where a broken backend inserts leading junk that messes up the parser ( example here ). 
+     It should never be used for XML, nor well-formed HTML. 
+
+ 

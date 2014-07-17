@@ -1,0 +1,1 @@
+The counters in the                 ndbinfo.counters table                 that belong to the DBSPJ kernel                 block. See                 SectionÂ 17.5.10.7, âThe ndbinfo counters Tableâ, for                 information about these counters. See also                 The DBSPJ Block, in                 the MySQL Cluster API Developer                 Guide. 

@@ -1,0 +1,1 @@
+The maximum amount of memory to use for memory mapping           compressed MyISAM files. If many           compressed MyISAM tables are used, the           value can be decreased to reduce the likelihood of           memoryswapping problems. 

@@ -1,0 +1,71 @@
+SSLSessionCache
+
+Description:  Type of the global/inter-process SSL Session
+Cache 
+Syntax:   SSLSessionCache  type   
+Default:   SSLSessionCache none  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This configures the storage type of the global/inter-process SSL Session
+Cache. This cache is an optional facility which speeds up parallel request
+processing. For requests to the same server process (via HTTP keep-alive),
+OpenSSL already caches the SSL session information locally. But because modern
+clients request inlined images and other data via parallel requests (usually
+up to four parallel requests are common) those requests are served by
+ different  pre-forked server processes. Here an inter-process cache
+helps to avoid unnecessary session handshakes. 
+ 
+The following five storage  type s are currently supported: 
+   none 
+
+     This disables the global/inter-process Session Cache.  This
+    will incur a noticeable speed penalty and may cause problems if
+    using certain browsers, particularly if client certificates are
+    enabled.  This setting is not recommended.  
+
+  nonenotnull 
+
+     This disables any global/inter-process Session Cache.  However
+    it does force OpenSSL to send a non-null session ID to
+    accommodate buggy clients that require one.  
+
+  dbm:/path/to/datafile 
+
+     This makes use of a DBM hashfile on the local disk to
+    synchronize the local OpenSSL memory caches of the server
+    processes. This session cache may suffer reliability issues under
+    high load. To use this, ensure that
+      mod_socache_dbm   is loaded.  
+
+  shmcb:/path/to/datafile [ (  size  ) ]
+
+     This makes use of a high-performance cyclic buffer
+    (approx.  size  bytes in size) inside a shared memory
+    segment in RAM (established via  /path/to/datafile ) to
+    synchronize the local OpenSSL memory caches of the server
+    processes.  This is the recommended session cache. To use this,
+    ensure that   mod_socache_shmcb   is loaded.  
+
+  dc:UNIX:/path/to/socket 
+
+     This makes use of the  distcache  distributed session
+    caching libraries.  The argument should specify the location of
+    the server or proxy to be used using the distcache address syntax;
+    for example,  UNIX:/path/to/socket  specifies a UNIX
+    domain socket (typically a local dc_client proxy);
+     IP:server.example.com:9001  specifies an IP
+    address. To use this, ensure that
+      mod_socache_dc   is loaded.  
+
+   Examples  SSLSessionCache dbm:/usr/local/apache/logs/ssl_gcache_data
+SSLSessionCache shmcb:/usr/local/apache/logs/ssl_gcache_data(512000) 
+ 
+
+ The  ssl-cache  mutex is used to serialize access to
+the session cache to prevent corruption.  This mutex can be configured
+using the   Mutex   directive. 
+
+ 

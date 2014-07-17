@@ -1,0 +1,15 @@
+SessionDBDPerUser
+
+Description:  Enable a per user session 
+Syntax:   SessionDBDPerUser On|Off  
+Default:   SessionDBDPerUser Off  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_session_dbd 
+
+ The  SessionDBDPerUser  flag enables a per user session keyed
+    against the user's login name. If the user is not logged in, this directive will be
+    ignored. 
+
+
+ 

@@ -1,0 +1,37 @@
+SSLCADNRequestFile
+
+Description:  File of concatenated PEM-encoded CA Certificates
+for defining acceptable CA names 
+Syntax:   SSLCADNRequestFile  file-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ When a client certificate is requested by mod_ssl, a list of
+ acceptable Certificate Authority names  is sent to the client
+in the SSL handshake.  These CA names can be used by the client to
+select an appropriate client certificate out of those it has
+available. 
+
+ If neither of the directives   SSLCADNRequestPath   or   SSLCADNRequestFile   are given, then the
+set of acceptable CA names sent to the client is the names of all the
+CA certificates given by the   SSLCACertificateFile   and   SSLCACertificatePath   directives; in other
+words, the names of the CAs which will actually be used to verify the
+client certificate. 
+
+ In some circumstances, it is useful to be able to send a set of
+acceptable CA names which differs from the actual CAs used to verify
+the client certificate - for example, if the client certificates are
+signed by intermediate CAs.  In such cases,   SSLCADNRequestPath   and/or   SSLCADNRequestFile   can be used; the
+acceptable CA names are then taken from the complete set of
+certificates in the directory and/or file specified by this pair of
+directives. 
+
+   SSLCADNRequestFile   must
+specify an  all-in-one  file containing a concatenation of
+PEM-encoded CA certificates. 
+
+  Example  SSLCADNRequestFile /usr/local/apache2/conf/ca-names.crt 
+ 
+
+ 

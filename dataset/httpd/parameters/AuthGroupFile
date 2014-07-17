@@ -1,0 +1,33 @@
+AuthGroupFile
+
+Description:  Sets the name of a text file containing the list
+of user groups for authorization 
+Syntax:   AuthGroupFile  file-path   
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_authz_groupfile 
+
+ The  AuthGroupFile  directive sets the
+    name of a textual file containing the list of user groups for user
+    authorization.  File-path  is the path to the group
+    file. If it is not absolute, it is treated as relative to the   ServerRoot  . 
+
+     Each line of the group file contains a groupname followed by a
+    colon, followed by the member usernames separated by spaces. 
+
+      Example:   
+      mygroup: bob joe anne
+       
+
+     Note that searching large text files is  very 
+    inefficient;   AuthDBMGroupFile   provides a much better performance. 
+
+      Security 
+       Make sure that the  AuthGroupFile  is
+      stored outside the document tree of the web-server; do  not 
+      put it in the directory that it protects. Otherwise, clients may
+      be able to download the  AuthGroupFile . 
+     
+
+ 

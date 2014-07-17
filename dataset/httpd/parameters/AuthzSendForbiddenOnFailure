@@ -1,0 +1,26 @@
+AuthzSendForbiddenOnFailure
+
+Description:  Send '403 FORBIDDEN' instead of '401 UNAUTHORIZED' if
+authentication succeeds but authorization fails
+ 
+Syntax:   AuthzSendForbiddenOnFailure On|Off  
+Default:   AuthzSendForbiddenOnFailure Off  
+Context:  directory, .htaccess 
+Status:  Base 
+Module:  mod_authz_core 
+Compatibility:  Available in Apache HTTPD 2.3.11 and later 
+
+ If authentication succeeds but authorization fails, Apache HTTPD will
+    respond with an HTTP response code of '401 UNAUTHORIZED' by default. This
+    usually causes browsers to display the password dialogue to the user
+    again, which is not wanted in all situations.
+     AuthzSendForbiddenOnFailure  allows to change the
+    response code to '403 FORBIDDEN'. 
+
+      Security Warning 
+     Modifying the response in case of missing authorization weakens the
+    security of the password, because it reveals to a possible attacker, that
+    his guessed password was right. 
+     
+
+ 

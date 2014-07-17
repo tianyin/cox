@@ -1,0 +1,18 @@
+VirtualScriptAliasIP
+
+Description:  Dynamically configure the location of the CGI directory for
+a given virtual host 
+Syntax:   VirtualScriptAliasIP  interpolated-directory |none  
+Default:   VirtualScriptAliasIP none  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_vhost_alias 
+
+ The  VirtualScriptAliasIP  directive is like the
+      VirtualScriptAlias  
+    directive, except that it uses the IP address of the server end
+    of the connection for directory interpolation instead of the server
+    name. 
+
+    
+ 

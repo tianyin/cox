@@ -1,0 +1,23 @@
+CacheNegotiatedDocs
+
+Description:  Allows content-negotiated documents to be
+cached by proxy servers 
+Syntax:   CacheNegotiatedDocs On|Off  
+Default:   CacheNegotiatedDocs Off  
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_negotiation 
+
+ If set, this directive allows content-negotiated documents
+    to be cached by proxy servers. This could mean that clients
+    behind those proxys could retrieve versions of the documents
+    that are not the best match for their abilities, but it will
+    make caching more efficient. 
+
+     This directive only applies to requests which come from
+    HTTP/1.0 browsers. HTTP/1.1 provides much better control over
+    the caching of negotiated documents, and this directive has no
+    effect in responses to HTTP/1.1 requests. 
+
+
+ 

@@ -1,0 +1,1 @@
+If set to 1,           sql_buffer_result forces           results from SELECT statements           to be put into temporary tables. This helps MySQL free the           table locks early and can be beneficial in cases where it           takes a long time to send results to the client. The default           value is 0. 

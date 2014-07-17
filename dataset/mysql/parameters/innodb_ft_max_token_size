@@ -1,0 +1,1 @@
+Maximum length of words that are stored in an InnoDB           FULLTEXT index. Setting a limit on this           value reduces the size of the index, thus speeding up queries,           by omitting long keywords or arbitrary collections of letters           that are not real words and are not likely to be search terms. 

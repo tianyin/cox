@@ -1,0 +1,1 @@
+The value of           performance_schema_max_file_handles           should be greater than the value of           open_files_limit:           open_files_limit affects the           maximum number of open file handles the server can support and           performance_schema_max_file_handles           affects how many of these file handles can be instrumented. 

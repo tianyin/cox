@@ -1,0 +1,4 @@
+1048576
+Specifies the maximum amount of bandwidth that each datanode
+        can utilize for the balancing purpose in term of
+        the number of bytes per second.

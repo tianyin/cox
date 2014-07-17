@@ -1,0 +1,19 @@
+SSLProxyCheckPeerExpire
+
+Description:  Whether to check if remote server certificate is expired
+ 
+Syntax:   SSLProxyCheckPeerExpire on|off  
+Default:   SSLProxyCheckPeerExpire on  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive sets whether it is checked if the remote server certificate
+is expired or not. If the check fails a 502 status code (Bad Gateway) is
+sent.
+ 
+  Example  SSLProxyCheckPeerExpire on 
+ 
+
+ 

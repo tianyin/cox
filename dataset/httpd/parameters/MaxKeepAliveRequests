@@ -1,0 +1,23 @@
+MaxKeepAliveRequests
+
+Description:  Number of requests allowed on a persistent
+connection 
+Syntax:   MaxKeepAliveRequests  number   
+Default:   MaxKeepAliveRequests 100  
+Context:  server config, virtual host 
+Status:  Core 
+Module:  core 
+
+ The  MaxKeepAliveRequests  directive
+    limits the number of requests allowed per connection when
+      KeepAlive   is on. If it is
+    set to  0 , unlimited requests will be allowed. We
+    recommend that this setting be kept to a high value for maximum
+    server performance. 
+
+     For example: 
+
+     MaxKeepAliveRequests 500 
+
+
+ 

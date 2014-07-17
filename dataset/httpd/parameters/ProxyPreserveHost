@@ -1,0 +1,22 @@
+ProxyPreserveHost
+
+Description:  Use incoming Host HTTP request header for proxy
+request 
+Syntax:   ProxyPreserveHost On|Off  
+Default:   ProxyPreserveHost Off  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_proxy 
+Compatibility:  Usable in directory
+context in 2.3.3 and later. 
+
+ When enabled, this option will pass the Host: line from the incoming
+    request to the proxied host, instead of the hostname specified in the
+     ProxyPass  line. 
+
+     This option should normally be turned  Off . It is mostly
+    useful in special configurations like proxied mass name-based virtual
+    hosting, where the original Host header needs to be evaluated by the
+    backend server. 
+
+ 

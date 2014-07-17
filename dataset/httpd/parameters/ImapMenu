@@ -1,0 +1,41 @@
+ImapMenu
+
+Description:  Action if no coordinates are given when calling
+an imagemap 
+Syntax:   ImapMenu none|formatted|semiformatted|unformatted  
+Default:   ImapMenu formatted  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Indexes 
+Status:  Base 
+Module:  mod_imagemap 
+
+ The  ImapMenu  directive determines the
+    action taken if an imagemap file is called without valid
+    coordinates. 
+
+       none  
+       If ImapMenu is  none , no menu is generated,
+      and the  default  action is performed. 
+
+        formatted  
+       A  formatted  menu is the simplest menu.
+      Comments in the imagemap file are ignored. A level one header
+      is printed, then an hrule, then the links each on a separate
+      line. The menu has a consistent, plain look close to that of
+      a directory listing. 
+
+        semiformatted  
+       In the  semiformatted  menu, comments are
+      printed where they occur in the imagemap file. Blank lines
+      are turned into HTML breaks. No header or hrule is printed,
+      but otherwise the menu is the same as a
+       formatted  menu. 
+
+        unformatted  
+       Comments are printed, blank lines are ignored. Nothing is
+      printed that does not appear in the imagemap file. All breaks
+      and headers must be included as comments in the imagemap
+      file. This gives you the most flexibility over the appearance
+      of your menus, but requires you to treat your map files as
+      HTML instead of plaintext. 
+      

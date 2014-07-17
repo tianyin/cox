@@ -1,0 +1,19 @@
+AddModuleInfo
+
+Description:  Adds additional information to the module
+information displayed by the server-info handler 
+Syntax:   AddModuleInfo  module-name   string   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_info 
+
+ This allows the content of  string  to be shown as
+    HTML interpreted,  Additional Information  for
+    the module  module-name . Example: 
+
+     AddModuleInfo mod_deflate.c 'See < a \
+    href="http://httpd.apache.org/docs/2.4/mod/mod_deflate.html" >\
+    http://httpd.apache.org/docs/2.4/mod/mod_deflate.html< /a >' 
+
+
+ 

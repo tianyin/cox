@@ -1,0 +1,19 @@
+SessionCookieRemove
+
+Description:  Control for whether session cookies should be removed from incoming HTTP headers 
+Syntax:   SessionCookieRemove On|Off  
+Default:   SessionCookieRemove Off  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_session_cookie 
+
+ The  SessionCookieRemove  flag controls whether the cookies
+    containing the session will be removed from the headers during request processing. 
+
+     In a reverse proxy situation where the Apache server acts as a server frontend for
+    a backend origin server, revealing the contents of the session cookie to the backend
+    could be a potential privacy violation. When set to on, the session cookie will be
+    removed from the incoming HTTP headers. 
+
+
+ 

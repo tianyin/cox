@@ -1,0 +1,20 @@
+SSLProxyCARevocationFile
+
+Description:  File of concatenated PEM-encoded CA CRLs for
+Remote Server Auth 
+Syntax:   SSLProxyCARevocationFile  file-path   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This directive sets the  all-in-one  file where you can
+assemble the Certificate Revocation Lists (CRL) of Certification
+Authorities (CA) whose  remote servers  you deal with. These are used
+for Remote Server Authentication.  Such a file is simply the concatenation of
+the various PEM-encoded CRL files, in order of preference. This can be
+used alternatively and/or additionally to   SSLProxyCARevocationPath  . 
+  Example  SSLProxyCARevocationFile /usr/local/apache2/conf/ssl.crl/ca-bundle-remote-server.crl 
+ 
+
+ 

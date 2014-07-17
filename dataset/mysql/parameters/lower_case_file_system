@@ -1,0 +1,1 @@
+This variable describes the case sensitivity of file names on           the file system where the data directory is located.           OFF means file names are case sensitive,           ON means they are not case sensitive. This           variable is read only because it reflects a file system           attribute and setting it would have no effect on the file           system. 

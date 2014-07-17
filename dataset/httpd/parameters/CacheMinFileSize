@@ -1,0 +1,18 @@
+CacheMinFileSize
+
+Description:  The minimum size (in bytes) of a document to be placed in the
+cache 
+Syntax:   CacheMinFileSize  bytes   
+Default:   CacheMinFileSize 1  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_cache_disk 
+
+ The  CacheMinFileSize  directive sets the
+    minimum size, in bytes, for a document to be considered for storage
+    in the cache. 
+
+     CacheMinFileSize 64 
+
+
+ 

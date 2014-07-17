@@ -1,0 +1,22 @@
+DBDPersist
+
+Description:  Whether to use persistent connections 
+Syntax:   DBDPersist On|Off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_dbd 
+
+ If set to Off, persistent and pooled connections are disabled.
+    A new database connection is opened when requested by a client,
+    and closed immediately on release.  This option is for debugging
+    and low-usage servers. 
+
+     The default is to enable a pool of persistent connections
+    (or a single LAMP-style persistent connection in the case of a
+    non-threaded server), and should almost always be used in operation. 
+
+     Prior to version 2.2.2, this directive accepted only the values
+     0  and  1  instead of  Off  and
+     On , respectively. 
+
+ 

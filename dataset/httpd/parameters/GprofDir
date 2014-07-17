@@ -1,0 +1,18 @@
+GprofDir
+
+Description:  Directory to write gmon.out profiling data to.   
+Syntax:   GprofDir  /tmp/gprof/ | /tmp/gprof/ %  
+Context:  server config, virtual host 
+Status:  Core 
+Module:  core 
+
+ When the server has been compiled with gprof profiling support,
+     GprofDir  causes  gmon.out  files to
+    be written to the specified directory when the process exits.  If the
+    argument ends with a percent symbol ('%'), subdirectories are created
+    for each process id. 
+
+     This directive currently only works with the   prefork  
+    MPM. 
+
+ 

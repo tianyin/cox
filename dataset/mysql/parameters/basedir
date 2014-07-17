@@ -1,0 +1,1 @@
+The MySQL installation base directory. This variable can be           set with the basedir option.           Relative path names for other variables usually are resolved           relative to the base directory.  The path to the MySQL installation directory. All paths are           usually resolved relative to this directory. 

@@ -1,0 +1,4 @@
+${hadoop.tmp.dir}/mapred/staging
+The root of the staging area for users' job files
+  In practice, this should be the directory where users' home 
+  directories are located (usually /user)

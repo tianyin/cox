@@ -1,0 +1,10 @@
+0
+The number of acceptable skip groups surrounding the bad 
+    group PER bad group in reducer. The number includes the bad group as well.
+    To turn the feature of detection/skipping of bad groups off, set the 
+    value to 0.
+    The framework tries to narrow down the skipped range by retrying  
+    until this threshold is met OR all attempts get exhausted for this task. 
+    Set the value to Long.MAX_VALUE to indicate that framework need not try to 
+    narrow down. Whatever groups(depends on application) get skipped are 
+    acceptable.

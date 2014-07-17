@@ -1,0 +1,19 @@
+Example
+
+Description:  Demonstration directive to illustrate the Apache module
+API 
+Syntax:   Example  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Experimental 
+Module:  mod_example 
+
+ The  Example  directive just sets a demonstration
+    flag which the example module's content handler displays. It
+    takes no arguments. If you browse to an URL to which the
+    example content-handler applies, you will get a display of the
+    routines within the module and how and in what order they were
+    called to service the document request. The effect of this
+    directive one can observe under the point " Example
+    directive declared here: YES/NO ". 
+
+ 

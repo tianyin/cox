@@ -1,0 +1,15 @@
+RedirectTemp
+
+Description:  Sends an external temporary redirect asking the client to fetch
+a different URL 
+Syntax:   RedirectTemp  URL-path   URL   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_alias 
+
+ This directive makes the client know that the Redirect is
+    only temporary (status 302). Exactly equivalent to
+     Redirect temp . 
+
+ 

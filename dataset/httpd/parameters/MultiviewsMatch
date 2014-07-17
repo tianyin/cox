@@ -1,0 +1,57 @@
+MultiviewsMatch
+
+Description:  The types of files that will be included when searching for
+a matching file with MultiViews 
+Syntax:   MultiviewsMatch Any|NegotiatedOnly|Filters|Handlers
+[Handlers|Filters]  
+Default:   MultiviewsMatch NegotiatedOnly  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+  MultiviewsMatch  permits three different
+    behaviors for  mod_negotiation 's
+    Multiviews feature.  Multiviews allows a request for a file,
+     e.g.   index.html , to match any negotiated
+    extensions following the base request,  e.g. 
+     index.html.en ,  index.html.fr , or
+     index.html.gz . 
+
+     The  NegotiatedOnly  option provides that every extension
+    following the base name must correlate to a recognized
+      mod_mime   extension for content negotiation,  e.g. 
+    Charset, Content-Type, Language, or Encoding.  This is the strictest
+    implementation with the fewest unexpected side effects, and is the
+    default behavior. 
+
+     To include extensions associated with Handlers and/or Filters,
+    set the  MultiviewsMatch  directive to either
+     Handlers ,  Filters , or both option keywords.
+    If all other factors are equal, the smallest file will be served,
+     e.g.  in deciding between  index.html.cgi  of 500
+    bytes and  index.html.pl  of 1000 bytes, the  .cgi 
+    file would win in this example. Users of  .asis  files
+    might prefer to use the Handler option, if  .asis  files are
+    associated with the  asis-handler . 
+
+     You may finally allow  Any  extensions to match, even if
+      mod_mime   doesn't recognize the extension. This can cause
+    unpredictable results, such as serving .old or .bak files the webmaster
+    never expected to be served. 
+
+     For example, the following configuration will allow handlers
+    and filters to participate in Multviews, but will exclude unknown
+    files: 
+
+     MultiviewsMatch Handlers Filters 
+
+
+      MultiviewsMatch  is not allowed in a
+      < Location >   or   < LocationMatch >   section. 
+
+
+ See also 
+    Options   
+   mod_negotiation   
+  

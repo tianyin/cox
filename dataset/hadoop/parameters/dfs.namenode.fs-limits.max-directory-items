@@ -1,0 +1,3 @@
+0
+Defines the maximum number of items that a directory may
+      contain.  A value of 0 will disable the check.

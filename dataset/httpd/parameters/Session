@@ -1,0 +1,15 @@
+Session
+
+Description:  Enables a session for the current directory or location 
+Syntax:   Session On|Off  
+Default:   Session Off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_session 
+
+ The  Session  directive enables a session for the
+    directory or location container. Further directives control where the
+    session will be stored and how privacy is maintained. 
+
+ 

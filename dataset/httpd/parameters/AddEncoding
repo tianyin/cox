@@ -1,0 +1,48 @@
+AddEncoding
+
+Description:  Maps the given filename extensions to the specified encoding
+type 
+Syntax:   AddEncoding  encoding   extension 
+[ extension ] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+ The  AddEncoding  directive maps the given
+    filename extensions to the specified HTTP content-encoding.
+     encoding  is the HTTP content coding to append to the
+    value of the Content-Encoding header field for documents named with the
+     extension . This mapping is added to any already in force,
+    overriding any mappings that already exist for the same
+     extension . 
+
+      Example  AddEncoding x-gzip .gz
+AddEncoding x-compress .Z 
+ 
+
+     This will cause filenames containing the  .gz  extension
+    to be marked as encoded using the  x-gzip  encoding, and
+    filenames containing the  .Z  extension to be marked as
+    encoded with  x-compress . 
+
+     Old clients expect  x-gzip  and  x-compress ,
+    however the standard dictates that they're equivalent to
+     gzip  and  compress  respectively. Apache does
+    content encoding comparisons by ignoring any leading  x- .
+    When responding with an encoding Apache will use whatever form
+    ( i.e. ,  x-foo  or  foo ) the
+    client requested. If the client didn't specifically request a
+    particular form Apache will use the form given by the
+     AddEncoding  directive. To make this long story
+    short, you should always use  x-gzip  and
+     x-compress  for these two specific encodings. More
+    recent encodings, such as  deflate , should be
+    specified without the  x- . 
+
+     The  extension  argument is case-insensitive and can
+    be specified with or without a leading dot. Filenames may have  multiple extensions  and the
+     extension  argument will be compared against each of
+    them. 
+
+ 

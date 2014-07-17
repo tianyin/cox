@@ -1,0 +1,138 @@
+Order
+
+Description:  Controls the default access state and the order in which
+ Allow  and  Deny  are
+evaluated. 
+Syntax:    Order  ordering   
+Default:   Order Deny,Allow  
+Context:  directory, .htaccess 
+Override:  Limit 
+Status:  Extension 
+Module:  mod_access_compat 
+
+ The  Order  directive, along with the
+      Allow   and
+      Deny   directives,
+    controls a three-pass access control system. The first pass
+    processes either all   Allow   or all   Deny   directives, as specified
+    by the   Order  
+    directive. The second pass parses the rest of the directives
+    (  Deny   or
+      Allow  ). The third
+    pass applies to all requests which do not match either of the first
+    two. 
+
+     Note that all   Allow   and   Deny   directives are
+    processed, unlike a typical firewall, where only the first match is
+    used. The last match is effective (also unlike a typical firewall).
+    Additionally, the order in which lines appear in the configuration
+    files is not significant -- all   Allow   lines are processed as
+    one group, all   Deny   lines are considered as
+    another, and the default state is considered by itself. 
+
+      Ordering  is one of: 
+
+       Allow,Deny  
+
+       First, all   Allow   directives are
+      evaluated; at least one must match, or the request is rejected.
+      Next, all   Deny  
+      directives are evaluated. If any matches, the request is rejected.
+      Last, any requests which do not match an   Allow   or a   Deny   directive are denied
+      by default. 
+
+        Deny,Allow  
+
+       First, all   Deny   directives are
+      evaluated; if any match, the request is denied
+       unless  it also matches an   Allow   directive. Any
+      requests which do not match any   Allow   or   Deny   directives are
+      permitted. 
+
+        Mutual-failure  
+
+       This order has the same effect as  Order
+      Allow,Deny  and is deprecated in its favor. 
+      Keywords may only be separated by a comma;  no whitespace 
+    is allowed between them. 
+
+       Match 
+         Allow,Deny result 
+         Deny,Allow result 
+         Match Allow only 
+         Request allowed 
+         Request allowed 
+         Match Deny only 
+         Request denied 
+         Request denied 
+         No match 
+         Default to second directive: Denied 
+         Default to second directive: Allowed 
+         Match both Allow &amp; Deny 
+         Final match controls: Denied 
+         Final match controls: Allowed 
+         In the following example, all hosts in the example.org domain
+    are allowed access; all other hosts are denied access. 
+
+     Order Deny,Allow
+Deny from all
+Allow from example.org 
+
+
+     In the next example, all hosts in the example.org domain are
+    allowed access, except for the hosts which are in the
+    foo.example.org subdomain, who are denied access. All hosts not
+    in the example.org domain are denied access because the default
+    state is to   Deny  
+    access to the server. 
+
+     Order Allow,Deny
+Allow from example.org
+Deny from foo.example.org 
+
+
+     On the other hand, if the  Order  in the
+    last example is changed to  Deny,Allow , all hosts will
+    be allowed access. This happens because, regardless of the actual
+    ordering of the directives in the configuration file, the
+     Allow from example.org  will be evaluated last and will
+    override the  Deny from foo.example.org . All hosts not in
+    the  example.org  domain will also be allowed access
+    because the default state is   Allow  . 
+
+     The presence of an  Order  directive can
+    affect access to a part of the server even in the absence of
+    accompanying   Allow  
+    and   Deny  
+    directives because of its effect on the default access state. For
+    example, 
+
+     < Directory /www >
+    Order Allow,Deny
+< /Directory > 
+
+
+     will Deny all access to the  /www  directory
+    because the default access state is set to
+      Deny  . 
+
+     The  Order  directive controls the order of access
+    directive processing only within each phase of the server's
+    configuration processing. This implies, for example, that an
+      Allow   or   Deny   directive occurring in a
+      < Location >   section will
+    always be evaluated after an   Allow   or   Deny   directive occurring in a
+      < Directory >   section or
+     .htaccess  file, regardless of the setting of the
+     Order  directive. For details on the merging
+    of configuration sections, see the documentation on  How Directory, Location and Files sections
+    work . 
+
+       Merging of configuration sections 
+       When any directive provided by this module is used in a new 
+      configuration section, no directives provided by this module are
+      inherited from previous configuration sections. 
+     
+
+
+ 

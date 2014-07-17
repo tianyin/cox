@@ -1,0 +1,18 @@
+ProxyHTMLCharsetOut
+
+Description:  Specify a charset for mod_proxy_html output. 
+Syntax:   ProxyHTMLCharsetOut  Charset | *   
+Context:  server config, virtual host, directory 
+Status:  Base 
+Module:  mod_proxy_html 
+Compatibility:  Version 2.4 and later; available as a third-party
+for earlier 2.x versions 
+
+ This selects an encoding for mod_proxy_html output.  It should not
+normally be used, as any change from the default  UTF-8 
+(Unicode - as used internally by libxml2) will impose an additional
+processing overhead.  The special token  ProxyHTMLCharsetOut * 
+will generate output using the same encoding as the input. 
+ Note that this relies on   mod_xml2enc   being loaded. 
+
+ 

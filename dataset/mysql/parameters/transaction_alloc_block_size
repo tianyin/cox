@@ -1,0 +1,1 @@
+The amount in bytes by which to increase a pertransaction           memory pool which needs memory. See the description of           transaction_prealloc_size. 

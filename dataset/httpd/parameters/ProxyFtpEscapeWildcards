@@ -1,0 +1,21 @@
+ProxyFtpEscapeWildcards
+
+Description:  Whether wildcards in requested filenames are escaped when sent to the FTP server 
+Syntax:   ProxyFtpEscapeWildcards [on|off]  
+Default:   on  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_proxy_ftp 
+Compatibility:  Available in Apache 2.3.3 and later 
+
+ The  ProxyFtpEscapeWildcards  directive
+    controls whether wildcard characters ("*?[{~") in requested
+    filenames are escaped with backslash before sending them to the
+    FTP server.  That is the default behavior, but many FTP servers
+    don't know about the escaping and try to serve the literal filenames
+    they were sent, including the backslashes in the names.   
+     Set to "off" to allow downloading files with wildcards
+    in their names from FTP servers that don't understand wildcard
+    escaping. 
+
+ 

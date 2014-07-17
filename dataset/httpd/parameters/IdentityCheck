@@ -1,0 +1,30 @@
+IdentityCheck
+
+Description:  Enables logging of the RFC 1413 identity of the remote
+user 
+Syntax:   IdentityCheck On|Off  
+Default:   IdentityCheck Off  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_ident 
+Compatibility:  Moved out of core in Apache 2.1 
+
+ This directive enables  RFC 1413 -compliant logging of the remote user name for each
+    connection, where the client machine runs identd or something similar.
+    This information is logged in the access log using the  %...l 
+     format string . 
+
+     
+      The information should not be trusted in any way except for
+      rudimentary usage tracking.
+     
+
+     Note that this can cause serious latency problems accessing
+    your server since every request requires one of these lookups
+    to be performed. When firewalls or proxy servers are involved,
+    each lookup might possibly fail and add a latency duration as
+    defined by the   IdentityCheckTimeout   directive to each hit. So in
+    general this is not very useful on public servers accessible from
+    the Internet. 
+
+ 

@@ -1,0 +1,3 @@
+Range of ports that the MapReduce AM can use when binding.
+    Leave blank if you want all possible ports.  
+    For example 50000-50050,50100-50200

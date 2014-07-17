@@ -1,0 +1,32 @@
+AuthLDAPCompareAsUser
+
+Description:  Use the authenticated user's credentials to perform authorization comparisons 
+Syntax:   AuthLDAPCompareAsUser on|off  
+Default:   AuthLDAPCompareAsUser off  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authnz_ldap 
+Compatibility:  Available in version 2.3.6 and later 
+
+ When set, and   mod_authnz_ldap   has authenticated the
+    user, LDAP comparisons for authorization use the queried distinguished name (DN)
+    and HTTP basic authentication password of the authenticated user instead of
+    the servers configured credentials. 
+
+      The  ldap-attribute ,  ldap-user , and  ldap-group  (single-level only)
+    authorization checks use comparisons. 
+
+     This directive only has effect on the comparisons performed during
+    nested group processing when   
+    AuthLDAPSearchAsUser   is also enabled. 
+
+      This directive should only be used when your LDAP server doesn't
+        accept anonymous comparisons and you cannot use a dedicated
+          AuthLDAPBindDN  .
+     
+
+ See also 
+    AuthLDAPInitialBindAsUser   
+   AuthLDAPSearchAsUser   
+  

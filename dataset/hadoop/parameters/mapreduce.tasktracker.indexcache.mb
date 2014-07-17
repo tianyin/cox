@@ -1,0 +1,3 @@
+10
+The maximum memory that a task tracker allows for the 
+    index cache that is used when serving map outputs to reducers.

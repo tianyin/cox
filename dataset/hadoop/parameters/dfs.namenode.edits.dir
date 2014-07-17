@@ -1,0 +1,5 @@
+${dfs.namenode.name.dir}
+Determines where on the local filesystem the DFS name node
+      should store the transaction (edits) file. If this is a comma-delimited list
+      of directories then the transaction file is replicated in all of the 
+      directories, for redundancy. Default value is same as dfs.namenode.name.dir

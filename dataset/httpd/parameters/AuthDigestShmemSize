@@ -1,0 +1,31 @@
+AuthDigestShmemSize
+
+Description:  The amount of shared memory to allocate for keeping track
+of clients 
+Syntax:   AuthDigestShmemSize  size   
+Default:   AuthDigestShmemSize 1000  
+Context:  server config 
+Status:  Extension 
+Module:  mod_auth_digest 
+
+ The  AuthDigestShmemSize  directive defines
+    the amount of shared memory, that will be allocated at the server
+    startup for keeping track of clients. Note that the shared memory
+    segment cannot be set less than the space that is necessary for
+    tracking at least  one  client. This value is dependent on your
+    system. If you want to find out the exact value, you may simply
+    set  AuthDigestShmemSize  to the value of
+     0  and read the error message after trying to start the
+    server. 
+
+     The  size  is normally expressed in Bytes, but you
+    may follow the number with a  K  or an  M  to
+    express your value as KBytes or MBytes. For example, the following
+    directives are all equivalent: 
+
+ AuthDigestShmemSize 1048576
+AuthDigestShmemSize 1024K
+AuthDigestShmemSize 1M 
+
+
+ 

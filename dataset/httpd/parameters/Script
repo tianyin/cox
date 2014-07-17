@@ -1,0 +1,40 @@
+Script
+
+Description:  Activates a CGI script for a particular request
+method. 
+Syntax:   Script  method   cgi-script   
+Context:  server config, virtual host, directory 
+Status:  Base 
+Module:  mod_actions 
+
+ This directive adds an action, which will activate
+     cgi-script  when a file is requested using the method of
+     method . The  cgi-script  is the URL-path to a
+    resource that has been designated as a CGI script using   ScriptAlias   or   AddHandler  .  The URL and
+    file path of the requested document is sent using the standard CGI
+     PATH_INFO  and  PATH_TRANSLATED  environment
+    variables. 
+
+     
+      Any arbitrary method name may be used.  Method names are
+      case-sensitive , so  Script PUT  and
+       Script put  have two entirely different
+      effects.
+     
+
+     Note that the  Script  command defines default
+    actions only. If a CGI script is called, or some other resource that is
+    capable of handling the requested method internally, it will do
+    so. Also note that  Script  with a method of
+     GET  will only be called if there are query arguments present
+    ( e.g. , foo.html?hi). Otherwise, the request will
+    proceed normally. 
+
+     # All GET requests go here
+Script GET /cgi-bin/search
+
+# A CGI PUT handler
+Script PUT /~bob/put.cgi 
+
+
+ 

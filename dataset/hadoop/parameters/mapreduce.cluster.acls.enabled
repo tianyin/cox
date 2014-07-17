@@ -1,0 +1,11 @@
+false
+Specifies whether ACLs should be checked
+    for authorization of users for doing various queue and job level operations.
+    ACLs are disabled by default. If enabled, access control checks are made by
+    JobTracker and TaskTracker when requests are made by users for queue
+    operations like submit job to a queue and kill a job in the queue and job
+    operations like viewing the job-details (See mapreduce.job.acl-view-job)
+    or for modifying the job (See mapreduce.job.acl-modify-job) using
+    Map/Reduce APIs, RPCs or via the console and web user interfaces.
+    For enabling this flag(mapreduce.cluster.acls.enabled), this is to be set
+    to true in mapred-site.xml on JobTracker node and on all TaskTracker nodes.

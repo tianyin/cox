@@ -1,0 +1,17 @@
+LDAPRetryDelay
+
+Description:  Configures the delay between LDAP server retries. 
+Syntax:   LDAPRetryDelay  seconds   
+Default:   LDAPRetryDelay 0  
+Context:  server config 
+Status:  Extension 
+Module:  mod_ldap 
+
+ If  LDAPRetryDelay  is set to a non-zero
+    value, the server will delay retrying an LDAP request for the
+    specified amount of time.  Setting this directive to 0 will
+    result in any retry to occur without delay. 
+
+     LDAP errors such as timeouts and refused connections are retryable. 
+
+ 

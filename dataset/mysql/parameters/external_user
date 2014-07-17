@@ -1,0 +1,1 @@
+The external user name used during the authentication process,           as set by the plugin used to authenticate the client. With           native (builtin) MySQL authentication, or if the plugin does           not set the value, this variable is NULL.           See SectionÂ 6.3.9, âProxy Usersâ. 

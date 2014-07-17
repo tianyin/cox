@@ -1,0 +1,6 @@
+false
+Indicate whether or not to avoid reading from "stale" datanodes whose
+    heartbeat messages have not been received by the namenode 
+    for more than a specified time interval. Stale datanodes will be
+    moved to the end of the node list returned for reading. See
+    dfs.namenode.avoid.write.stale.datanode for a similar setting for writes.

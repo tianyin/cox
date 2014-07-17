@@ -1,0 +1,35 @@
+SSLCARevocationCheck
+
+Description:  Enable CRL-based revocation checking 
+Syntax:   SSLCARevocationCheck chain|leaf|none  
+Default:   SSLCARevocationCheck none  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+Enables certificate revocation list (CRL) checking. At least one of
+  SSLCARevocationFile  
+or   SSLCARevocationPath   must be
+configured. When set to  chain  (recommended setting),
+CRL checks are applied to all certificates in the chain, while setting it to
+ leaf  limits the checks to the end-entity cert.
+ 
+ 
+ When set to  chain  or  leaf ,
+CRLs  must  be available for successful validation 
+ 
+Prior to version 2.3.15, CRL checking in mod_ssl also succeeded when
+no CRL(s) were found in any of the locations configured with
+  SSLCARevocationFile  
+or   SSLCARevocationPath  .
+With the introduction of this directive, the behavior has been changed:
+when checking is enabled, CRLs  must  be present for the validation
+to succeed - otherwise it will fail with an
+ "unable to get certificate CRL"  error.
+ 
+ 
+  Example  SSLCARevocationCheck chain 
+ 
+
+ 

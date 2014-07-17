@@ -1,0 +1,23 @@
+AuthLDAPSubGroupAttribute
+
+Description:  Specifies the attribute labels, one value per
+directive line, used to distinguish the members of the current group that
+are groups. 
+Syntax:   AuthLDAPSubGroupAttribute  attribute   
+Default:   AuthLDAPSubgroupAttribute member uniquemember  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authnz_ldap 
+Compatibility:  Available in version 2.3.0 and later 
+
+ An LDAP group object may contain members that are users and
+    members that are groups (called nested or sub groups). The
+     AuthLDAPSubGroupAttribute  directive identifies the
+    labels of group members and the  AuthLDAPGroupAttribute 
+    directive identifies the labels of the user members. Multiple
+    attributes can be used by specifying this directive multiple times.
+    If not specified, then   mod_authnz_ldap   uses the
+     member  and  uniqueMember  attributes. 
+
+ 

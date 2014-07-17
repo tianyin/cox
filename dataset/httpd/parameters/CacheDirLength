@@ -1,0 +1,25 @@
+CacheDirLength
+
+Description:  The number of characters in subdirectory names 
+Syntax:   CacheDirLength  length   
+Default:   CacheDirLength 2  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_cache_disk 
+
+ The  CacheDirLength  directive sets the number
+    of characters for each subdirectory name in the cache hierarchy. It can
+    be used in conjunction with  CacheDirLevels  to
+    determine the approximate structure of your cache hierarchy. 
+     A high value for  CacheDirLength  combined
+    with a low value for  CacheDirLevels  will result in
+    a relatively flat hierarchy, with a large number of subdirectories at each
+    level. 
+
+     
+       The result of   CacheDirLevels  *  CacheDirLength 
+      must not be higher than 20. 
+     
+
+
+ 

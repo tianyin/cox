@@ -1,0 +1,15 @@
+AuthFormUsername
+
+Description:  The name of a form field carrying the login username 
+Syntax:   AuthFormUsername  fieldname   
+Default:   httpd_username  
+Context:  directory 
+Status:  Base 
+Module:  mod_auth_form 
+Compatibility:  Available in Apache HTTP Server 2.3.0 and later 
+
+ The   AuthFormUsername   directive specifies
+    the name of an HTML field which, if present, will contain the username to be used to log
+    in. 
+
+ 

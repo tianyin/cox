@@ -1,0 +1,18 @@
+LuaPackagePath
+
+Description:  Add a directory to lua's package.path 
+Syntax:   LuaPackagePath /path/to/include/?.lua  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Experimental 
+Module:  mod_lua 
+
+ Add a path to lua's module search path. Follows the same
+    conventions as lua. This just munges the package.path in the
+    lua vms. 
+
+      Examples:  LuaPackagePath /scripts/lib/?.lua
+LuaPackagePath /scripts/lib/?/init.lua 
+ 
+
+ 

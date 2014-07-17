@@ -1,0 +1,14 @@
+SecureListen
+
+Description:  Enables SSL encryption for the specified port 
+Syntax:   SecureListen [ IP-address :] portnumber 
+ Certificate-Name  [MUTUAL]  
+Context:  server config 
+Status:  Base 
+Module:  mod_nw_ssl 
+
+ Specifies the port and the eDirectory based certificate name
+    that will be used to enable SSL encryption. An optional third
+    parameter also enables mutual authentication. 
+
+ 

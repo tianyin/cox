@@ -1,0 +1,35 @@
+SetEnvIfExpr
+
+Description:  Sets environment variables based on an ap_expr expression 
+Syntax:   SetEnvIfExpr  expr
+    [!]env-variable [= value ]
+    [[!] env-variable [= value ]] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_setenvif 
+
+ The  SetEnvIfExpr  directive defines
+    environment variables based on an   < If >  
+     ap_expr . These expressions will be evaluated at runtime,
+    and applied  env-variable  in the same fashion as  SetEnvIf . 
+
+ SetEnvIfExpr "tolower(req('X-Sendfile')) == 'd:\images\very_big.iso')" iso_delivered 
+
+
+     This would set the environment variable  iso_delivered 
+    every time our application attempts to send it via  X-Sendfile  
+
+     A more useful example would be to set the variable rfc1918 if the
+    remote IP address is a private address according to RFC 1918: 
+
+ SetEnvIfExpr "-R '10.0.0.0/8' || -R '172.16.0.0/12' || -R '192.168.0.0/16'" rfc1918 
+
+
+ See also 
+   Expressions in Apache HTTP Server ,
+for a complete reference and more examples. 
+   < If >   can be used to achieve similar
+results. 
+   mod_filter   
+  

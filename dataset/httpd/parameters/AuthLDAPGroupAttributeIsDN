@@ -1,0 +1,23 @@
+AuthLDAPGroupAttributeIsDN
+
+Description:  Use the DN of the client username when checking for
+group membership 
+Syntax:   AuthLDAPGroupAttributeIsDN on|off  
+Default:   AuthLDAPGroupAttributeIsDN on  
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_authnz_ldap 
+
+ When set  on , this directive says to use the
+    distinguished name of the client username when checking for group
+    membership.  Otherwise, the username will be used. For example,
+    assume that the client sent the username  bjenson ,
+    which corresponds to the LDAP DN  cn=Babs Jenson,
+    o=Example . If this directive is set,
+      mod_authnz_ldap   will check if the group has
+     cn=Babs Jenson, o=Example  as a member. If this
+    directive is not set, then   mod_authnz_ldap   will
+    check if the group has  bjenson  as a member. 
+
+ 

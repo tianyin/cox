@@ -1,0 +1,83 @@
+AliasMatch
+
+Description:  Maps URLs to filesystem locations using regular
+expressions 
+Syntax:   AliasMatch  regex 
+ file-path | directory-path   
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_alias 
+
+ This directive is equivalent to   Alias  , but makes use of
+     regular expressions ,
+    instead of simple prefix matching. The
+    supplied regular expression is matched against the URL-path, and
+    if it matches, the server will substitute any parenthesized
+    matches into the given string and use it as a filename. For
+    example, to activate the  /icons  directory, one might
+    use: 
+
+     AliasMatch ^/icons(.*) /usr/local/apache/icons$1 
+
+
+     The full range of  regular expression 
+    power is available.  For example,
+    it is possible to construct an alias with case-insensitive
+    matching of the URL-path: 
+
+     AliasMatch (?i)^/image(.*) /ftp/pub/image$1 
+
+
+     One subtle difference
+    between   Alias  
+    and   AliasMatch   is
+    that   Alias   will
+    automatically copy any additional part of the URI, past the part
+    that matched, onto the end of the file path on the right side,
+    while   AliasMatch   will
+    not.  This means that in almost all cases, you will want the
+    regular expression to match the entire request URI from beginning
+    to end, and to use substitution on the right side. 
+
+     In other words, just changing
+      Alias   to
+      AliasMatch   will not
+    have the same effect.  At a minimum, you need to
+    add  ^  to the beginning of the regular expression
+    and add  (.*)$  to the end, and add  $1  to
+    the end of the replacement. 
+
+     For example, suppose you want to replace this with AliasMatch: 
+
+     Alias /image/ /ftp/pub/image/ 
+
+
+     This is NOT equivalent - don't do this!  This will send all
+    requests that have /image/ anywhere in them to /ftp/pub/image/: 
+
+     AliasMatch /image/ /ftp/pub/image/ 
+
+
+     This is what you need to get the same effect: 
+
+     AliasMatch ^/image/(.*)$ /ftp/pub/image/$1 
+
+
+     Of course, there's no point in
+    using   AliasMatch  
+    where   Alias   would
+    work.    AliasMatch   lets
+    you do more complicated things.  For example, you could
+    serve different kinds of files from different directories: 
+
+           AliasMatch ^/image/(.*)\.jpg$ /files/jpg.images/$1.jpg 
+      AliasMatch ^/image/(.*)\.gif$ /files/gif.images/$1.gif 
+
+
+     Multiple leading slashes in the requested URL are discarded
+       by the server before directives from this module compares
+       against the requested URL-path.
+     
+
+
+ 

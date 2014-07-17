@@ -1,0 +1,32 @@
+AddHandler
+
+Description:  Maps the filename extensions to the specified
+handler 
+Syntax:   AddHandler  handler-name   extension 
+[ extension ] ...  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Base 
+Module:  mod_mime 
+
+ Files having the name  extension  will be served by the
+    specified   handler-name  . This
+    mapping is added to any already in force, overriding any mappings that
+    already exist for the same  extension . For example, to
+    activate CGI scripts with the file extension  .cgi , you
+    might use: 
+
+     AddHandler cgi-script .cgi 
+
+
+     Once that has been put into your httpd.conf file, any file containing
+    the  .cgi  extension will be treated as a CGI program. 
+
+     The  extension  argument is case-insensitive and can
+    be specified with or without a leading dot. Filenames may have  multiple extensions  and the
+     extension  argument will be compared against each of
+    them. 
+
+ See also 
+    SetHandler   
+  

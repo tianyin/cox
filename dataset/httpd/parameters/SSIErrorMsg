@@ -1,0 +1,25 @@
+SSIErrorMsg
+
+Description:  Error message displayed when there is an SSI
+error 
+Syntax:   SSIErrorMsg  message   
+Default:   SSIErrorMsg "[an error occurred while processing this
+directive]"  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  All 
+Status:  Base 
+Module:  mod_include 
+
+ The  SSIErrorMsg  directive changes the error
+    message displayed when   mod_include   encounters an
+    error. For production servers you may consider changing the default
+    error message to  "< !-- Error -- >"  so that
+    the message is not presented to the user. 
+
+     This directive has the same effect as the  < !--#config
+    errmsg= message  -- >  element. 
+
+     SSIErrorMsg "< !-- Error -- >" 
+
+
+ 

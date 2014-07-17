@@ -1,0 +1,15 @@
+SessionDBDSelectLabel
+
+Description:  The SQL query to use to select sessions from the database 
+Syntax:   SessionDBDSelectLabel  label   
+Default:   SessionDBDSelectLabel selectsession  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_session_dbd 
+
+ The  SessionDBDSelectLabel  directive sets the default select
+    query label to be used to load in a session. This label must have been previously defined using the
+      DBDPrepareSQL   directive. 
+
+
+ 

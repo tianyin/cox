@@ -1,0 +1,13 @@
+DBDMin
+
+Description:  Minimum number of connections 
+Syntax:   DBDMin  number   
+Default:   DBDMin 1  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_dbd 
+
+ Set the minimum number of connections per process (threaded
+    platforms only). 
+
+ 

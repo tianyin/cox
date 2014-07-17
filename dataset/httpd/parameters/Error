@@ -1,0 +1,35 @@
+Error
+
+Description:  Abort configuration parsing with a custom error message 
+Syntax:   Error  message   
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Core 
+Module:  core 
+Compatibility:  2.3.9 and later 
+
+ If an error can be detected within the configuration, this
+    directive can be used to generate a custom error message, and halt
+    configuration parsing.  The typical use is for reporting required
+    modules which are missing from the configuration. 
+
+     # Example
+# ensure that mod_include is loaded
+< IfModule !include_module >
+  Error "mod_include is required by mod_foo.  Load it with LoadModule."
+< /IfModule >
+
+# ensure that exactly one of SSL,NOSSL is defined
+< IfDefine SSL >
+< IfDefine NOSSL >
+  Error "Both SSL and NOSSL are defined.  Define only one of them."
+< /IfDefine >
+< /IfDefine >
+< IfDefine !SSL >
+< IfDefine !NOSSL >
+  Error "Either SSL or NOSSL must be defined."
+< /IfDefine >
+< /IfDefine > 
+
+
+
+ 

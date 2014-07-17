@@ -1,0 +1,64 @@
+AuthUserFile
+
+Description:  Sets the name of a text file containing the list of users and
+passwords for authentication 
+Syntax:   AuthUserFile  file-path   
+Context:  directory, .htaccess 
+Override:  AuthConfig 
+Status:  Base 
+Module:  mod_authn_file 
+
+ The  AuthUserFile  directive sets the name
+    of a textual file containing the list of users and passwords for
+    user authentication.  File-path  is the path to the user
+    file. If it is not absolute, it is treated as relative to the
+      ServerRoot  . 
+
+     Each line of the user file contains a username followed by
+    a colon, followed by the encrypted password. If the same user
+    ID is defined multiple times,   mod_authn_file   will
+    use the first occurrence to verify the password. 
+
+     The encrypted password format depends on which authentication
+    frontend (e.g.   mod_auth_basic   or
+      mod_auth_digest  ) is being used.  See  Password Formats  for
+    more information. 
+
+     For   mod_auth_basic  , use the utility   htpasswd  
+    which is installed as part of the binary distribution, or which
+    can be found in  src/support . See the
+     man page  for more details.
+    In short: 
+
+     Create a password file  Filename  with
+     username  as the initial ID. It will prompt for
+    the password: 
+
+       
+      htpasswd -c Filename username
+       
+
+     Add or modify  username2  in the password file
+     Filename : 
+
+       
+      htpasswd Filename username2
+       
+
+     Note that searching large text files is  very 
+    inefficient;   AuthDBMUserFile   should be used
+    instead. 
+
+     For   mod_auth_digest  , use   htdigest  
+    instead. Note that you cannot mix user data for Digest Authentication
+    and Basic Authentication within the same file. 
+
+      Security 
+       Make sure that the  AuthUserFile  is
+      stored outside the document tree of the web-server. Do
+       not  put it in the directory that it protects.
+      Otherwise, clients may be able to download the
+       AuthUserFile . 
+     
+
+ 

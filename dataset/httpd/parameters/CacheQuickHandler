@@ -1,0 +1,43 @@
+CacheQuickHandler
+
+Description:  Run the cache from the quick handler. 
+Syntax:   CacheQuickHandler  on|off   
+Default:   CacheQuickHandler on  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_cache 
+Compatibility:  Apache HTTP Server 2.3.3 and later 
+
+ The   CacheQuickHandler   directive
+    controls the phase in which the cache is handled. 
+
+     In the default enabled configuration, the cache operates within the quick
+    handler phase. This phase short circuits the majority of server processing,
+    and represents the most performant mode of operation for a typical server.
+    The cache  bolts onto  the front of the server, and the
+    majority of server processing is avoided. 
+
+     When disabled, the cache operates as a normal handler, and is subject to
+    the full set of phases when handling a server request. While this mode is
+    slower than the default, it allows the cache to be used in cases where full
+    processing is required, such as when content is subject to authorisation. 
+
+     # Run cache as a normal handler
+CacheQuickHandler off 
+
+
+     It is also possible, when the quick handler is disabled, for the
+    administrator to choose the precise location within the filter chain where
+    caching is to be performed, by adding the  CACHE  filter to
+    the chain. 
+
+     # Cache content before mod_include and mod_deflate
+CacheQuickHandler off
+AddOutputFilterByType CACHE;INCLUDES;DEFLATE text/html 
+
+
+     If the CACHE filter is specified more than once, the last instance will
+    apply. 
+
+  
+ 

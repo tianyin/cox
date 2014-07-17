@@ -1,0 +1,18 @@
+HeartbeatAddress
+
+Description:  Multicast address for heartbeat packets 
+Syntax:   HeartbeatAddress  addr:port   
+Default:   disabled  
+Context:  server config 
+Status:  Experimental 
+Module:  mod_heartbeat 
+
+ The  HeartbeatAddress  directive specifies the
+multicast address to which   mod_heartbeat   will send
+status information. This address will usually correspond to a configured
+   HeartbeatListen   on a
+frontend proxy system. 
+ HeartbeatAddress 239.0.0.1:27999 
+    
+
+ 

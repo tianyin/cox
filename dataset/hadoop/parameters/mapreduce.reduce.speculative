@@ -1,0 +1,3 @@
+true
+If true, then multiple instances of some reduce tasks 
+               may be executed in parallel.

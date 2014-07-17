@@ -1,0 +1,13 @@
+SSLOCSPDefaultResponder
+
+Description:  Set the default responder URI for OCSP validation 
+Syntax:   SSLOCSDefaultResponder  uri   
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_ssl 
+
+ This option sets the default OCSP responder to use.  If   SSLOCSPOverrideResponder   is not enabled,
+the URI given will be used only if no responder URI is specified in
+the certificate being verified. 
+
+ 

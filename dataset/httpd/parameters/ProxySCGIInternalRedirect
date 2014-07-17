@@ -1,0 +1,26 @@
+ProxySCGIInternalRedirect
+
+Description:  Enable or disable internal redirect responses from the
+backend 
+Syntax:   ProxySCGIInternalRedirect On|Off  
+Default:   ProxySCGIInternalRedirect On  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_proxy_scgi 
+
+ The  ProxySCGIInternalRedirect  enables the backend
+    to internally redirect the gateway to a different URL. This feature
+    originates in   mod_cgi  , which internally redirects the
+    response if the response status is  OK  ( 200 ) and
+    the response contains a  Location  header and its value starts
+    with a slash ( / ). This value is interpreted as a new local
+    URL that Apache httpd internally redirects to. 
+
+       mod_proxy_scgi   does the same as
+      mod_cgi   in this regard, except that you can turn off the
+    feature. 
+
+      Example  ProxySCGIInternalRedirect Off 
+ 
+
+ 

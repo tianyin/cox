@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.6 Reference Manual :: 17.6.11 MySQL Cluster Replication Conflict Resolution</title>
+
+    
+    <link rel="stylesheet" media="screen" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="projection" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="print" href="/common/css/print.css?v=20111230" />
+
+            <link rel="stylesheet" href="/doc/docs.css" />
+        
+    
+    
+    
+    <link rel="contents" href="index.html" title="MySQL Manual" /><link rel="start" href="index.html" title="MySQL Manual" /><link rel="prev" href="mysql-cluster-replication-multi-master.html" title="17.6.10 MySQL Cluster Replication: Multi-Master and Circular Replication"/><link rel="next" href="mysql-cluster-news.html?ff=nopfpls" title="17.7 MySQL Cluster Release Notes"/><link rel="up" href="mysql-cluster-replication.html" title="17.6 MySQL Cluster Replication"/>        <link rel="shortcut icon" href="/common/themes/sakila/favicon.ico" />
+
+        <script src="/common/js/clear_search_text.js"></script>
+
+    
+        
+    
+    
+</head>
+
+<body class="doc" >
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header" >
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="/common/logos/logo-mysql-110x57.png" alt="MySQL" width="110" height="57" /></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input type="text" id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" />
+			<input type="hidden" id="search_dest" name="group" value="MySQL"/>
+			<input type="image" src="/common/themes/sakila/search_g.png" id="go" alt="Search" title="Search" />
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login" >
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Fmysql-cluster-replication-conflict-resolution.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="/common/icons/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20" /></a>&nbsp;
+                <a href="https://plus.google.com/+mysql"><img src="/common/icons/googleplus.png" alt="Google+" title="Join Google+ to follow MySQL" width="20" height="20" /></a>&nbsp;
+                <a href="https://twitter.com/#!/mysql"><img src="/common/icons/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20" /></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="/common/icons/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br />
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a  href="/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.6 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.5/en/mysql-cluster-replication-conflict-resolution.html" >MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.1/en/mysql-cluster-replication-conflict-resolution.html" >MySQL 5.1 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 5.0 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br />
+		<input id="searchq" type="text" name="q" value="" size="14" />
+		<input id="searchsubmit" type="submit" value="Go" />
+		<input id="searchgroup" type="hidden" name="group" value="MySQL" />
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar" >
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="index.html"> MySQL 5.6 Reference Manual</a> :: <a href="mysql-cluster.html">17 MySQL Cluster NDB 7.3</a> :: <a href="mysql-cluster-replication.html">17.6 MySQL Cluster Replication</a> :: 17.6.11 MySQL Cluster Replication Conflict Resolution</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="mysql-cluster-replication-multi-master.html" title="Previous Section">&laquo; 17.6.10 MySQL Cluster Replication: Multi-Master and Circular Replication</a></div>
+		<hr size="1" noshade="noshade" align="center" width="40" style="margin: 0px auto 2px auto" />		<a style="text-decoration: none" href="mysql-cluster-news.html" title="Next Section">17.7 MySQL Cluster Release Notes  &raquo;</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');"  onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="mysql-cluster-replication.html">17.6 MySQL Cluster Replication</a></li><li><a href="mysql-cluster-replication-abbreviations.html">17.6.1 MySQL Cluster Replication: Abbreviations and Symbols</a></li>
+<li><a href="mysql-cluster-replication-general.html">17.6.2 General Requirements for MySQL Cluster Replication</a></li>
+<li><a href="mysql-cluster-replication-issues.html">17.6.3 Known Issues in MySQL Cluster Replication</a></li>
+<li><a href="mysql-cluster-replication-schema.html">17.6.4 MySQL Cluster Replication Schema and Tables</a></li>
+<li><a href="mysql-cluster-replication-preparation.html">17.6.5 Preparing the MySQL Cluster for Replication</a></li>
+<li><a href="mysql-cluster-replication-starting.html">17.6.6 Starting MySQL Cluster Replication (Single Replication Channel)</a></li>
+<li><a href="mysql-cluster-replication-two-channels.html">17.6.7 Using Two Replication Channels for MySQL Cluster Replication</a></li>
+<li><a href="mysql-cluster-replication-failover.html">17.6.8 Implementing Failover with MySQL Cluster Replication</a></li>
+<li><a href="mysql-cluster-replication-backups.html">17.6.9 MySQL Cluster Backups With MySQL Cluster Replication</a></li>
+<li><a href="mysql-cluster-replication-multi-master.html">17.6.10 MySQL Cluster Replication: Multi-Master and Circular Replication</a></li>
+<li class="self">17.6.11 MySQL Cluster Replication Conflict Resolution</li>
+</ul>
+
+			</ul>		
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="mysql-cluster-replication-conflict-resolution"></a>17.6.11. MySQL Cluster Replication Conflict Resolution</h3>
+
+</div>
+
+</div>
+
+</div>
+<a class="indexterm" name="idm47327480619376"></a><a class="indexterm" name="idm47327480617872"></a><a class="indexterm" name="idm47327480616368"></a><a class="indexterm" name="idm47327480614864"></a><p>
+      When using a replication setup involving multiple masters
+      (including circular replication), it is possible that different
+      masters may try to update the same row on the slave with different
+      data. Conflict resolution in MySQL Cluster Replication provides a
+      means of resolving such conflicts by permitting a user-defined
+      resolution column to be used to determine whether or not an update
+      on a given master should be applied on the slave.
+    </p><p>
+      Some types of conflict resolution supported by MySQL Cluster
+      (<code class="literal">NDB$OLD()</code>, <code class="literal">NDB$MAX()</code>,
+      <code class="literal">NDB$MAX_DELETE_WIN()</code>) implement this
+      user-defined column as a <span class="quote">“<span class="quote">timestamp</span>”</span> column (although
+      its type cannot be <a class="link" href="datetime.html" title="11.3.1. The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">TIMESTAMP</code></a>, as
+      explained later in this section). These types of conflict
+      resolution are always applied a row-by-row basis rather than a
+      transactional basis. The epoch-based conflict resolution functions
+      <code class="literal">NDB$EPOCH()</code> and
+      <code class="literal">NDB$EPOCH_TRANS()</code> compare the order in which
+      epochs are replicated (and thus these functions are
+      transactional). Different methods can be used to compare
+      resolution column values on the slave when conflicts occur, as
+      explained later in this section; the method used can be set on a
+      per-table basis.
+    </p><p>
+      You should also keep in mind that it is the application's
+      responsibility to ensure that the resolution column is correctly
+      populated with relevant values, so that the resolution function
+      can make the appropriate choice when determining whether to apply
+      an update.
+    </p><p><b>Requirements. </b>
+        Preparations for conflict resolution must be made on both the
+        master and the slave. These tasks are described in the following
+        list:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          On the master writing the binary logs, you must determine
+          which columns are sent (all columns or only those that have
+          been updated). This is done for the MySQL Server as a whole by
+          applying the <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> startup option
+          <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-updated-only"><code class="option">--ndb-log-updated-only</code></a>
+          (described later in this section) or on a per-table basis by
+          entries in the <code class="literal">mysql.ndb_replication</code> table
+          (see <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-ndb-replication-table" title="The ndb_replication system table">The <code class="literal">ndb_replication</code> system table</a>).
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            If you are replicating tables with very large columns (such
+            as <a class="link" href="blob.html" title="11.4.3. The BLOB and TEXT Types"><code class="literal">TEXT</code></a> or
+            <a class="link" href="blob.html" title="11.4.3. The BLOB and TEXT Types"><code class="literal">BLOB</code></a> columns),
+            <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-updated-only"><code class="option">--ndb-log-updated-only</code></a> can
+            also be useful for reducing the size of the master and slave
+            binary logs and avoiding possible replication failures due
+            to exceeding
+            <a class="link" href="server-system-variables.html#sysvar_max_allowed_packet"><code class="literal">max_allowed_packet</code></a>.
+          </p><p xmlns="">
+            See
+            <a class="xref" href="replication-features-max-allowed-packet.html" title="16.4.1.20. Replication and max_allowed_packet">Section 16.4.1.20, “Replication and <code class="literal">max_allowed_packet</code>”</a>,
+            for more information about this issue.
+</p>
+</div>
+</li><li class="listitem"><p>
+          On the slave, you must determine which type of conflict
+          resolution to apply (<span class="quote">“<span class="quote">latest timestamp wins</span>”</span>,
+          <span class="quote">“<span class="quote">same timestamp wins</span>”</span>, <span class="quote">“<span class="quote">primary
+          wins</span>”</span>, <span class="quote">“<span class="quote">primary wins, complete
+          transaction</span>”</span>, or none). This is done using the
+          <code class="literal">mysql.ndb_replication</code> system table, on a
+          per-table basis (see
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-ndb-replication-table" title="The ndb_replication system table">The <code class="literal">ndb_replication</code> system table</a>).
+</p></li></ul>
+</div>
+<p>
+      When using the functions <code class="literal">NDB$OLD()</code>,
+      <code class="literal">NDB$MAX()</code>, and
+      <code class="literal">NDB$MAX_DELETE_WIN()</code> for timestamp-based
+      conflict resolution, we often refer to the column used for
+      determining updates as a <span class="quote">“<span class="quote">timestamp</span>”</span> column. However,
+      the data type of this column is never
+      <a class="link" href="datetime.html" title="11.3.1. The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">TIMESTAMP</code></a>; instead, its data type
+      should be <a class="link" href="integer-types.html" title="11.2.1. Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">INT</code></a>
+      (<a class="link" href="integer-types.html" title="11.2.1. Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">INTEGER</code></a>) or
+      <a class="link" href="integer-types.html" title="11.2.1. Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">BIGINT</code></a>. The
+      <span class="quote">“<span class="quote">timestamp</span>”</span> column should also be
+      <code class="literal">UNSIGNED</code> and <code class="literal">NOT NULL</code>.
+    </p><p>
+      The <code class="literal">NDB$EPOCH()</code> and
+      <code class="literal">NDB$EPOCH_TRANS()</code> functions discussed later in
+      this section work by comparing the relative order of replication
+      epochs applied on a primary and secondary MySQL Cluster, and do
+      not make use of timestamps.
+    </p><a class="indexterm" name="idm47327480579920"></a><p><b>Master column control. </b>
+        We can see update operations in terms of <span class="quote">“<span class="quote">before</span>”</span>
+        and <span class="quote">“<span class="quote">after</span>”</span> images—that is, the states of the
+        table before and after the update is applied. Normally, when
+        updating a table with a primary key, the <span class="quote">“<span class="quote">before</span>”</span>
+        image is not of great interest; however, when we need to
+        determine on a per-update basis whether or not to use the
+        updated values on a replication slave, we need to make sure that
+        both images are written to the master's binary log. This is
+        done with the
+        <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-update-as-write"><code class="option">--ndb-log-update-as-write</code></a> option
+        for <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a>, as described later in this
+        section.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p xmlns="">
+        Whether logging of complete rows or of updated columns only is
+        done is decided when the MySQL server is started, and cannot be
+        changed online; you must either restart
+        <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a>, or start a new
+        <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> instance with different logging
+        options.
+</p>
+</div>
+<a class="indexterm" name="idm47327480571152"></a>
+<h4><a name="idm47327480569664"></a>
+      Logging Full or Partial Rows (<code class="option">--ndb-log-updated-only</code> Option)
+</h4>
+<div class="informaltable">
+<table summary="Options for ndb_log_updated_only" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--ndb-log-updated-only</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">ndb_log_updated_only</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal">ndb_log_updated_only</code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">ON</code></td></tr></tbody></table>
+</div>
+<p><a name="option_mysqld_ndb-log-updated-only"></a>
+      For purposes of conflict resolution, there are two basic methods
+      of logging rows, as determined by the setting of the
+      <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-updated-only"><code class="option">--ndb-log-updated-only</code></a> option for
+      <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a>:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          Log complete rows
+        </p></li><li class="listitem"><p>
+          Log only column data that has been updated—that is,
+          column data whose value has been set, regardless of whether or
+          not this value was actually changed. This is the default
+          behavior.
+</p></li></ul>
+</div>
+<p>
+      It is usually sufficient—and more efficient—to log
+      updated columns only; however, if you need to log full rows, you
+      can do so by setting
+      <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-updated-only"><code class="option">--ndb-log-updated-only</code></a> to
+      <code class="literal">0</code> or <code class="literal">OFF</code>.
+</p>
+<h4><a name="idm47327480540304"></a>
+      <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-update-as-write"><code class="option">--ndb-log-update-as-write</code></a> Option: Logging Changed Data as Updates
+</h4>
+<div class="informaltable">
+<table summary="Options for ndb-log-update-as-write" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--ndb-log-update-as-write</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">ndb-log-update-as-write</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal">ndb_log_update_as_write</code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">ON</code></td></tr></tbody></table>
+</div>
+<p><a name="option_mysqld_ndb-log-update-as-write"></a>
+      The setting of the MySQL Server's
+      <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-update-as-write"><code class="option">--ndb-log-update-as-write</code></a> option
+      determines whether logging is performed with or without the
+      <span class="quote">“<span class="quote">before</span>”</span> image. Because conflict resolution is done
+      in the MySQL Server's update handler, it is necessary to
+      control logging on the master such that updates are updates and
+      not writes; that is, such that updates are treated as changes in
+      existing rows rather than the writing of new rows (even though
+      these replace existing rows). This option is turned on by default;
+      in other words, updates are treated as writes. (That is, updates
+      are by default written as <code class="literal">write_row</code> events in
+      the binary log, rather than as <code class="literal">update_row</code>
+      events.) To turn off the option, start the master
+      <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> with
+      <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-update-as-write"><code class="option">--ndb-log-update-as-write=0</code></a> or
+      <code class="option">--ndb-log-update-as-write=OFF</code>.
+    </p><a class="indexterm" name="idm47327480512160"></a><p><b>Conflict resolution control. </b>
+        Conflict resolution is usually enabled on the server where
+        conflicts can occur. Like logging method selection, it is
+        enabled by entries in the
+        <code class="literal">mysql.ndb_replication</code> table.
+      </p><p><a name="mysql-cluster-ndb-replication-table"></a><b>The <code class="literal">ndb_replication</code> system table. </b>
+        <a class="indexterm" name="idm47327480506624"></a>
+
+        <a class="indexterm" name="idm47327480505536"></a>
+
+        To enable conflict resolution, it is necessary to create an
+        <code class="literal">ndb_replication</code> table in the
+        <code class="literal">mysql</code> system database on the master, the
+        slave, or both, depending on the conflict resolution type and
+        method to be employed. This table is used to control logging and
+        conflict resolution functions on a per-table basis, and has one
+        row per table involved in replication.
+        <code class="literal">ndb_replication</code> is created and filled with
+        control information on the server where the conflict is to be
+        resolved. In a simple master-slave setup where data can also be
+        changed locally on the slave this will typically be the slave.
+        In a more complex master-master (2-way) replication schema this
+        will usually be all of the masters involved. Each row in
+        <code class="literal">mysql.ndb_replication</code> corresponds to a table
+        being replicated, and specifies how to log and resolve conflicts
+        (that is, which conflict resolution function, if any, to use)
+        for that table. The definition of the
+        <code class="literal">mysql.ndb_replication</code> table is shown here:
+      </p><pre class="programlisting">
+CREATE TABLE mysql.ndb_replication  (
+    db VARBINARY(63),
+    table_name VARBINARY(63),
+    server_id INT UNSIGNED,
+    binlog_type INT UNSIGNED,
+    conflict_fn VARBINARY(128),
+    PRIMARY KEY USING HASH (db, table_name, server_id)
+)   ENGINE=NDB
+PARTITION BY KEY(db,table_name);
+</pre><p>
+      The columns in this table are described in the next few
+      paragraphs.
+    </p><p><b><code class="literal">db</code>. </b>
+        The name of the database containing the table to be replicated.
+        You may employ either or both of the wildcards
+        <code class="literal">_</code> and <code class="literal">%</code> as part of the
+        database name. Matching is similar to what is implemented for
+        the <code class="literal">LIKE</code> operator.
+      </p><p><b><code class="literal">table_name</code>. </b>
+        The name of the table to be replicated. The table name may
+        include either or both of the wildcards <code class="literal">_</code> and
+        <code class="literal">%</code>. Matching is similar to what is implemented
+        for the <code class="literal">LIKE</code> operator.
+      </p><p><b><code class="literal">server_id</code>. </b>
+        The unique server ID of the MySQL instance (SQL node) where the
+        table resides.
+      </p><p><b><code class="literal">binlog_type</code>. </b>
+        The type of binary logging to be employed. This is determined as
+        shown in the following table:
+</p>
+<div class="informaltable">
+<table summary="This table lists binlog_type values
+        and provides the internal value and a description for
+        each." border="1"><colgroup><col><col><col></colgroup><thead><tr><th scope="col">Value</th><th scope="col">Internal Value</th><th scope="col">Description</th></tr></thead><tbody><tr><td scope="row">0</td><td><code class="literal">NBT_DEFAULT</code></td><td>Use server default</td></tr><tr><td scope="row">1</td><td><code class="literal">NBT_NO_LOGGING</code></td><td>Do not log this table in the binary log</td></tr><tr><td scope="row">2</td><td><code class="literal">NBT_UPDATED_ONLY</code></td><td>Only updated attributes are logged</td></tr><tr><td scope="row">3</td><td><code class="literal">NBT_FULL</code></td><td>Log full row, even if not updated (MySQL server default behavior)</td></tr><tr><td scope="row">4</td><td><code class="literal">NBT_USE_UPDATE</code></td><td>(For generating <code class="literal">NBT_UPDATED_ONLY_USE_UPDATE</code> and
+              <code class="literal">NBT_FULL_USE_UPDATE</code> values
+              only—not intended for separate use)</td></tr><tr><td scope="row">5</td><td>[<span class="emphasis"><em>Not used</em></span>]</td><td>---</td></tr><tr><td scope="row">6</td><td><code class="literal">NBT_UPDATED_ONLY_USE_UPDATE</code> (equal to
+              <code class="literal">NBT_UPDATED_ONLY | NBT_USE_UPDATE</code>)</td><td>Use updated attributes, even if values are unchanged</td></tr><tr><td scope="row">7</td><td><code class="literal">NBT_FULL_USE_UPDATE</code> (equal to <code class="literal">NBT_FULL |
+NBT_USE_UPDATE</code>)</td><td>Use full row, even if values are unchanged</td></tr></tbody></table>
+</div>
+<p><b><code class="literal">conflict_fn</code>. </b>
+        The conflict resolution function to be applied. This function
+        must be specified as one of those shown in the following list:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-old" title="NDB$OLD(column_name)"><code class="literal">NDB$OLD(<em class="replaceable"><code>column_name</code></em></code>)</a>
+        </p></li><li class="listitem"><p>
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-max" title="NDB$MAX(column_name)"><code class="literal">NDB$MAX(<em class="replaceable"><code>column_name</code></em></code>)</a>
+        </p></li><li class="listitem"><p>
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-max-delete-win" title="NDB$MAX_DELETE_WIN(column_name)"><code class="literal">NDB$MAX_DELETE_WIN(<em class="replaceable"><code>column_name</code></em></code>)</a>
+        </p></li><li class="listitem"><p>
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch" title="NDB$EPOCH()"><code class="literal">NDB$EPOCH()</code></a>
+        </p></li><li class="listitem"><p>
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch-trans" title="NDB$EPOCH_TRANS()"><code class="literal">NDB$EPOCH_TRANS()</code></a>
+        </p></li><li class="listitem"><p>
+          <code class="literal">NULL</code>
+</p></li></ul>
+</div>
+<p>
+      These functions are described in the next few paragraphs.
+    </p><p><a name="mysql-cluster-replication-ndb-old"></a><b><code class="literal">NDB$OLD(<em class="replaceable"><code>column_name</code></em></code>). </b>
+        <a class="indexterm" name="idm47327480447776"></a>
+
+        If the value of <em class="replaceable"><code>column_name</code></em> is the
+        same on both the master and the slave, then the update is
+        applied; otherwise, the update is not applied on the slave and
+        an exception is written to the log. This is illustrated by the
+        following pseudocode:
+      </p><pre class="programlisting">
+if (<em class="replaceable"><code>master_old_column_value</code></em> == <em class="replaceable"><code>slave_current_column_value</code></em>)
+  apply_update();
+else
+  log_exception();
+</pre><p>
+      <a class="indexterm" name="idm47327480443824"></a>
+
+      This function can be used for <span class="quote">“<span class="quote">same value wins</span>”</span>
+      conflict resolution. This type of conflict resolution ensures that
+      updates are not applied on the slave from the wrong master.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p xmlns="">
+        The column value from the master's <span class="quote">“<span class="quote">before</span>”</span>
+        image is used by this function.
+</p>
+</div>
+<p><a name="mysql-cluster-replication-ndb-max"></a><b><code class="literal">NDB$MAX(<em class="replaceable"><code>column_name</code></em></code>). </b>
+        <a class="indexterm" name="idm47327480438640"></a>
+
+        If the <span class="quote">“<span class="quote">timestamp</span>”</span> column value for a given row
+        coming from the master is higher than that on the slave, it is
+        applied; otherwise it is not applied on the slave. This is
+        illustrated by the following pseudocode:
+      </p><pre class="programlisting">
+if (<em class="replaceable"><code>master_new_column_value</code></em> &gt; <em class="replaceable"><code>slave_current_column_value</code></em>)
+  apply_update();
+</pre><p>
+      <a class="indexterm" name="idm47327480434768"></a>
+
+      This function can be used for <span class="quote">“<span class="quote">greatest timestamp
+      wins</span>”</span> conflict resolution. This type of conflict resolution
+      ensures that, in the event of a conflict, the version of the row
+      that was most recently updated is the version that persists.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p xmlns="">
+        The column value from the master's <span class="quote">“<span class="quote">after</span>”</span>
+        image is used by this function.
+</p>
+</div>
+<p><a name="mysql-cluster-replication-ndb-max-delete-win"></a><b><code class="literal">NDB$MAX_DELETE_WIN(<em class="replaceable"><code>column_name</code></em></code>). </b>
+        <a class="indexterm" name="idm47327480429488"></a>
+
+        This is a variation on <code class="literal">NDB$MAX()</code>. Due to the
+        fact that no timestamp is available for a delete operation, a
+        delete using <code class="literal">NDB$MAX()</code> is in fact processed
+        as <code class="literal">NDB$OLD</code>. However, for some use cases, this
+        is not optimal. For <code class="literal">NDB$MAX_DELETE_WIN()</code>, if
+        the <span class="quote">“<span class="quote">timestamp</span>”</span> column value for a given row adding
+        or updating an existing row coming from the master is higher
+        than that on the slave, it is applied. However, delete
+        operations are treated as always having the higher value. This
+        is illustrated in the following pseudocode:
+      </p><pre class="programlisting">
+if ( (<em class="replaceable"><code>master_new_column_value</code></em> &gt; <em class="replaceable"><code>slave_current_column_value</code></em>)
+        ||
+      <em class="replaceable"><code>operation.type</code></em> == "delete")
+  apply_update();
+</pre><p>
+      <a class="indexterm" name="idm47327480422016"></a>
+
+      This function can be used for <span class="quote">“<span class="quote">greatest timestamp, delete
+      wins</span>”</span> conflict resolution. This type of conflict resolution
+      ensures that, in the event of a conflict, the version of the row
+      that was deleted or (otherwise) most recently updated is the
+      version that persists.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        As with <code class="literal">NDB$MAX()</code>, the column value from the
+        master's <span class="quote">“<span class="quote">after</span>”</span> image is the value used by
+        this function.
+</p>
+</div>
+<p><a name="mysql-cluster-replication-ndb-epoch"></a><b><code class="literal">NDB$EPOCH()</code>. </b>
+        The <code class="literal">NDB$EPOCH()</code> function tracks the order in
+        which replicated epochs are applied on a slave MySQL Cluster
+        relative to changes originating on the slave. This relative
+        ordering is used to determine whether changes originating on the
+        slave are concurrent with any changes that originate locally,
+        and are therefore potentially in conflict.
+      </p><p>
+      Most of what follows in the description of
+      <code class="literal">NDB$EPOCH()</code> also applies to
+      <code class="literal">NDB$EPOCH_TRANS()</code>. Any exceptions are noted in
+      the text.
+    </p><p>
+      <code class="literal">NDB$EPOCH()</code> is asymmetric, operating on one
+      MySQL Cluster in a two-cluster circular replication configuration
+      (sometimes referred to as <span class="quote">“<span class="quote">active-active</span>”</span>
+      replication). We refer here to cluster on which it operates as the
+      primary, and the other as the secondary. The slave on the primary
+      is responsible for detecting and handling conflicts, while the
+      slave on the secondary is not involved in any conflict detection
+      or handling.
+    </p><p>
+      When the slave on the primary detects conflicts, it injects events
+      into its own binary log to compensate for these; this ensures that
+      the secondary MySQL Cluster eventually realigns itself with the
+      primary and so keeps the primary and secondary from diverging.
+      This compensation and realignment mechanism requires that the
+      primary MySQL Cluster always wins any conflicts with the
+      secondary—that is, that the primary's changes are
+      always used rather than those from the secondary in event of a
+      conflict. This <span class="quote">“<span class="quote">primary always wins</span>”</span> rule has the
+      following implications:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          Operations that change data, once committed on the primary,
+          are fully persistent and will not be undone or rolled back by
+          conflict detection and resolution.
+        </p></li><li class="listitem"><p>
+          Data read from the primary is fully consistent. Any changes
+          committed on the Primary (locally or from the slave) will not
+          be reverted later.
+        </p></li><li class="listitem"><p>
+          Operations that change data on the secondary may later be
+          reverted if the primary determines that they are in conflict.
+        </p></li><li class="listitem"><p>
+          Individual rows read on the secondary are self-consistent at
+          all times, each row always reflecting either a state committed
+          by the secondary, or one committed by the primary.
+        </p></li><li class="listitem"><p>
+          Sets of rows read on the secondary may not necessarily be
+          consistent at a given single point in time. For
+          <code class="literal">NDB$EPOCH_TRANS()</code>, this is a transient
+          state; for <code class="literal">NDB$EPOCH()</code>, it can be a
+          persistent state.
+        </p></li><li class="listitem"><p>
+          Assuming a period of sufficient length without any conflicts,
+          all data on the secondary MySQL Cluster (eventually) becomes
+          consistent with the primary's data.
+</p></li></ul>
+</div>
+<p>
+      <code class="literal">NDB$EPOCH()</code> and
+      <code class="literal">NDB$EPOCH_TRANS()</code> do not require any user
+      schema modifications, or application changes to provide conflict
+      detection. However, careful thought must be given to the schema
+      used, and the access patterns used, to verify that the complete
+      system behaves within specified limits.
+    </p><p>
+      Each of the <code class="literal">NDB$EPOCH()</code> and
+      <code class="literal">NDB$EPOCH_TRANS()</code> functions can take an
+      optional parameter; this is the number of bits to use to represent
+      the lower 32 bits of the epoch, and should be set to no less than
+    </p><pre class="programlisting">
+CEIL( LOG2( <a class="link" href="mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenglobalcheckpoints"><code class="literal">TimeBetweenGlobalCheckpoints</code></a> / <a class="link" href="mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs"><code class="literal">TimeBetweenEpochs</code></a> ), 1) 
+</pre><p>
+      For the default values of these configuration parameters (2000 and
+      100 milliseconds, respectively), this gives a value of 5 bits, so
+      the default value (6) should be sufficient, unless other values
+      are used for
+      <a class="link" href="mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenglobalcheckpoints"><code class="literal">TimeBetweenGlobalCheckpoints</code></a>,
+      <a class="link" href="mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs"><code class="literal">TimeBetweenEpochs</code></a>, or
+      both. A value that is too small can result in false positives,
+      while one that is too large could lead to excessive wasted space
+      in the database.
+    </p><p>
+      Both <code class="literal">NDB$EPOCH()</code> and
+      <code class="literal">NDB$EPOCH_TRANS()</code> insert entries for
+      conflicting rows into the relevant exceptions tables, provided
+      that these tables have been defined according to the same
+      exception table schema rules as described elsewhere in this
+      section (see <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-old" title="NDB$OLD(column_name)"><code class="literal">NDB$OLD(<em class="replaceable"><code>column_name</code></em></code>)</a>).
+      Note that you need to create any exception table before creating
+      the table with which it is to be used.
+    </p><p>
+      As with the other conflict detection functions discussed in this
+      section, <code class="literal">NDB$EPOCH()</code> and
+      <code class="literal">NDB$EPOCH_TRANS()</code> are activated by including
+      relevant entries in the <code class="literal">mysql.ndb_replication</code>
+      table (see <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-ndb-replication-table" title="The ndb_replication system table">The <code class="literal">ndb_replication</code> system table</a>).
+      The roles of the primary and secondary MySQL Clusters in this
+      scenario are fully determined by
+      <code class="literal">mysql.ndb_replication</code> table entries.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        Because the conflict detection algorithms employed by
+        <code class="literal">NDB$EPOCH()</code> and
+        <code class="literal">NDB$EPOCH_TRANS()</code> are asymmetric, you must
+        use different values for the primary slave's and secondary
+        slave's <code class="literal">server_id</code> entries.
+</p>
+</div>
+<p><a name="mysql-cluster-replication-ndb-epoch-statvars"></a><b><code class="literal">NDB$EPOCH()</code> and <code class="literal">NDB$EPOCH_TRANS()</code>
+        status variables. </b>
+        Several status variables can be used to monitor
+        <code class="literal">NDB$EPOCH()</code> and
+        <code class="literal">NDB$EPOCH_TRANS()</code> conflict detection. You can
+        see how many rows have been found in conflict by
+        <code class="literal">NDB$EPOCH()</code> since this slave was last
+        restarted from the current value of the
+        <a class="link" href="mysql-cluster-status-variables.html#statvar_Ndb_conflict_fn_epoch"><code class="literal">Ndb_conflict_fn_epoch</code></a> system
+        status variable.
+      </p><p>
+      <a class="link" href="mysql-cluster-status-variables.html#statvar_Ndb_conflict_fn_epoch_trans"><code class="literal">Ndb_conflict_fn_epoch_trans</code></a>
+      provides the number of rows that have been found directly in
+      conflict by <code class="literal">NDB$EPOCH_TRANS()</code>; the number of
+      rows actually realigned, including those affected due to their
+      membership in or dependency on the same transactions as other
+      conflicting rows, is given by
+      <a class="link" href="mysql-cluster-status-variables.html#statvar_Ndb_conflict_trans_row_reject_count"><code class="literal">Ndb_conflict_trans_row_reject_count</code></a>.
+    </p><p>
+      For more information, see
+      <a class="xref" href="mysql-cluster-status-variables.html" title="17.3.4.4. MySQL Cluster Status Variables">Section 17.3.4.4, “MySQL Cluster Status Variables”</a>.
+    </p><p><a name="mysql-cluster-replication-ndb-epoch-limitations"></a><b>Limitations on <code class="literal">NDB$EPOCH()</code>. </b>
+        The following limitations currently apply when using
+        <code class="literal">NDB$EPOCH()</code> to perform conflict detection:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          Conflicts are detected using MySQL Cluster epoch boundaries,
+          with granularity proportional to
+          <a class="link" href="mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs"><code class="literal">TimeBetweenEpochs</code></a>
+          (default: 100 milliseconds). The minimum conflict window is
+          the minimum time during which concurrent updates to the same
+          data on both clusters always report a conflict. This is always
+          a nonzero length of time, and is roughly proportional to
+          <code class="literal">2 * (latency + queueing +
+          TimeBetweenEpochs)</code>. This implies that—assuming
+          the default for
+          <a class="link" href="mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs"><code class="literal">TimeBetweenEpochs</code></a> and
+          ignoring any latency between clusters (as well as any queuing
+          delays)—the minimum conflict window size is
+          approximately 200 milliseconds. This minimum window should be
+          considered when looking at expected application
+          <span class="quote">“<span class="quote">race</span>”</span> patterns.
+        </p></li><li class="listitem"><p>
+          Additional storage is required for tables using the
+          <code class="literal">NDB$EPOCH()</code> and
+          <code class="literal">NDB$EPOCH_TRANS()</code> functions; from 1 to 32
+          bits extra space per row is required, depending on the value
+          passed to the function.
+        </p></li><li class="listitem"><p>
+          Conflicts between delete operations may result in divergence
+          between the primary and secondary. When a row is deleted on
+          both clusters concurrently, the conflict can be detected, but
+          is not recorded, since the row is deleted. This means that
+          further conflicts during the propagation of any subsequent
+          realignment operations will not be detected, which can lead to
+          divergence.
+        </p><p>
+          Deletes should be externally serialized, or routed to one
+          cluster only. Alternatively, a separate row should be updated
+          transactionally with such deletes and any inserts that follow
+          them, so that conflicts can be tracked across row deletes.
+          This may require changes in applications.
+        </p></li><li class="listitem"><p>
+          Only two MySQL Clusters in a circular
+          <span class="quote">“<span class="quote">active-active</span>”</span> configuration are currently
+          supported when using <code class="literal">NDB$EPOCH()</code> or
+          <code class="literal">NDB$EPOCH_TRANS()</code> for conflict detection.
+        </p></li><li class="listitem"><p>
+          Tables having <a class="link" href="blob.html" title="11.4.3. The BLOB and TEXT Types"><code class="literal">BLOB</code></a> or
+          <a class="link" href="blob.html" title="11.4.3. The BLOB and TEXT Types"><code class="literal">TEXT</code></a> columns are not currently
+          supported with <code class="literal">NDB$EPOCH()</code> or
+          <code class="literal">NDB$EPOCH_TRANS()</code>.
+</p></li></ul>
+</div>
+<p><a name="mysql-cluster-replication-ndb-epoch-trans"></a><b><code class="literal">NDB$EPOCH_TRANS()</code>. </b>
+        <code class="literal">NDB$EPOCH_TRANS()</code> extends the
+        <code class="literal">NDB$EPOCH()</code> function. Conflicts are detected
+        and handled in the same way using the <span class="quote">“<span class="quote">primary wins
+        all</span>”</span> rule (see
+        <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch" title="NDB$EPOCH()"><code class="literal">NDB$EPOCH()</code></a>) but with
+        the extra condition that any other rows updated in the same
+        transaction in which the conflict occurred are also regarded as
+        being in conflict. In other words, where
+        <code class="literal">NDB$EPOCH()</code> realigns individual conflicting
+        rows on the secondary, <code class="literal">NDB$EPOCH_TRANS()</code>
+        realigns conflicting transactions.
+      </p><p>
+      In addition, any transactions which are detectably dependent on a
+      conflicting transaction are also regarded as being in conflict,
+      these dependencies being determined by the contents of the
+      secondary cluster's binary log. Since the binary log contains
+      only data modification operations (inserts, updates, and deletes),
+      only overlapping data modifications are used to determine
+      dependencies between transactions.
+    </p><p>
+      <code class="literal">NDB$EPOCH_TRANS()</code> is subject to the same
+      conditions and limitations as <code class="literal">NDB$EPOCH()</code>, and
+      in addition requires that Version 2 binary log row events are used
+      (<a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin-use-v1-row-events"><code class="option">--log-bin-use-v1-row-events</code></a> equal
+      to 0), which adds a storage overhead of 2 bytes per event in the
+      binary log. In addition, all transaction IDs must be recorded in
+      the secondary's binary log
+      (<a class="link" href="mysql-cluster-program-options-mysqld.html#option_mysqld_ndb-log-transaction-id"><code class="option">--ndb-log-transaction-id</code></a> option),
+      which adds a further variable overhead (up to 13 bytes per row).
+    </p><p>
+      See <a class="xref" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch" title="NDB$EPOCH()"><code class="literal">NDB$EPOCH()</code></a>.
+    </p><p><b><code class="literal">NULL</code>. </b>
+        Indicates that conflict resolution is not to be used for the
+        corresponding table.
+      </p><p><b>Status information. </b>
+        A server status variable
+        <a class="link" href="mysql-cluster-status-variables.html#statvar_Ndb_conflict_fn_max"><code class="literal">Ndb_conflict_fn_max</code></a> provides a
+        count of the number of times that a row was not applied on the
+        current SQL node due to <span class="quote">“<span class="quote">greatest timestamp wins</span>”</span>
+        conflict resolution since the last time that
+        <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> was started.
+      </p><p>
+      The number of times that a row was not applied as the result of
+      <span class="quote">“<span class="quote">same timestamp wins</span>”</span> conflict resolution on a given
+      <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> since the last time it was restarted is
+      given by the global status variable
+      <a class="link" href="mysql-cluster-status-variables.html#statvar_Ndb_conflict_fn_old"><code class="literal">Ndb_conflict_fn_old</code></a>. In addition
+      to incrementing
+      <a class="link" href="mysql-cluster-status-variables.html#statvar_Ndb_conflict_fn_old"><code class="literal">Ndb_conflict_fn_old</code></a>, the primary
+      key of the row that was not used is inserted into an
+      <em class="firstterm">exceptions table</em>, as explained later in
+      this section.
+    </p><p><b>Exceptions table. </b>
+        To use the <code class="literal">NDB$OLD()</code> conflict resolution
+        function, it is also necessary to create an exceptions table
+        corresponding to each <a class="link" href="mysql-cluster.html" title="Chapter 17. MySQL Cluster NDB 7.3"><code class="literal">NDB</code></a> table for
+        which this type of conflict resolution is to be employed. This
+        is also true when using <code class="literal">NDB$EPOCH()</code> or
+        <code class="literal">NDB$EPOCH_TRANS()</code>. The name of this table is
+        that of the table for which conflict resolution is to be
+        applied, with the string <code class="literal">$EX</code> appended. (For
+        example, if the name of the original table is
+        <code class="literal">mytable</code>, the name of the corresponding
+        exception table name should be <code class="literal">mytable$EX</code>.)
+        This table is created as follows:
+      </p><pre class="programlisting">
+CREATE TABLE <em class="replaceable"><code>original_table</code></em>$EX  (
+    server_id INT UNSIGNED,
+    master_server_id INT UNSIGNED,
+    master_epoch BIGINT UNSIGNED,
+    count INT UNSIGNED,
+    <em class="replaceable"><code>original_table_pk_columns</code></em>,
+    [<em class="replaceable"><code>additional_columns</code></em>,]
+    PRIMARY KEY(server_id, master_server_id, master_epoch, count)
+) ENGINE=NDB;
+</pre><p>
+      The first four columns are required. Following these columns, the
+      columns making up the original table's primary key should be
+      copied in the order in which they are used to define the primary
+      key of the original table.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        The names of the first four columns and the columns matching the
+        original table's primary key columns are not critical; however,
+        we suggest for reasons of clarity and consistency, that you use
+        the names shown here for the
+        <a class="link" href="server-system-variables.html#sysvar_server_id"><code class="literal">server_id</code></a>,
+        <code class="literal">master_server_id</code>,
+        <code class="literal">master_epoch</code>, and <code class="literal">count</code>
+        columns, and that you use the same names as in the original
+        table for the columns matching those in the original table's
+        primary key.
+      </p><p xmlns="">
+        The data types for the columns duplicating the primary key
+        columns of the original table should be the same as for (or
+        larger than) the original columns.
+</p>
+</div>
+<p>
+      Additional columns may optionally be defined following these
+      columns, but not before any of them; any such extra columns cannot
+      be <code class="literal">NOT NULL</code>. The exception table's primary
+      key must be defined as shown. The exception table must use the
+      <a class="link" href="mysql-cluster.html" title="Chapter 17. MySQL Cluster NDB 7.3"><code class="literal">NDB</code></a> storage engine. An example that
+      uses <code class="literal">NDB$OLD()</code> with an exceptions table is
+      shown later in this section.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p xmlns="">
+        The <code class="literal">mysql.ndb_replication</code> table is read when
+        a data table is set up for replication, so the row corresponding
+        to a table to be replicated must be inserted into
+        <code class="literal">mysql.ndb_replication</code>
+        <span class="emphasis"><em>before</em></span> the table to be replicated is
+        created.
+</p>
+</div>
+<p><b>Examples. </b>
+        The following examples assume that you have already a working
+        MySQL Cluster replication setup, as described in
+        <a class="xref" href="mysql-cluster-replication-preparation.html" title="17.6.5. Preparing the MySQL Cluster for Replication">Section 17.6.5, “Preparing the MySQL Cluster for Replication”</a>, and
+        <a class="xref" href="mysql-cluster-replication-starting.html" title="17.6.6. Starting MySQL Cluster Replication (Single Replication Channel)">Section 17.6.6, “Starting MySQL Cluster Replication (Single Replication Channel)”</a>.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><b><code class="literal">NDB$MAX()</code> example. </b>
+            Suppose you wish to enable <span class="quote">“<span class="quote">greatest timestamp
+            wins</span>”</span> conflict resolution on table
+            <code class="literal">test.t1</code>, using column
+            <code class="literal">mycol</code> as the <span class="quote">“<span class="quote">timestamp</span>”</span>.
+            This can be done using the following steps:
+</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1"><li class="listitem"><p>
+              Make sure that you have started the master
+              <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> with
+              <a class="link" href="mysql-cluster-replication-conflict-resolution.html#option_mysqld_ndb-log-update-as-write"><code class="option">--ndb-log-update-as-write=OFF</code></a>.
+            </p></li><li class="listitem"><p>
+              On the master, perform this
+              <a class="link" href="insert.html" title="13.2.5. INSERT Syntax"><code class="literal">INSERT</code></a> statement:
+            </p><pre class="programlisting">
+INSERT INTO mysql.ndb_replication
+    VALUES ('test', 't1', 0, NULL, 'NDB$MAX(mycol)');
+</pre><p>
+              Inserting a 0 into the
+              <a class="link" href="server-system-variables.html#sysvar_server_id"><code class="literal">server_id</code></a> indicates that
+              all SQL nodes accessing this table should use conflict
+              resolution. If you want to use conflict resolution on a
+              specific <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> only, use the actual
+              server ID.
+            </p><p>
+              Inserting <code class="literal">NULL</code> into the
+              <code class="literal">binlog_type</code> column has the same effect
+              as inserting 0 (<code class="literal">NBT_DEFAULT</code>); the
+              server default is used.
+            </p></li><li class="listitem"><p>
+              Create the <code class="literal">test.t1</code> table:
+            </p><pre class="programlisting">
+CREATE TABLE test.t1 (
+    <em class="replaceable"><code>columns</code></em>
+    mycol INT UNSIGNED,
+    <em class="replaceable"><code>columns</code></em>
+) ENGINE=NDB;
+</pre><p>
+              Now, when updates are done on this table, conflict
+              resolution is applied, and the version of the row having
+              the greatest value for <code class="literal">mycol</code> is written
+              to the slave.
+</p></li></ol>
+</div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            Other <code class="literal">binlog_type</code> options—such as
+            <code class="literal">NBT_UPDATED_ONLY_USE_UPDATE</code> should be
+            used to control logging on the master using the
+            <code class="literal">ndb_replication</code> table rather than by
+            using command-line options.
+</p>
+</div>
+</li><li class="listitem"><p><b><code class="literal">NDB$OLD()</code> example. </b>
+            Suppose an <a class="link" href="mysql-cluster.html" title="Chapter 17. MySQL Cluster NDB 7.3"><code class="literal">NDB</code></a> table such as
+            the one defined here is being replicated, and you wish to
+            enable <span class="quote">“<span class="quote">same timestamp wins</span>”</span> conflict
+            resolution for updates to this table:
+          </p><pre class="programlisting">
+CREATE TABLE test.t2  (
+    a INT UNSIGNED NOT NULL,
+    b CHAR(25) NOT NULL,
+    <em class="replaceable"><code>columns</code></em>,
+    mycol INT UNSIGNED NOT NULL,
+    <em class="replaceable"><code>columns</code></em>,
+    PRIMARY KEY pk (a, b)
+)   ENGINE=NDB;
+</pre><p>
+          The following steps are required, in the order shown:
+</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1"><li class="listitem"><p>
+              First—and <span class="emphasis"><em>prior</em></span> to creating
+              <code class="literal">test.t2</code>—you must insert a row
+              into the
+              <a class="link" href="mysql-cluster-replication-conflict-resolution.html#mysql-cluster-ndb-replication-table" title="The ndb_replication system table"><code class="literal">mysql.ndb_replication</code></a>
+              table, as shown here:
+            </p><pre class="programlisting">
+INSERT INTO mysql.ndb_replication
+    VALUES ('test', 't2', 0, NULL, 'NDB$OLD(mycol)');
+</pre><p>
+              Possible values for the <code class="literal">binlog_type</code>
+              column are shown earlier in this section. The value
+              <code class="literal">'NDB$OLD(mycol)'</code> should be inserted
+              into the <code class="literal">conflict_fn</code> column.
+            </p></li><li class="listitem"><p>
+              Create an appropriate exceptions table for
+              <code class="literal">test.t2</code>. The table creation statement
+              shown here includes all required columns; any additional
+              columns must be declared following these columns, and
+              before the definition of the table's primary key.
+            </p><pre class="programlisting">
+CREATE TABLE test.t2$EX  (
+    server_id SMALLINT UNSIGNED,
+    master_server_id INT UNSIGNED,
+    master_epoch BIGINT UNSIGNED,
+    count BIGINT UNSIGNED,
+    a INT UNSIGNED NOT NULL,
+    b CHAR(25) NOT NULL,
+    [<em class="replaceable"><code>additional_columns</code></em>,]
+    PRIMARY KEY(server_id, master_server_id, master_epoch, count)
+)   ENGINE=NDB;
+</pre></li><li class="listitem"><p>
+              Create the table <code class="literal">test.t2</code> as shown
+              previously.
+</p></li></ol>
+</div>
+<p>
+          These steps must be followed for every table for which you
+          wish to perform conflict resolution using
+          <code class="literal">NDB$OLD()</code>. For each such table, there must
+          be a corresponding row in
+          <code class="literal">mysql.ndb_replication</code>, and there must be an
+          exceptions table in the same database as the table being
+          replicated.
+</p></li></ul>
+</div>
+
+</div>
+
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2014, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="mysql-cluster-replication-multi-master.html" title="17.6.10 MySQL Cluster Replication: Multi-Master and Circular Replication">Previous</a> / <a rel="next" href="mysql-cluster-news.html" title="17.7 MySQL Cluster Release Notes">Next</a> / <a rel="up" href="mysql-cluster-replication.html" title="17.6 MySQL Cluster Replication">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear" /><!--UdmComment--><div id="comments"><h1>User Comments</h1><p><a href="/doc/mysql/comment.php?sect=mysql-cluster-replication-conflict-resolution">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="mysql-cluster-replication-multi-master.html" title="17.6.10 MySQL Cluster Replication: Multi-Master and Circular Replication">Previous</a> / <a rel="next" href="mysql-cluster-news.html" title="17.7 MySQL Cluster Release Notes">Next</a> / <a rel="up" href="mysql-cluster-replication.html" title="17.6 MySQL Cluster Replication">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+ </div> 
+</div> 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives/">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input type="text" id="f_q" name="q" value="" class="swap_value" onfocus="clearSearchText();" />
+	    <input type="hidden"  name="group" value="MySQL"/>
+	    <input type="image" src="/common/themes/sakila/footer_search_g.png" id="f_go" alt="Search" title="Search" />
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="/common/logos/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22" /></a>&nbsp;&nbsp;<span>&copy; 2014, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="/common/js/metrics/s_code_remote.js"></script>
+
+</body>
+</html>

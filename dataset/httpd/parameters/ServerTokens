@@ -1,0 +1,62 @@
+ServerTokens
+
+Description:  Configures the  Server  HTTP response
+header 
+Syntax:   ServerTokens Major|Minor|Min[imal]|Prod[uctOnly]|OS|Full  
+Default:   ServerTokens Full  
+Context:  server config 
+Status:  Core 
+Module:  core 
+
+ This directive controls whether  Server  response
+    header field which is sent back to clients includes a
+    description of the generic OS-type of the server as well as
+    information about compiled-in modules. 
+
+       ServerTokens Full  (or not specified) 
+
+       Server sends ( e.g. ):  Server: Apache/2.4.2
+      (Unix) PHP/4.2.2 MyMod/1.2  
+
+        ServerTokens Prod[uctOnly]  
+
+       Server sends ( e.g. ):  Server:
+      Apache  
+
+        ServerTokens Major  
+
+       Server sends ( e.g. ):  Server:
+      Apache/2  
+
+        ServerTokens Minor  
+
+       Server sends ( e.g. ):  Server:
+      Apache/2.4  
+
+        ServerTokens Min[imal]  
+
+       Server sends ( e.g. ):  Server:
+      Apache/2.4.2  
+
+        ServerTokens OS  
+
+       Server sends ( e.g. ):  Server: Apache/2.4.2
+      (Unix)  
+
+      This setting applies to the entire server, and cannot be
+    enabled or disabled on a virtualhost-by-virtualhost basis. 
+
+     After version 2.0.44, this directive also controls the
+    information presented by the   ServerSignature   directive. 
+
+     Setting  ServerTokens  to less than
+     minimal  is not recommended because it makes it more
+    difficult to debug interoperational problems. Also note that
+    disabling the Server: header does nothing at all to make your
+    server more secure; the idea of "security through obscurity"
+    is a myth and leads to a false sense of safety. 
+
+
+ See also 
+    ServerSignature   
+  

@@ -1,0 +1,94 @@
+ErrorDocument
+
+Description:  What the server will return to the client
+in case of an error 
+Syntax:   ErrorDocument  error-code   document   
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Core 
+Module:  core 
+
+ In the event of a problem or error, Apache httpd can be configured
+    to do one of four things, 
+
+      output a simple hardcoded error message 
+
+       output a customized message 
+
+       internally redirect to a local  URL-path  to handle the
+      problem/error 
+
+       redirect to an external  URL  to handle the
+      problem/error 
+      The first option is the default, while options 2-4 are
+    configured using the  ErrorDocument 
+    directive, which is followed by the HTTP response code and a URL
+    or a message. Apache httpd will sometimes offer additional information
+    regarding the problem/error. 
+
+     URLs can begin with a slash (/) for local web-paths (relative
+    to the   DocumentRoot  ), or be a
+    full URL which the client can resolve. Alternatively, a message
+    can be provided to be displayed by the browser. Examples: 
+
+     ErrorDocument 500 http://foo.example.com/cgi-bin/tester
+ErrorDocument 404 /cgi-bin/bad_urls.pl
+ErrorDocument 401 /subscription_info.html
+ErrorDocument 403 "Sorry can't allow you access today"
+ErrorDocument 403 Forbidden! 
+
+
+     Additionally, the special value  default  can be used
+    to specify Apache httpd's simple hardcoded message.  While not required
+    under normal circumstances,  default  will restore
+    Apache httpd's simple hardcoded message for configurations that would
+    otherwise inherit an existing  ErrorDocument . 
+
+     ErrorDocument 404 /cgi-bin/bad_urls.pl
+
+< Directory /web/docs >
+  ErrorDocument 404 default
+< /Directory > 
+
+
+     Note that when you specify an  ErrorDocument 
+    that points to a remote URL (ie. anything with a method such as
+     http  in front of it), Apache HTTP Server will send a redirect to the
+    client to tell it where to find the document, even if the
+    document ends up being on the same server. This has several
+    implications, the most important being that the client will not
+    receive the original error status code, but instead will
+    receive a redirect status code. This in turn can confuse web
+    robots and other clients which try to determine if a URL is
+    valid using the status code. In addition, if you use a remote
+    URL in an  ErrorDocument 401 , the client will not
+    know to prompt the user for a password since it will not
+    receive the 401 status code. Therefore,  if you use an
+     ErrorDocument 401  directive then it must refer to a local
+    document.  
+
+     Microsoft Internet Explorer (MSIE) will by default ignore
+    server-generated error messages when they are "too small" and substitute
+    its own "friendly" error messages. The size threshold varies depending on
+    the type of error, but in general, if you make your error document
+    greater than 512 bytes, then MSIE will show the server-generated
+    error rather than masking it.  More information is available in
+    Microsoft Knowledge Base article  Q294807 . 
+
+     Although most error messages can be overridden, there are certain
+    circumstances where the internal messages are used regardless of the
+    setting of   ErrorDocument  .  In
+    particular, if a malformed request is detected, normal request processing
+    will be immediately halted and the internal error message returned.
+    This is necessary to guard against security problems caused by
+    bad requests. 
+
+     If you are using mod_proxy, you may wish to enable
+      ProxyErrorOverride   so that you can provide
+    custom error messages on behalf of your Origin servers. If you don't enable ProxyErrorOverride,
+    Apache httpd will not generate custom error documents for proxied content. 
+
+ See also 
+   documentation of
+    customizable responses  
+  

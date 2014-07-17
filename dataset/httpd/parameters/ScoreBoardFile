@@ -1,0 +1,33 @@
+ScoreBoardFile
+
+Description:  Location of the file used to store coordination data for
+the child processes 
+Syntax:   ScoreBoardFile  file-path   
+Default:   ScoreBoardFile logs/apache_runtime_status  
+Context:  server config 
+Status:  MPM 
+Module:    event  ,   mpm_winnt  ,   prefork  ,   worker   
+
+ Apache HTTP Server uses a scoreboard to communicate between its parent
+    and child processes.  Some architectures require a file to facilitate
+    this communication. If the file is left unspecified, Apache httpd first
+    attempts to create the scoreboard entirely in memory (using anonymous
+    shared memory) and, failing that, will attempt to create the file on
+    disk (using file-based shared memory). Specifying this directive causes
+    Apache httpd to always create the file on the disk. 
+
+      Example  ScoreBoardFile /var/run/apache_runtime_status 
+ 
+
+     File-based shared memory is useful for third-party applications
+    that require direct access to the scoreboard. 
+
+     If you use a  ScoreBoardFile  then
+    you may see improved speed by placing it on a RAM disk. But be
+    careful that you heed the same warnings about log file placement
+    and  security . 
+
+ See also 
+   Stopping and Restarting
+Apache HTTP Server  
+  

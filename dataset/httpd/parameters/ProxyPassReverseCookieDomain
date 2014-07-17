@@ -1,0 +1,16 @@
+ProxyPassReverseCookieDomain
+
+Description:  Adjusts the Domain string in Set-Cookie headers from a reverse-
+proxied server 
+Syntax:   ProxyPassReverseCookieDomain  internal-domain 
+ public-domain  [ interpolate ]  
+Context:  server config, virtual host, directory 
+Status:  Extension 
+Module:  mod_proxy 
+
+ Usage is basically similar to
+  ProxyPassReverse  , but instead of
+rewriting headers that are a URL, this rewrites the  domain 
+string in  Set-Cookie  headers. 
+
+ 

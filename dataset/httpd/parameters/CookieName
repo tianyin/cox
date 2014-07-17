@@ -1,0 +1,22 @@
+CookieName
+
+Description:  Name of the tracking cookie 
+Syntax:   CookieName  token   
+Default:   CookieName Apache  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  FileInfo 
+Status:  Extension 
+Module:  mod_usertrack 
+
+ This directive allows you to change the name of the cookie
+    this module uses for its tracking purposes. By default the
+    cookie is named " Apache ". 
+
+     You must specify a valid cookie name; results are
+    unpredictable if you use a name containing unusual characters.
+    Valid characters include A-Z, a-z, 0-9, "_", and "-". 
+
+     CookieName clicktrack 
+
+
+ 

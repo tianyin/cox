@@ -1,0 +1,84 @@
+SSLCipherSuite
+
+Description:  Cipher Suite available for negotiation in SSL
+handshake 
+Syntax:   SSLCipherSuite  cipher-spec   
+Default:   SSLCipherSuite DEFAULT (depends on OpenSSL version)  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  AuthConfig 
+Status:  Extension 
+Module:  mod_ssl 
+
+ 
+This complex directive uses a colon-separated  cipher-spec  string
+consisting of OpenSSL cipher specifications to configure the Cipher Suite the
+client is permitted to negotiate in the SSL handshake phase. Notice that this
+directive can be used both in per-server and per-directory context. In
+per-server context it applies to the standard SSL handshake when a connection
+is established. In per-directory context it forces a SSL renegotiation with the
+reconfigured Cipher Suite after the HTTP request was read but before the HTTP
+response is sent. 
+ 
+An SSL cipher specification in  cipher-spec  is composed of 4 major
+attributes plus a few extra minor ones: 
+   Key Exchange Algorithm : 
+    RSA, Diffie-Hellman, Elliptic Curve Diffie-Hellman, Secure Remote Password
+ 
+  Authentication Algorithm : 
+    RSA, Diffie-Hellman, DSS, ECDSA, or none.
+ 
+  Cipher/Encryption Algorithm : 
+    AES, DES, Triple-DES, RC4, RC2, IDEA, etc.
+ 
+  MAC Digest Algorithm : 
+    MD5, SHA or SHA1, SHA256, SHA384.
+ 
+  An SSL cipher can also be an export cipher. SSLv2 ciphers are no longer
+supported. To specify which ciphers to use, one can either specify all the
+Ciphers, one at a time, or use aliases to specify the preference and order
+for the ciphers (see  Table
+1 ). The actually available ciphers and aliases depends on the used
+openssl version. Newer openssl versions may include additional ciphers. 
+
+    Tag    Description     Key Exchange Algorithm:      kRSA      RSA key exchange     kDHr      Diffie-Hellman key exchange with RSA key     kDHd      Diffie-Hellman key exchange with DSA key     kEDH      Ephemeral (temp.key) Diffie-Hellman key exchange (no cert)        kSRP      Secure Remote Password (SRP) key exchange     Authentication Algorithm:      aNULL     No authentication     aRSA      RSA authentication     aDSS      DSS authentication      aDH       Diffie-Hellman authentication     Cipher Encoding Algorithm:      eNULL     No encryption              NULL      alias for eNULL              AES       AES encryption             DES       DES encryption             3DES      Triple-DES encryption      RC4       RC4 encryption            RC2       RC2 encryption            IDEA      IDEA encryption            MAC Digest Algorithm :     MD5       MD5 hash function     SHA1      SHA1 hash function     SHA       alias for SHA1      SHA256    SHA256 hash function      SHA384    SHA384 hash function      Aliases:      SSLv3     all SSL version 3.0 ciphers      TLSv1     all TLS version 1.0 ciphers      EXP       all export ciphers       EXPORT40    all 40-bit export ciphers only       EXPORT56    all 56-bit export ciphers only       LOW       all low strength ciphers (no export, single DES)     MEDIUM    all ciphers with 128 bit encryption      HIGH      all ciphers using Triple-DES          RSA       all ciphers using RSA key exchange      DH        all ciphers using Diffie-Hellman key exchange      EDH       all ciphers using Ephemeral Diffie-Hellman key exchange      ECDH      Elliptic Curve Diffie-Hellman key exchange        ADH       all ciphers using Anonymous Diffie-Hellman key exchange      AECDH       all ciphers using Anonymous Elliptic Curve Diffie-Hellman key exchange      SRP       all ciphers using Secure Remote Password (SRP) key exchange      DSS       all ciphers using DSS authentication      ECDSA       all ciphers using ECDSA authentication      aNULL      all ciphers using no authentication     
+Now where this becomes interesting is that these can be put together
+to specify the order and ciphers you wish to use. To speed this up
+there are also aliases ( SSLv3, TLSv1, EXP, LOW, MEDIUM,
+HIGH ) for certain groups of ciphers. These tags can be joined
+together with prefixes to form the  cipher-spec . Available
+prefixes are: 
+  none: add cipher to list 
+  + : move matching ciphers to the current location in list 
+  - : remove cipher from list (can be added later again) 
+  ! : kill cipher from list completely (can  not  be added later again) 
+  
+  aNULL ,  eNULL  and  EXP 
+ciphers are always disabled 
+ Beginning with version 2.4.7, null and export-grade
+ciphers are always disabled, as mod_ssl unconditionally prepends any supplied
+cipher suite string with  !aNULL:!eNULL:!EXP:  at initialization. 
+ 
+
+ A simpler way to look at all of this is to use the `` openssl ciphers
+-v '' command which provides a nice way to successively create the
+correct  cipher-spec  string. The default  cipher-spec  string
+depends on the version of the OpenSSL libraries used. Let's suppose it is
+`` RC4-SHA:AES128-SHA:HIGH:MEDIUM:!aNULL:!MD5 '' which
+means the following: Put  RC4-SHA  and  AES128-SHA  at
+the beginning. We do this, because these ciphers offer a good compromise
+between speed and security. Next, include high and medium security ciphers.
+Finally, remove all ciphers which do not authenticate, i.e. for SSL the
+Anonymous Diffie-Hellman ciphers, as well as all ciphers which use
+ MD5  as hash algorithm, because it has been proven insufficient. 
+  $ openssl ciphers -v 'RC4-SHA:AES128-SHA:HIGH:MEDIUM:!aNULL:!MD5'
+RC4-SHA                 SSLv3 Kx=RSA      Au=RSA  Enc=RC4(128)  Mac=SHA1
+AES128-SHA              SSLv3 Kx=RSA      Au=RSA  Enc=AES(128)  Mac=SHA1
+DHE-RSA-AES256-SHA      SSLv3 Kx=DH       Au=RSA  Enc=AES(256)  Mac=SHA1
+...                     ...               ...     ...           ...
+SEED-SHA                SSLv3 Kx=RSA      Au=RSA  Enc=SEED(128) Mac=SHA1
+PSK-RC4-SHA             SSLv3 Kx=PSK      Au=PSK  Enc=RC4(128)  Mac=SHA1
+KRB5-RC4-SHA            SSLv3 Kx=KRB5     Au=KRB5 Enc=RC4(128)  Mac=SHA1  
+ The complete list of particular RSA &amp; DH ciphers for SSL is given in  Table 2 . 
+  Example  SSLCipherSuite RSA:!EXP:!NULL:+HIGH:+MEDIUM:-LOW 
+ 
+    Cipher-Tag    Protocol   Key Ex.   Auth.   Enc.   MAC   Type      RSA Ciphers:      DES-CBC3-SHA    SSLv3   RSA   RSA   3DES(168)   SHA1         IDEA-CBC-SHA    SSLv3   RSA   RSA   IDEA(128)   SHA1         RC4-SHA    SSLv3   RSA   RSA   RC4(128)   SHA1         RC4-MD5    SSLv3   RSA   RSA   RC4(128)   MD5         DES-CBC-SHA    SSLv3   RSA   RSA   DES(56)   SHA1         EXP-DES-CBC-SHA    SSLv3   RSA(512)   RSA   DES(40)   SHA1    export      EXP-RC2-CBC-MD5    SSLv3   RSA(512)   RSA   RC2(40)   MD5     export      EXP-RC4-MD5    SSLv3   RSA(512)   RSA   RC4(40)   MD5     export      NULL-SHA    SSLv3   RSA   RSA   None   SHA1         NULL-MD5    SSLv3   RSA   RSA   None   MD5         Diffie-Hellman Ciphers:      ADH-DES-CBC3-SHA    SSLv3   DH   None   3DES(168)   SHA1         ADH-DES-CBC-SHA    SSLv3   DH   None   DES(56)   SHA1         ADH-RC4-MD5    SSLv3   DH   None   RC4(128)   MD5         EDH-RSA-DES-CBC3-SHA    SSLv3   DH   RSA   3DES(168)   SHA1         EDH-DSS-DES-CBC3-SHA    SSLv3   DH   DSS   3DES(168)   SHA1         EDH-RSA-DES-CBC-SHA    SSLv3   DH   RSA   DES(56)   SHA1         EDH-DSS-DES-CBC-SHA    SSLv3   DH   DSS   DES(56)   SHA1         EXP-EDH-RSA-DES-CBC-SHA    SSLv3   DH(512)   RSA   DES(40)   SHA1    export      EXP-EDH-DSS-DES-CBC-SHA    SSLv3   DH(512)   DSS   DES(40)   SHA1    export      EXP-ADH-DES-CBC-SHA    SSLv3   DH(512)   None   DES(40)   SHA1    export      EXP-ADH-RC4-MD5    SSLv3   DH(512)   None   RC4(40)   MD5     export     

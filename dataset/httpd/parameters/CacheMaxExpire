@@ -1,0 +1,18 @@
+CacheMaxExpire
+
+Description:  The maximum time in seconds to cache a document 
+Syntax:   CacheMaxExpire  seconds   
+Default:   CacheMaxExpire 86400 (one day)  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_cache 
+
+ The  CacheMaxExpire  directive specifies the maximum number of
+    seconds for which cachable HTTP documents will be retained without checking the origin
+    server. Thus, documents will be out of date at most this number of seconds. This maximum
+    value is enforced even if an expiry date was supplied with the document. 
+
+     CacheMaxExpire 604800 
+
+
+ 

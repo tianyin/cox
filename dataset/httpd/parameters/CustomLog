@@ -1,0 +1,86 @@
+CustomLog
+
+Description:  Sets filename and format of log file 
+Syntax:   CustomLog   file | pipe 
+ format | nickname 
+[env=[!] environment-variable |
+expr= expression ]  
+Context:  server config, virtual host 
+Status:  Base 
+Module:  mod_log_config 
+
+ The  CustomLog  directive is used to
+    log requests to the server. A log format is specified, and the
+    logging can optionally be made conditional on request
+    characteristics using environment variables. 
+
+     The first argument, which specifies the location to which
+    the logs will be written, can take one of the following two
+    types of values: 
+
+       file  
+       A filename, relative to the   ServerRoot  . 
+
+        pipe  
+       The pipe character " | ", followed by the path
+      to a program to receive the log information on its standard
+      input. See the notes on  piped logs 
+      for more information.
+
+        Security: 
+       If a program is used, then it will be run as the user who
+      started   httpd  . This will be root if the server was
+      started by root; be sure that the program is secure. 
+       
+        Note 
+         When entering a file path on non-Unix platforms, care should be taken
+        to make sure that only forward slashed are used even though the platform
+        may allow the use of back slashes. In general it is a good idea to always
+        use forward slashes throughout the configuration files. 
+        
+      The second argument specifies what will be written to the
+    log file. It can specify either a  nickname  defined by
+    a previous   LogFormat  
+    directive, or it can be an explicit  format  string as
+    described in the  log formats  section. 
+
+     For example, the following two sets of directives have
+    exactly the same effect: 
+
+     # CustomLog with format nickname
+LogFormat "%h %l %u %t \"%r\" % >s %b" common
+CustomLog logs/access_log common
+
+# CustomLog with explicit format string
+CustomLog logs/access_log "%h %l %u %t \"%r\" % >s %b" 
+
+
+     The third argument is optional and controls whether or
+    not to log a particular request. The condition can be the
+    presence or absence (in the case of a ' env=! name  '
+    clause) of a particular variable in the server
+     environment . Alternatively, the condition
+    can be expressed as arbitrary boolean  expression . If the condition is not satisfied, the request
+    will not be logged. References to HTTP headers  in the expression
+    will not cause the header names to be added to the Vary header. 
+
+     Environment variables can be set on a per-request
+    basis using the   mod_setenvif  
+    and/or   mod_rewrite   modules. For
+    example, if you want to record requests for all GIF
+    images on your server in a separate logfile but not in your main
+    log, you can use: 
+
+     SetEnvIf Request_URI \.gif$ gif-image
+CustomLog gif-requests.log common env=gif-image
+CustomLog nongif-requests.log common env=!gif-image 
+
+
+     Or, to reproduce the behavior of the old RefererIgnore
+    directive, you might use the following: 
+
+     SetEnvIf Referer example\.com localreferer
+CustomLog referer.log referer env=!localreferer 
+
+
+ 

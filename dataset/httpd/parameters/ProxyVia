@@ -1,0 +1,30 @@
+ProxyVia
+
+Description:  Information provided in the  Via  HTTP response
+header for proxied requests 
+Syntax:   ProxyVia On|Off|Full|Block  
+Default:   ProxyVia Off  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+
+ This directive controls the use of the  Via:  HTTP
+    header by the proxy. Its intended use is to control the flow of
+    proxy requests along a chain of proxy servers.  See  RFC 2616  (HTTP/1.1), section
+    14.45 for an explanation of  Via:  header lines. 
+
+      If set to  Off , which is the default, no special processing
+    is performed. If a request or reply contains a  Via:  header,
+    it is passed through unchanged. 
+
+     If set to  On , each request and reply will get a
+     Via:  header line added for the current host. 
+
+     If set to  Full , each generated  Via:  header
+    line will additionally have the Apache httpd server version shown as a
+     Via:  comment field. 
+
+     If set to  Block , every proxy request will have all its
+     Via:  header lines removed. No new  Via:  header will
+    be generated. 
+      

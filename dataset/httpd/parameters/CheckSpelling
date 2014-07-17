@@ -1,0 +1,39 @@
+CheckSpelling
+
+Description:  Enables the spelling
+module 
+Syntax:   CheckSpelling on|off  
+Default:   CheckSpelling Off  
+Context:  server config, virtual host, directory, .htaccess 
+Override:  Options 
+Status:  Extension 
+Module:  mod_speling 
+
+ This directive enables or disables the spelling module. When
+    enabled, keep in mind that 
+
+      the directory scan which is necessary for the spelling
+      correction will have an impact on the server's performance
+      when many spelling corrections have to be performed at the
+      same time. 
+
+       the document trees should not contain sensitive files
+      which could be matched inadvertently by a spelling
+      "correction". 
+
+       the module is unable to correct misspelled user names (as
+      in  http://my.host/~apahce/ ), just file names or
+      directory names. 
+
+       spelling corrections apply strictly to existing files, so
+      a request for the  < Location /status >  may
+      get incorrectly treated as the negotiated file
+      " /stats.html ". 
+      mod_speling should not be enabled in  DAV 
+    enabled directories, because it will try to "spell fix" newly created
+    resource names against existing filenames, e.g., when trying to upload
+    a new document  doc43.html  it might redirect to an existing
+    document  doc34.html , which is not what was intended.
+     
+
+ 

@@ -1,0 +1,19 @@
+SessionDBDCookieRemove
+
+Description:  Control for whether session ID cookies should be removed from incoming HTTP headers 
+Syntax:   SessionDBDCookieRemove On|Off  
+Default:   SessionDBDCookieRemove On  
+Context:  server config, virtual host, directory, .htaccess 
+Status:  Extension 
+Module:  mod_session_dbd 
+
+ The  SessionDBDCookieRemove  flag controls whether the cookies
+    containing the session ID will be removed from the headers during request processing. 
+
+     In a reverse proxy situation where the Apache server acts as a server frontend for
+    a backend origin server, revealing the contents of the session ID cookie to the backend
+    could be a potential privacy violation. When set to on, the session ID cookie will be
+    removed from the incoming HTTP headers. 
+
+
+ 

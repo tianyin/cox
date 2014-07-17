@@ -1,0 +1,21 @@
+LoadFile
+
+Description:  Link in the named object file or library 
+Syntax:   LoadFile  filename  [ filename ] ...  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_so 
+
+ The LoadFile directive links in the named object files or
+    libraries when the server is started or restarted; this is used
+    to load additional code which may be required for some module
+    to work.  Filename  is either an absolute path or
+    relative to  ServerRoot . 
+
+     For example: 
+
+     LoadFile libexec/libxmlparse.so 
+
+
+
+ 

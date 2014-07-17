@@ -1,0 +1,114 @@
+NoProxy
+
+Description:  Hosts, domains, or networks that will be connected to
+directly 
+Syntax:   NoProxy  host  [ host ] ...  
+Context:  server config, virtual host 
+Status:  Extension 
+Module:  mod_proxy 
+
+ This directive is only useful for Apache httpd proxy servers within
+    intranets.  The  NoProxy  directive specifies a
+    list of subnets, IP addresses, hosts and/or domains, separated by
+    spaces. A request to a host which matches one or more of these is
+    always served directly, without forwarding to the configured
+      ProxyRemote   proxy server(s). 
+
+      Example  ProxyRemote  *  http://firewall.example.com:81
+NoProxy         .example.com 192.168.112.0/21 
+ 
+
+     The  host  arguments to the  NoProxy 
+    directive are one of the following type list: 
+
+        Domain   
+     
+     A  Domain  is a partially qualified DNS domain name, preceded
+    by a period. It represents a list of hosts which logically belong to the
+    same DNS domain or zone ( i.e. , the suffixes of the hostnames are
+    all ending in  Domain ). 
+
+      Examples   
+      .com .example.org.
+       
+
+     To distinguish  Domain s from   Hostname  s (both syntactically and semantically; a DNS domain can
+    have a DNS A record, too!),  Domain s are always written with a
+    leading period. 
+
+      Note 
+       Domain name comparisons are done without regard to the case, and
+       Domain s are always assumed to be anchored in the root of the
+      DNS tree, therefore two domains  .ExAmple.com  and
+       .example.com.  (note the trailing period) are considered
+      equal. Since a domain comparison does not involve a DNS lookup, it is much
+      more efficient than subnet comparison. 
+      
+
+    
+       SubNet   
+     
+     A  SubNet  is a partially qualified internet address in
+    numeric (dotted quad) form, optionally followed by a slash and the netmask,
+    specified as the number of significant bits in the  SubNet . It is
+    used to represent a subnet of hosts which can be reached over a common
+    network interface. In the absence of the explicit net mask it is assumed
+    that omitted (or zero valued) trailing digits specify the mask. (In this
+    case, the netmask can only be multiples of 8 bits wide.) Examples: 
+
+       192.168  or  192.168.0.0  
+     the subnet 192.168.0.0 with an implied netmask of 16 valid bits
+    (sometimes used in the netmask form  255.255.0.0 ) 
+      192.168.112.0/21  
+     the subnet  192.168.112.0/21  with a netmask of 21
+    valid bits (also used in the form  255.255.248.0 ) 
+      As a degenerate case, a  SubNet  with 32 valid bits is the
+    equivalent to an   IPAddr  , while a  SubNet  with zero
+    valid bits ( e.g. , 0.0.0.0/0) is the same as the constant
+     _Default_ , matching any IP address.  
+
+    
+       IPAddr   
+     
+     A  IPAddr  represents a fully qualified internet address in
+    numeric (dotted quad) form. Usually, this address represents a host, but
+    there need not necessarily be a DNS domain name connected with the
+    address. 
+      Example   
+      192.168.123.7
+       
+
+      Note 
+       An  IPAddr  does not need to be resolved by the DNS system, so
+      it can result in more effective apache performance. 
+      
+
+    
+       Hostname   
+     
+     A  Hostname  is a fully qualified DNS domain name which can
+    be resolved to one or more   IPAddrs   via the
+    DNS domain name service. It represents a logical host (in contrast to
+      Domain  s, see above) and must be resolvable
+    to at least one   IPAddr   (or often to a list
+    of hosts with different   IPAddr  s). 
+
+      Examples   
+      prep.ai.example.edu 
+      www.example.org
+       
+
+      Note 
+       In many situations, it is more effective to specify an   IPAddr   in place of a  Hostname  since a
+      DNS lookup can be avoided. Name resolution in Apache httpd can take a remarkable
+      deal of time when the connection to the name server uses a slow PPP
+      link. 
+        Hostname  comparisons are done without regard to the case,
+      and  Hostname s are always assumed to be anchored in the root
+      of the DNS tree, therefore two hosts  WWW.ExAmple.com 
+      and  www.example.com.  (note the trailing period) are
+      considered equal. 
+       
+      See also 
+   DNS Issues  
+  
