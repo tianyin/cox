@@ -37,7 +37,7 @@ class EvalConfig:
         for line in fh:
             lns = line.split(',')
             name = lns[0]
-            value = float(lns[1])
+            value = float(lns[1])/100
             res[name] = value
 
         fh = open(norm_pop_file, 'w')
