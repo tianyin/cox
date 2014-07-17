@@ -7,7 +7,7 @@ from evaluator import eval_wrap
 
 if __name__ == '__main__':
     #appname  = 'httpd'
-    #parpath  = '/home/tixu/Cox/data/httpd/parameters'
+    #parpath  = '/home/tixu/Cox/dataset/httpd/parameters'
     #poppath  = '/home/tixu/Cox/benchmarks/data/apache_popularity.csv' 
     #p2mmaps  = '/home/tixu/Cox/benchmarks/data/apache_modules.csv'
     #testcase = '/home/tixu/Cox/benchmarks/data/apache_tc_icon.csv' 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     #eval_wrap(config)
 
     appname  = 'hadoop'
-    parpath  = '/home/tixu/Cox/data/hadoop/parameters'
+    parpath  = '/home/tixu/Cox/dataset/hadoop/parameters'
     poppath  = '/home/tixu/Cox/benchmarks/data/hadoop_popularity.csv' 
     p2mmaps  = None
     rnmmaps  = '/home/tixu/Cox/benchmarks/data/hadoop_rename.txt'
