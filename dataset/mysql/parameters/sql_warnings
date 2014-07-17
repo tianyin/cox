@@ -1,1 +1,2 @@
+sql_warnings
 This variable controls whether singlerow           INSERT statements produce an           information string if warnings occur. The default is 0. Set           the value to 1 to produce an information string. 

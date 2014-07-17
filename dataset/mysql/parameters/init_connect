@@ -1,1 +1,2 @@
+init_connect
 The content of init_connect           is not executed for users that have the           SUPER privilege. This is done           so that an erroneous value for           init_connect does not prevent           all clients from connecting. For example, the value might           contain a statement that has a syntax error, thus causing           client connections to fail. Not executing           init_connect for users that           have the SUPER privilege           enables them to open a connection and fix the           init_connect value. 

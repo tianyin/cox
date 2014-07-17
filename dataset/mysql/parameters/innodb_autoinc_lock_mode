@@ -1,1 +1,2 @@
+innodb_autoinc_lock_mode
 This variable has a default of 1 (âconsecutiveâ           lock mode). 

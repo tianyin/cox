@@ -1,1 +1,2 @@
+slave_allow_batching
 Whether or not batched updates are enabled on replication           slaves. 

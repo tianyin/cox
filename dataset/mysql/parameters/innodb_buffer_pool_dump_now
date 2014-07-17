@@ -1,1 +1,2 @@
+innodb_buffer_pool_dump_now
 Immediately records the pages cached in the InnoDB           buffer pool. Typically           used in combination with           innodb_buffer_pool_load_now. 

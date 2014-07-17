@@ -1,3 +1,4 @@
+mapreduce.job.userlog.retain.hours
 24
 The maximum time, in hours, for which the user-logs are to be 
                retained after the job completion.

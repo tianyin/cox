@@ -1,1 +1,2 @@
+have_geometry
 YES if the server supports spatial data           types, NO if not. 

@@ -1,3 +1,4 @@
+mapreduce.application.classpath
 CLASSPATH for MR applications. A comma-separated list
   of CLASSPATH entries. If mapreduce.application.framework is set then this
   must specify the appropriate classpath for that archive, and the name of

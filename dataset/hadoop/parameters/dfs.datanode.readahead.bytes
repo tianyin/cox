@@ -1,3 +1,4 @@
+dfs.datanode.readahead.bytes
 4193404
 While reading block files, if the Hadoop native libraries are available,
         the datanode can use the posix_fadvise system call to explicitly

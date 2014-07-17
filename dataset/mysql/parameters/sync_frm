@@ -1,1 +1,2 @@
+sync_frm
 If this variable is set to 1, when any nontemporary table is           created its .frm file is synchronized to           disk (using fdatasync()). This is slower           but safer in case of a crash. The default is 1. 

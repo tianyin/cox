@@ -1,1 +1,2 @@
+datadir
 The MySQL data directory. This variable can be set with the           datadir option.  The path to the data directory. 

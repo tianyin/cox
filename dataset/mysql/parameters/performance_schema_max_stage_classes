@@ -1,1 +1,2 @@
+performance_schema_max_stage_classes
 The maximum number of stage instruments. This variable was           added in MySQL 5.6.3. 

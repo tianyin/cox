@@ -1,1 +1,2 @@
+innodb_stats_sample_pages
 Deprecated, use           innodb_stats_transient_sample_pages           instead. 

@@ -1,1 +1,2 @@
+sql_auto_is_null
 The default value of           sql_auto_is_null is 0 in           MySQL 5.6. 

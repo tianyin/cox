@@ -1,1 +1,2 @@
+slave_transaction_retries
 Transactions cannot be retried when using a multithreaded           slave. In other words, whenever           slave_parallel_workers is           greater than 0, slave_transaction_retries           is treated as equal to 0, and cannot be changed. 

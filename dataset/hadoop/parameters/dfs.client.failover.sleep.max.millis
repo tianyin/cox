@@ -1,3 +1,4 @@
+dfs.client.failover.sleep.max.millis
 15000
 Expert only. The time to wait, in milliseconds, between failover
     attempts increases exponentially as a function of the number of

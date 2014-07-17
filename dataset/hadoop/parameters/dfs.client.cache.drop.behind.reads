@@ -1,3 +1,4 @@
+dfs.client.cache.drop.behind.reads
 Just like dfs.datanode.drop.cache.behind.reads, this setting causes the
     page cache to be dropped behind HDFS reads, potentially freeing up more
     memory for other uses.  Unlike dfs.datanode.drop.cache.behind.reads, this

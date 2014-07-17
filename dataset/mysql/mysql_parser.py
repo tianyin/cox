@@ -1,6 +1,5 @@
 from lxml import etree
 from lxml.html import fromstring
-import lxml.html as lh
 from StringIO import StringIO
 
 import csv
@@ -46,6 +45,7 @@ def get_all_parameter_desc(page_dir):
         desc = option_desc[op]
         f = open(OUTPUT_DIR + op, 'wb')
         desc = desc.encode('utf-8')
+        f.write(op + '\n')
         f.write(desc)
         f.close()
 
@@ -126,5 +126,4 @@ if __name__ == "__main__":
     #plist = get_parameter_list(manpage)
     #pdesc = get_parameter_desc(manpage, plist)
     #print len(pdesc)
-
     get_all_parameter_desc('./manuals/')

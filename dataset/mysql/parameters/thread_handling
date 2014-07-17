@@ -1,1 +1,2 @@
+thread_handling
 If the thread pool plugin is enabled, the server sets the           thread_handling value to           dynamicallyloaded. See           SectionÂ 8.11.6.1, âThread Pool Components and Installationâ.  This option was removed in MySQL 5.6.1. Use           thread_handling=nothreads           instead. 

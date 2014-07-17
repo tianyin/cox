@@ -1,1 +1,2 @@
+ndb_log_binlog_index
 Causes a mapping of epochs to positions in the binary log to             be inserted into the ndb_binlog_index             table. Setting this variable has no effect if binary logging             is not already enabled for the server using             log_bin. (In addition,             ndb_log_bin must not be             disabled.) ndb_log_binlog_index defaults             to 1 (ON); normally,             there is never any need to change this value in a production             environment. 

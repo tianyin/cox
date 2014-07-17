@@ -1,1 +1,2 @@
+query_alloc_block_size
 The allocation size of memory blocks that are allocated for           objects created during statement parsing and execution. If you           have problems with memory fragmentation, it might help to           increase this parameter. 

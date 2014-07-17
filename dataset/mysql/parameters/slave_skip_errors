@@ -1,1 +1,2 @@
+slave_skip_errors
 Examples:  Normally, replication stops when an error occurs on the slave.           This gives you the opportunity to resolve the inconsistency in           the data manually. This variable tells the slave SQL thread to           continue replication when a statement returns any of the           errors listed in the variable value. 

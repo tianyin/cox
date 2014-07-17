@@ -1,1 +1,2 @@
+innodb_optimize_fulltext_only
 By default, OPTIMIZE TABLE reorganizes the           data in the clustered           index of the table. When this option is enabled,           OPTIMIZE TABLE skips this reorganization of           the table data, and instead processes the newly added,           deleted, and updated token data for a           FULLTEXT index, See           SectionÂ 14.2.2.13.3, âFULLTEXT Indexesâ for more information           about FULLTEXT indexes for           InnoDB tables. 

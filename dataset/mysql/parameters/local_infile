@@ -1,1 +1,2 @@
+local_infile
 Whether LOCAL is supported for           LOAD DATA           INFILE statements. If this variable is disabled,           clients cannot use LOCAL in           LOAD DATA statements. See           SectionÂ 6.1.6, âSecurity Issues with LOAD       DATA LOCALâ. 

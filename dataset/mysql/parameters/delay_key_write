@@ -1,1 +1,2 @@
+delay_key_write
 If you enable external locking with             externallocking, there is             no protection against index corruption for tables that use             delayed key writes.  If you set this variable to ALL, you             should not use MyISAM tables from within             another program (such as another MySQL server or             myisamchk) when the tables are in use.             Doing so leads to index corruption. 

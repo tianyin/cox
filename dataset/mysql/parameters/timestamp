@@ -1,1 +1,2 @@
+timestamp
 SET timestamp affects the value returned by           NOW() but not by           SYSDATE(). This means that           timestamp settings in the binary log have no effect on           invocations of SYSDATE(). The           server can be started with the           sysdateisnow option to           cause SYSDATE() to be an alias           for NOW(), in which case           SET timestamp affects both functions. 

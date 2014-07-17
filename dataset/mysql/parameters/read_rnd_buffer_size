@@ -1,1 +1,2 @@
+read_rnd_buffer_size
 For more information about memory use during different           operations, see SectionÂ 8.11.4.1, âHow MySQL Uses Memoryâ. For information           about MultiRange Read optimization, see           SectionÂ 8.2.1.13, âMultiRange Read Optimizationâ. 

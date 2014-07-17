@@ -1,1 +1,2 @@
+proxy_user
 If the current client is a proxy for another user, this           variable is the proxy user account name. Otherwise, this           variable is NULL. See           SectionÂ 6.3.9, âProxy Usersâ. 

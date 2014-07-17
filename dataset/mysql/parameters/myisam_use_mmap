@@ -1,1 +1,2 @@
+myisam_use_mmap
 Use memory mapping for reading and writing           MyISAM tables. 

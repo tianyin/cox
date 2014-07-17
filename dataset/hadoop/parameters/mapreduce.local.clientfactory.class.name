@@ -1,3 +1,4 @@
+mapreduce.local.clientfactory.class.name
 org.apache.hadoop.mapred.LocalClientFactory
 This the client factory that is responsible for 
   creating local job runner client

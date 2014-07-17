@@ -1,3 +1,4 @@
+mapreduce.jobhistory.keytab
 /etc/security/keytab/jhs.service.keytab
 Location of the kerberos keytab file for the MapReduce
     JobHistory Server.

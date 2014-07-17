@@ -1,3 +1,4 @@
+yarn.app.mapreduce.client-am.ipc.max-retries
 3
 The number of client retries to the AM - before reconnecting
     to the RM to fetch Application Status.

@@ -1,3 +1,4 @@
+dfs.namenode.safemode.threshold-pct
 0.999f
 Specifies the percentage of blocks that should satisfy 
     the minimal replication requirement defined by dfs.namenode.replication.min.

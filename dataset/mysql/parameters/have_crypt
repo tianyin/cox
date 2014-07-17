@@ -1,1 +1,2 @@
+have_crypt
 YES if the crypt()           system call is available to the server, NO           if not. If not, the ENCRYPT()           function cannot be used. 

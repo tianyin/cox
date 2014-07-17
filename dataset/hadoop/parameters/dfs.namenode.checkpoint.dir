@@ -1,3 +1,4 @@
+dfs.namenode.checkpoint.dir
 file://${hadoop.tmp.dir}/dfs/namesecondary
 Determines where on the local filesystem the DFS secondary
       name node should store the temporary images to merge.

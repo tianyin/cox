@@ -1,1 +1,2 @@
+ndb_autoincrement_prefetch_sz
 This variable does not affect inserts performed using               INSERT ...               SELECT. 

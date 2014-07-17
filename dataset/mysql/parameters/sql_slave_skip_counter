@@ -1,1 +1,2 @@
+sql_slave_skip_counter
 If skipping the number of events specified by setting this             variable would cause the slave to begin in the middle of an             event group, the slave continues to skip until it finds the             beginning of the next event group and begins from that             point. For more information, see             SectionÂ 13.4.2.4, âSET GLOBAL sql_slave_skip_counter Syntaxâ. 

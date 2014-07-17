@@ -1,1 +1,2 @@
+innodb_file_format_check
 Despite the default value sometimes being displayed as             ON or OFF, always use             the numeric values 1 or 0 to turn this option on or off in             your configuration file or command line. 

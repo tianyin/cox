@@ -1,1 +1,2 @@
+innodb_status_output_locks
 Used to enable or disable periodic output for the           InnoDB Lock Monitor. Must be used in           combination with           innodb_status_output. See           SectionÂ 14.2.12.4, âInnoDB Monitorsâ for additional information. 

@@ -1,1 +1,2 @@
+innodb_ft_min_token_size
 Minimum length of words that are stored in an InnoDB           FULLTEXT index. Increasing this value           reduces the size of the index, thus speeding up queries, by           omitting common word that are unlikely to be significant in a           search context, such as the English words âaâ and           âtoâ. For content using a CJK (Chinese, Japanese,           Korean) character set, specify a value of 1. 

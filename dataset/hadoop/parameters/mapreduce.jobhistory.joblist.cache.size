@@ -1,2 +1,3 @@
+mapreduce.jobhistory.joblist.cache.size
 20000
 Size of the job list cache

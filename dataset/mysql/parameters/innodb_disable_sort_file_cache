@@ -1,1 +1,2 @@
+innodb_disable_sort_file_cache
 If enabled, this variable disables the operating system file           system cache for mergesort temporary files. The effect is to           open such files with the equivalent of           O_DIRECT. This variable was added in MySQL           5.6.4. 

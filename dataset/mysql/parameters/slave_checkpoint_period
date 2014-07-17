@@ -1,1 +1,2 @@
+slave_checkpoint_period
 slavecheckpointperiod was           added in MySQL 5.6.3.  slave_checkpoint_period was added in MySQL           5.6.3. 

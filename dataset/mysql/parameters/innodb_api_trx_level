@@ -1,1 +1,2 @@
+innodb_api_trx_level
 3 = SERIALIZABLE 

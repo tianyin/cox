@@ -1,2 +1,3 @@
+mapreduce.output.fileoutputformat.compress
 false
 Should the job outputs be compressed?

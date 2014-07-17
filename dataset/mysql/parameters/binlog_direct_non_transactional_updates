@@ -1,1 +1,2 @@
+binlog_direct_non_transactional_updates
 In MySQL 5.6, this variable has no effect when           the binary log format is ROW or           MIXED. (Bug #51291) 

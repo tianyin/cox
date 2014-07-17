@@ -1,1 +1,2 @@
+performance_schema_setup_objects_size
 The number of rows in the           setup_objects table. 

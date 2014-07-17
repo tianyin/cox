@@ -1,1 +1,2 @@
+identity
 This variable is a synonym for the           last_insert_id variable. It           exists for compatibility with other database systems. You can           read its value with SELECT @@identity, and           set it using SET identity. 

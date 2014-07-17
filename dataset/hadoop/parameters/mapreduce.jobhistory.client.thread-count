@@ -1,2 +1,3 @@
+mapreduce.jobhistory.client.thread-count
 10
 The number of threads to handle client API requests

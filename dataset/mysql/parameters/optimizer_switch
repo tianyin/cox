@@ -1,1 +1,2 @@
+optimizer_switch
 For more information about the syntax of this variable and the           optimizer behaviors that it controls, see           SectionÂ 8.8.5.2, âControlling Switchable Optimizationsâ. 

@@ -1,1 +1,2 @@
+gtid_purged
 Prior to MySQL 5.6.9, this variable was known as           gtid_lost, and was readonly.           In MySQL 5.6.9 and later, it is possible to update the value           of this variable, but only by adding GTIDs to those already           listed, and only when           gtid_executed is           unsetâthat is, on a new server. (Bug #14797808) 

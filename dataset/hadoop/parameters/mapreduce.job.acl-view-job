@@ -1,3 +1,4 @@
+mapreduce.job.acl-view-job
 
 Job specific access-control list for 'viewing' the job. It is
     only used if authorization is enabled in Map/Reduce by setting the

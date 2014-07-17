@@ -1,3 +1,4 @@
+dfs.namenode.checkpoint.txns
 1000000
 The Secondary NameNode or CheckpointNode will create a checkpoint
   of the namespace every 'dfs.namenode.checkpoint.txns' transactions, regardless

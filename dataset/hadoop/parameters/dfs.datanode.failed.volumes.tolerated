@@ -1,3 +1,4 @@
+dfs.datanode.failed.volumes.tolerated
 0
 The number of volumes that are allowed to
   fail before a datanode stops offering service. By default

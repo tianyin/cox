@@ -1,1 +1,2 @@
+ndb_use_transactions
 You can disable NDB transaction             support by setting this variable's values to             OFF (not recommended). The default is             ON. 

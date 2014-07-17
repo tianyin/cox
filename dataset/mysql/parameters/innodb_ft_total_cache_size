@@ -1,1 +1,2 @@
+innodb_ft_total_cache_size
 The total memory allocated for the InnoDB           FULLTEXT search index cache for all tables. Creating numerous           tables, each with a fulltext search index, could consume a           significant portion of available memory.           innodb_ft_total_cache_size,           defines a global memory limit for all fulltext search indexes           to help avoid excessive memory consumption. If the global           limit is reached by an index operation, a force sync is           triggered. 

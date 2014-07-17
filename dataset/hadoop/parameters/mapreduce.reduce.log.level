@@ -1,3 +1,4 @@
+mapreduce.reduce.log.level
 INFO
 The logging level for the reduce task. The allowed levels are:
   OFF, FATAL, ERROR, WARN, INFO, DEBUG, TRACE and ALL.

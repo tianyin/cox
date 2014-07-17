@@ -1,2 +1,3 @@
+dfs.namenode.delegation.token.renew-interval
 86400000
 The renewal interval for delegation token in milliseconds.

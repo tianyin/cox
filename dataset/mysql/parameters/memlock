@@ -1,1 +1,2 @@
+memlock
 You must not try to use this option on a system that does             not support the mlockall() system call;             if you do so, mysqld will very likely             crash as soon as you try to start it. 

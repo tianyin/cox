@@ -1,1 +1,2 @@
+have_openssl
 This variable is an alias for           have_ssl. 

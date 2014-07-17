@@ -1,3 +1,4 @@
+dfs.namenode.num.extra.edits.retained
 1000000
 The number of extra transactions which should be retained
   beyond what is minimally necessary for a NN restart. This can be useful for

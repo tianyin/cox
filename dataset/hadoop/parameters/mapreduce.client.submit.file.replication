@@ -1,3 +1,4 @@
+mapreduce.client.submit.file.replication
 10
 The replication level for submitted job files.  This
   should be around the square root of the number of nodes.

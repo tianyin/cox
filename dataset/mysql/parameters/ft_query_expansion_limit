@@ -1,1 +1,2 @@
+ft_query_expansion_limit
 The number of top matches to use for fulltext searches           performed using WITH QUERY EXPANSION. 

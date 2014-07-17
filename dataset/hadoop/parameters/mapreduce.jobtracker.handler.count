@@ -1,3 +1,4 @@
+mapreduce.jobtracker.handler.count
 10
 The number of server threads for the JobTracker. This should be roughly
     4% of the number of tasktracker nodes.

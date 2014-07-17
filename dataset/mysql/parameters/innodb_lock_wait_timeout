@@ -1,1 +1,2 @@
+innodb_lock_wait_timeout
 innodb_lock_wait_timeout can           be set at runtime with the SET GLOBAL or           SET SESSION statement. Changing the           GLOBAL setting requires the           SUPER privilege and affects the operation           of all clients that subsequently connect. Any client can           change the SESSION setting for           innodb_lock_wait_timeout,           which affects only that client. 

@@ -1,1 +1,2 @@
+innodb_ft_sort_pll_degree
 Number of threads used in parallel to index and tokenize text           in an InnoDB FULLTEXT           index, when building a           search index for a           large table. See           innodb_sort_buffer_size for           additional usage information. 

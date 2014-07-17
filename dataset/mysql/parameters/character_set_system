@@ -1,1 +1,2 @@
+character_set_system
 The character set used by the server for storing identifiers.           The value is always utf8. 

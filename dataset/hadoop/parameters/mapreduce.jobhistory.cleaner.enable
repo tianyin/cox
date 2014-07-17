@@ -1,1 +1,2 @@
+mapreduce.jobhistory.cleaner.enable
 true

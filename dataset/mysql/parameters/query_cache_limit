@@ -1,1 +1,2 @@
+query_cache_limit
 Do not cache results that are larger than this number of           bytes. The default value is 1MB. 

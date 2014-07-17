@@ -1,3 +1,4 @@
+mapreduce.jobhistory.datestring.cache.size
 200000
 Size of the date string cache. Effects the number of directories
   which will be scanned to find a job.

@@ -1,1 +1,2 @@
+ndb_optimization_delay
 Set the number of milliseconds to wait between sets of rows             by OPTIMIZE TABLE statements             on NDB tables. The default is             10. 

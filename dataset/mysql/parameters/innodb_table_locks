@@ -1,1 +1,2 @@
+innodb_table_locks
 In MySQL 5.6,           innodb_table_locks = 0 has no           effect for tables locked explicitly with           LOCK TABLES ...           WRITE. It does have an effect for tables locked for           read or write by           LOCK TABLES ...           WRITE implicitly (for example, through triggers) or           by LOCK TABLES           ... READ. 

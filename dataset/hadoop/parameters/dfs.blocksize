@@ -1,3 +1,4 @@
+dfs.blocksize
 134217728
 The default block size for new files, in bytes.
       You can use the following suffix (case insensitive):

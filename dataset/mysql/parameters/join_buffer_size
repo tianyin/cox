@@ -1,1 +1,2 @@
+join_buffer_size
 For additional information about join buffering, see           SectionÂ 8.2.1.10, âNestedLoop Join Algorithmsâ. For information about           Batched Key Access, see           SectionÂ 8.2.1.14, âBlock NestedLoop and Batched Key Access Joinsâ. 

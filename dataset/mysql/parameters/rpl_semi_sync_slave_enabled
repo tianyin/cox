@@ -1,1 +1,2 @@
+rpl_semi_sync_slave_enabled
 This variable is available only if the slaveside           semisynchronous replication plugin is installed. 

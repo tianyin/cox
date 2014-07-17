@@ -1,1 +1,2 @@
+max_binlog_size
 If max_relay_log_size is 0,           the value of max_binlog_size           applies to relay logs as well. 

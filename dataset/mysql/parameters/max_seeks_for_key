@@ -1,1 +1,2 @@
+max_seeks_for_key
 Limit the assumed maximum number of seeks when looking up rows           based on a key. The MySQL optimizer assumes that no more than           this number of key seeks are required when searching for           matching rows in a table by scanning an index, regardless of           the actual cardinality of the index (see           SectionÂ 13.7.5.23, âSHOW INDEX Syntaxâ). By setting this to a low value           (say, 100), you can force MySQL to prefer indexes instead of           table scans. 

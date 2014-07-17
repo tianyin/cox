@@ -1,3 +1,4 @@
+mapreduce.cluster.acls.enabled
 false
 Specifies whether ACLs should be checked
     for authorization of users for doing various queue and job level operations.

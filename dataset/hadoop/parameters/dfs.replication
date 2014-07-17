@@ -1,3 +1,4 @@
+dfs.replication
 3
 Default block replication. 
   The actual number of replications can be specified when the file is created.

@@ -1,1 +1,2 @@
+slave_net_timeout
 This option is deprecated as of MySQL 5.6.1 and will be           removed in a future MySQL release. Applications should be           updated to use the MASTER_RETRY_COUNT           option of the CHANGE MASTER TO           statement instead.  The number of seconds to wait for more data from a           master/slave connection before aborting the read. 

@@ -1,2 +1,3 @@
+dfs.datanode.handler.count
 10
 The number of server threads for the datanode.

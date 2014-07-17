@@ -1,1 +1,2 @@
+slave_exec_mode
 In MySQL Server 5.6, STRICT           mode is the default value. This should not be changed;           currently, IDEMPOTENT mode is supported           only by NDB. 

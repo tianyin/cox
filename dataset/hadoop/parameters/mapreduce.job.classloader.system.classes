@@ -1,3 +1,4 @@
+mapreduce.job.classloader.system.classes
 java.,javax.,org.apache.commons.logging.,org.apache.log4j.,org.apache.hadoop.
 A comma-separated list of classes that should be loaded from the
     system classpath, not the user-supplied JARs, when mapreduce.job.classloader

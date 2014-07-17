@@ -1,1 +1,2 @@
+plugin_dir
 If the plugin directory is writable by the server, it may be           possible for a user to write executable code to a file in the           directory using SELECT           ... INTO DUMPFILE. This can be prevented by making           plugin_dir read only to the           server or by setting           securefilepriv to a           directory where SELECT writes           can be made safely. 

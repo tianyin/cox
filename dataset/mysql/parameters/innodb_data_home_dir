@@ -1,1 +1,2 @@
+innodb_data_home_dir
 The common part of the directory path for all           InnoDB data           files in the           system           tablespace. This setting does not affect the location           of filepertable           tablespaces when           innodb_file_per_table is           enabled. The default value is the MySQL data directory. If you           specify the value as an empty string, you can use absolute           file paths in           innodb_data_file_path. 

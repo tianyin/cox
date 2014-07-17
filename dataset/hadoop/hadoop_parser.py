@@ -24,6 +24,7 @@ def parse(xmlfile):
         #print name, value, desc
         pfname = OUTPUT_DIR + name
         pf = open(pfname, 'w')
+        pf.write(name + '\n')
         if value != None:
             pf.write(value.strip() + '\n')
         if desc != None:

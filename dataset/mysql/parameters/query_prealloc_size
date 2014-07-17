@@ -1,1 +1,2 @@
+query_prealloc_size
 The size of the persistent buffer used for statement parsing           and execution. This buffer is not freed between statements. If           you are running complex queries, a larger           query_prealloc_size value           might be helpful in improving performance, because it can           reduce the need for the server to perform memory allocation           during query execution operations. 

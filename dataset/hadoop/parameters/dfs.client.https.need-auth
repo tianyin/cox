@@ -1,2 +1,3 @@
+dfs.client.https.need-auth
 false
 Whether SSL client certificate authentication is required

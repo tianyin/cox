@@ -1,2 +1,3 @@
+mapreduce.ifile.readahead
 true
 Configuration key to enable/disable IFile readahead.

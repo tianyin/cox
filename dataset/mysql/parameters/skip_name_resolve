@@ -1,1 +1,2 @@
+skip_name_resolve
 This variable is set from the value of the           skipnameresolve option. If           it is ON, mysqld           resolves host names when checking client connections. If           OFF, mysqld uses only IP           numbers and all Host column values in the           grant tables must be IP addresses or           localhost. See           SectionÂ 8.11.5.2, âDNS Lookup Optimization and the Host Cacheâ. 

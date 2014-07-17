@@ -1,1 +1,2 @@
+ndb_recv_thread_cpu_mask
 This variable is global in scope. It can also be set on             startup using the             ndbrecvthreadcpumask             option.  Set a CPU mask for locking receiver threads to specific             CPUs. This is specified as a hexadecimal bitmask; for             example, 0x33 means that one CPU is used             per receiver thread. An empty string (no locking of receiver             threads) is the default. 

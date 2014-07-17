@@ -1,1 +1,2 @@
+sql_log_bin
 In MySQL 5.6, it is not possible to set           @@session.sql_log_bin within a transaction           or subquery. (Bug #53437) 

@@ -1,1 +1,2 @@
+innodb_fast_shutdown
 Use innodb_fast_shutdown=2 in emergency or           troubleshooting situations, to get the absolute fastest           shutdown if data is at risk of corruption. 

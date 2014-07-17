@@ -1,1 +1,2 @@
+max_join_size
 If a query result is in the query cache, no result size check           is performed, because the result has previously been computed           and it does not burden the server to send it to the client. 

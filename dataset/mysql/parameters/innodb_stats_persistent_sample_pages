@@ -1,1 +1,2 @@
+innodb_stats_persistent_sample_pages
 This option only applies when the           innodb_stats_persistent           setting is turned on for a table; when that option is turned           off for a table, the           innodb_stats_transient_sample_pages           setting applies instead. 

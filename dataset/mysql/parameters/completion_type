@@ -1,1 +1,2 @@
+completion_type
 completion_type affects           transactions that begin with           START           TRANSACTION or           BEGIN and           end with COMMIT or           ROLLBACK. It           does not apply to implicit commits resulting from execution of           the statements listed in SectionÂ 13.3.3, âStatements That Cause an Implicit Commitâ. It           also does not apply for           XA           COMMIT,           XA           ROLLBACK, or when           autocommit=1. 

@@ -1,1 +1,2 @@
+transaction_allow_batching
 This variable is currently supported for MySQL Cluster only. 

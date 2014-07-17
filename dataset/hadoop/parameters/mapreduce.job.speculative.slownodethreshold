@@ -1,3 +1,4 @@
+mapreduce.job.speculative.slownodethreshold
 1.0
 The number of standard deviations by which a Task 
   Tracker's ave map and reduce progress-rates (finishTime-dispatchTime)

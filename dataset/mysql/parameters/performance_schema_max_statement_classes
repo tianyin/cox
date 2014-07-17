@@ -1,1 +1,2 @@
+performance_schema_max_statement_classes
 This variable was added in MySQL 5.6.3. 

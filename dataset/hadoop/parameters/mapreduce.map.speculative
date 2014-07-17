@@ -1,3 +1,4 @@
+mapreduce.map.speculative
 true
 If true, then multiple instances of some map tasks 
                may be executed in parallel.

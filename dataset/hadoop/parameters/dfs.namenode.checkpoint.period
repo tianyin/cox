@@ -1,2 +1,3 @@
+dfs.namenode.checkpoint.period
 3600
 The number of seconds between two periodic checkpoints.

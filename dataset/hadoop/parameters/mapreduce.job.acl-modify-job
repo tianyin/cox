@@ -1,3 +1,4 @@
+mapreduce.job.acl-modify-job
 
 Job specific access-control list for 'modifying' the job. It
     is only used if authorization is enabled in Map/Reduce by setting the

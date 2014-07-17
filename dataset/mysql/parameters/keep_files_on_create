@@ -1,1 +1,2 @@
+keep_files_on_create
 If a MyISAM table is created with a           DATA DIRECTORY or INDEX           DIRECTORY option and an existing           .MYD or .MYI file is           found, MyISAM always returns an error. It will not overwrite a           file in the specified directory. 

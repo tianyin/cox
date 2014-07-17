@@ -1,1 +1,2 @@
+innodb_replication_delay
 The replication thread delay (in ms) on a slave server if           innodb_thread_concurrency is           reached. 

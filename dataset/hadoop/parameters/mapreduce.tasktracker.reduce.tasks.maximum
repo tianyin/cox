@@ -1,3 +1,4 @@
+mapreduce.tasktracker.reduce.tasks.maximum
 2
 The maximum number of reduce tasks that will be run
   simultaneously by a task tracker.

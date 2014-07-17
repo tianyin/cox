@@ -1,3 +1,4 @@
+mapreduce.client.progressmonitor.pollinterval
 1000
 The interval (in milliseconds) between which the JobClient
     reports status to the console and checks for job completion. You may want to set this

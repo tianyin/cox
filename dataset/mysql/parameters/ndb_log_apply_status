@@ -1,1 +1,2 @@
+ndb_log_apply_status
 A readonly variable which shows whether the server was             started with the             ndblogapplystatus             option. 

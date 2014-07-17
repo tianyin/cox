@@ -1,1 +1,2 @@
+innodb_ft_num_word_optimize
 Number of words to process during each           OPTIMIZE TABLE operation on an           InnoDB FULLTEXT index.           Because a bulk insert or update operation to a table           containing a fulltext search index could require substantial           index maintenance to incorporate all changes, you might do a           series of OPTIMIZE TABLE           statements, each picking up where the last left off. 

@@ -1,1 +1,2 @@
+performance_schema_hosts_size
 The number of rows in the hosts           table. If this variable is 0, the Performance Schema does not           maintain connection statistics in the           hosts table. This variable was           added in MySQL 5.6.3. 

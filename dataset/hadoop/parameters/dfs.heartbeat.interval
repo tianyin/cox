@@ -1,2 +1,3 @@
+dfs.heartbeat.interval
 3
 Determines datanode heartbeat interval in seconds.

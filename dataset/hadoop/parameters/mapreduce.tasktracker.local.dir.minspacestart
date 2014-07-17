@@ -1,3 +1,4 @@
+mapreduce.tasktracker.local.dir.minspacestart
 0
 If the space in mapreduce.cluster.local.dir drops under this, 
   do not ask for more tasks.

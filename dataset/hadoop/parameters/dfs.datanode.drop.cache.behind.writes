@@ -1,3 +1,4 @@
+dfs.datanode.drop.cache.behind.writes
 false
 In some workloads, the data written to HDFS is known to be significantly
         large enough that it is unlikely to be useful to cache it in the

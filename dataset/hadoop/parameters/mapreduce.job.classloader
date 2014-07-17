@@ -1,3 +1,4 @@
+mapreduce.job.classloader
 false
 Whether to use a separate (isolated) classloader for
     user classes in the task JVM.

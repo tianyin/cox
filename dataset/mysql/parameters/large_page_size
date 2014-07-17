@@ -1,1 +1,2 @@
+large_page_size
 If large page support is enabled, this shows the size of           memory pages. Currently, large memory pages are supported only           on Linux; on other platforms, the value of this variable is           always 0. See SectionÂ 8.11.4.2, âEnabling Large Page Supportâ. 

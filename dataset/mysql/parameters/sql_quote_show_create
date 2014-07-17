@@ -1,1 +1,2 @@
+sql_quote_show_create
 If set to 1 (the default), the server quotes identifiers for           SHOW CREATE TABLE and           SHOW CREATE DATABASE           statements. If set to 0, quoting is disabled. This option is           enabled by default so that replication works for identifiers           that require quoting. See SectionÂ 13.7.5.12, âSHOW CREATE TABLE Syntaxâ,           and SectionÂ 13.7.5.8, âSHOW CREATE DATABASE Syntaxâ. 

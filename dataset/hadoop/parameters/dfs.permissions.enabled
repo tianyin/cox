@@ -1,3 +1,4 @@
+dfs.permissions.enabled
 true
 If "true", enable permission checking in HDFS.
     If "false", permission checking is turned off,

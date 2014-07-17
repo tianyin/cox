@@ -1,1 +1,2 @@
+innodb_force_recovery
 The restriction may also cause replication administration             commands to fail with an error, as replication options such             as             relayloginforepository=TABLE             and             masterinforepository=TABLE             store information in tables in InnoDB. 

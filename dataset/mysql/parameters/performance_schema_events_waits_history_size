@@ -1,1 +1,2 @@
+performance_schema_events_waits_history_size
 The number of rows per thread in the           events_waits_history table. 

@@ -1,1 +1,2 @@
+mapreduce.jobhistory.done-dir
 ${yarn.app.mapreduce.am.staging-dir}/history/done

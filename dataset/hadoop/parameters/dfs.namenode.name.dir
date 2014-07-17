@@ -1,3 +1,4 @@
+dfs.namenode.name.dir
 file://${hadoop.tmp.dir}/dfs/name
 Determines where on the local filesystem the DFS name node
       should store the name table(fsimage).  If this is a comma-delimited list

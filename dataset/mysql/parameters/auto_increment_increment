@@ -1,1 +1,2 @@
+auto_increment_increment
 The default value of           auto_increment_increment is           1. See SectionÂ 16.4.1.1, âReplication and AUTO_INCREMENTâ.  auto_increment_increment               controls the interval between successive column values.               For example: 

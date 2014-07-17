@@ -1,2 +1,3 @@
+dfs.namenode.https-address
 0.0.0.0:50470
 The namenode secure http server address and port.

@@ -1,3 +1,4 @@
+dfs.ha.automatic-failover.enabled
 false
 Whether automatic failover is enabled. See the HDFS High
     Availability documentation for details on automatic HA

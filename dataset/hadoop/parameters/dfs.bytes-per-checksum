@@ -1,3 +1,4 @@
+dfs.bytes-per-checksum
 512
 The number of bytes per checksum.  Must not be larger than
   dfs.stream-buffer-size

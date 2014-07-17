@@ -1,2 +1,3 @@
+yarn.app.mapreduce.am.resource.mb
 1536
 The amount of memory the MR AppMaster needs.

@@ -1,2 +1,3 @@
+dfs.https.enable
 false
 Decide if HTTPS(SSL) is supported on HDFS

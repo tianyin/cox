@@ -1,1 +1,2 @@
+insert_id
 The value to be used by the following           INSERT or           ALTER TABLE statement when           inserting an AUTO_INCREMENT value. This is           mainly used with the binary log. 

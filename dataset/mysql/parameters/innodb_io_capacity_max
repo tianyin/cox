@@ -1,1 +1,2 @@
+innodb_io_capacity_max
 For a brief period during MySQL 5.6 development, this variable           was known as innodb_max_io_capacity. In           MySQL 5.6.7, it was renamed to           innodb_io_capacity_max, to           emphasize its relationship to the           innodb_io_capacity option. 

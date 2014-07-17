@@ -1,2 +1,3 @@
+mapreduce.output.fileoutputformat.compress.codec
 org.apache.hadoop.io.compress.DefaultCodec
 If the job outputs are compressed, how should they be compressed?

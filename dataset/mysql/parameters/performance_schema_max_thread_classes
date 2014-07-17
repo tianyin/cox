@@ -1,1 +1,2 @@
+performance_schema_max_thread_classes
 The maximum number of thread instruments. 

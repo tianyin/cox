@@ -1,1 +1,2 @@
+disable_gtid_unsafe_statements
 Obsolete: Replaced by           enforce_gtid_consistency in           MySQL 5.6.9. (Bug #14775984) 

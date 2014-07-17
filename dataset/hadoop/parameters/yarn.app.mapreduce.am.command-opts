@@ -1,3 +1,4 @@
+yarn.app.mapreduce.am.command-opts
 -Xmx1024m
 Java opts for the MR App Master processes.  
   The following symbol, if present, will be interpolated: @taskid@ is replaced 

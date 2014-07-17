@@ -1,1 +1,2 @@
+innodb_max_purge_lag_delay
 For general I/O tuning advice, see           SectionÂ 8.5.7, âOptimizing InnoDB Disk I/Oâ. 

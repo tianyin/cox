@@ -1,1 +1,2 @@
+innodb_api_bk_commit_interval
 How often to autocommit idle connections that use the           InnoDB memcached           interface, in seconds. See SectionÂ 14.2.16, âInnoDB Integration with memcachedâ           for usage details for this option. 

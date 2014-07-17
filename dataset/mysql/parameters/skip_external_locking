@@ -1,1 +1,2 @@
+skip_external_locking
 External locking affects only           MyISAM table access. For more           information, including conditions under which it can and           cannot be used, see SectionÂ 8.10.5, âExternal Lockingâ.  External locking affects only           MyISAM table access. For more           information, including conditions under which it can and           cannot be used, see SectionÂ 8.10.5, âExternal Lockingâ. 

@@ -1,3 +1,4 @@
+dfs.client.block.write.replace-datanode-on-failure.policy
 DEFAULT
 This property is used only if the value of
     dfs.client.block.write.replace-datanode-on-failure.enable is true.

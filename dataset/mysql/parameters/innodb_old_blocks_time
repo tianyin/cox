@@ -1,1 +1,2 @@
+innodb_old_blocks_time
 This variable is often used in combination with           innodb_old_blocks_pct. See           SectionÂ 14.2.12.2.24, âMaking the Buffer Pool Scan Resistantâ for           more information. See SectionÂ 8.9.1, âThe InnoDB Buffer Poolâ for           information about buffer pool management, such as the           LRU algorithm and           eviction policies. 

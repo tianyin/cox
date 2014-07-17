@@ -1,1 +1,2 @@
+performance_schema_users_size
 The number of rows in the users           table. If this variable is 0, the Performance Schema does not           maintain connection statistics in the           users table. This variable was           added in MySQL 5.6.3. 

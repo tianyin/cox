@@ -1,1 +1,2 @@
+key_cache_division_limit
 The division point between the hot and warm sublists of the           key cache buffer list. The value is the percentage of the           buffer list to use for the warm sublist. Permissible values           range from 1 to 100. The default value is 100. See           SectionÂ 8.9.2, âThe MyISAM Key Cacheâ. 

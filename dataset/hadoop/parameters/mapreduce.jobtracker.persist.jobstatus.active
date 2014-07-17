@@ -1,3 +1,4 @@
+mapreduce.jobtracker.persist.jobstatus.active
 true
 Indicates if persistency of job status information is
       active or not.

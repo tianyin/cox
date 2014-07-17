@@ -1,1 +1,2 @@
+innodb_rollback_segments
 Defines how many of the           rollback segments           in the system           tablespace that InnoDB uses within a           transaction. This           setting, while still valid, is replaced by           innodb_undo_logs. 

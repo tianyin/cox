@@ -1,3 +1,4 @@
+dfs.namenode.stale.datanode.interval
 30000
 Default time interval for marking a datanode as "stale", i.e., if 
     the namenode has not received heartbeat msg from a datanode for 

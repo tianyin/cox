@@ -1,1 +1,2 @@
+myisam_stats_method
 The method that is used for generating table statistics           influences how the optimizer chooses indexes for query           execution, as described in           SectionÂ 8.3.7, âInnoDB and MyISAM Index Statistics         Collectionâ. 

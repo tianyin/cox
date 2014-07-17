@@ -1,3 +1,4 @@
+dfs.datanode.directoryscan.threads
 1
 How many threads should the threadpool used to compile reports
   for volumes in parallel have.

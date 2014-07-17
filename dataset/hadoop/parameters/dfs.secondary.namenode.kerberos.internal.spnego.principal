@@ -1,3 +1,4 @@
+dfs.secondary.namenode.kerberos.internal.spnego.principal
 ${dfs.web.authentication.kerberos.principal}
 A comma separated list of network interface names to use
     for data transfer between the client and datanodes. When creating

@@ -1,1 +1,2 @@
+port
 The number of the port on which the server listens for TCP/IP           connections. This variable can be set with the           port option.  The port number to use when listening for TCP/IP connections.           The port number must be 1024 or higher unless the server is           started by the root system user. 

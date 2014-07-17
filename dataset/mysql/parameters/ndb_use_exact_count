@@ -1,1 +1,2 @@
+ndb_use_exact_count
 Forces NDB to use a count of             records during SELECT COUNT(*) query             planning to speed up this type of query. The default value             is ON. For faster queries overall,             disable this feature by setting the value of             ndb_use_exact_count to             OFF. 

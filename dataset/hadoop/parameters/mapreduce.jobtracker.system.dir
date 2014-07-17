@@ -1,2 +1,3 @@
+mapreduce.jobtracker.system.dir
 ${hadoop.tmp.dir}/mapred/system
 The directory where MapReduce stores control files.

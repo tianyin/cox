@@ -1,3 +1,4 @@
+dfs.namenode.enable.retrycache
 true
 This enables the retry cache on the namenode. Namenode tracks for
 	  non-idempotent requests the corresponding response. If a client retries the

@@ -1,3 +1,4 @@
+dfs.datanode.directoryscan.interval
 21600
 Interval in seconds for Datanode to scan data directories and
   reconcile the difference between blocks in memory and on the disk.

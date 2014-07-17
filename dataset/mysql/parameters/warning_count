@@ -1,1 +1,2 @@
+warning_count
 The number of errors, warnings, and notes that resulted from           the last statement that generated messages. This variable is           read only. See SectionÂ 13.7.5.41, âSHOW WARNINGS Syntaxâ. 

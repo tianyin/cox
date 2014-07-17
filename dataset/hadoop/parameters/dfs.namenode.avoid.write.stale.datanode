@@ -1,3 +1,4 @@
+dfs.namenode.avoid.write.stale.datanode
 false
 Indicate whether or not to avoid writing to "stale" datanodes whose 
     heartbeat messages have not been received by the namenode 

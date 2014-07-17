@@ -1,1 +1,2 @@
+innodb_support_xa
 You can also turn off this option if you do not need it for           safe binary logging or replication, and you also do not use an           external XA transaction manager. 

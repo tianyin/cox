@@ -1,1 +1,2 @@
+innodb_file_format_max
 At server startup, InnoDB sets the value of           this variable to the file           format tag in the           system           tablespace (for example, Antelope or           Barracuda). If the server creates or opens           a table with a âhigherâ file format, it sets the           value of           innodb_file_format_max to           that format. 

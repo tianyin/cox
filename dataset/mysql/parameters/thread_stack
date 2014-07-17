@@ -1,1 +1,2 @@
+thread_stack
 The stack size for each thread. Many of the limits detected by           the crashme test are dependent on this           value. See SectionÂ 8.12.2, âThe MySQL Benchmark Suiteâ. The default of           192KB (256KB for 64bit systems) is large enough for normal           operation. If the thread stack size is too small, it limits           the complexity of the SQL statements that the server can           handle, the recursion depth of stored procedures, and other           memoryconsuming actions. 

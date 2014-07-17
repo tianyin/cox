@@ -1,1 +1,2 @@
+innodb_ft_result_cache_limit
 As of MySQL 5.7.4, the maximum value of           innodb_ft_result_cache_limit for all           platform types and platform bit sizes is 2**321. Bug #71554. 

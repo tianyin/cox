@@ -1,2 +1,3 @@
+yarn.app.mapreduce.am.staging-dir
 /tmp/hadoop-yarn/staging
 The staging dir used while submitting jobs.

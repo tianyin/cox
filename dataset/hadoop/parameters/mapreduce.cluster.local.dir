@@ -1,3 +1,4 @@
+mapreduce.cluster.local.dir
 ${hadoop.tmp.dir}/mapred/local
 The local directory where MapReduce stores intermediate
   data files.  May be a comma-separated list of

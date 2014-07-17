@@ -1,1 +1,2 @@
+performance_schema_max_rwlock_classes
 The maximum number of rwlock instruments. 

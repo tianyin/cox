@@ -1,3 +1,4 @@
+mapreduce.jobtracker.jobhistory.completed.location
 The completed job history files are stored at this single well 
   known location. If nothing is specified, the files are stored at 
   ${mapreduce.jobtracker.jobhistory.location}/done.

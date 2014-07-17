@@ -1,1 +1,2 @@
+sync_relay_log
 A value of 1 is the safest choice because in the event of a           crash you lose at most one event from the relay log. However,           it is also the slowest choice (unless the disk has a           batterybacked cache, which makes synchronization very fast). 

@@ -1,2 +1,3 @@
+mapreduce.cluster.temp.dir
 ${hadoop.tmp.dir}/mapred/temp
 A shared directory for temporary files.

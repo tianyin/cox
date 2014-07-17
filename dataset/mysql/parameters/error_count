@@ -1,1 +1,2 @@
+error_count
 The number of errors that resulted from the last statement           that generated messages. This variable is read only. See           SectionÂ 13.7.5.18, âSHOW ERRORS Syntaxâ. 

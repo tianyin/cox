@@ -1,1 +1,2 @@
+ndb_log_bin
 Causes updates to NDB tables to be             written to the binary log. Setting this variable has no             effect if binary logging is not already enabled for the             server using log_bin.             ndb_log_bin defaults to 1 (ON); normally,             there is never any need to change this value in a production             environment. 

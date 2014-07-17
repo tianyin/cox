@@ -1,1 +1,2 @@
+lc_messages
 The locale to use for error messages. The server converts the           value to a language name and combines it with the value of the           lc_messages_dir to produce           the location for the error message file. See           SectionÂ 10.2, âSetting the Error Message Languageâ.  The directory where error messages are located. The value is           used together with the value of lcmessages           to produce the location for the error message file. See           SectionÂ 10.2, âSetting the Error Message Languageâ. 

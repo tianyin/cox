@@ -1,2 +1,3 @@
+dfs.datanode.du.reserved
 0
 Reserved space in bytes per volume. Always leave this much space free for non dfs use.

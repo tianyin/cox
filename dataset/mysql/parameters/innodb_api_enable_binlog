@@ -1,1 +1,2 @@
+innodb_api_enable_binlog
 Lets you use the InnoDB           memcached plugin with the MySQL           binary log. See           SectionÂ 14.2.16, âInnoDB Integration with memcachedâ for usage details for this           option. 

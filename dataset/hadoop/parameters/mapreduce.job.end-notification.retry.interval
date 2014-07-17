@@ -1,3 +1,4 @@
+mapreduce.job.end-notification.retry.interval
 1000
 The number of milliseconds the submitter of the job wants to
     wait before job end notification is retried if it fails. This is capped by

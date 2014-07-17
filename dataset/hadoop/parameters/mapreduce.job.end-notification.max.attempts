@@ -1,3 +1,4 @@
+mapreduce.job.end-notification.max.attempts
 5
 The maximum number of times a URL will be read for providing job
     end notification. Cluster administrators can set this to limit how long

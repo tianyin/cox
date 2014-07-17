@@ -1,3 +1,4 @@
+mapreduce.tasktracker.report.address
 127.0.0.1:0
 The interface and port that task tracker server listens on. 
   Since it is only connected to by the tasks, it uses the local interface.

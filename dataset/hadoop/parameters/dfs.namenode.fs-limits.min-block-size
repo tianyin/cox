@@ -1,3 +1,4 @@
+dfs.namenode.fs-limits.min-block-size
 1048576
 Minimum block size in bytes, enforced by the Namenode at create
       time. This prevents the accidental creation of files with tiny block

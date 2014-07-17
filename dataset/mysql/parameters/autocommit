@@ -1,1 +1,2 @@
+autocommit
 By default, client connections begin with           autocommit set to 1. To cause           clients to begin with a default of 0, set the global           autocommit value by starting           the server with the           autocommit=0 option. To set           the variable using an option file, include these lines: 

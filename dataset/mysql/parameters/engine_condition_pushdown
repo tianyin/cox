@@ -1,1 +1,2 @@
+engine_condition_pushdown
 This variable was removed in MySQL 5.6.1. Use the           engine_condition_pushdown flag of the           optimizer_switch variable           instead. See SectionÂ 8.8.5.2, âControlling Switchable Optimizationsâ.  Formerly, this option set the           engine_condition_pushdown           system variable; the option and the variable were both removed           in MySQL 5.6.1. For more information, see           SectionÂ 8.2.1.5, âEngine Condition Pushdown Optimizationâ. 

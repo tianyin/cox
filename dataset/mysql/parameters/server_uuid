@@ -1,1 +1,2 @@
+server_uuid
 No master having the expected         server_uuid exists.  The master's server_uuid         has changed, although no CHANGE MASTER         TO statement has ever been executed. 

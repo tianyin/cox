@@ -1,3 +1,4 @@
+dfs.namenode.safemode.min.datanodes
 0
 Specifies the number of datanodes that must be considered alive
     before the name node exits safemode.

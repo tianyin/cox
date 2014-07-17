@@ -1,2 +1,3 @@
+dfs.blockreport.intervalMsec
 21600000
 Determines block reporting interval in milliseconds.

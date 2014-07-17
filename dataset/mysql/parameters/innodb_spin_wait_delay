@@ -1,1 +1,2 @@
+innodb_spin_wait_delay
 The maximum delay between polls for a           spin lock. The lowlevel           implementation of this mechanism varies depending on the           combination of hardware and operating system, so the delay           does not correspond to a fixed time interval. The default           value is 6. See           SectionÂ 14.2.12.2.23, âControl of Spin Lock Pollingâ for           more information. 

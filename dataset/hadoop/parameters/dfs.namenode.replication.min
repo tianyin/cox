@@ -1,2 +1,3 @@
+dfs.namenode.replication.min
 1
 Minimal block replication.

@@ -1,1 +1,2 @@
+innodb_purge_batch_size
 The granularity of changes, expressed in units of           redo log records, that           trigger a purge operation,           flushing the changed buffer           pool blocks to disk. This option is intended for tuning           performance in combination with the setting           innodb_purge_threads=n,           and typical users do not need to modify it. 

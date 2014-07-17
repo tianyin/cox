@@ -1,1 +1,2 @@
+ndb_table_temporary
 Setting this variable currently has no effect in MySQL               Cluster NDB 7.0 and later. This is a known issue; see Bug               #34036. 

@@ -1,1 +1,2 @@
+connect_timeout
 Increasing the           connect_timeout value might           help if clients frequently encounter errors of the form           Lost connection to MySQL server at           'XXX', system error:           errno. 

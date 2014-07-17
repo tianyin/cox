@@ -1,2 +1,3 @@
+dfs.datanode.hdfs-blocks-metadata.enabled
 false
 Boolean which enables backend datanode-side support for the experimental DistributedFileSystem#getFileVBlockStorageLocations API.

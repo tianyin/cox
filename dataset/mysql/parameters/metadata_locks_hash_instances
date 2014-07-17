@@ -1,1 +1,2 @@
+metadata_locks_hash_instances
 The set of metadata locks can be partitioned into separate           hashes to permit connections accessing different objects to           use different locking hashes and reduce contention. The           metadata_locks_hash_instances           system variable specifies the number of hashes (default 8).           This variable was added in MySQL 5.6.8. 

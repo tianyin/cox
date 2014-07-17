@@ -1,1 +1,2 @@
+performance_schema_events_statements_history_long_size
 The number of rows in the           events_statements_history_long           table. This variable was added in MySQL 5.6.3. 

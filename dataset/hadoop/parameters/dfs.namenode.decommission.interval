@@ -1,3 +1,4 @@
+dfs.namenode.decommission.interval
 30
 Namenode periodicity in seconds to check if decommission is 
   complete.

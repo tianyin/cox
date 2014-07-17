@@ -1,1 +1,2 @@
+character_set_results
 The character set used for returning query results such as           result sets or error messages to the client. 

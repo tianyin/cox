@@ -1,2 +1,3 @@
+dfs.replication.max
 512
 Maximal block replication.

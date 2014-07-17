@@ -1,2 +1,3 @@
+dfs.webhdfs.enabled
 false
 Enable WebHDFS (REST API) in Namenodes and Datanodes.

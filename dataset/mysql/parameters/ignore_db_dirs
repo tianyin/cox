@@ -1,1 +1,2 @@
+ignore_db_dirs
 This variable was added in MySQL 5.6.3. 

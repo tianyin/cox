@@ -1,1 +1,2 @@
+innodb_stats_on_metadata
 This variable is disabled by default as of MySQL 5.6.6,           enabled before that. 

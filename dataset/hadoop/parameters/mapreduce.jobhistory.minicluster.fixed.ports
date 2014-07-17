@@ -1,2 +1,3 @@
+mapreduce.jobhistory.minicluster.fixed.ports
 false
 Whether to use fixed ports with the minicluster

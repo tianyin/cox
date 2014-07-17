@@ -1,1 +1,2 @@
+innodb_ft_server_stopword_table
 The stopword table must be an InnoDB             table, containing a single VARCHAR column             named VALUE. The stopword table must             exist before you specify its name in the configuration             option value. 

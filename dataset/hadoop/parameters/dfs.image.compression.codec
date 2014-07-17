@@ -1,3 +1,4 @@
+dfs.image.compression.codec
 org.apache.hadoop.io.compress.DefaultCodec
 If the dfs image is compressed, how should they be compressed?
                This has to be a codec defined in io.compression.codecs.

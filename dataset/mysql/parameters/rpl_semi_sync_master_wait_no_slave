@@ -1,1 +1,2 @@
+rpl_semi_sync_master_wait_no_slave
 This variable is available only if the masterside           semisynchronous replication plugin is installed. 

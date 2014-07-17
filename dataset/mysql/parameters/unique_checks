@@ -1,1 +1,2 @@
+unique_checks
 Note that setting this variable to 0 does not           require storage engines to ignore           duplicate keys. An engine is still permitted to check for them           and issue duplicatekey errors if it detects them. 

@@ -1,1 +1,2 @@
+innodb_adaptive_flushing_lwm
 Low water mark representing percentage of           redo log capacity at           which adaptive           flushing is enabled. 

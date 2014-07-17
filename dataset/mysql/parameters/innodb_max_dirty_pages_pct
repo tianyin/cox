@@ -1,1 +1,2 @@
+innodb_max_dirty_pages_pct
 For additional information about this variable, see           SectionÂ 14.2.12.2.9, âImprovements to Buffer Pool Flushingâ. For general           I/O tuning advice, see           SectionÂ 8.5.7, âOptimizing InnoDB Disk I/Oâ. 

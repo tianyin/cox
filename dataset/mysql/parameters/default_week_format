@@ -1,1 +1,2 @@
+default_week_format
 The default mode value to use for the           WEEK() function. See           SectionÂ 12.7, âDate and Time Functionsâ. 

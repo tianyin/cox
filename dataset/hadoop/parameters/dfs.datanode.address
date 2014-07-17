@@ -1,2 +1,3 @@
+dfs.datanode.address
 0.0.0.0:50010
 The datanode server address and port for data transfer.

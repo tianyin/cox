@@ -1,3 +1,4 @@
+mapreduce.tasktracker.healthchecker.script.timeout
 600000
 Time after node health script should be killed if 
   unresponsive and considered that the script has failed.

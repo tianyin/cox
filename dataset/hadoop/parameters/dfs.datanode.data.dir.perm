@@ -1,3 +1,4 @@
+dfs.datanode.data.dir.perm
 700
 Permissions for the directories on on the local filesystem where
   the DFS data node store its blocks. The permissions can either be octal or

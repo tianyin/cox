@@ -1,3 +1,4 @@
+dfs.namenode.logging.level
 info
 The logging level for dfs namenode. Other values are "dir" (trace
     namespace mutations), "block" (trace block under/over replications
