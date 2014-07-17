@@ -1,104 +1,100 @@
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query number reduce tasks launch job command line
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query connect mysql server server ip
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query general java options started task
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query timeout control session
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
+INFO: match cases 39
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query speed mysql inserts
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query change hdfs block size file existing hdfs
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query mysql connection default character
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query backing namenode data
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query datetime format changed mysql 5.0 5.1
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query logs deleted quickly
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 21
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query file permissions hadoop os level
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query mysql accepting connections wp
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query multiple reduce jobs
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query utf8 collation information_schema latin1_swedish databases
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
+INFO: match cases 17
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query shrinking innodb data files big innodb table
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query append functionality hadoop
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 16
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query control number map tasks nodes
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query tcp port openning
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
+INFO: match cases 15
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query mysql server running unix socket
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query pass gz file file input mapreduce job
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query connection mysql encrypted
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query different hadoop.tmp.dir master slaves
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 18
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query block size
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 44
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query namenode online timeout 30 seconds accepts writes
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query encrypt network channel protocol servers mysql
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query limit space hadoop slave node
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query optimal setup bulk csv import
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
+INFO: match cases 41
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query increasing number mysql connections
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query set replication factor file
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query persistent connections timeout
+Jul 17, 2014 12:35:59 AM SearchFiles doPagingSearch
+INFO: match cases 48
+Jul 17, 2014 12:35:59 AM SearchFiles search_main
+INFO: searching query speed mysql import
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query java heap space error pfpgrowth
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 18
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query reduce mapred.map.tasks
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 30
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query default timeout datanode
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query wait_timeout connections named pipes
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query heartbeat timout tasktracker
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 24
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query increase heap size command line
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 24
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query container 200m heap space resize
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 19
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query start hdfs safe mode
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 30
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query maximum size physical memory container
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query path url
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
+INFO: match cases 13
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query speed restore individual inserts slow
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
+INFO: match cases 41
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query identify queries causing joins indexes
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query shortent start namenode pass safemode phase
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query make mysql find databases
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
 INFO: match cases 50
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query privilege user
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 26
-Jul 10, 2014 4:29:43 PM SearchFiles search_main
-INFO: searching query speed replication process
-Jul 10, 2014 4:29:43 PM SearchFiles doPagingSearch
-INFO: match cases 29
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query disable mysql cache queries similar amount time time
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
+INFO: match cases 50
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query enable general logging mysql
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
+INFO: match cases 50
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query change data directory databases stored
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
+INFO: match cases 50
+Jul 17, 2014 12:36:00 AM SearchFiles search_main
+INFO: searching query issues connecting remotely
+Jul 17, 2014 12:36:00 AM SearchFiles doPagingSearch
+INFO: match cases 50

@@ -24,3 +24,13 @@ if __name__ == '__main__':
     base_dir = '/home/tixu/Cox/benchmarks/data/' + appname
     config = EvalConfig(appname, parpath, poppath, p2mmaps, rnmmaps, testcase, base_dir)
     eval_wrap(config)
+
+    appname  = 'mysql'
+    parpath  = '/home/tixu/Cox/dataset/mysql/parameters'
+    poppath  = '/home/tixu/Cox/benchmarks/data/mysql_popularity.csv' 
+    p2mmaps  = None
+    testcase = '/home/tixu/Cox/benchmarks/data/mysql_tc_icon.csv' 
+    base_dir = '/home/tixu/Cox/benchmarks/data/' + appname
+    config = EvalConfig(appname, parpath, poppath, p2mmaps, None, testcase, base_dir)
+    eval_wrap(config)
+

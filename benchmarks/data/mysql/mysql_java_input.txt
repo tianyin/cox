@@ -1,0 +1,25 @@
+connect mysql server server ip
+timeout control session
+speed mysql inserts
+mysql connection default character
+datetime format changed mysql 5.0 5.1
+mysql accepting connections wp
+utf8 collation information_schema latin1_swedish databases
+shrinking innodb data files big innodb table
+tcp port openning
+mysql server running unix socket
+connection mysql encrypted
+encrypt network channel protocol servers mysql
+optimal setup bulk csv import
+increasing number mysql connections
+persistent connections timeout
+speed mysql import
+wait_timeout connections named pipes
+path url
+speed restore individual inserts slow
+identify queries causing joins indexes
+make mysql find databases
+disable mysql cache queries similar amount time time
+enable general logging mysql
+change data directory databases stored
+issues connecting remotely
