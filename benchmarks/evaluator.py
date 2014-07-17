@@ -27,10 +27,10 @@ def eval_wrap(config):
     """
     config is a EvalConfig instance
     """
-    print '\n~~~~~~~~~~~~~~~~~~evaluating ' + config.sw_name + '   start ~~~~~~'
+    print '\n~~~~~~~~~~~~~~~~~~evaluating ' + config.sw_name + ' start ~~~~~~'
     eval(config)
     compare_result(config)
-    print   '~~~~~~~~~~~~~~~~~~evaluating ' + config.sw_name + '   end ~~~~~~'
+    print   '~~~~~~~~~~~~~~~~~~evaluating ' + config.sw_name + ' end ~~~~~~'
 
 def eval(config):
     if not os.path.exists(config.index_path):
