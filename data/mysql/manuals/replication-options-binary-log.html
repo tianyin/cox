@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.6 Reference Manual :: 16.1.4.4 Binary Log Options and Variables</title>
+
+    
+    <link rel="stylesheet" media="screen" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="projection" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="print" href="/common/css/print.css?v=20111230" />
+
+            <link rel="stylesheet" href="/doc/docs.css" />
+        
+    
+    
+    
+    <link rel="contents" href="index.html" title="MySQL Manual" /><link rel="start" href="index.html" title="MySQL Manual" /><link rel="prev" href="replication-options-slave.html" title="16.1.4.3 Replication Slave Options and Variables"/><link rel="next" href="replication-options-gtids.html?ff=nopfpls" title="16.1.4.5 Global Transaction ID Options and Variables"/><link rel="up" href="replication-options.html" title="16.1.4 Replication and Binary Logging Options and Variables"/>        <link rel="shortcut icon" href="/common/themes/sakila/favicon.ico" />
+
+        <script src="/common/js/clear_search_text.js"></script>
+
+    
+        
+    
+    
+</head>
+
+<body class="doc" >
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header" >
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="/common/logos/logo-mysql-110x57.png" alt="MySQL" width="110" height="57" /></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input type="text" id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" />
+			<input type="hidden" id="search_dest" name="group" value="MySQL"/>
+			<input type="image" src="/common/themes/sakila/search_g.png" id="go" alt="Search" title="Search" />
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login" >
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Freplication-options-binary-log.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="/common/icons/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20" /></a>&nbsp;
+                <a href="https://plus.google.com/+mysql"><img src="/common/icons/googleplus.png" alt="Google+" title="Join Google+ to follow MySQL" width="20" height="20" /></a>&nbsp;
+                <a href="https://twitter.com/#!/mysql"><img src="/common/icons/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20" /></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="/common/icons/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br />
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a  href="/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.7/en/replication-options-binary-log.html" >MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.6 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.5/en/replication-options-binary-log.html" >MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.1/en/replication-options-binary-log.html" >MySQL 5.1 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.0/en/replication-options-binary-log.html" >MySQL 5.0 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/4.1/en/replication-options-binary-log.html" >MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br />
+		<input id="searchq" type="text" name="q" value="" size="14" />
+		<input id="searchsubmit" type="submit" value="Go" />
+		<input id="searchgroup" type="hidden" name="group" value="MySQL" />
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar" >
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="index.html"> MySQL 5.6 Reference Manual</a> :: <a href="replication.html">16 Replication</a> :: <a href="replication-configuration.html">16.1 Replication Configuration</a> :: <a href="replication-options.html">16.1.4 Replication and Binary Logging Options and Variables</a> :: 16.1.4.4 Binary Log Options and Variables</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="replication-options-slave.html" title="Previous Section">&laquo; 16.1.4.3 Replication Slave Options and Variables</a></div>
+		<hr size="1" noshade="noshade" align="center" width="40" style="margin: 0px auto 2px auto" />		<a style="text-decoration: none" href="replication-options-gtids.html" title="Next Section">16.1.4.5 Global Transaction ID Options and Variables  &raquo;</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');"  onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="replication-options.html">16.1.4 Replication and Binary Logging Options and Variables</a></li><li><a href="replication-options-table.html">16.1.4.1 Replication and Binary Logging Option and Variable Reference</a></li>
+<li><a href="replication-options-master.html">16.1.4.2 Replication Master Options and Variables</a></li>
+<li><a href="replication-options-slave.html">16.1.4.3 Replication Slave Options and Variables</a></li>
+<li class="self">16.1.4.4 Binary Log Options and Variables</li>
+<li><a href="replication-options-gtids.html">16.1.4.5 Global Transaction ID Options and Variables</a></li>
+</ul>
+
+			</ul>		
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="replication-options-binary-log"></a>16.1.4.4. Binary Log Options and Variables</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      You can use the <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> options and system
+      variables that are described in this section to affect the
+      operation of the binary log as well as to control which statements
+      are written to the binary log. For additional information about
+      the binary log, see <a class="xref" href="binary-log.html" title="5.2.4. The Binary Log">Section 5.2.4, “The Binary Log”</a>. For additional
+      information about using MySQL server options and system variables,
+      see <a class="xref" href="server-options.html" title="5.1.3. Server Command Options">Section 5.1.3, “Server Command Options”</a>, and
+      <a class="xref" href="server-system-variables.html" title="5.1.4. Server System Variables">Section 5.1.4, “Server System Variables”</a>.
+    </p><p><a name="replication-optvars-binlog"></a><b>Startup options used with binary logging. </b>
+        The following list describes startup options for enabling and
+        configuring the binary log. System variables used with binary
+        logging are discussed later in this section.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="option_mysqld_binlog-row-event-max-size"></a>
+          <a class="indexterm" name="idm47327505524752"></a>
+
+          <a class="indexterm" name="idm47327505523248"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-row-event-max-size"><code class="option">--binlog-row-event-max-size=<em class="replaceable"><code>N</code></em></code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog-row-event-max-size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog-row-event-max-size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog-row-event-max-size</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">32</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1024</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">256 .. 4294967295</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">64</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1024</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">256 .. 18446744073709547520</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">32</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">8192</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">256 .. 4294967295</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">64</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">8192</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">256 .. 18446744073709547520</code></td></tr></tbody></table>
+</div>
+<p>
+          Specify the maximum size of a row-based binary log event, in
+          bytes. Rows are grouped into events smaller than this size if
+          possible. The value should be a multiple of 256. The default
+          is 8192 as of MySQL 5.6.6 and 1024 before that. See
+          <a class="xref" href="replication-formats.html" title="16.1.2. Replication Formats">Section 16.1.2, “Replication Formats”</a>.
+        </p></li><li class="listitem"><p><a name="option_mysqld_log-bin"></a>
+          <a class="indexterm" name="idm47327505466576"></a>
+
+          <a class="indexterm" name="idm47327505465088"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin[=<em class="replaceable"><code>base_name</code></em>]</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log-bin" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--log-bin</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">log-bin</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin">log_bin</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">file name</code></td></tr></tbody></table>
+</div>
+<p>
+          Enable binary logging. The server logs all statements that
+          change data to the binary log, which is used for backup and
+          replication. See <a class="xref" href="binary-log.html" title="5.2.4. The Binary Log">Section 5.2.4, “The Binary Log”</a>.
+        </p><p>
+          The option value, if given, is the basename for the log
+          sequence. The server creates binary log files in sequence by
+          adding a numeric suffix to the basename. It is recommended
+          that you specify a basename (see <a class="xref" href="bugs.html" title="C.5.8. Known Issues in MySQL">Section C.5.8, “Known Issues in MySQL”</a>, for
+          the reason). Otherwise, MySQL uses
+          <code class="filename"><em class="replaceable"><code>host_name</code></em>-bin</code>
+          as the basename.
+        </p><p>
+          In MySQL 5.6.5 and later, when the server reads an entry from
+          the index file, it checks whether the entry contains a
+          relative path, and if it does, the relative part of the path
+          in replaced with the absolute path set using the
+          <code class="option">--log-bin</code> option. An absolute path remains
+          unchanged; in such a case, the index must be edited manually
+          to enable the new path or paths to be used. Previous to MySQL
+          5.6.5, manual intervention was required whenever relocating
+          the binary log or relay log files. (Bug #11745230, Bug #12133)
+        </p><p>
+          Setting this option causes the
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_bin"><code class="literal">log_bin</code></a> system variable to be
+          set to <code class="literal">ON</code> (or <code class="literal">1</code>), and
+          not to the basename. Beginning with MySQL 5.6.2, the binary
+          log filename (with path) is available as the
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_basename"><code class="literal">log_bin_basename</code></a> system
+          variable.
+        </p></li><li class="listitem"><p><a name="option_mysqld_log-bin-index"></a>
+          <a class="indexterm" name="idm47327505434080"></a>
+
+          <a class="indexterm" name="idm47327505432592"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin-index"><code class="option">--log-bin-index[=<em class="replaceable"><code>file_name</code></em>]</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log-bin-index" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--log-bin-index=name</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">log-bin-index</code></td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">file name</code></td></tr></tbody></table>
+</div>
+<p>
+          The index file for binary log file names. See
+          <a class="xref" href="binary-log.html" title="5.2.4. The Binary Log">Section 5.2.4, “The Binary Log”</a>. If you omit the file name, and
+          if you did not specify one with
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin</code></a>, MySQL uses
+          <code class="filename"><em class="replaceable"><code>host_name</code></em>-bin.index</code>
+          as the file name.
+        </p></li><li class="listitem"><p><a name="option_mysqld_log-bin-trust-function-creators"></a>
+          <a class="indexterm" name="idm47327505413408"></a>
+
+          <a class="indexterm" name="idm47327505411904"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin-trust-function-creators"><code class="option">--log-bin-trust-function-creators[={0|1}]</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log-bin-trust-function-creators" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--log-bin-trust-function-creators</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">log-bin-trust-function-creators</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="server-system-variables.html#sysvar_log_bin_trust_function_creators">log_bin_trust_function_creators</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">FALSE</code></td></tr></tbody></table>
+</div>
+<p>
+          This option sets the corresponding
+          <a class="link" href="server-system-variables.html#sysvar_log_bin_trust_function_creators"><code class="literal">log_bin_trust_function_creators</code></a>
+          system variable. If no argument is given, the option sets the
+          variable to 1.
+          <a class="link" href="server-system-variables.html#sysvar_log_bin_trust_function_creators"><code class="literal">log_bin_trust_function_creators</code></a>
+          affects how MySQL enforces restrictions on stored function and
+          trigger creation. See
+          <a class="xref" href="stored-programs-logging.html" title="19.7. Binary Logging of Stored Programs">Section 19.7, “Binary Logging of Stored Programs”</a>.
+        </p></li><li class="listitem"><p><a name="option_mysqld_log-bin-use-v1-row-events"></a>
+          <a class="indexterm" name="idm47327505384464"></a>
+
+          <a class="indexterm" name="idm47327505382960"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin-use-v1-row-events"><code class="option">--log-bin-use-v1-row-events[={0|1}]</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log-bin-use-v1-row-events" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.6</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--log-bin-use-v1-row-events[={0|1}]</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">log-bin-use-v1-row-events</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events">log_bin_use_v1_row_events</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">0</code></td></tr></tbody></table>
+</div>
+<p>
+          Version 2 binary log row events are available beginning with
+          MySQL 5.6.6; however, Version 2 events cannot be read by
+          previous MySQL Server releases. Setting this option to 1
+          causes <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> to write the binary log using
+          Version 1 logging events, which is the only version of binary
+          log events used in previous releases, and thus produce binary
+          logs that can be read by older slaves. Setting
+          <code class="option">--log-bin-use-v1-row-events</code> to 0 (the
+          default) causes <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> to use Version 2
+          binary log events.
+        </p><p>
+          The value used for this option can be obtained from the
+          read-only
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events"><code class="literal">log_bin_use_v1_row_events</code></a>
+          system variable.
+        </p><p>
+          <code class="option">--log-bin-use-v1-row-events</code> is chiefly of
+          interest when setting up replication conflict detection and
+          resolution using <code class="literal">NDB$EPOCH_TRANS()</code> as the
+          conflict detection function, which requires Version 2 binary
+          log row events. Thus, this option and
+          <a class="link" href="mysql-cluster-program-options-mysqld.html#option_mysqld_ndb-log-transaction-id"><code class="option">--ndb-log-transaction-id</code></a> are
+          not compatible.
+        </p><p>
+          For more information, see
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html" title="17.6.11. MySQL Cluster Replication Conflict Resolution">Section 17.6.11, “MySQL Cluster Replication Conflict Resolution”</a>.
+        </p></li><li class="listitem"><p>
+
+
+          <a class="indexterm" name="idm47327505348832"></a>
+
+          <a class="indexterm" name="idm47327505347344"></a>
+
+          <a class="link" href="server-options.html#option_mysqld_log-short-format"><code class="option">--log-short-format</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log-short-format" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--log-short-format</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">log-short-format</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">FALSE</code></td></tr></tbody></table>
+</div>
+<p>
+          Log less information to the binary log and slow query log, if
+          they have been activated.
+</p></li></ul>
+</div>
+<p><b>Statement selection options. </b>
+        The options in the following list affect which statements are
+        written to the binary log, and thus sent by a replication master
+        server to its slaves. There are also options for slave servers
+        that control which statements received from the master should be
+        executed or ignored. For details, see
+        <a class="xref" href="replication-options-slave.html" title="16.1.4.3. Replication Slave Options and Variables">Section 16.1.4.3, “Replication Slave Options and Variables”</a>.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="option_mysqld_binlog-do-db"></a>
+          <a class="indexterm" name="idm47327505326288"></a>
+
+          <a class="indexterm" name="idm47327505324800"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db=<em class="replaceable"><code>db_name</code></em></code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog-do-db" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog-do-db=name</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog-do-db</code></td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+          This option affects binary logging in a manner similar to the
+          way that <a class="link" href="replication-options-slave.html#option_mysqld_replicate-do-db"><code class="option">--replicate-do-db</code></a>
+          affects replication.
+        </p><p>
+          The effects of this option depend on whether the
+          statement-based or row-based logging format is in use, in the
+          same way that the effects of
+          <a class="link" href="replication-options-slave.html#option_mysqld_replicate-do-db"><code class="option">--replicate-do-db</code></a> depend on
+          whether statement-based or row-based replication is in use.
+          You should keep in mind that the format used to log a given
+          statement may not necessarily be the same as that indicated by
+          the value of <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a>.
+          For example, DDL statements such as
+          <a class="link" href="create-table.html" title="13.1.17. CREATE TABLE Syntax"><code class="literal">CREATE TABLE</code></a> and
+          <a class="link" href="alter-table.html" title="13.1.7. ALTER TABLE Syntax"><code class="literal">ALTER TABLE</code></a> are always logged
+          as statements, without regard to the logging format in effect,
+          so the following statement-based rules for
+          <code class="option">--binlog-do-db</code> always apply in determining
+          whether or not the statement is logged.
+        </p><p><b>Statement-based logging. </b>
+            Only those statements are written to the binary log where
+            the default database (that is, the one selected by
+            <a class="link" href="use.html" title="13.8.4. USE Syntax"><code class="literal">USE</code></a>) is
+            <em class="replaceable"><code>db_name</code></em>. To specify more than one
+            database, use this option multiple times, once for each
+            database; however, doing so does <span class="emphasis"><em>not</em></span>
+            cause cross-database statements such as <code class="literal">UPDATE
+            <em class="replaceable"><code>some_db.some_table</code></em> SET
+            foo='bar'</code> to be logged while a different database
+            (or no database) is selected.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Warning
+</div>
+<p xmlns="">
+            To specify multiple databases you <span class="emphasis"><em>must</em></span>
+            use multiple instances of this option. Because database
+            names can contain commas, the list will be treated as the
+            name of a single database if you supply a comma-separated
+            list.
+</p>
+</div>
+<p>
+          An example of what does not work as you might expect when
+          using statement-based logging: If the server is started with
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db=sales</code></a> and you
+          issue the following statements, the
+          <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> statement is
+          <span class="emphasis"><em>not</em></span> logged:
+        </p><pre class="programlisting">
+USE prices;
+UPDATE sales.january SET amount=amount+1000;
+</pre><p>
+          The main reason for this <span class="quote">“<span class="quote">just check the default
+          database</span>”</span> behavior is that it is difficult from the
+          statement alone to know whether it should be replicated (for
+          example, if you are using multiple-table
+          <a class="link" href="delete.html" title="13.2.2. DELETE Syntax"><code class="literal">DELETE</code></a> statements or
+          multiple-table <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a>
+          statements that act across multiple databases). It is also
+          faster to check only the default database rather than all
+          databases if there is no need.
+        </p><p>
+          Another case which may not be self-evident occurs when a given
+          database is replicated even though it was not specified when
+          setting the option. If the server is started with
+          <code class="option">--binlog-do-db=sales</code>, the following
+          <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> statement is logged even
+          though <code class="literal">prices</code> was not included when setting
+          <code class="option">--binlog-do-db</code>:
+        </p><pre class="programlisting">          
+USE sales;
+UPDATE prices.discounts SET percentage = percentage + 10;
+</pre><p>
+          Because <code class="literal">sales</code> is the default database when
+          the <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> statement is issued,
+          the <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> is logged.
+        </p><p><b>Row-based logging. </b>
+            Logging is restricted to database
+            <em class="replaceable"><code>db_name</code></em>. Only changes to tables
+            belonging to <em class="replaceable"><code>db_name</code></em> are logged;
+            the default database has no effect on this. Suppose that the
+            server is started with
+            <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db=sales</code></a> and
+            row-based logging is in effect, and then the following
+            statements are executed:
+          </p><pre class="programlisting">
+USE prices;
+UPDATE sales.february SET amount=amount+100;
+</pre><p>
+          The changes to the <code class="literal">february</code> table in the
+          <code class="literal">sales</code> database are logged in accordance
+          with the <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> statement; this
+          occurs whether or not the <a class="link" href="use.html" title="13.8.4. USE Syntax"><code class="literal">USE</code></a>
+          statement was issued. However, when using the row-based
+          logging format and
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db=sales</code></a>, changes
+          made by the following <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a>
+          are not logged:
+        </p><pre class="programlisting">
+USE prices;
+UPDATE prices.march SET amount=amount-25;
+</pre><p>
+          Even if the <code class="literal">USE prices</code> statement were
+          changed to <code class="literal">USE sales</code>, the
+          <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> statement's effects
+          would still not be written to the binary log.
+        </p><p>
+          Another important difference in
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db</code></a> handling for
+          statement-based logging as opposed to the row-based logging
+          occurs with regard to statements that refer to multiple
+          databases. Suppose that the server is started with
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db=db1</code></a>, and the
+          following statements are executed:
+        </p><pre class="programlisting">
+USE db1;
+UPDATE db1.table1 SET col1 = 10, db2.table2 SET col2 = 20;
+</pre><p>
+          If you are using statement-based logging, the updates to both
+          tables are written to the binary log. However, when using the
+          row-based format, only the changes to
+          <code class="literal">table1</code> are logged;
+          <code class="literal">table2</code> is in a different database, so it is
+          not changed by the <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a>. Now
+          suppose that, instead of the <code class="literal">USE db1</code>
+          statement, a <code class="literal">USE db4</code> statement had been
+          used:
+        </p><pre class="programlisting">
+USE db4;
+UPDATE db1.table1 SET col1 = 10, db2.table2 SET col2 = 20;
+</pre><p>
+          In this case, the <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a>
+          statement is not written to the binary log when using
+          statement-based logging. However, when using row-based
+          logging, the change to <code class="literal">table1</code> is logged,
+          but not that to <code class="literal">table2</code>—in other
+          words, only changes to tables in the database named by
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db</code></a> are logged, and
+          the choice of default database has no effect on this behavior.
+        </p></li><li class="listitem"><p><a name="option_mysqld_binlog-ignore-db"></a>
+          <a class="indexterm" name="idm47327505258064"></a>
+
+          <a class="indexterm" name="idm47327505256576"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-ignore-db"><code class="option">--binlog-ignore-db=<em class="replaceable"><code>db_name</code></em></code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog-ignore-db" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog-ignore-db=name</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog-ignore-db</code></td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+          This option affects binary logging in a manner similar to the
+          way that <a class="link" href="replication-options-slave.html#option_mysqld_replicate-ignore-db"><code class="option">--replicate-ignore-db</code></a>
+          affects replication.
+        </p><p>
+          The effects of this option depend on whether the
+          statement-based or row-based logging format is in use, in the
+          same way that the effects of
+          <a class="link" href="replication-options-slave.html#option_mysqld_replicate-ignore-db"><code class="option">--replicate-ignore-db</code></a> depend on
+          whether statement-based or row-based replication is in use.
+          You should keep in mind that the format used to log a given
+          statement may not necessarily be the same as that indicated by
+          the value of <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a>.
+          For example, DDL statements such as
+          <a class="link" href="create-table.html" title="13.1.17. CREATE TABLE Syntax"><code class="literal">CREATE TABLE</code></a> and
+          <a class="link" href="alter-table.html" title="13.1.7. ALTER TABLE Syntax"><code class="literal">ALTER TABLE</code></a> are always logged
+          as statements, without regard to the logging format in effect,
+          so the following statement-based rules for
+          <code class="option">--binlog-ignore-db</code> always apply in
+          determining whether or not the statement is logged.
+        </p><p><b>Statement-based logging. </b>
+            Tells the server to not log any statement where the default
+            database (that is, the one selected by
+            <a class="link" href="use.html" title="13.8.4. USE Syntax"><code class="literal">USE</code></a>) is
+            <em class="replaceable"><code>db_name</code></em>.
+          </p><p>
+          Prior to MySQL 5.6.12, this option caused any statements
+          containing fully qualified table names not to be logged if
+          there was no default database specified (that is, when
+          <a class="link" href="select.html" title="13.2.9. SELECT Syntax"><code class="literal">SELECT</code></a>
+          <a class="link" href="information-functions.html#function_database"><code class="literal">DATABASE()</code></a> returned
+          <code class="literal">NULL</code>). In MySQL 5.6.12 and later, when
+          there is no default database, no
+          <code class="option">--binlog-ignore-db</code> options are applied, and
+          such statements are always logged. (Bug #11829838, Bug #60188)
+        </p><p><b>Row-based format. </b>
+            Tells the server not to log updates to any tables in the
+            database <em class="replaceable"><code>db_name</code></em>. The current
+            database has no effect.
+          </p><p>
+          When using statement-based logging, the following example does
+          not work as you might expect. Suppose that the server is
+          started with
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-ignore-db"><code class="option">--binlog-ignore-db=sales</code></a> and
+          you issue the following statements:
+        </p><pre class="programlisting">
+USE prices;
+UPDATE sales.january SET amount=amount+1000;
+</pre><p>
+          The <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> statement
+          <span class="emphasis"><em>is</em></span> logged in such a case because
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-ignore-db"><code class="option">--binlog-ignore-db</code></a> applies only
+          to the default database (determined by the
+          <a class="link" href="use.html" title="13.8.4. USE Syntax"><code class="literal">USE</code></a> statement). Because the
+          <code class="literal">sales</code> database was specified explicitly in
+          the statement, the statement has not been filtered. However,
+          when using row-based logging, the
+          <a class="link" href="update.html" title="13.2.11. UPDATE Syntax"><code class="literal">UPDATE</code></a> statement's effects
+          are <span class="emphasis"><em>not</em></span> written to the binary log, which
+          means that no changes to the <code class="literal">sales.january</code>
+          table are logged; in this instance,
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-ignore-db"><code class="option">--binlog-ignore-db=sales</code></a> causes
+          <span class="emphasis"><em>all</em></span> changes made to tables in the
+          master's copy of the <code class="literal">sales</code> database to
+          be ignored for purposes of binary logging.
+        </p><p>
+          To specify more than one database to ignore, use this option
+          multiple times, once for each database. Because database names
+          can contain commas, the list will be treated as the name of a
+          single database if you supply a comma-separated list.
+        </p><p>
+          You should not use this option if you are using cross-database
+          updates and you do not want these updates to be logged.
+</p></li></ul>
+</div>
+<p><b>Checksum options. </b>
+        Beginning with MySQL 5.6.2, MySQL supports reading and writing
+        of binary log checksums. These are enabled using the two options
+        listed here:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="option_mysqld_binlog-checksum"></a>
+          <a class="indexterm" name="idm47327505212432"></a>
+
+          <a class="indexterm" name="idm47327505210944"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-checksum"><code class="option">--binlog-checksum={NONE|CRC32}</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog-checksum" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog-checksum=type</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog-checksum</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">NONE</code></td></tr><tr><td scope="row" rowspan="2" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">NONE</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">CRC32</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">CRC32</code></td></tr><tr><td scope="row" rowspan="2" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">NONE</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">CRC32</code></td></tr></tbody></table>
+</div>
+<p>
+          Enabling this option causes the master to write checksums for
+          events written to the binary log. Set to
+          <code class="literal">NONE</code> to disable, or the name of the
+          algorithm to be used for generating checksums; currently, only
+          CRC32 checksums are supported. As of MySQL 5.6.6, CRC32 is the
+          default.
+        </p><p>
+          This option was added in MySQL 5.6.2.
+        </p></li><li class="listitem"><p><a name="option_mysqld_master-verify-checksum"></a>
+          <a class="indexterm" name="idm47327505174432"></a>
+
+          <a class="indexterm" name="idm47327505172928"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_master-verify-checksum"><code class="option">--master-verify-checksum={0|1}</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for master-verify-checksum" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--master-verify-checksum=name</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">master-verify-checksum</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr></tbody></table>
+</div>
+<p>
+          Enabling this option causes the master to verify events from
+          the binary log using checksums, and to stop with an error in
+          the event of a mismatch. Disabled by default.
+        </p><p>
+          This option was added in MySQL 5.6.2.
+</p></li></ul>
+</div>
+<p>
+      To control reading of checksums by the slave (from the relay) log,
+      use the <a class="link" href="replication-options-slave.html#option_mysqld_slave-sql-verify-checksum"><code class="option">--slave-sql-verify-checksum</code></a>
+      option.
+    </p><p><b>Testing and debugging options. </b>
+        The following binary log options are used in replication testing
+        and debugging. They are not intended for use in normal
+        operations.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="option_mysqld_max-binlog-dump-events"></a>
+          <a class="indexterm" name="idm47327505148096"></a>
+
+          <a class="indexterm" name="idm47327505146592"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_max-binlog-dump-events"><code class="option">--max-binlog-dump-events=<em class="replaceable"><code>N</code></em></code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for max-binlog-dump-events" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--max-binlog-dump-events=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">max-binlog-dump-events</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">0</code></td></tr></tbody></table>
+</div>
+<p>
+          This option is used internally by the MySQL test suite for
+          replication testing and debugging.
+        </p></li><li class="listitem"><p><a name="option_mysqld_sporadic-binlog-dump-fail"></a>
+          <a class="indexterm" name="idm47327505127760"></a>
+
+          <a class="indexterm" name="idm47327505126256"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_sporadic-binlog-dump-fail"><code class="option">--sporadic-binlog-dump-fail</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for sporadic-binlog-dump-fail" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--sporadic-binlog-dump-fail</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">sporadic-binlog-dump-fail</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">FALSE</code></td></tr></tbody></table>
+</div>
+<p>
+          This option is used internally by the MySQL test suite for
+          replication testing and debugging.
+        </p></li><li class="listitem"><p><a name="option_mysqld_binlog-rows-query-log-events"></a>
+          <a class="indexterm" name="idm47327505107616"></a>
+
+          <a class="indexterm" name="idm47327505106112"></a>
+
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-rows-query-log-events"><code class="option">--binlog-rows-query-log-events</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog-rows-query-log-events" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog-rows-query-log-events</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog-rows-query-log-events</code></td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">FALSE</code></td></tr></tbody></table>
+</div>
+<p>
+          Added in MySQL 5.6.2, this option enables
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_rows_query_log_events"><code class="literal">binlog_rows_query_log_events</code></a>.
+          Must be set to <code class="literal">OFF</code> (the default) when
+          generating logs for a MySQL 5.6.1 or earlier slave server or
+          version of <a class="link" href="mysqlbinlog.html" title="4.6.8. mysqlbinlog — Utility for Processing Binary Log Files"><span class="command"><strong>mysqlbinlog</strong></span></a>.
+</p></li></ul>
+</div>
+<p><a name="replication-sysvars-binlog"></a><b>System variables used with the binary log. </b>
+        The following list describes system variables for controlling
+        binary logging. They can be set at server startup and some of
+        them can be changed at runtime using
+        <a class="link" href="set-statement.html" title="13.7.4. SET Syntax"><code class="literal">SET</code></a>.
+        Server options used to control binary logging are listed earlier
+        in this section. For information about the
+        <a class="link" href="server-system-variables.html#sysvar_sql_log_bin"><code class="literal">sql_log_bin</code></a> and
+        <a class="link" href="server-system-variables.html#sysvar_sql_log_off"><code class="literal">sql_log_off</code></a> variables, see
+        <a class="xref" href="server-system-variables.html" title="5.1.4. Server System Variables">Section 5.1.4, “Server System Variables”</a>.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="sysvar_binlog_cache_size"></a>
+          <a class="indexterm" name="idm47327505077856"></a>
+
+          <a class="indexterm" name="idm47327505076768"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_cache_size"><code class="literal">binlog_cache_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_cache_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog_cache_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog_cache_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_cache_size">binlog_cache_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">32</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">32768</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">4096 .. 4294967295</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">64</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">32768</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">4096 .. 18446744073709547520</code></td></tr></tbody></table>
+</div>
+<p>
+          The size of the cache to hold changes to the binary log during
+          a transaction. A binary log cache is allocated for each client
+          if the server supports any transactional storage engines and
+          if the server has the binary log enabled
+          (<a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin</code></a> option). If you
+          often use large transactions, you can increase this cache size
+          to get better performance. The
+          <a class="link" href="server-status-variables.html#statvar_Binlog_cache_use"><code class="literal">Binlog_cache_use</code></a> and
+          <a class="link" href="server-status-variables.html#statvar_Binlog_cache_disk_use"><code class="literal">Binlog_cache_disk_use</code></a> status
+          variables can be useful for tuning the size of this variable.
+          See <a class="xref" href="binary-log.html" title="5.2.4. The Binary Log">Section 5.2.4, “The Binary Log”</a>.
+        </p><p>
+          <code class="literal">binlog_cache_size</code> sets the size for the
+          transaction cache only; the size of the statement cache is
+          governed by the
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_stmt_cache_size"><code class="literal">binlog_stmt_cache_size</code></a> system
+          variable.
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_checksum"></a>
+          <a class="indexterm" name="idm47327505031008"></a>
+
+          <a class="indexterm" name="idm47327505029920"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_checksum"><code class="literal">binlog_checksum</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_checksum" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_checksum">binlog_checksum</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&lt;= 5.6.5)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">NONE</code></td></tr><tr><td scope="row" rowspan="2" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">NONE</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">CRC32</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">CRC32</code></td></tr><tr><td scope="row" rowspan="2" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">NONE</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">CRC32</code></td></tr></tbody></table>
+</div>
+<p>
+          When enabled, this variable causes the master to write a
+          checksum for each event in the binary log.
+          <code class="literal">binlog_checksum</code> supports the values
+          <code class="literal">NONE</code> (disabled) and
+          <code class="literal">CRC32</code>. The default is
+          <code class="literal">CRC32</code> as of MySQL 5.6.6,
+          <code class="literal">NONE</code> before that.
+        </p><p>
+          When <code class="literal">binlog_checksum</code> is disabled (value
+          <code class="literal">NONE</code>), the server verifies that it is
+          writing only complete events to the binary log by writing and
+          checking the event length (rather than a checksum) for each
+          event.
+        </p><p>
+          Changing the value of this variable causes the binary log to
+          be rotated; checksums are always written to an entire binary
+          log file, and never to only part of one.
+        </p><p>
+          This variable was added in MySQL 5.6.2.
+        </p><p>
+          In MySQL 5.6.6 and later, setting this variable on the master
+          to a value unrecognized by the slave causes the slave to set
+          its own <code class="literal">binlog_checksum</code> value to
+          <code class="literal">NONE</code>, and to stop replication with an
+          error. (Bug #13553750, Bug #61096) If backward compatibility
+          with older slaves is a concern, you may want to set the value
+          explicitly to <code class="literal">NONE</code>.
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_direct_non_transactional_updates"></a>
+          <a class="indexterm" name="idm47327504983280"></a>
+
+          <a class="indexterm" name="idm47327504982176"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates"><code class="literal">binlog_direct_non_transactional_updates</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_direct_non_transactional_updates" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog_direct_non_transactional_updates[=value]</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog_direct_non_transactional_updates</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates">binlog_direct_non_transactional_updates</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global, Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr></tbody></table>
+</div>
+<p>
+          Due to concurrency issues, a slave can become inconsistent
+          when a transaction contains updates to both transactional and
+          nontransactional tables. MySQL tries to preserve causality
+          among these statements by writing nontransactional statements
+          to the transaction cache, which is flushed upon commit.
+          However, problems arise when modifications done to
+          nontransactional tables on behalf of a transaction become
+          immediately visible to other connections because these changes
+          may not be written immediately into the binary log.
+        </p><p>
+          The
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates"><code class="literal">binlog_direct_non_transactional_updates</code></a>
+          variable offers one possible workaround to this issue. By
+          default, this variable is disabled. Enabling
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates"><code class="literal">binlog_direct_non_transactional_updates</code></a>
+          causes updates to nontransactional tables to be written
+          directly to the binary log, rather than to the transaction
+          cache.
+        </p><p>
+          <span class="emphasis"><em><a class="link" href="replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates"><code class="literal">binlog_direct_non_transactional_updates</code></a>
+          works only for statements that are replicated using the
+          statement-based binary logging format</em></span>; that is, it
+          works only when the value of
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> is
+          <code class="literal">STATEMENT</code>, or when
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> is
+          <code class="literal">MIXED</code> and a given statement is being
+          replicated using the statement-based format. This variable has
+          no effect when the binary log format is
+          <code class="literal">ROW</code>, or when
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> is set to
+          <code class="literal">MIXED</code> and a given statement is replicated
+          using the row-based format.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p xmlns="">
+            Before enabling this variable, you must make certain that
+            there are no dependencies between transactional and
+            nontransactional tables; an example of such a dependency
+            would be the statement <code class="literal">INSERT INTO myisam_table
+            SELECT * FROM innodb_table</code>. Otherwise, such
+            statements are likely to cause the slave to diverge from the
+            master.
+</p>
+</div>
+<p>
+          In MySQL 5.6, this variable has no effect when
+          the binary log format is <code class="literal">ROW</code> or
+          <code class="literal">MIXED</code>. (Bug #51291)
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_format"></a>
+          <a class="indexterm" name="idm47327504943120"></a>
+
+          <a class="indexterm" name="idm47327504942032"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog-format" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog-format=format</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog-format</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_format">binlog_format</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global, Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="6"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">enumeration</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">STATEMENT</code></td></tr><tr><td scope="row" rowspan="3" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">ROW</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">STATEMENT</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">MIXED</code></td></tr></tbody></table>
+</div>
+<p>
+          This variable sets the binary logging format, and can be any
+          one of <code class="literal">STATEMENT</code>, <code class="literal">ROW</code>,
+          or <code class="literal">MIXED</code>. See
+          <a class="xref" href="replication-formats.html" title="16.1.2. Replication Formats">Section 16.1.2, “Replication Formats”</a>.
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> is set by the
+          <a class="link" href="server-options.html#option_mysqld_binlog-format"><code class="option">--binlog-format</code></a> option at
+          startup, or by the
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> variable at
+          runtime.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            While you can change the logging format at runtime, it is
+            <span class="emphasis"><em>not</em></span> recommended that you change it
+            while replication is ongoing. This is due in part to the
+            fact that slaves do not honor the master's
+            <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> setting; a
+            given MySQL Server can change only its own logging format.
+</p>
+</div>
+<p>
+          In MySQL 5.6, the default format is
+          <code class="literal">STATEMENT</code>. <span class="emphasis"><em>Exception</em></span>:
+          For MySQL Cluster NDB 7.3, the default is
+          <code class="literal">MIXED</code>; statement-based replication is not
+          supported for MySQL Cluster.
+        </p><p>
+          You must have the <a class="link" href="privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+          privilege to set either the global or session
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> value.
+        </p><p>
+          The rules governing when changes to this variable take effect
+          and how long the effect lasts are the same as for other MySQL
+          server system variables. See <a class="xref" href="set-statement.html" title="13.7.4. SET Syntax">Section 13.7.4, “<code class="literal">SET</code> Syntax”</a>,
+          for more information.
+        </p><p>
+          When <code class="literal">MIXED</code> is specified, statement-based
+          replication is used, except for cases where only row-based
+          replication is guaranteed to lead to proper results. For
+          example, this happens when statements contain user-defined
+          functions (UDF) or the <a class="link" href="miscellaneous-functions.html#function_uuid"><code class="literal">UUID()</code></a>
+          function. An exception to this rule is that
+          <code class="literal">MIXED</code> always uses statement-based
+          replication for stored functions and triggers.
+        </p><p>
+          There are exceptions when you cannot switch the replication
+          format at runtime:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              From within a stored function or a trigger.
+            </p></li><li class="listitem"><p>
+              If the session is currently in row-based replication mode
+              and has open temporary tables.
+            </p></li><li class="listitem"><p>
+              From within a transaction.
+</p></li></ul>
+</div>
+<p>
+          Trying to switch the format in those cases results in an
+          error.
+        </p><p>
+          The binary log format affects the behavior of the following
+          server options:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              <a class="link" href="replication-options-slave.html#option_mysqld_replicate-do-db"><code class="option">--replicate-do-db</code></a>
+            </p></li><li class="listitem"><p>
+              <a class="link" href="replication-options-slave.html#option_mysqld_replicate-ignore-db"><code class="option">--replicate-ignore-db</code></a>
+            </p></li><li class="listitem"><p>
+              <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-do-db"><code class="option">--binlog-do-db</code></a>
+            </p></li><li class="listitem"><p>
+              <a class="link" href="replication-options-binary-log.html#option_mysqld_binlog-ignore-db"><code class="option">--binlog-ignore-db</code></a>
+</p></li></ul>
+</div>
+<p>
+          These effects are discussed in detail in the descriptions of
+          the individual options.
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_max_flush_queue_time"></a>
+          <a class="indexterm" name="idm47327504883360"></a>
+
+          <a class="indexterm" name="idm47327504882256"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_max_flush_queue_time"><code class="literal">binlog_max_flush_queue_time</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_max_flush_queue_time" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.6</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_max_flush_queue_time">binlog_max_flush_queue_time</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">0</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">0 .. 100000</code></td></tr></tbody></table>
+</div>
+<p>
+          How long in microseconds to keep reading transactions from the
+          flush queue before proceeding with the group commit (and
+          syncing the log to disk, if
+          <a class="link" href="replication-options-binary-log.html#sysvar_sync_binlog"><code class="literal">sync_binlog</code></a> is greater than
+          0). If the value is 0 (the default), there is no timeout and
+          the server keeps reading new transactions until the queue is
+          empty.
+        </p><p>
+          Normally,
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_max_flush_queue_time"><code class="literal">binlog_max_flush_queue_time</code></a>
+          can remain set to 0. If the server processes a large number of
+          connections (for example, 100 or more) and many short
+          transactions with low-latency requirements, it may be useful
+          to set the value larger than 0 to force more frequent flushes
+          to disk.
+        </p><p>
+          This variable was added in MySQL 5.6.6.
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_order_commits"></a>
+          <a class="indexterm" name="idm47327504854624"></a>
+
+          <a class="indexterm" name="idm47327504853536"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_order_commits"><code class="literal">binlog_order_commits</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_order_commits" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.6</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_order_commits">binlog_order_commits</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">ON</code></td></tr></tbody></table>
+</div>
+<p>
+          If this variable is enabled (the default), transactions are
+          committed in the same order they are written to the binary
+          log. If disabled, transactions may be committed in parallel.
+          In some cases, disabling this variable might produce a
+          performance increment.
+        </p><p>
+          This variable was added in MySQL 5.6.6.
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_row_image"></a>
+          <a class="indexterm" name="idm47327504830704"></a>
+
+          <a class="indexterm" name="idm47327504829616"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_row_image"><code class="literal">binlog_row_image</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_row_image" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog-row-image=image_type</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog_row_image</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal">binlog_row_image=image_type</code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global, Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="6"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">enumeration</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">full</code></td></tr><tr><td scope="row" rowspan="3" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">full</code> (Log all columns)</td></tr><tr><td scope="row" colspan="2"><code class="literal">minimal</code> (Log only changed columns, and columns needed to identify rows)</td></tr><tr><td scope="row" colspan="2"><code class="literal">noblob</code> (Log all columns, except for unneeded BLOB and TEXT columns)</td></tr></tbody></table>
+</div>
+<p>
+          In MySQL row-based replication, each row change event contains
+          two images, a <span class="quote">“<span class="quote">before</span>”</span> image whose columns are
+          matched against when searching for the row to be updated, and
+          an <span class="quote">“<span class="quote">after</span>”</span> image containing the changes.
+          Normally, MySQL logs full rows (that is, all columns) for both
+          the before and after images. However, it is not strictly
+          necessary to include every column in both images, and we can
+          often save disk, memory, and network usage by logging only
+          those columns which are actually required.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            When deleting a row, only the before image is logged, since
+            there are no changed values to propagate following the
+            deletion. When inserting a row, only the after image is
+            logged, since there is no existing row to be matched. Only
+            when updating a row are both the before and after images
+            required, and both written to the binary log.
+</p>
+</div>
+<p>
+          For the before image, it is necessary only that the minimum
+          set of columns required to uniquely identify rows is logged.
+          If the table containing the row has a primary key, then only
+          the primary key column or columns are written to the binary
+          log. Otherwise, if the table has a unique key all of whose
+          columns are <code class="literal">NOT NULL</code>, then only the columns
+          in the unique key need be logged. (If the table has neither a
+          primary key nor a unique key without any
+          <code class="literal">NULL</code> columns, then all columns must be used
+          in the before image, and logged.) In the after image, it is
+          necessary to log only the columns which have actually changed.
+        </p><p>
+          In MySQL 5.6, you can cause the server to log full or minimal
+          rows using the <code class="literal">binlog_row_image</code> system
+          variable. This variable actually takes one of three possible
+          values, as shown in the following list:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              <code class="literal">full</code>: Log all columns in both the
+              before image and the after image.
+            </p></li><li class="listitem"><p>
+              <code class="literal">minimal</code>: Log only those columns in the
+              before image that are required to identify the row to be
+              changed; log only those columns in the after image that
+              are actually changed.
+            </p></li><li class="listitem"><p>
+              <code class="literal">noblob</code>: Log all columns (same as
+              <code class="literal">full</code>), except for
+              <a class="link" href="blob.html" title="11.4.3. The BLOB and TEXT Types"><code class="literal">BLOB</code></a> and
+              <a class="link" href="blob.html" title="11.4.3. The BLOB and TEXT Types"><code class="literal">TEXT</code></a> columns that are not
+              required to identify rows, or that have not changed.
+</p></li></ul>
+</div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            This variable is not supported by MySQL Cluster; setting it
+            has no effect on the logging of
+            <a class="link" href="mysql-cluster.html" title="Chapter 17. MySQL Cluster NDB 7.3"><code class="literal">NDB</code></a> tables. (Bug #16316828)
+</p>
+</div>
+<p>
+          The default value is <code class="literal">full</code>. In MySQL 5.5 and
+          earlier, full row images are always used for both before
+          images and after images. If you need to replicate from a MySQL
+          5.6 (or later) master to a slave running a previous version of
+          MySQL, the master should always use this value.
+        </p><p>
+          When using <code class="literal">minimal</code> or
+          <code class="literal">noblob</code>, deletes and updates are guaranteed
+          to work correctly for a given table if and only if the
+          following conditions are true for both the source and
+          destination tables:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              All columns must be present and in the same order; each
+              column must use the same data type as its counterpart in
+              the other table.
+            </p></li><li class="listitem"><p>
+              The tables must have identical primary key definitions.
+</p></li></ul>
+</div>
+<p>
+          (In other words, the tables must be identical with the
+          possible exception of indexes that are not part of the
+          tables' primary keys.)
+        </p><p>
+          If these conditions are not met, it is possible that the
+          primary key column values in the destination table may prove
+          insufficient to provide a unique match for a delete or update.
+          In this event, no warning or error is issued; the master and
+          slave silently diverge, thus breaking consistency.
+        </p><p>
+          Setting this variable has no effect when the binary logging
+          format is <code class="literal">STATEMENT</code>. When
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a> is
+          <code class="literal">MIXED</code>, the setting for
+          <code class="literal">binlog_row_image</code> is applied to changes that
+          are logged using row-based format, but this setting no effect
+          on changes logged as statements.
+        </p><p>
+          Setting <code class="literal">binlog_row_image</code> on either the
+          global or session level does not cause an implicit commit;
+          this means that this variable can be changed while a
+          transaction is in progress without affecting the transaction.
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_rows_query_log_events"></a>
+          <a class="indexterm" name="idm47327504769328"></a>
+
+          <a class="indexterm" name="idm47327504768224"></a>
+
+          <code class="literal">binlog_rows_query_log_events</code>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_rows_query_log_events" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_rows_query_log_events">binlog_rows_query_log_events</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global, Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">FALSE</code></td></tr></tbody></table>
+</div>
+<p>
+          The
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_rows_query_log_events"><code class="literal">binlog_rows_query_log_events</code></a>
+          system variable affects row-based logging only. When enabled,
+          it causes a MySQL 5.6.2 or later server to write informational
+          log events such as row query log events into its binary log.
+          This information can be used for debugging and related
+          purposes; such as obtaining the original query issued on the
+          master when it cannot be reconstructed from the row updates.
+        </p><p>
+          These events are normally ignored by MySQL 5.6.2 and later
+          programs reading the binary log and so cause no issues when
+          replicating or restoring from backup. This is not true for a
+          <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> or <a class="link" href="mysqlbinlog.html" title="4.6.8. mysqlbinlog — Utility for Processing Binary Log Files"><span class="command"><strong>mysqlbinlog</strong></span></a>
+          from MySQL 5.6.1 or earlier: When the older version of the
+          program reading the log encounters an informational log event,
+          it fails, and stops reading at that point. To make the binary
+          log readable by slave replication MySQL servers and other
+          readers (for example, <a class="link" href="mysqlbinlog.html" title="4.6.8. mysqlbinlog — Utility for Processing Binary Log Files"><span class="command"><strong>mysqlbinlog</strong></span></a>) from a
+          MySQL 5.6.1 or earlier distribution,
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_rows_query_log_events"><code class="literal">binlog_rows_query_log_events</code></a>
+          must be disabled during logging.
+        </p></li><li class="listitem"><p><a name="sysvar_binlog_stmt_cache_size"></a>
+          <a class="indexterm" name="idm47327504740448"></a>
+
+          <a class="indexterm" name="idm47327504739360"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_stmt_cache_size"><code class="literal">binlog_stmt_cache_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for binlog_stmt_cache_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.1</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--binlog_stmt_cache_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">binlog_stmt_cache_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_stmt_cache_size">binlog_stmt_cache_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">32</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">32768</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">4096 .. 4294967295</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">64</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">32768</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">4096 .. 18446744073709547520</code></td></tr></tbody></table>
+</div>
+<p>
+          This variable determines the size of the cache for the binary
+          log to hold nontransactional statements issued during a
+          transaction. Separate binary log transaction and statement
+          caches are allocated for each client if the server supports
+          any transactional storage engines and if the server has the
+          binary log enabled (<a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin</code></a>
+          option). If you often use large nontransactional statements
+          during transactions, you can increase this cache size to get
+          better performance. The
+          <a class="link" href="server-status-variables.html#statvar_Binlog_stmt_cache_use"><code class="literal">Binlog_stmt_cache_use</code></a> and
+          <a class="link" href="server-status-variables.html#statvar_Binlog_stmt_cache_disk_use"><code class="literal">Binlog_stmt_cache_disk_use</code></a>
+          status variables can be useful for tuning the size of this
+          variable. See <a class="xref" href="binary-log.html" title="5.2.4. The Binary Log">Section 5.2.4, “The Binary Log”</a>.
+        </p><p>
+          The <a class="link" href="replication-options-binary-log.html#sysvar_binlog_cache_size"><code class="literal">binlog_cache_size</code></a> system
+          variable sets the size for the transaction cache.
+        </p></li><li class="listitem"><p><a name="sysvar_log_bin"></a>
+          <a class="indexterm" name="idm47327504692336"></a>
+
+          <a class="indexterm" name="idm47327504691264"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_bin"><code class="literal">log_bin</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log_bin" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin">log_bin</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr></tbody></table>
+</div>
+<p>
+          Whether the binary log is enabled. If the
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin</code></a> option is used, then
+          the value of this variable is <code class="literal">ON</code>; otherwise
+          it is <code class="literal">OFF</code>. This variable reports only on
+          the status of binary logging (enabled or disabled); it does
+          not actually report the value to which
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin</code></a> is set.
+        </p><p>
+          See <a class="xref" href="binary-log.html" title="5.2.4. The Binary Log">Section 5.2.4, “The Binary Log”</a>.
+        </p></li><li class="listitem"><p><a name="sysvar_log_bin_basename"></a>
+          <a class="indexterm" name="idm47327504673152"></a>
+
+          <a class="indexterm" name="idm47327504672064"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_basename"><code class="literal">log_bin_basename</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log_bin_basename" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_basename">log_bin_basename</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">file name</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">datadir + '/' + hostname + '-bin'</code></td></tr></tbody></table>
+</div>
+<p>
+          Holds the name and complete path to the binary log file.
+          Unlike the <a class="link" href="replication-options-binary-log.html#sysvar_log_bin"><code class="literal">log_bin</code></a> system
+          variable, <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_basename"><code class="literal">log_bin_basename</code></a>
+          reflects the name set with the
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin</code></a> server option.
+        </p><p>
+          The <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_basename"><code class="literal">log_bin_basename</code></a> system
+          variable was added in MySQL 5.6.2.
+        </p></li><li class="listitem"><p><a name="sysvar_log_bin_index"></a>
+          <a class="indexterm" name="idm47327504645984"></a>
+
+          <a class="indexterm" name="idm47327504644896"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index"><code class="literal">log_bin_index</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log_bin_index" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.4</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">file name</code></td></tr></tbody></table>
+</div>
+<p>
+          The index file for binary log file names.
+        </p><p>
+          The <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index"><code class="literal">log_bin_index</code></a> system
+          variable was added in MySQL 5.6.4.
+        </p></li><li class="listitem"><p><a name="sysvar_log_bin_use_v1_row_events"></a>
+          <a class="indexterm" name="idm47327504623696"></a>
+
+          <a class="indexterm" name="idm47327504622592"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events"><code class="literal">log_bin_use_v1_row_events</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log_bin_use_v1_row_events" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.6</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--log-bin-use-v1-row-events[={0|1}]</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">log_bin_use_v1_row_events</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events">log_bin_use_v1_row_events</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values (&gt;= 5.6.6)</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">0</code></td></tr></tbody></table>
+</div>
+<p>
+          Shows whether Version 2 binary logging, available beginning
+          with MySQL 5.6.6, is in use. A value of 1 shows that the
+          server is writing the binary log using Version 1 logging
+          events (the only version of binary log events used in MySQL
+          5.6.5 and previous MySQL Server releases), and thus producing
+          a binary log that can be read by older slaves. 0 indicates
+          that Version 2 binary log events are in use.
+        </p><p>
+          This variable is read-only. To switch between Version 1 and
+          Version 2 binary event binary logging, it is necessary to
+          restart <a class="link" href="mysqld.html" title="4.3.1. mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> with the
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin-use-v1-row-events"><code class="option">--log-bin-use-v1-row-events</code></a>
+          option.
+        </p><p>
+          Other than when performing upgrades of MySQL Cluster
+          Replication, <code class="option">--log-bin-use-v1-events</code> is
+          chiefly of interest when setting up replication conflict
+          detection and resolution using
+          <code class="literal">NDB$EPOCH_TRANS()</code>, which requires Version 2
+          binary row event logging. Thus, this option and
+          <a class="link" href="mysql-cluster-program-options-mysqld.html#option_mysqld_ndb-log-transaction-id"><code class="option">--ndb-log-transaction-id</code></a> are
+          not compatible.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            MySQL Cluster NDB 7.3 uses Version 2 binary log row events
+            by default. You should keep this mind when planning upgrades
+            or downgrades, and for setups using MySQL Cluster
+            Replication.
+</p>
+</div>
+<p>
+          For more information, see
+          <a class="xref" href="mysql-cluster-replication-conflict-resolution.html" title="17.6.11. MySQL Cluster Replication Conflict Resolution">Section 17.6.11, “MySQL Cluster Replication Conflict Resolution”</a>.
+        </p></li><li class="listitem"><p><a name="sysvar_log_slave_updates"></a>
+          <a class="indexterm" name="idm47327504588368"></a>
+
+          <a class="indexterm" name="idm47327504587280"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_log_slave_updates"><code class="literal">log_slave_updates</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for log_slave_updates" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--log-slave-updates</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">log_slave_updates</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_slave_updates">log_slave_updates</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">FALSE</code></td></tr></tbody></table>
+</div>
+<p>
+          Whether updates received by a slave server from a master
+          server should be logged to the slave's own binary log. Binary
+          logging must be enabled on the slave for this variable to have
+          any effect. See <a class="xref" href="replication-options.html" title="16.1.4. Replication and Binary Logging Options and Variables">Section 16.1.4, “Replication and Binary Logging Options and Variables”</a>.
+        </p></li><li class="listitem"><p><a name="sysvar_master_verify_checksum"></a>
+          <a class="indexterm" name="idm47327504561744"></a>
+
+          <a class="indexterm" name="idm47327504560656"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_master_verify_checksum"><code class="literal">master_verify_checksum</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for master_verify_checksum" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.2</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_master_verify_checksum">master_verify_checksum</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr></tbody></table>
+</div>
+<p>
+          Enabling this variable causes the master to examine checksums
+          when reading from the binary log.
+          <code class="literal">master_verify_checksum</code> is disabled by
+          default; in this case, the master uses the event length from
+          the binary log to verify events, so that only complete events
+          are read from the binary log.
+        </p><p>
+          This variable was added in MySQL 5.6.2.
+        </p></li><li class="listitem"><p><a name="sysvar_max_binlog_cache_size"></a>
+          <a class="indexterm" name="idm47327504537088"></a>
+
+          <a class="indexterm" name="idm47327504536000"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_cache_size"><code class="literal">max_binlog_cache_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for max_binlog_cache_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--max_binlog_cache_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">max_binlog_cache_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_cache_size">max_binlog_cache_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">18446744073709547520</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">4096 .. 18446744073709547520</code></td></tr></tbody></table>
+</div>
+<p>
+          If a transaction requires more than this many bytes of memory,
+          the server generates a <span class="errortext">Multi-statement transaction
+          required more than 'max_binlog_cache_size' bytes of
+          storage</span> error. The minimum value is 4096. The
+          minimum value is 4096. The maximum possible value is 16EB
+          (exabytes). The maximum recommended value is 4GB; this is due
+          to the fact that MySQL currently cannot work with binary log
+          positions greater than 4GB.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            Prior to MySQL 5.6.7, 64-bit Windows platforms truncated the
+            stored value for this variable to 4G, even when it was set
+            to a greater value (Bug #13961678).
+</p>
+</div>
+<p>
+          <code class="literal">max_binlog_cache_size</code> sets the size for the
+          transaction cache only; the upper limit for the statement
+          cache is governed by the
+          <a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_stmt_cache_size"><code class="literal">max_binlog_stmt_cache_size</code></a>
+          system variable.
+        </p><p>
+          In MySQL 5.6, the visibility to sessions of
+          <code class="literal">max_binlog_cache_size</code> matches that of the
+          <a class="link" href="replication-options-binary-log.html#sysvar_binlog_cache_size"><code class="literal">binlog_cache_size</code></a> system
+          variable; in other words, changing its value effects only new
+          sessions that are started after the value is changed.
+        </p></li><li class="listitem"><p><a name="sysvar_max_binlog_size"></a>
+          <a class="indexterm" name="idm47327504502736"></a>
+
+          <a class="indexterm" name="idm47327504501648"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_size"><code class="literal">max_binlog_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for max_binlog_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--max_binlog_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">max_binlog_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_size">max_binlog_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">1073741824</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">4096 .. 1073741824</code></td></tr></tbody></table>
+</div>
+<p>
+          If a write to the binary log causes the current log file size
+          to exceed the value of this variable, the server rotates the
+          binary logs (closes the current file and opens the next one).
+          The minimum value is 4096 bytes. The maximum and default value
+          is 1GB.
+        </p><p>
+          A transaction is written in one chunk to the binary log, so it
+          is never split between several binary logs. Therefore, if you
+          have big transactions, you might see binary log files larger
+          than <a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_size"><code class="literal">max_binlog_size</code></a>.
+        </p><p>
+          If <a class="link" href="server-system-variables.html#sysvar_max_relay_log_size"><code class="literal">max_relay_log_size</code></a> is 0,
+          the value of <a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_size"><code class="literal">max_binlog_size</code></a>
+          applies to relay logs as well.
+        </p></li><li class="listitem"><p><a name="sysvar_max_binlog_stmt_cache_size"></a>
+          <a class="indexterm" name="idm47327504470720"></a>
+
+          <a class="indexterm" name="idm47327504469616"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_stmt_cache_size"><code class="literal">max_binlog_stmt_cache_size</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for max_binlog_stmt_cache_size" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.1</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--max_binlog_stmt_cache_size=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">max_binlog_stmt_cache_size</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_stmt_cache_size">max_binlog_stmt_cache_size</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="4"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">18446744073709547520</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">4096 .. 18446744073709547520</code></td></tr></tbody></table>
+</div>
+<p>
+          If nontransactional statements within a transaction require
+          more than this many bytes of memory, the server generates an
+          error. The minimum value is 4096. The maximum and default
+          values are 4GB on 32-bit platforms and 16EB (exabytes) on
+          64-bit platforms.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+            Prior to MySQL 5.6.7, 64-bit Windows platforms truncated the
+            stored value for this variable to 4G, even when it was set
+            to a greater value (Bug #13961678).
+</p>
+</div>
+<p>
+          <code class="literal">max_binlog_stmt_cache_size</code> sets the size
+          for the statement cache only; the upper limit for the
+          transaction cache is governed exclusively by the
+          <a class="link" href="replication-options-binary-log.html#sysvar_max_binlog_cache_size"><code class="literal">max_binlog_cache_size</code></a> system
+          variable.
+        </p></li><li class="listitem"><p><a name="sysvar_sync_binlog"></a>
+          <a class="indexterm" name="idm47327504437280"></a>
+
+          <a class="indexterm" name="idm47327504436192"></a>
+
+          <a class="link" href="replication-options-binary-log.html#sysvar_sync_binlog"><code class="literal">sync_binlog</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for sync_binlog" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--sync-binlog=#</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">sync_binlog</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_sync_binlog">sync_binlog</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">32</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">0</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">0 .. 4294967295</code></td></tr><tr><td scope="row" rowspan="5"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Platform Bit Size</strong></span></td><td colspan="2"><code class="literal">64</code></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">numeric</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">0</code></td></tr><tr><td scope="row"><span class="bold"><strong>Range</strong></span></td><td colspan="2"><code class="literal">0 .. 18446744073709547520</code></td></tr></tbody></table>
+</div>
+<p>
+          If the value of this variable is greater than 0, the MySQL
+          server synchronizes its binary log to disk (using
+          <code class="literal">fdatasync()</code>) after
+          <a class="link" href="replication-options-binary-log.html#sysvar_sync_binlog"><code class="literal">sync_binlog</code></a> commit groups are
+          written to the binary log. The default value of
+          <a class="link" href="replication-options-binary-log.html#sysvar_sync_binlog"><code class="literal">sync_binlog</code></a> is 0, which does
+          no synchronizing to disk—in this case, the server relies
+          on the operating system to flush the binary log's
+          contents from time to time as for any other file. A value of 1
+          is the safest choice because in the event of a crash you lose
+          at most one commit group from the binary log. However, it is
+          also the slowest choice (unless the disk has a battery-backed
+          cache, which makes synchronization very fast).
+</p></li></ul>
+</div>
+
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2014, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="replication-options-slave.html" title="16.1.4.3 Replication Slave Options and Variables">Previous</a> / <a rel="next" href="replication-options-gtids.html" title="16.1.4.5 Global Transaction ID Options and Variables">Next</a> / <a rel="up" href="replication-options.html" title="16.1.4 Replication and Binary Logging Options and Variables">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear" /><!--UdmComment--><div id="comments"><h1>User Comments</h1><p><a href="/doc/mysql/comment.php?sect=replication-options-binary-log">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="replication-options-slave.html" title="16.1.4.3 Replication Slave Options and Variables">Previous</a> / <a rel="next" href="replication-options-gtids.html" title="16.1.4.5 Global Transaction ID Options and Variables">Next</a> / <a rel="up" href="replication-options.html" title="16.1.4 Replication and Binary Logging Options and Variables">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+ </div> 
+</div> 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives/">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input type="text" id="f_q" name="q" value="" class="swap_value" onfocus="clearSearchText();" />
+	    <input type="hidden"  name="group" value="MySQL"/>
+	    <input type="image" src="/common/themes/sakila/footer_search_g.png" id="f_go" alt="Search" title="Search" />
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="/common/logos/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22" /></a>&nbsp;&nbsp;<span>&copy; 2014, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="/common/js/metrics/s_code_remote.js"></script>
+
+</body>
+</html>

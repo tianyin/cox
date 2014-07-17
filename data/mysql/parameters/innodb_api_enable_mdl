@@ -1,0 +1,1 @@
+Locks the table used by the InnoDB           memcached plugin, so that it cannot be           dropped or altered by DDL           through the SQL interface. See           SectionÂ 14.2.16, âInnoDB Integration with memcachedâ for usage details for this           option. 

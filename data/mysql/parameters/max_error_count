@@ -1,0 +1,1 @@
+The maximum number of error, warning, and note messages to be           stored for display by the SHOW           ERRORS and SHOW           WARNINGS statements. This is the same as the number           of condition areas in the diagnostics area, and thus the           number of conditions that can be inspected by           GET DIAGNOSTICS. 

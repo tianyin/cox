@@ -1,0 +1,1 @@
+The value of the reportport           option.  Prior to MySQL 5.6.5, the default value for this option was           3306. In MySQL 5.6.5 and later, the value shown is the port           number actually used by the slave (Bug #13333431). This change           also affects the default value displayed by           SHOW SLAVE HOSTS. 

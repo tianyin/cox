@@ -1,0 +1,1 @@
+By making           transaction_prealloc_size           sufficiently large to contain all statements within a single           transaction, you can avoid many malloc()           calls. 

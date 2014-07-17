@@ -1,0 +1,1 @@
+The cutoff on the size of index values that determines which           filesort algorithm to use. See           SectionÂ 8.2.1.15, âORDER BY Optimizationâ. 

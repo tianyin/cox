@@ -1,0 +1,1 @@
+Interrupts the process of restoring InnoDB           buffer pool contents           triggered by           innodb_buffer_pool_load_at_startup           or           innodb_buffer_pool_load_now. 

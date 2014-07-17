@@ -1,0 +1,1 @@
+Starts the server in readonly mode. For distributing database           applications or data sets on readonly media. Can also be used           in data warehouses to share the same data directory between           multiple instances. See           SectionÂ 14.2.3.1, âConfiguring InnoDB for ReadOnly Operationâ for usage           instructions. 

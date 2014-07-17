@@ -1,0 +1,1 @@
+It is possible to create multiple MyISAM           key caches. The size limit of 4GB applies to each cache           individually, not as a group. See           SectionÂ 8.9.2, âThe MyISAM Key Cacheâ. 

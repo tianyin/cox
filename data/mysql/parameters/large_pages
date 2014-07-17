@@ -1,0 +1,1 @@
+Whether large page support is enabled (via the           largepages option). See           SectionÂ 8.11.4.2, âEnabling Large Page Supportâ.  largepages is disabled by           default. 

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.6 Reference Manual :: 16.1.4.5 Global Transaction ID Options and Variables</title>
+
+    
+    <link rel="stylesheet" media="screen" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="projection" href="/common/css/mysql.css?v=20121230" />
+    <link rel="stylesheet" media="print" href="/common/css/print.css?v=20111230" />
+
+            <link rel="stylesheet" href="/doc/docs.css" />
+        
+    
+    
+    
+    <link rel="contents" href="index.html" title="MySQL Manual" /><link rel="start" href="index.html" title="MySQL Manual" /><link rel="prev" href="replication-options-binary-log.html" title="16.1.4.4 Binary Log Options and Variables"/><link rel="next" href="replication-administration.html?ff=nopfpls" title="16.1.5 Common Replication Administration Tasks"/><link rel="up" href="replication-options.html" title="16.1.4 Replication and Binary Logging Options and Variables"/>        <link rel="shortcut icon" href="/common/themes/sakila/favicon.ico" />
+
+        <script src="/common/js/clear_search_text.js"></script>
+
+    
+        
+    
+    
+</head>
+
+<body class="doc" >
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header" >
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="/common/logos/logo-mysql-110x57.png" alt="MySQL" width="110" height="57" /></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input type="text" id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" />
+			<input type="hidden" id="search_dest" name="group" value="MySQL"/>
+			<input type="image" src="/common/themes/sakila/search_g.png" id="go" alt="Search" title="Search" />
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login" >
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Freplication-options-gtids.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="/common/icons/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20" /></a>&nbsp;
+                <a href="https://plus.google.com/+mysql"><img src="/common/icons/googleplus.png" alt="Google+" title="Join Google+ to follow MySQL" width="20" height="20" /></a>&nbsp;
+                <a href="https://twitter.com/#!/mysql"><img src="/common/icons/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20" /></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="/common/icons/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br />
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a  href="/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a  href="/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="/doc/refman/5.7/en/replication-options-gtids.html" >MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.6 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 5.1 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 5.0 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="" >MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br />
+		<input id="searchq" type="text" name="q" value="" size="14" />
+		<input id="searchsubmit" type="submit" value="Go" />
+		<input id="searchgroup" type="hidden" name="group" value="MySQL" />
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar" >
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="index.html"> MySQL 5.6 Reference Manual</a> :: <a href="replication.html">16 Replication</a> :: <a href="replication-configuration.html">16.1 Replication Configuration</a> :: <a href="replication-options.html">16.1.4 Replication and Binary Logging Options and Variables</a> :: 16.1.4.5 Global Transaction ID Options and Variables</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="replication-options-binary-log.html" title="Previous Section">&laquo; 16.1.4.4 Binary Log Options and Variables</a></div>
+		<hr size="1" noshade="noshade" align="center" width="40" style="margin: 0px auto 2px auto" />		<a style="text-decoration: none" href="replication-administration.html" title="Next Section">16.1.5 Common Replication Administration Tasks  &raquo;</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');"  onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="replication-options.html">16.1.4 Replication and Binary Logging Options and Variables</a></li><li><a href="replication-options-table.html">16.1.4.1 Replication and Binary Logging Option and Variable Reference</a></li>
+<li><a href="replication-options-master.html">16.1.4.2 Replication Master Options and Variables</a></li>
+<li><a href="replication-options-slave.html">16.1.4.3 Replication Slave Options and Variables</a></li>
+<li><a href="replication-options-binary-log.html">16.1.4.4 Binary Log Options and Variables</a></li>
+<li class="self">16.1.4.5 Global Transaction ID Options and Variables</li>
+</ul>
+
+			</ul>		
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title"><a name="replication-options-gtids"></a>16.1.4.5. Global Transaction ID Options and Variables</h4>
+
+</div>
+
+</div>
+
+</div>
+<p>
+      The MySQL Server options and system variables described in this
+      section are used to monitor and control Global Transaction
+      Identifiers (GTIDs), introduced in MySQL 5.6.5.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        Many of these options and variables were renamed in MySQL 5.6.9.
+        See their descriptions in this section for more information.
+</p>
+</div>
+<p>
+      For additional information, see
+      <a class="xref" href="replication-gtids.html" title="16.1.3. Replication with Global Transaction Identifiers">Section 16.1.3, “Replication with Global Transaction Identifiers”</a>.
+    </p><p><a name="replication-optvars-gtids"></a><b>Startup options used in GTID replication. </b>
+        The followup server startup options are used with GTID-based
+        replication:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="option_mysqld_disable-gtid-unsafe-statements"></a>
+          <a class="indexterm" name="idm47327504387280"></a>
+
+          <a class="indexterm" name="idm47327504386192"></a>
+
+          <code class="option">--disable-gtid-unsafe-statements</code>
+</p>
+<div class="informaltable">
+<table summary="Options for disable-gtid-unsafe-statements" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>Removed</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--disable-gtid-unsafe-statements[=value]</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">disable-gtid-unsafe-statements</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_disable_gtid_unsafe_statements">disable_gtid_unsafe_statements</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">false</code></td></tr></tbody></table>
+</div>
+<p>
+          <span class="emphasis"><em>Obsolete</em></span>: Replaced by
+          <a class="link" href="replication-options-gtids.html#option_mysqld_enforce-gtid-consistency"><code class="option">--enforce-gtid-consistency</code></a> in
+          MySQL 5.6.9. (Bug #14775984)
+        </p></li><li class="listitem"><p><a name="option_mysqld_enforce-gtid-consistency"></a>
+          <a class="indexterm" name="idm47327504356720"></a>
+
+          <a class="indexterm" name="idm47327504355632"></a>
+
+          <code class="option">--enforce-gtid-consistency</code>
+</p>
+<div class="informaltable">
+<table summary="Options for enforce-gtid-consistency" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--enforce-gtid-consistency[=value]</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">enforce-gtid-consistency</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_enforce_gtid_consistency">enforce_gtid_consistency</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">false</code></td></tr></tbody></table>
+</div>
+<p>
+          When set, this option allows execution of only those
+          statements that can be logged in a transactionally safe
+          manner. This means that the following operations
+          <span class="emphasis"><em>cannot</em></span> be used when this option is
+          enabled:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              <a class="link" href="create-table-select.html" title="13.1.17.1. CREATE TABLE ... SELECT Syntax"><code class="literal">CREATE
+              TABLE ... SELECT</code></a> statements
+            </p></li><li class="listitem"><p>
+              <a class="link" href="create-table.html" title="13.1.17. CREATE TABLE Syntax"><code class="literal">CREATE
+              TEMPORARY TABLE</code></a> statements inside transactions
+            </p></li><li class="listitem"><p>
+              Transactions or statements that update both transactional
+              and nontransactional tables.
+</p></li></ul>
+</div>
+<p>
+          Prior to MySQL 5.6.9, this option was named
+          <a class="link" href="replication-options-gtids.html#option_mysqld_disable-gtid-unsafe-statements"><code class="option">--disable-gtid-unsafe-statements</code></a>.
+          (Bug #14775984)
+        </p><p>
+          Prior to MySQL 5.6.7, using this option caused
+          nontransactional DML on temporary tables to fail, although
+          changes to temporary tables are not logged when using
+          row-based binary logging. In MySQL 5.6.7 and later,
+          nontransactional DML statements are allowed on temporary
+          tables with
+          <a class="link" href="replication-options-gtids.html#option_mysqld_disable-gtid-unsafe-statements"><code class="option">--disable-gtid-unsafe-statements</code></a>
+          (<code class="option">--enforce-gtid-consistency</code> beginning with
+          MySQL 5.6.9) as long as all affected tables are temporary
+          tables (Bug #14272672).
+        </p><p>
+          Prior to MySQL 5.6.7, <a class="link" href="mysql-upgrade.html" title="4.4.7. mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a> could
+          not be used with a MySQL Server running with this option
+          enabled, unless <a class="link" href="mysql-upgrade.html" title="4.4.7. mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a> was running
+          with <a class="link" href="mysql-upgrade.html#option_mysql_upgrade_write-binlog"><code class="option">--write-binlog</code></a>
+          explicitly disabled. (Bug #13833710, Bug #14221043) In MySQL
+          5.6.7 and later, it is possible but not recommended to run
+          <a class="link" href="mysql-upgrade.html" title="4.4.7. mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a> on a server where
+          <a class="link" href="replication-options-gtids.html#option_mysqld_gtid-mode"><code class="option">--gtid-mode=ON</code></a>, since the MySQL
+          system tables use the <a class="link" href="myisam-storage-engine.html" title="14.3. The MyISAM Storage Engine"><code class="literal">MyISAM</code></a>
+          storage engine, which is nontransactional.
+        </p><p>
+          In MySQL 5.6.8 and earlier, you could not use any statements
+          affecting nontransactional tables when
+          <code class="option">--enforce-gtid-consistency</code> was used (the
+          option was then called
+          <a class="link" href="replication-options-gtids.html#option_mysqld_disable-gtid-unsafe-statements"><code class="option">--disable-gtid-unsafe-statements</code></a>).
+          In MySQL 5.6.9 and later, this option allows single statements
+          updating nontransactional tables. This is intended chiefly for
+          use with programs such as <a class="link" href="mysql-install-db.html" title="4.4.3. mysql_install_db — Initialize MySQL Data Directory"><span class="command"><strong>mysql_install_db</strong></span></a>
+          and <a class="link" href="mysql-upgrade.html" title="4.4.7. mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a>. (Bug #14722659)
+        </p></li><li class="listitem"><p><a name="option_mysqld_gtid-mode"></a>
+          <a class="indexterm" name="idm47327504310832"></a>
+
+          <a class="indexterm" name="idm47327504309744"></a>
+
+          <a class="link" href="replication-options-gtids.html#option_mysqld_gtid-mode"><code class="option">--gtid-mode</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid-mode" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--gtid-mode=MODE</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">gtid-mode</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_mode">gtid_mode</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="7"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">enumeration</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr><tr><td scope="row" rowspan="4" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">UPGRADE_STEP_1</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">UPGRADE_STEP_2</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">ON</code></td></tr></tbody></table>
+</div>
+<p>
+          This option specifies whether GTIDs are enabled. Starting the
+          server with <code class="option">--gtid-mode=ON</code> requires that the
+          server also be started with the
+          <a class="link" href="replication-options-binary-log.html#option_mysqld_log-bin"><code class="option">--log-bin</code></a> and
+          <a class="link" href="replication-options-slave.html#option_mysqld_log-slave-updates"><code class="option">--log-slave-updates</code></a> options as
+          well. (In addition, you should also use
+          <a class="link" href="replication-options-gtids.html#option_mysqld_enforce-gtid-consistency"><code class="option">--enforce-gtid-consistency</code></a>.)
+        </p><p>
+          Setting this option to <code class="literal">OFF</code> when there are
+          GTIDs in the binary log or in the relay log, or to
+          <code class="literal">ON</code> when there remain anonymous transactions
+          to be executed, causes an error.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="important" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Important
+</div>
+<p xmlns="">
+            This option does not employ boolean values; its values are
+            in fact enumerated. You should not attempt to use numeric
+            values when setting this option, as these may lead to
+            unexpected results. The values
+            <code class="literal">UPGRADE_STEP_1</code> and
+            <code class="literal">UPGRADE_STEP_2</code> are reserved for future
+            use, but currently are not supported in production; if you
+            use one of these two values with
+            <code class="option">--gtid-mode</code>, the server refuses to start.
+</p>
+</div>
+<p>
+          Prior to MySQL 5.6.7, <a class="link" href="mysql-upgrade.html" title="4.4.7. mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a> could
+          not be used with a MySQL Server running with this option
+          enabled, unless <a class="link" href="mysql-upgrade.html" title="4.4.7. mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a> was running
+          with <a class="link" href="mysql-upgrade.html#option_mysql_upgrade_write-binlog"><code class="option">--write-binlog</code></a>
+          explicitly disabled. (Bug #13833710, Bug #14221043) In MySQL
+          5.6.7 and later, it is possible but not recommended to run
+          <a class="link" href="mysql-upgrade.html" title="4.4.7. mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a> on a server where
+          <a class="link" href="replication-options-gtids.html#option_mysqld_gtid-mode"><code class="option">--gtid-mode=ON</code></a>, since it may
+          make changes to MySQL system tables that use the
+          <a class="link" href="myisam-storage-engine.html" title="14.3. The MyISAM Storage Engine"><code class="literal">MyISAM</code></a> storage engine, which is
+          nontransactional.
+        </p><p>
+          Prior to MySQL 5.6.10, setting the global value for the
+          <a class="link" href="replication-options-slave.html#sysvar_sql_slave_skip_counter"><code class="literal">sql_slave_skip_counter</code></a>
+          variable to 1 had no effect when <code class="option">--gtid-mode</code>
+          was set to <code class="literal">ON</code>. (Bug #15833516) A workaround
+          in MySQL 5.6.9 and earlier versions is to reset the
+          slave's position using
+          <a class="link" href="change-master-to.html" title="13.4.2.1. CHANGE MASTER TO Syntax"><code class="literal">CHANGE
+          MASTER TO ... MASTER_LOG_FILE = ... MASTER_LOG_POS =
+          ...</code></a>, including the <code class="literal">MASTER_AUTO_POSITION =
+          0</code> option with this statement if needed.
+</p></li></ul>
+</div>
+<p><a name="replication-sysvars-gtids"></a><b>System variables used on replication masters. </b>
+        The following system variables are used with GTID-based
+        replication:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a name="sysvar_disable_gtid_unsafe_statements"></a>
+          <a class="indexterm" name="idm47327504255808"></a>
+
+          <a class="indexterm" name="idm47327504254704"></a>
+
+          <code class="literal">disable_gtid_unsafe_statements</code>
+</p>
+<div class="informaltable">
+<table summary="Options for disable_gtid_unsafe_statements" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>Removed</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--disable-gtid-unsafe-statements[=value]</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">disable_gtid_unsafe_statements</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_disable_gtid_unsafe_statements">disable_gtid_unsafe_statements</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">false</code></td></tr></tbody></table>
+</div>
+<p>
+          <span class="emphasis"><em>Obsolete</em></span>: Replaced by
+          <a class="link" href="replication-options-gtids.html#sysvar_enforce_gtid_consistency"><code class="literal">enforce_gtid_consistency</code></a> in
+          MySQL 5.6.9. (Bug #14775984)
+        </p></li><li class="listitem"><p><a name="sysvar_gtid_done"></a>
+          <a class="indexterm" name="idm47327504224976"></a>
+
+          <a class="indexterm" name="idm47327504223888"></a>
+
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_done"><code class="literal">gtid_done</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid_done" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>Removed</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_done">gtid_done</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global, Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+          <span class="emphasis"><em>Obsolete</em></span>: replaced in MySQL 5.6.9 by
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_executed"><code class="literal">gtid_executed</code></a>. (Bug
+          #14775984)
+        </p></li><li class="listitem"><p><a name="sysvar_enforce_gtid_consistency"></a>
+          <a class="indexterm" name="idm47327504200928"></a>
+
+          <a class="indexterm" name="idm47327504199824"></a>
+
+          <code class="literal">enforce_gtid_consistency</code>
+</p>
+<div class="informaltable">
+<table summary="Options for enforce_gtid_consistency" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>Command-Line Format</strong></span></td><td colspan="3"><code class="literal">--enforce-gtid-consistency[=value]</code></td></tr><tr><td scope="row"><span class="bold"><strong>Option-File Format</strong></span></td><td colspan="3"><code class="literal">enforce_gtid_consistency</code></td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_enforce_gtid_consistency">enforce_gtid_consistency</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="3"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">boolean</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">false</code></td></tr></tbody></table>
+</div>
+<p>
+          When this variable is true, execution is allowed of only those
+          statements that can be logged in a transactionally safe
+          manner, which means that the following operations cannot be
+          used:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              <a class="link" href="create-table-select.html" title="13.1.17.1. CREATE TABLE ... SELECT Syntax"><code class="literal">CREATE
+              TABLE ... SELECT</code></a> statements
+            </p></li><li class="listitem"><p>
+              <a class="link" href="create-table.html" title="13.1.17. CREATE TABLE Syntax"><code class="literal">CREATE
+              TEMPORARY TABLE</code></a> statements inside transactions
+            </p></li><li class="listitem"><p>
+              Transactions or statements that update both transactional
+              and nontransactional tables.
+</p></li></ul>
+</div>
+<p>
+          This variable is read-only. To set it, use the
+          <a class="link" href="replication-options-gtids.html#option_mysqld_enforce-gtid-consistency"><code class="option">--enforce-gtid-consistency</code></a>
+          option on the command line or in an option file when starting
+          the MySQL Server.
+        </p><p>
+          Prior to MySQL 5.6.9, this variable was named
+          <a class="link" href="replication-options-gtids.html#sysvar_disable_gtid_unsafe_statements"><code class="literal">disable_gtid_unsafe_statements</code></a>.
+          (Bug #14775984)
+        </p></li><li class="listitem"><p><a name="sysvar_gtid_executed"></a>
+          <a class="indexterm" name="idm47327504165680"></a>
+
+          <a class="indexterm" name="idm47327504164592"></a>
+
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_executed"><code class="literal">gtid_executed</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid_executed" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_executed">gtid_executed</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global, Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+          When used with global scope, this variable contains a
+          representation of the set of all transactions that are logged
+          in the binary log. This is the same as the value of the
+          <code class="literal">Executed_Gtid_Set</code> column in the output of
+          <a class="link" href="show-master-status.html" title="13.7.5.24. SHOW MASTER STATUS Syntax"><code class="literal">SHOW MASTER STATUS</code></a> and
+          <a class="link" href="show-slave-status.html" title="13.7.5.35. SHOW SLAVE STATUS Syntax"><code class="literal">SHOW SLAVE STATUS</code></a>.
+        </p><p>
+          When used with session scope, this variable contains a
+          representation of the set of transactions that are written to
+          the cache in the current session.
+        </p><p>
+          The set of transactions that can be found in the binary logs
+          at any given time is equal to
+          <a class="link" href="gtid-functions.html#function_gtid-subtract"><code class="literal">GTID_SUBTRACT(@@global.gtid_executed,
+          @@global.gtid_purged)</code></a>; that is, to all transactions
+          in the binary log that have not yet been purged.
+        </p><p>
+          When the server starts,
+          <code class="literal">@@global.gtid_executed</code> is initialized to
+          the union of the following two sets:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              The GTIDs listed in the
+              <code class="literal">Previous_gtids_log_event</code> of the newest
+              binary log
+            </p></li><li class="listitem"><p>
+              The GTIDs found in every <code class="literal">Gtid_log_event</code>
+              in the newest binary log.
+</p></li></ul>
+</div>
+<p>
+          Thereafter, GTIDs are added to the set as transactions are
+          executed.
+        </p><p>
+          Issuing <a class="link" href="reset-master.html" title="13.4.1.2. RESET MASTER Syntax"><code class="literal">RESET MASTER</code></a> causes the
+          global value (but not the session value) of this variable to
+          be reset to an empty string. GTIDs are not otherwise removed
+          from this set other than when the set is cleared due to
+          <code class="literal">RESET MASTER</code>. The set is also cleared if
+          the server is shut down and all binary logs are removed.
+        </p><p>
+          Prior to MySQL 5.6.9, this variable was known as
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_done"><code class="literal">gtid_done</code></a>.
+        </p></li><li class="listitem"><p><a name="sysvar_gtid_lost"></a>
+          <a class="indexterm" name="idm47327504131152"></a>
+
+          <a class="indexterm" name="idm47327504130064"></a>
+
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_lost"><code class="literal">gtid_lost</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid_lost" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>Removed</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_lost">gtid_lost</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+          <span class="emphasis"><em>Obsolete</em></span>: Replaced by
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_purged"><code class="literal">gtid_purged</code></a> in MySQL 5.6.9.
+          (Bug #14775984)
+        </p></li><li class="listitem"><p><a name="sysvar_gtid_mode"></a>
+          <a class="indexterm" name="idm47327504107104"></a>
+
+          <a class="indexterm" name="idm47327504106016"></a>
+
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_mode"><code class="literal">gtid_mode</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid_mode" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_mode">gtid_mode</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="7"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">enumeration</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr><tr><td scope="row" rowspan="4" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">OFF</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">UPGRADE_STEP_1</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">UPGRADE_STEP_2</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">ON</code></td></tr></tbody></table>
+</div>
+<p>
+          Shows whether GTIDs are enabled. Read-only; set using
+          <a class="link" href="replication-options-gtids.html#option_mysqld_gtid-mode"><code class="option">--gtid-mode</code></a>.
+        </p></li><li class="listitem"><p><a name="sysvar_gtid_next"></a>
+          <a class="indexterm" name="idm47327504076160"></a>
+
+          <a class="indexterm" name="idm47327504075072"></a>
+
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_next"><code class="literal">gtid_next</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid_next" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_next">gtid_next</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="6"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">enumeration</code></td></tr><tr><td scope="row"><span class="bold"><strong>Default</strong></span></td><td colspan="2"><code class="literal">AUTOMATIC</code></td></tr><tr><td scope="row" rowspan="3" valign="top"><span class="bold"><strong>Valid Values</strong></span></td><td colspan="2"><code class="literal">AUTOMATIC</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">ANONYMOUS</code></td></tr><tr><td scope="row" colspan="2"><code class="literal">UUID:NUMBER</code></td></tr></tbody></table>
+</div>
+<p>
+          This variable is used to specify whether and how the next GTID
+          is obtained. <code class="literal">gtid_next</code> can take any of the
+          following values:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+              <code class="literal">AUTOMATIC</code>: Use the next
+              automatically-generated global transaction ID.
+            </p></li><li class="listitem"><p>
+              <code class="literal">ANONYMOUS</code>: Transactions do not have
+              global identifiers, and are identified by file and
+              position only.
+            </p></li><li class="listitem"><p>
+              A global transaction ID in
+              <em class="replaceable"><code>UUID</code></em>:<em class="replaceable"><code>NUMBER</code></em>
+              format.
+</p></li></ul>
+</div>
+<p>
+          You must have the <a class="link" href="privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+          privilege to set this variable. Setting this variable has no
+          effect if <a class="link" href="replication-options-gtids.html#sysvar_gtid_mode"><code class="literal">gtid_mode</code></a> is
+          <code class="literal">OFF</code>.
+        </p><p>
+          In MySQL 5.6.11 only, you cannot execute any of the statements
+          <a class="link" href="change-master-to.html" title="13.4.2.1. CHANGE MASTER TO Syntax"><code class="literal">CHANGE MASTER TO</code></a>,
+          <a class="link" href="start-slave.html" title="13.4.2.5. START SLAVE Syntax"><code class="literal">START SLAVE</code></a>,
+          <a class="link" href="stop-slave.html" title="13.4.2.6. STOP SLAVE Syntax"><code class="literal">STOP SLAVE</code></a>,
+          <a class="link" href="repair-table.html" title="13.7.2.5. REPAIR TABLE Syntax"><code class="literal">REPAIR TABLE</code></a>,
+          <a class="link" href="optimize-table.html" title="13.7.2.4. OPTIMIZE TABLE Syntax"><code class="literal">OPTIMIZE TABLE</code></a>,
+          <a class="link" href="analyze-table.html" title="13.7.2.1. ANALYZE TABLE Syntax"><code class="literal">ANALYZE TABLE</code></a>,
+          <a class="link" href="check-table.html" title="13.7.2.2. CHECK TABLE Syntax"><code class="literal">CHECK TABLE</code></a>,
+          <a class="link" href="create-server.html" title="13.1.16. CREATE SERVER Syntax"><code class="literal">CREATE SERVER</code></a>,
+          <a class="link" href="alter-server.html" title="13.1.6. ALTER SERVER Syntax"><code class="literal">ALTER SERVER</code></a>,
+          <a class="link" href="drop-server.html" title="13.1.27. DROP SERVER Syntax"><code class="literal">DROP SERVER</code></a>,
+          <a class="link" href="cache-index.html" title="13.7.6.2. CACHE INDEX Syntax"><code class="literal">CACHE INDEX</code></a>,
+          <a class="link" href="load-index.html" title="13.7.6.5. LOAD INDEX INTO CACHE Syntax"><code class="literal">LOAD INDEX INTO
+          CACHE</code></a>, <a class="link" href="flush.html" title="13.7.6.3. FLUSH Syntax"><code class="literal">FLUSH</code></a>, or
+          <a class="link" href="reset.html" title="13.7.6.6. RESET Syntax"><code class="literal">RESET</code></a> when
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_next"><code class="literal">gtid_next</code></a> is set to any value
+          other than <code class="literal">AUTOMATIC</code>; in such cases, the
+          statement fails with an error. Such statements are
+          <span class="emphasis"><em>not</em></span> disallowed in MySQL 5.6.12 and later.
+          (Bug #16062608, Bug #16715809, Bug #69045)
+        </p></li><li class="listitem"><p><a name="sysvar_gtid_owned"></a>
+          <a class="indexterm" name="idm47327504023920"></a>
+
+          <a class="indexterm" name="idm47327504022832"></a>
+
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_owned"><code class="literal">gtid_owned</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid_owned" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.5</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_owned">gtid_owned</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global, Session</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">No</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+          This read-only variable holds a list whose contents depend on
+          its scope. When used with session scope, the list holds all
+          GTIDs that are owned by this client; when used with global
+          scope, it holds a list of all GTIDs along with their owners.
+        </p></li><li class="listitem"><p><a name="sysvar_gtid_purged"></a>
+          <a class="indexterm" name="idm47327504002752"></a>
+
+          <a class="indexterm" name="idm47327504001664"></a>
+
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_purged"><code class="literal">gtid_purged</code></a>
+</p>
+<div class="informaltable">
+<table summary="Options for gtid_purged" border="1"><colgroup><col class="title"><col class="vt"><col class="vd"><col class="v"></colgroup><tbody><tr><td scope="row"><span class="bold"><strong>Introduced</strong></span></td><td colspan="3">5.6.9</td></tr><tr><td scope="row"><span class="bold"><strong>System Variable Name</strong></span></td><td colspan="3"><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_purged">gtid_purged</a></code></td></tr><tr><td scope="row"><span class="bold"><strong>Variable Scope</strong></span></td><td colspan="3">Global</td></tr><tr><td scope="row"><span class="bold"><strong>Dynamic Variable</strong></span></td><td colspan="3">Yes</td></tr><tr><td scope="row" rowspan="2"> </td><td colspan="3"><span class="bold"><strong>Permitted Values</strong></span></td></tr><tr><td scope="row"><span class="bold"><strong>Type</strong></span></td><td colspan="2"><code class="literal">string</code></td></tr></tbody></table>
+</div>
+<p>
+          The set of all transactions that have been purged from the
+          binary log.
+        </p><p>
+          When the server starts, the global value of
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_purged"><code class="literal">gtid_purged</code></a> is initialized to
+          the set of GTIDs contained by the
+          <code class="literal">Previous_gtid_log_event</code> of the oldest
+          binary log. When a binary log is purged,
+          <code class="literal">@@global.gtid_purged</code> is re-read from the
+          binary log that has now become the oldest one.
+        </p><p>
+          Issuing <a class="link" href="reset-master.html" title="13.4.1.2. RESET MASTER Syntax"><code class="literal">RESET MASTER</code></a> causes the
+          value of this variable to be reset to an empty string.
+        </p><p>
+          Prior to MySQL 5.6.9, this variable was known as
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_lost"><code class="literal">gtid_lost</code></a>, and was read-only.
+          In MySQL 5.6.9 and later, it is possible to update the value
+          of this variable, but only by adding GTIDs to those already
+          listed, and only when
+          <a class="link" href="replication-options-gtids.html#sysvar_gtid_executed"><code class="literal">gtid_executed</code></a> is
+          unset—that is, on a new server. (Bug #14797808)
+</p></li></ul>
+</div>
+
+</div>
+
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2014, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="replication-options-binary-log.html" title="16.1.4.4 Binary Log Options and Variables">Previous</a> / <a rel="next" href="replication-administration.html" title="16.1.5 Common Replication Administration Tasks">Next</a> / <a rel="up" href="replication-options.html" title="16.1.4 Replication and Binary Logging Options and Variables">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear" /><!--UdmComment--><div id="comments"><h1>User Comments</h1><p><a href="/doc/mysql/comment.php?sect=replication-options-gtids">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="replication-options-binary-log.html" title="16.1.4.4 Binary Log Options and Variables">Previous</a> / <a rel="next" href="replication-administration.html" title="16.1.5 Common Replication Administration Tasks">Next</a> / <a rel="up" href="replication-options.html" title="16.1.4 Replication and Binary Logging Options and Variables">Up</a> / <a rel="contents" href="index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+ </div> 
+</div> 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives/">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input type="text" id="f_q" name="q" value="" class="swap_value" onfocus="clearSearchText();" />
+	    <input type="hidden"  name="group" value="MySQL"/>
+	    <input type="image" src="/common/themes/sakila/footer_search_g.png" id="f_go" alt="Search" title="Search" />
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="/common/logos/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22" /></a>&nbsp;&nbsp;<span>&copy; 2014, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="/common/js/metrics/s_code_remote.js"></script>
+
+</body>
+</html>

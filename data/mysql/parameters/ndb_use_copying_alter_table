@@ -1,0 +1,1 @@
+Forces NDB to use copying of             tables in the event of problems with online             ALTER TABLE operations. The             default value is OFF. 

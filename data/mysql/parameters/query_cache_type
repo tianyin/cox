@@ -1,0 +1,1 @@
+If the server is started with           query_cache_type set to 0, it does not           acquire the query cache mutex at all, which means that the           query cache cannot be enabled at runtime and there is reduced           overhead in query execution. 

@@ -1,0 +1,1 @@
+Setting binlog_row_image on either the           global or session level does not cause an implicit commit;           this means that this variable can be changed while a           transaction is in progress without affecting the transaction. 

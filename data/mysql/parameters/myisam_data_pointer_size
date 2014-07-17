@@ -1,0 +1,1 @@
+The default pointer size in bytes, to be used by           CREATE TABLE for           MyISAM tables when no           MAX_ROWS option is specified. This variable           cannot be less than 2 or larger than 7. The default value is           6. See SectionÂ C.5.2.12, âThe table is fullâ. 

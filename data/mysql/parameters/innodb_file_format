@@ -1,0 +1,1 @@
+Be aware that ALTER TABLE           operations that recreate InnoDB tables           (ALGORITHM=COPY) will use the current           innodb_file_format setting (the conditions           outlined above still apply). 

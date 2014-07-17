@@ -1,0 +1,1 @@
+YES if mysqld supports           SSL connections, NO if not.           DISABLED indicates that the server was           compiled with SSL support, but but was not started with the           appropriate           sslxxx options.           For more information, see           SectionÂ 6.3.10.2, âConfiguring MySQL for SSLâ. 

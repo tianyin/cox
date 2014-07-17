@@ -1,0 +1,1 @@
+The name of the general query log file. The default value is           host_name.log,           but the initial value can be changed with the           general_log_file option. 

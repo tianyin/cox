@@ -1,0 +1,1 @@
+YES if the zlib           compression library is available to the server,           NO if not. If not, the           COMPRESS() and           UNCOMPRESS() functions cannot           be used. 

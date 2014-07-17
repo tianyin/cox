@@ -1,0 +1,1 @@
+See SectionÂ 14.2.12.2.20, âControlling the InnoDB Master Thread I/O Rateâ for           more guidelines about this option. For general information           about InnoDB I/O performance, see           SectionÂ 8.5.7, âOptimizing InnoDB Disk I/Oâ. 

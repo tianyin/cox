@@ -1,0 +1,1 @@
+The number of seconds the server waits for activity on an           interactive connection before closing it. An interactive           client is defined as a client that uses the           CLIENT_INTERACTIVE option to           mysql_real_connect(). See also           wait_timeout. 

@@ -1,0 +1,1 @@
+This variable controls whether logging to the general query           log is done. The default value is 0 (do logging). To change           logging for the current session, change the session value of           this variable. The session user must have the           SUPER privilege to set this           option. The default value is 0. 

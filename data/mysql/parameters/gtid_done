@@ -1,0 +1,1 @@
+Obsolete: replaced in MySQL 5.6.9 by           gtid_executed. (Bug           #14775984) 

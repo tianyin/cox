@@ -1,0 +1,1 @@
+If you set the max_join_size           system variable to a value other than           DEFAULT,           sql_big_selects is set to 0. 

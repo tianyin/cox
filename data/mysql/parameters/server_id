@@ -1,0 +1,1 @@
+The server ID, used in replication to give each master and           slave a unique identity. This variable is set by the           serverid option. For each           server participating in replication, you should pick a           positive integer in the range from 1 to           232 â 1 to act as that           server's ID. 

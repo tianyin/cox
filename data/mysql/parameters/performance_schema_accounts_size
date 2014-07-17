@@ -1,0 +1,1 @@
+The number of rows in the           accounts table. If this variable           is 0, the Performance Schema does not maintain connection           statistics in the accounts table.           This variable was added in MySQL 5.6.3. 

@@ -1,0 +1,1 @@
+The name of the directory where the slave creates temporary           files for replicating           LOAD DATA           INFILE statements. 

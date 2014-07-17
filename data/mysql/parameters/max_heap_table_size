@@ -1,0 +1,1 @@
+max_heap_table_size is not replicated. See           SectionÂ 16.4.1.21, âReplication and MEMORY Tablesâ, and           SectionÂ 16.4.1.33, âReplication and Variablesâ, for more           information. 

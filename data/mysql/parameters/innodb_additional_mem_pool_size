@@ -1,0 +1,1 @@
+This variable relates to the InnoDB           internal memory allocator, which is unused if           innodb_use_sys_malloc is           enabled. As of MySQL 5.6.3,           innodb_additional_mem_pool_size is           deprecated and will be removed in a future MySQL release. 

@@ -1,0 +1,1 @@
+Controls the heuristics applied during query optimization to           prune lesspromising partial plans from the optimizer search           space. A value of 0 disables heuristics so that the optimizer           performs an exhaustive search. A value of 1 causes the           optimizer to prune plans based on the number of rows retrieved           by intermediate plans. 

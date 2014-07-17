@@ -1,0 +1,1 @@
+If a SELECT has a           LIMIT clause, the LIMIT           takes precedence over the value of           sql_select_limit. 

@@ -1,0 +1,1 @@
+Specifies the file that holds the list of page numbers           produced by           innodb_buffer_pool_dump_at_shutdown           or           innodb_buffer_pool_dump_now. 

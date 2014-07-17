@@ -1,0 +1,1 @@
+Sets the cutoff point at which MySQL begins adding padding           within compressed           pages to avoid expensive           compression           failures. A value of zero disables the mechanism that           monitors compression efficiency and dynamically adjusts the           padding amount. 

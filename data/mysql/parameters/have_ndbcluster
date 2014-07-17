@@ -1,0 +1,1 @@
+This variable is deprecated and is removed in MySQL 5.6. Use             SHOW ENGINES instead. 

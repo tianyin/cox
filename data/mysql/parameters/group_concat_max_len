@@ -1,0 +1,1 @@
+The maximum permitted result length in bytes for the           GROUP_CONCAT() function. The           default is 1024. 

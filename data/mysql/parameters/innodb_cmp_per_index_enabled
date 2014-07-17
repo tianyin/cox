@@ -1,0 +1,1 @@
+Enables perindex compressionrelated statistics in the           INFORMATION_SCHEMA.INNODB_CMP_PER_INDEX           table. Because these statistics can be expensive to gather,           only enable this option on development, test, or slave           instances during performance tuning related to           InnoDB           compressed tables. 
