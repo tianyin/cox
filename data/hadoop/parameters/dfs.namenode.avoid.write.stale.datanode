@@ -1,8 +1,0 @@
-false
-Indicate whether or not to avoid writing to "stale" datanodes whose 
-    heartbeat messages have not been received by the namenode 
-    for more than a specified time interval. Writes will avoid using 
-    stale datanodes unless more than a configured ratio 
-    (dfs.namenode.write.stale.datanode.ratio) of datanodes are marked as 
-    stale. See dfs.namenode.avoid.read.stale.datanode for a similar setting
-    for reads.

@@ -1,3 +1,0 @@
-5
-The default number of parallel transfers run by reduce
-  during the copy(shuffle) phase.

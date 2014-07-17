@@ -1,4 +1,0 @@
-9
-Threshold for number of maps, beyond which job is considered
-  too big for the ubertasking optimization.  Users may override this value,
-  but only downward.

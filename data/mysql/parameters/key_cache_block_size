@@ -1,1 +1,0 @@
-The size in bytes of blocks in the key cache. The default           value is 1024. See SectionÂ 8.9.2, âThe MyISAM Key Cacheâ. 

@@ -1,5 +1,0 @@
-10000
-Defines a time window in milliseconds for output commit
-  operations.  If contact with the RM has occurred within this window then
-  commits are allowed, otherwise the AM will not allow output commits until
-  contact with the RM has been re-established.

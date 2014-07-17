@@ -1,1 +1,0 @@
-On thread startup, the session           wait_timeout value is           initialized from the global           wait_timeout value or from           the global           interactive_timeout value,           depending on the type of client (as defined by the           CLIENT_INTERACTIVE connect option to           mysql_real_connect()). See           also interactive_timeout. 

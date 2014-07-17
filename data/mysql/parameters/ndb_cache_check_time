@@ -1,1 +1,0 @@
-The recommended maximum value for this variable is 1000,             which means that the check is performed once per second. A             larger value means that the check is performed and possibly             invalidated due to updates on different SQL nodes less             often. It is generally not desirable to set this to a value             greater than 2000. 

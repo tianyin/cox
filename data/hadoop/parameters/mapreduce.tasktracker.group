@@ -1,3 +1,0 @@
-Expert: Group to which TaskTracker belongs. If 
-   LinuxTaskController is configured via mapreduce.tasktracker.taskcontroller,
-   the group owner of the task-controller binary should be same as this group.

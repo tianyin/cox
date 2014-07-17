@@ -1,2 +1,0 @@
-org.apache.hadoop.mapred.JobQueueTaskScheduler
-The class responsible for scheduling the tasks.

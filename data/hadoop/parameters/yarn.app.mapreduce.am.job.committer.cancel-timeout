@@ -1,3 +1,0 @@
-60000
-The amount of time in milliseconds to wait for the output
-    committer to cancel an operation if the job is killed

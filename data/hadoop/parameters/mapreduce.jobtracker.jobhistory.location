@@ -1,3 +1,0 @@
-If job tracker is static the history files are stored 
-  in this single well known place. If No value is set here, by default,
-  it is in the local file system at ${hadoop.log.dir}/history.

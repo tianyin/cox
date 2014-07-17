@@ -1,1 +1,0 @@
-Immediately warms up the           InnoDB buffer pool by           loading a set of data pages, without waiting for a server           restart. Can be useful to bring cache memory back to a known           state during benchmarking, or to ready the MySQL server to           resume its normal workload after running queries for reports           or maintenance. 

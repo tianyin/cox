@@ -1,2 +1,0 @@
-org.apache.hadoop.mapred.TaskTrackerMetricsInst
-Expert: The instrumentation class to associate with each TaskTracker.

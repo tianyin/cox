@@ -1,7 +1,0 @@
-0
-Maximum bandwidth used for image transfer in bytes per second.
-        This can help keep normal namenode operations responsive during
-        checkpointing. The maximum bandwidth and timeout in
-        dfs.image.transfer.timeout should be set such that normal image
-        transfers can complete successfully.
-        A default value of 0 indicates that throttling is disabled.

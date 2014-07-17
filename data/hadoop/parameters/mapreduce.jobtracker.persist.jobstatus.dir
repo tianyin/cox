@@ -1,4 +1,0 @@
-/jobtracker/jobsInfo
-The directory where the job status information is persisted
-      in a file system to be available after it drops of the memory queue and
-      between jobtracker restarts.

@@ -1,1 +1,0 @@
-YES if RTREE indexes are           available, NO if not. (These are used for           spatial indexes in MyISAM tables.) 

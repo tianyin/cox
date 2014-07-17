@@ -1,6 +1,0 @@
-3
-The number of task-failures on a tasktracker of a given job 
-               after which new tasks of that job aren't assigned to it. It
-               MUST be less than mapreduce.map.maxattempts and
-               mapreduce.reduce.maxattempts otherwise the failed task will
-               never be tried on a different node.

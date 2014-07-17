@@ -1,6 +1,0 @@
-0.80
-The soft limit in the serialization buffer. Once reached, a
-  thread will begin to spill the contents to disk in the background. Note that
-  collection will not block if this threshold is exceeded while a spill is
-  already in progress, so spills may be larger than this threshold when it is
-  set to less than .5

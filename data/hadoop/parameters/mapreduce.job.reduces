@@ -1,5 +1,0 @@
-1
-The default number of reduce tasks per job. Typically set to 99%
-  of the cluster's reduce capacity, so that if a node fails the reduces can 
-  still be executed in a single wave.
-  Ignored when mapreduce.jobtracker.address is "local".

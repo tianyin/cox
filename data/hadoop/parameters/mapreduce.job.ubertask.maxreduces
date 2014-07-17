@@ -1,5 +1,0 @@
-1
-Threshold for number of reduces, beyond which job is considered
-  too big for the ubertasking optimization.  CURRENTLY THE CODE CANNOT SUPPORT
-  MORE THAN ONE REDUCE and will ignore larger values.  (Zero is a valid max,
-  however.)  Users may override this value, but only downward.

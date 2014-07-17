@@ -1,1 +1,0 @@
-YES if symbolic link support is enabled,           NO if not. This is required on Unix for           support of the DATA DIRECTORY and           INDEX DIRECTORY table options, and on           Windows for support of data directory symlinks. If the server           is started with the           skipsymboliclinks           option, the value is DISABLED. 

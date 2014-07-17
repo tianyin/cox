@@ -1,8 +1,0 @@
-0.75f
-Only used when the dfs.datanode.fsdataset.volume.choosing.policy is set to
-    org.apache.hadoop.hdfs.server.datanode.fsdataset.AvailableSpaceVolumeChoosingPolicy.
-    This setting controls what percentage of new block allocations will be sent
-    to volumes with more available disk space than others. This setting should
-    be in the range 0.0 - 1.0, though in practice 0.5 - 1.0, since there should
-    be no reason to prefer that volumes with less available disk space receive
-    more block allocations.

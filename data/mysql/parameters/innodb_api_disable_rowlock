@@ -1,1 +1,0 @@
-The innodb_api_disable_rowlock option is           not dynamic. It must be specified on the           mysqld command line or entered in the MySQL           configuration file. Configuration takes effect when the plugin           is installed, which you do each time the MySQL server is           started. 

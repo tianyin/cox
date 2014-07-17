@@ -1,1 +1,0 @@
-The query cache needs a minimum size of about 40KB to allocate           its structures. (The exact size depends on system           architecture.) If you set the value of           query_cache_size too small, a           warning will occur, as described in           SectionÂ 8.9.3.3, âQuery Cache Configurationâ. 

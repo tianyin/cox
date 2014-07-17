@@ -1,4 +1,0 @@
-The ID of this nameservice. If the nameservice ID is not
-    configured or more than one nameservice is configured for
-    dfs.nameservices it is determined automatically by
-    matching the local node's address with the configured address.

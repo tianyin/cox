@@ -1,1 +1,0 @@
-binlog_cache_size sets the size for the           transaction cache only; the size of the statement cache is           governed by the           binlog_stmt_cache_size system           variable. 

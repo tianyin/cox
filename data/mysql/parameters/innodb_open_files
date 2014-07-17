@@ -1,1 +1,0 @@
-The file descriptors used for .ibd files           are for InnoDB tables only. They are           independent of those specified by the           openfileslimit server           option, and do not affect the operation of the table cache.           For general I/O tuning advice, see           SectionÂ 8.5.7, âOptimizing InnoDB Disk I/Oâ. 

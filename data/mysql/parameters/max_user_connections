@@ -1,1 +1,0 @@
-Account resource limits are specified using the           GRANT statement. See           SectionÂ 6.3.4, âSetting Account Resource Limitsâ, and SectionÂ 13.7.1.4, âGRANT Syntaxâ.  Otherwise, the session               max_user_connections               value is set to the global value. 

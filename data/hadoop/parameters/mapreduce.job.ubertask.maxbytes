@@ -1,5 +1,0 @@
-Threshold for number of input bytes, beyond which job is
-  considered too big for the ubertasking optimization.  If no value is
-  specified, dfs.block.size is used as a default.  Be sure to specify a
-  default value in mapred-site.xml if the underlying filesystem is not HDFS.
-  Users may override this value, but only downward.

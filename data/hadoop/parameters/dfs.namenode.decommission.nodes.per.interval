@@ -1,3 +1,0 @@
-5
-The number of nodes namenode checks if decommission is complete
-  in each dfs.namenode.decommission.interval.

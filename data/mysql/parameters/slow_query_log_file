@@ -1,1 +1,0 @@
-The name of the slow query log file. The default value is           host_nameslow.log,           but the initial value can be changed with the           slow_query_log_file option. 

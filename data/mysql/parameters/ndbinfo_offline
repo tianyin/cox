@@ -1,1 +1,0 @@
-Place the ndbinfo database             into offline mode, in which tables and views can be opened             even when they do not actually exist, or when they exist but             have different definitions in             NDB. No rows are returned from             such tables (or views). 

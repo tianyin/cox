@@ -1,1 +1,0 @@
-FULLTEXT indexes on             MyISAM tables must be rebuilt after             changing this variable or the contents of the stopword file.             Use REPAIR TABLE             tbl_name QUICK. 

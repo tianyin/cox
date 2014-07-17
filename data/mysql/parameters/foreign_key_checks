@@ -1,1 +1,0 @@
-Setting foreign_key_checks to 1 does not             trigger a scan of the existing table data. Therefore, rows             added to the table while             foreign_key_checks = 0 will             not be verified for consistency. 

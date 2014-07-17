@@ -1,1 +1,0 @@
-The CMake configuration program has a           COMPILATION_COMMENT option that           permits a comment to be specified when building MySQL. This           variable contains the value of that comment. See           SectionÂ 2.8.4, âMySQL SourceConfiguration Optionsâ. 

@@ -1,4 +1,0 @@
-2
-This is the max level of the task cache. For example, if
-    the level is 2, the tasks cached are at the host level and at the rack
-    level.

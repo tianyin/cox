@@ -1,1 +1,0 @@
-The max_connections system           variable affects how many threads are run in the server.           performance_schema_max_thread_instances           affects how many of these running threads can be instrumented.           The default value of           performance_schema_max_thread_instances           is autosized based on the value of           max_connections. 

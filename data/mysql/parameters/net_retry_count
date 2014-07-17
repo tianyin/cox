@@ -1,1 +1,0 @@
-If a read or write on a communication port is interrupted,           retry this many times before giving up. This value should be           set quite high on FreeBSD because internal interrupts are sent           to all threads. 

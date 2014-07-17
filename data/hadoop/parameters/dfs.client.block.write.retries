@@ -1,3 +1,0 @@
-3
-The number of retries for writing blocks to the data nodes, 
-  before we signal failure to the application.

@@ -1,7 +1,0 @@
-2
-The number of Task attempts AFTER which skip mode 
-    will be kicked off. When skip mode is kicked off, the 
-    tasks reports the range of records which it will process 
-    next, to the TaskTracker. So that on failures, TT knows which 
-    ones are possibly the bad records. On further executions, 
-    those are skipped.

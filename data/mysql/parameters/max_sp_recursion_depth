@@ -1,1 +1,0 @@
-Stored procedure recursion increases the demand on thread           stack space. If you increase the value of           max_sp_recursion_depth, it           may be necessary to increase thread stack size by increasing           the value of thread_stack at           server startup. 

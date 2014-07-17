@@ -1,2 +1,0 @@
-org.apache.hadoop.mapred.DefaultTaskController
-TaskController which is used to launch and manage task execution

@@ -1,1 +1,0 @@
-As of MySQL 5.6.9,           max_sort_length is ignored           for integer, decimal, floatingpoint, and temporal data types. 

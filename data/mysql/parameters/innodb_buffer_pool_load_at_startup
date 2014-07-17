@@ -1,1 +1,0 @@
-Specifies that, on MySQL server startup, the InnoDB           buffer pool is           automatically warmed up by           loading the same pages it held at an earlier time. Typically           used in combination with           innodb_buffer_pool_dump_at_shutdown. 

@@ -1,1 +1,0 @@
-This readonly variable holds a list whose contents depend on           its scope. When used with session scope, the list holds all           GTIDs that are owned by this client; when used with global           scope, it holds a list of all GTIDs along with their owners. 

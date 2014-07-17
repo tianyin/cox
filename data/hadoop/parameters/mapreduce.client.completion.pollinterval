@@ -1,5 +1,0 @@
-5000
-The interval (in milliseconds) between which the JobClient
-    polls the JobTracker for updates about job status. You may want to set this
-    to a lower value to make tests run faster on a single node system. Adjusting
-    this value in production may lead to unwanted client-server traffic.

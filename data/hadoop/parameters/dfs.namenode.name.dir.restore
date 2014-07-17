@@ -1,4 +1,0 @@
-false
-Set to true to enable NameNode to attempt recovering a
-      previously failed dfs.namenode.name.dir. When enabled, a recovery of any
-      failed directory is attempted during checkpoint.

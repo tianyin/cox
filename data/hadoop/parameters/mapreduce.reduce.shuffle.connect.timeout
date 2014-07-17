@@ -1,3 +1,0 @@
-180000
-Expert: The maximum amount of time (in milli seconds) reduce
-  task spends in trying to connect to a tasktracker for getting map output.

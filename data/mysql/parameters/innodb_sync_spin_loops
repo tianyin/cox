@@ -1,1 +1,0 @@
-The number of times a thread waits for an           InnoDB mutex to be freed before the thread           is suspended. The default value is 30. 

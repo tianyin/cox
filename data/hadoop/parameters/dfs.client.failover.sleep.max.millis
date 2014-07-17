@@ -1,8 +1,0 @@
-15000
-Expert only. The time to wait, in milliseconds, between failover
-    attempts increases exponentially as a function of the number of
-    attempts made so far, with a random factor of +/- 50%. This option
-    specifies the maximum value to wait between failovers. 
-    Specifically, the time between two failover attempts will not
-    exceed +/- 50% of dfs.client.failover.sleep.max.millis
-    milliseconds.

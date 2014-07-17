@@ -1,3 +1,0 @@
-The ID of this namenode. If the namenode ID is not configured it
-    is determined automatically by matching the local node's address
-    with the configured address.

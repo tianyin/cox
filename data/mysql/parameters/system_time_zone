@@ -1,1 +1,0 @@
-The system_time_zone variable           differs from time_zone.           Although they might have the same value, the latter variable           is used to initialize the time zone for each client that           connects. See SectionÂ 10.6, âMySQL Server Time Zone Supportâ. 

@@ -1,1 +1,0 @@
-The default value for sync_relay_log_info           is 10000 as of MySQL 5.6.6, 0 before that. 

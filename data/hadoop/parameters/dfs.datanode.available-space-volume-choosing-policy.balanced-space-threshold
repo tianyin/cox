@@ -1,8 +1,0 @@
-10737418240
-Only used when the dfs.datanode.fsdataset.volume.choosing.policy is set to
-    org.apache.hadoop.hdfs.server.datanode.fsdataset.AvailableSpaceVolumeChoosingPolicy.
-    This setting controls how much DN volumes are allowed to differ in terms of
-    bytes of free disk space before they are considered imbalanced. If the free
-    space of all the volumes are within this range of each other, the volumes
-    will be considered balanced and block assignments will be done on a pure
-    round robin basis.

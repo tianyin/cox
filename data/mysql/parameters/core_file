@@ -1,1 +1,0 @@
-Whether to write a core file if the server crashes. This           variable is set by the           corefile option. It was           added in MySQL 5.6.2. 

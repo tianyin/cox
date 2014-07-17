@@ -1,1 +1,0 @@
-If this option is set to 1, use compression for the           slave/master protocol if both the slave and the master support           it. The default is 0 (no compression).  Whether to use compression of the slave/master protocol if           both the slave and the master support it. 

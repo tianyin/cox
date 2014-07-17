@@ -1,1 +1,0 @@
-The default transaction isolation level can also be set at           startup using the           transactionisolation server           option. 

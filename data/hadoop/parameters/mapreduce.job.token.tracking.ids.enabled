@@ -1,5 +1,0 @@
-false
-Whether to write tracking ids of tokens to
-    job-conf. When true, the configuration property
-    "mapreduce.job.token.tracking.ids" is set to the token-tracking-ids of
-    the job

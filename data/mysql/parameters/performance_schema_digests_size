@@ -1,1 +1,0 @@
-The maximum number of rows in the           events_statements_summary_by_digest           table. This variable was added in MySQL 5.6.5. If this maximum           is exceeded such that a digest cannot be instrumented, the           Performance Schema increments the           Performance_schema_digest_lost           status variable. 

@@ -1,1 +1,0 @@
-The number of rows per thread in the           events_statements_history table.           This variable was added in MySQL 5.6.3. 

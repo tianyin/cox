@@ -1,1 +1,0 @@
-The SQL thread sends an acknowledgment to the client before             it executes init_slave.             Therefore, it is not guaranteed that             init_slave has been             executed when START SLAVE             returns. See SectionÂ 13.4.2.5, âSTART SLAVE Syntaxâ, for more             information. 

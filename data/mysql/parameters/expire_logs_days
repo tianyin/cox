@@ -1,1 +1,0 @@
-To remove binary log files manually, use the           PURGE BINARY LOGS statement.           See SectionÂ 13.4.1.1, âPURGE BINARY LOGS Syntaxâ. 

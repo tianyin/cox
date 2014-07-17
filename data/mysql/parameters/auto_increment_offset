@@ -1,1 +1,0 @@
-If the value of               auto_increment_offset is               greater than that of               auto_increment_increment,               the value of               auto_increment_offset is               ignored.  auto_increment_offset is also supported             for use with NDB tables. 

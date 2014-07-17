@@ -1,8 +1,0 @@
-0
-Specifies the number of datanodes that must be considered alive
-    before the name node exits safemode.
-    Values less than or equal to 0 mean not to take the number of live
-    datanodes into account when deciding whether to remain in safe mode
-    during startup.
-    Values greater than the number of datanodes in the cluster
-    will make safe mode permanent.

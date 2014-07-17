@@ -1,1 +1,0 @@
-ucs2, utf16,           utf16le, and utf32           cannot be used as a client character set, which means that           they also do not work for SET NAMES or           SET CHARACTER SET. 

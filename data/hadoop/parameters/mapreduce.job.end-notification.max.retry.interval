@@ -1,5 +1,0 @@
-5000
-The maximum amount of time (in milliseconds) to wait before
-     retrying job end notification. Cluster administrators can set this to
-     limit how long the Application Master waits before exiting. Must be marked
-     as final to prevent users from overriding this.

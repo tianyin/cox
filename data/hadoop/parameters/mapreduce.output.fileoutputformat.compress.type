@@ -1,3 +1,0 @@
-RECORD
-If the job outputs are to compressed as SequenceFiles, how should
-               they be compressed? Should be one of NONE, RECORD or BLOCK.

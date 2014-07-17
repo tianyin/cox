@@ -1,8 +1,0 @@
-500
-Expert only. The time to wait, in milliseconds, between failover
-    attempts increases exponentially as a function of the number of
-    attempts made so far, with a random factor of +/- 50%. This option
-    specifies the base value used in the failover calculation. The
-    first failover will retry immediately. The 2nd failover attempt
-    will delay at least dfs.client.failover.sleep.base.millis
-    milliseconds. And so on.

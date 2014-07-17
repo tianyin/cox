@@ -1,6 +1,0 @@
-120
-How often, in seconds, the StandbyNode should ask the active to
-    roll edit logs. Since the StandbyNode only reads from finalized
-    log segments, the StandbyNode will only be as up-to-date as how
-    often the logs are rolled. Note that failover triggers a log roll
-    so the StandbyNode will be up to date before it becomes active.

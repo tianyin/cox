@@ -1,3 +1,0 @@
-Names a file that contains the list of nodes that may
-  connect to the jobtracker.  If the value is empty, all hosts are
-  permitted.

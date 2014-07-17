@@ -1,5 +1,0 @@
-The actual address the server will bind to. If this optional address is
-    set, the service RPC server will bind to this address and the port 
-    specified in dfs.namenode.servicerpc-address. It can also be specified
-    per name node or name service for HA/Federation. This is most useful for
-    making name node listen to all interfaces by setting to 0.0.0.0.

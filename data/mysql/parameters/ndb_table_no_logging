@@ -1,1 +1,0 @@
-ndb_table_no_logging has               no effect on the creation of               NDB table schema files; to               suppress these, use               ndb_table_temporary               instead. 

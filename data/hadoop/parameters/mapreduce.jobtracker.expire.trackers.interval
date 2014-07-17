@@ -1,3 +1,0 @@
-600000
-Expert: The time-interval, in miliseconds, after which
-  a tasktracker is declared 'lost' if it doesn't send heartbeats.

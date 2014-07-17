@@ -1,5 +1,0 @@
-false
-Should the files for failed tasks be kept. This should only be 
-               used on jobs that are failing, because the storage is never
-               reclaimed. It also prevents the map outputs from being erased
-               from the reduce directory as they are consumed.

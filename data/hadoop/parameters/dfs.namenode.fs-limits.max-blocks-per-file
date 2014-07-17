@@ -1,4 +1,0 @@
-1048576
-Maximum number of blocks per file, enforced by the Namenode on
-        write. This prevents the creation of extremely large files which can
-        degrade performance.

@@ -1,4 +1,0 @@
-0
-The number of times the submitter of the job wants to retry job
-    end notification if it fails. This is capped by
-    mapreduce.job.end-notification.max.attempts

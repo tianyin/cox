@@ -1,1 +1,0 @@
-Resets to zero the count value for one or more           counters in the           INFORMATION_SCHEMA.INNODB_METRICS           table. For usage information, see           SectionÂ 20.30.19, âThe INFORMATION_SCHEMA INNODB_METRICS Tableâ. 

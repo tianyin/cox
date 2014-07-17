@@ -1,3 +1,0 @@
-false
-If "true", access tokens are used as capabilities for accessing datanodes.
-    If "false", no access tokens are checked on accessing datanodes.

@@ -1,3 +1,0 @@
-2
-The default number of map tasks per job.
-  Ignored when mapreduce.jobtracker.address is "local".

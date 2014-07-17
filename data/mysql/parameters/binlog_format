@@ -1,1 +1,0 @@
-These effects are discussed in detail in the descriptions of           the individual options.  Setting the binary logging format without enabling binary           logging sets the           binlog_format global system           variable and logs a warning. 

@@ -1,8 +1,0 @@
-Just like dfs.datanode.drop.cache.behind.reads, this setting causes the
-    page cache to be dropped behind HDFS reads, potentially freeing up more
-    memory for other uses.  Unlike dfs.datanode.drop.cache.behind.reads, this
-    is a client-side setting rather than a setting for the entire datanode.  If
-    present, this setting will override the DataNode default.
-
-    If the native libraries are not available to the DataNode, this
-    configuration has no effect.

@@ -1,1 +1,0 @@
-The size of the metadata locks cache. The server uses this           cache to avoid creation and destruction of synchronization           objects. This is particularly helpful on systems where such           operations are expensive, such as Windows XP. This variable           was added in MySQL 5.6.4. 

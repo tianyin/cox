@@ -1,1 +1,0 @@
-This value controls the demotion of buffers from the hot           sublist of a key cache to the warm sublist. Lower values cause           demotion to happen more quickly. The minimum value is 100. The           default value is 300. See SectionÂ 8.9.2, âThe MyISAM Key Cacheâ. 

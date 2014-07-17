@@ -1,4 +1,0 @@
-100
-The total amount of buffer memory to use while sorting 
-  files, in megabytes.  By default, gives each merge stream 1MB, which
-  should minimize seeks.

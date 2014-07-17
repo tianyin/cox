@@ -1,3 +1,0 @@
-false
-Whether datanodes should use datanode hostnames when
-    connecting to other datanodes for data transfer.

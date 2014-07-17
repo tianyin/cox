@@ -1,4 +1,0 @@
-5000
-The time, in milliseconds, the tasktracker waits for sending a
-  SIGKILL to a task, after it has been sent a SIGTERM. This is currently
-  not used on WINDOWS where tasks are just sent a SIGTERM.

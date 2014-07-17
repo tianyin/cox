@@ -1,1 +1,0 @@
-This variable was used in MySQL 4.0 to turn on some 4.1           behaviors, and is retained for backward compatibility. In           MySQL 5.6, its value is always           OFF. 

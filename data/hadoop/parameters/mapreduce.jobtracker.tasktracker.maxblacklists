@@ -1,6 +1,0 @@
-4
-The number of blacklists for a taskTracker by various jobs
-               after which the task tracker could be blacklisted across
-               all jobs. The tracker will be given a tasks later
-               (after a day). The tracker will become a healthy
-               tracker after a restart.

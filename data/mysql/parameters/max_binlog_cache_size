@@ -1,1 +1,0 @@
-In MySQL 5.6, the visibility to sessions of           max_binlog_cache_size matches that of the           binlog_cache_size system           variable; in other words, changing its value effects only new           sessions that are started after the value is changed. 

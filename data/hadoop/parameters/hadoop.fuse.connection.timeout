@@ -1,5 +1,0 @@
-300
-The minimum number of seconds that we'll cache libhdfs connection objects
-    in fuse_dfs. Lower values will result in lower memory consumption; higher
-    values may speed up access by avoiding the overhead of creating new
-    connection objects.

@@ -1,1 +1,0 @@
-âSlowâ is determined by the value of the           long_query_time variable. See           SectionÂ 5.2.5, âThe Slow Query Logâ.  Specify the initial slow query log state. With no argument or           an argument of 1, the           slowquerylog option enables           the log. If omitted or given with an argument of 0, the option           disables the log. 

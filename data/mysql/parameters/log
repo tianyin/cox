@@ -1,1 +1,0 @@
-This variable removed in MySQL 5.6.1. Use           general_log instead.  The log option was removed in           MySQL 5.6.1 (along with the           log system variable).           Instead, use the general_log           option to enable the general query log and the           general_log_file=file_name           option to set the general query log file name. 

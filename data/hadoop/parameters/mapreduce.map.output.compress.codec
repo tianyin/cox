@@ -1,3 +1,0 @@
-org.apache.hadoop.io.compress.DefaultCodec
-If the map outputs are compressed, how should they be 
-               compressed?

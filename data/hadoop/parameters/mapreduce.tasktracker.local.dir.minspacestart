@@ -1,4 +1,0 @@
-0
-If the space in mapreduce.cluster.local.dir drops under this, 
-  do not ask for more tasks.
-  Value in bytes.

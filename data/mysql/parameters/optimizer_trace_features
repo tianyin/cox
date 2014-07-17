@@ -1,1 +1,0 @@
-This variable enables or disables selected optimizer tracing           features. For details, see           MySQL           Internals: Tracing the Optimizer. This variable was           added in MySQL 5.6.3. 

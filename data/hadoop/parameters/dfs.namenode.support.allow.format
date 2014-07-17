@@ -1,4 +1,0 @@
-true
-Does HDFS namenode allow itself to be formatted?
-               You may consider setting this to false for any production
-               cluster, to avoid any possibility of formatting a running DFS.

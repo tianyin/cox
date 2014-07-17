@@ -1,1 +1,0 @@
-max_binlog_stmt_cache_size sets the size           for the statement cache only; the upper limit for the           transaction cache is governed exclusively by the           max_binlog_cache_size system           variable. 

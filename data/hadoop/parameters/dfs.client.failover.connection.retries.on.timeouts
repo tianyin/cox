@@ -1,3 +1,0 @@
-0
-Expert only. The number of retry attempts a failover IPC client
-    will make on socket timeout when establishing a server connection.

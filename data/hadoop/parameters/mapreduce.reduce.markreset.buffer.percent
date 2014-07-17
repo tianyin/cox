@@ -1,3 +1,0 @@
-0.0
-The percentage of memory -relative to the maximum heap size- to
-  be used for caching values when using the mark-reset functionality.

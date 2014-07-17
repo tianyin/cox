@@ -1,5 +1,0 @@
-1
-The number of hours job status information is persisted in DFS.
-    The job status information will be available after it drops of the memory
-    queue and between jobtracker restarts. With a zero value the job status
-    information is not persisted at all in DFS.

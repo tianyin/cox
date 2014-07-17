@@ -1,3 +1,0 @@
-Comma-delimited set of integers denoting the desired rollover intervals 
-    (in seconds) for percentile latency metrics on the Namenode and Datanode.
-    By default, percentile latency metrics are disabled.
