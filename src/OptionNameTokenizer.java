@@ -9,6 +9,6 @@ public class OptionNameTokenizer extends CharTokenizer {
 	}
 
 	protected boolean isTokenChar(int arg0) {
-		return ! (arg0=='.' || arg0=='_' || arg0==' ');
+		return ! (arg0 == '.' || arg0 == '_' || arg0 == ' ' || arg0 == '-');
 	}
 }

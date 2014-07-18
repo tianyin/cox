@@ -38,7 +38,7 @@ public class OptionNameAnalyzer extends Analyzer {
 		// text to tokenize
 		final String text = "mapred.reduce.parallel.copies";
 	    
-		Version matchVersion = Version.LUCENE_46; // Substitute desired Lucene version for XY
+		Version matchVersion = Version.LUCENE_47; // Substitute desired Lucene version for XY
 		OptionNameAnalyzer analyzer = new OptionNameAnalyzer(matchVersion);
 	    
 		TokenStream stream = analyzer.tokenStream("field", new StringReader(text));

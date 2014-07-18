@@ -16,7 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
+//import java.io.StringReader;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.FileHandler;
@@ -88,9 +88,9 @@ public class IndexFiles {
                     log.info("Indexing to directory " + indexRepo);
 
 			Directory dir = FSDirectory.open(new File(indexRepo));
-//			Analyzer analyzer = new EnglishAnalyzer(Version.LUCENE_46);
-			CAnalyzer analyzer = new CAnalyzer(Version.LUCENE_46);
-			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_46, analyzer.getAnalyzer());
+//			Analyzer analyzer = new EnglishAnalyzer(Version.LUCENE_47);
+			CAnalyzer analyzer = new CAnalyzer(Version.LUCENE_47);
+			IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_47, analyzer.getAnalyzer());
 
 			if (createOrAppend) {
 				// Create a new index in the directory, removing any previously
@@ -227,18 +227,10 @@ public class IndexFiles {
             HashMap<String, String> res = new HashMap<String, String>();
             CommandLineParser parser = new PosixParser();
             Options opts = new Options();
-            opts.addOption(OptionBuilder.withArgName("index-path")
-                    .hasArg()
-                    .withDescription("indexing file's path")
-                    .create("i"));
-            opts.addOption(OptionBuilder.withArgName("dst-dir")
-                    .hasArg()
-                    .withDescription("destination file dir")
-                    .create("d"));
-            opts.addOption(OptionBuilder.withArgName("popularity-file")
-                    .hasArg()
-                    .withDescription("popularity file path")
-                    .create("p"));
+            opts.addOption(OptionBuilder.withArgName("index-path").hasArg().withDescription("indexing file's path").create("i"));
+            opts.addOption(OptionBuilder.withArgName("dst-dir").hasArg().withDescription("destination file dir").create("d"));
+            opts.addOption(OptionBuilder.withArgName("popularity-file").hasArg().withDescription("popularity file path").create("p"));
+            
             try{
                 CommandLine cmd = parser.parse(opts, args);
                 if (cmd.hasOption("i"))
