@@ -3,7 +3,6 @@ dfs.access.time.precision	dfs.namenode.accesstime.precision
 dfs.backup.address	dfs.namenode.backup.address
 dfs.backup.http.address	dfs.namenode.backup.http-address
 dfs.balance.bandwidthPerSec	dfs.datanode.balance.bandwidthPerSec
-dfs.block.size	dfs.blocksize
 dfs.data.dir	dfs.datanode.data.dir
 dfs.datanode.max.xcievers	dfs.datanode.max.transfer.threads
 dfs.df.interval	fs.df.interval

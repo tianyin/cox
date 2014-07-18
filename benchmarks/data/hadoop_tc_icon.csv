@@ -2,7 +2,7 @@ start hdfs safe mode,dfs.namenode.safemode.threshold-pct;dfs.namenode.safemode.e
 different hadoop.tmp.dir master slaves,mapred.local.dir
 append functionality hadoop,dfs.support.append
 limit space hadoop slave node,dfs.datanode.du.reserved;dfs.datanode.du.pct
-block size,dfs.blocksize
+block size,dfs.block.size
 change hdfs block size file existing hdfs,dfs.block.size
 java heap space error pfpgrowth,mapred.child.java.opts
 file permissions hadoop os level,dfs.permission.enable

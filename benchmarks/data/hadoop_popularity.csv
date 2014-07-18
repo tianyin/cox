@@ -2,7 +2,7 @@ dfs.replication,18.6522262335
 dfs.data.dir,16.9073405535
 mapred.child.java.opts,14.8014440433
 dfs.name.dir,14.2599277978
-dfs.block.size,5.47533092659
+dfs.block.size,6.077015643798
 dfs.http.address,3.54993983153
 dfs.datanode.du.reserved,3.42960288809
 mapreduce.framework.name,3.36943441637
@@ -79,7 +79,6 @@ yarn.log-aggregation-enable,0.661853188929
 heartbeat.recheck.interval,0.661853188929
 dfs.datanode.ipc.address,0.661853188929
 yarn.nodemanager.log-dirs,0.661853188929
-dfs.blocksize,0.601684717208
 yarn.resourcemanager.webapp.address,0.601684717208
 yarn.application.classpath,0.601684717208
 mapreduce.jobhistory.webapp.address,0.541516245487
