@@ -79,10 +79,13 @@ public class SearchFiles {
 			Query query = parser.parse(queryString);
 			
 			return doPagingSearch(searcher, query, hitsPerPage, raw, false);
-		} catch(ParseException | IOException e) {
+		} catch(ParseException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
-                return null;
+		
+        return null;
 	}
 
 	/**
@@ -112,7 +115,7 @@ public class SearchFiles {
 		TopDocs results = searcher.search(q, 5 * hitsPerPage);
 		ScoreDoc[] hits = results.scoreDocs;
 
-                List<String> res = new ArrayList<>();
+                List<String> res = new ArrayList<String>();
                 
 		int numTotalHits = results.totalHits;
 		
@@ -141,7 +144,7 @@ public class SearchFiles {
 	}
 	protected static List<String> filter_must_set_opts(List<String> opts)
 	{
-		HashSet<String> must_set_opts = new HashSet<>();
+		HashSet<String> must_set_opts = new HashSet<String>();
 		must_set_opts.add("ServerRoot");
 		must_set_opts.add("Listen");
 		must_set_opts.add("DocumentRoot");
@@ -159,7 +162,7 @@ public class SearchFiles {
 	}
 	protected static HashMap<String, String> parse_args(String[] args)
         {
-            HashMap<String, String> res = new HashMap<>();
+            HashMap<String, String> res = new HashMap<String, String>();
             CommandLineParser parser = new PosixParser();
             Options opts = new Options();
 	    opts.addOption(new Option("a", "improve via icon"));

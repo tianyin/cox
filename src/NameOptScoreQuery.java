@@ -18,8 +18,8 @@ import org.apache.lucene.search.Query;
 public class NameOptScoreQuery extends CustomScoreQuery {
   
     private final Query query;
-    private final HashMap<String, String> synoms = new HashMap<>();
-    private final HashMap<String, String> ontologies = new HashMap<>();
+    private final HashMap<String, String> synoms = new HashMap<String, String>();
+    private final HashMap<String, String> ontologies = new HashMap<String, String>();
  
 
     NameOptScoreQuery(Query query, FunctionQuery boostQuery) {

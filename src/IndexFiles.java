@@ -45,7 +45,7 @@ public class IndexFiles {
     private static final double default_doc_boost = boost_equation(0);
     private final HashMap<String, Double> m_oConfigPopularities;
 	private IndexFiles(String popularity_file) {
-        this.m_oConfigPopularities = new HashMap<>();
+        this.m_oConfigPopularities = new HashMap<String, Double>();
             if (popularity_file != null)
             {
 		    m_oConfigPopularities.put("RewriteRule", 1.0);
@@ -224,7 +224,7 @@ public class IndexFiles {
         
         protected static HashMap<String, String> parse_args(String[] args)
         {
-            HashMap<String, String> res = new HashMap<>();
+            HashMap<String, String> res = new HashMap<String, String>();
             CommandLineParser parser = new PosixParser();
             Options opts = new Options();
             opts.addOption(OptionBuilder.withArgName("index-path")
