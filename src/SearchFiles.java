@@ -78,8 +78,8 @@ public class SearchFiles {
 		try {
 			queryString = queryString.trim();
 			Query query = parser.parse(queryString);
-
 			return doPagingSearch(searcher, query, hitsPerPage, raw, false);
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -104,8 +104,7 @@ public class SearchFiles {
 	private List<String> doPagingSearch(IndexSearcher searcher, Query query,
 			int hitsPerPage, boolean raw, boolean interactive)
 			throws IOException {
-		FunctionQuery boostQuery = new FunctionQuery(new DoubleFieldSource(
-				"boost"));
+		FunctionQuery boostQuery = new FunctionQuery(new DoubleFieldSource("boost"));
 		Query q;
 		if (improve_icon) {
 			q = new NameOptScoreQuery(query, boostQuery);
@@ -205,8 +204,7 @@ public class SearchFiles {
 			}
 
 		} catch (org.apache.commons.cli.ParseException e) {
-			System.out.println("unexpected exception in parse_args(): "
-					+ e.getLocalizedMessage());
+			System.out.println("unexpected exception in parse_args(): " + e.getLocalizedMessage());
 		}
 
 		return res;
@@ -218,8 +216,7 @@ public class SearchFiles {
 		// System.out.println("start searching with ");
 		// System.out.println("\t improve-icon : " +
 		// params.get("improve-icon"));
-		SearchFiles searcher = new SearchFiles(params.get("index-path"),
-				params.get("improve-icon") == "true");
+		SearchFiles searcher = new SearchFiles(params.get("index-path"), params.get("improve-icon") == "true");
 		FileReader read = new FileReader(new File(params.get("input-file")));
 		BufferedReader reader = new BufferedReader(read);
 		String content = reader.readLine();
