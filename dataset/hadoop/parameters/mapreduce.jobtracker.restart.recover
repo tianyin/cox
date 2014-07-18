@@ -1,4 +1,4 @@
-mapreduce.jobtracker.restart.recover
+mapreduce jobtracker restart recover
 false
 "true" to enable (job) recovery upon restart,
                "false" to start afresh

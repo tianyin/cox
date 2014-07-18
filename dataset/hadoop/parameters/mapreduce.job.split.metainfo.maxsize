@@ -1,4 +1,4 @@
-mapreduce.job.split.metainfo.maxsize
+mapreduce job split metainfo maxsize
 10000000
 The maximum permissible size of the split metainfo file. 
   The JobTracker won't attempt to read split metainfo files bigger than

@@ -1,4 +1,4 @@
-dfs.namenode.max.objects
+dfs namenode max objects
 0
 The maximum number of files, directories and blocks
   dfs supports. A value of zero indicates no limit to the number

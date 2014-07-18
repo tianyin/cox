@@ -1,4 +1,4 @@
-mapreduce.reduce.merge.inmem.threshold
+mapreduce reduce merge inmem threshold
 1000
 The threshold, in terms of the number of files 
   for the in-memory merge process. When we accumulate threshold number of files

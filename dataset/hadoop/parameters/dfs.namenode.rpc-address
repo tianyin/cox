@@ -1,4 +1,4 @@
-dfs.namenode.rpc-address
+dfs namenode rpc-address
 RPC address that handles all clients requests. In the case of HA/Federation where multiple namenodes exist,
     the name service id is added to the name e.g. dfs.namenode.rpc-address.ns1
     dfs.namenode.rpc-address.EXAMPLENAMESERVICE

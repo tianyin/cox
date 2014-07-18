@@ -1,4 +1,4 @@
-mapreduce.job.ubertask.enable
+mapreduce job ubertask enable
 false
 Whether to enable the small-jobs "ubertask" optimization,
   which runs "sufficiently small" jobs sequentially within a single JVM.

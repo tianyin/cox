@@ -1,4 +1,4 @@
-mapreduce.map.sort.spill.percent
+mapreduce map sort spill percent
 0.80
 The soft limit in the serialization buffer. Once reached, a
   thread will begin to spill the contents to disk in the background. Note that

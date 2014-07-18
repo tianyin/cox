@@ -1,3 +1,3 @@
-dfs.datanode.https.address
+dfs datanode https address
 0.0.0.0:50475
 The datanode secure http server address and port.

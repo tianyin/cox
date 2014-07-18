@@ -1,3 +1,3 @@
-mapreduce.jobhistory.move.thread-count
+mapreduce jobhistory move thread-count
 3
 The number of threads used to move files.

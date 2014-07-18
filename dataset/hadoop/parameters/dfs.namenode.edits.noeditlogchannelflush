@@ -1,4 +1,4 @@
-dfs.namenode.edits.noeditlogchannelflush
+dfs namenode edits noeditlogchannelflush
 false
 Specifies whether to flush edit log file channel. When set, expensive
     FileChannel#force calls are skipped and synchronous disk writes are

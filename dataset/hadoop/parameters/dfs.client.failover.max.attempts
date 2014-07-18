@@ -1,4 +1,4 @@
-dfs.client.failover.max.attempts
+dfs client failover max attempts
 15
 Expert only. The number of client failover attempts that should be
     made before the failover is considered failed.

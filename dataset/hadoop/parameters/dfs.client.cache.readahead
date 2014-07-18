@@ -1,4 +1,4 @@
-dfs.client.cache.readahead
+dfs client cache readahead
 Just like dfs.datanode.readahead.bytes, this setting causes the datanode to
     read ahead in the block file using posix_fadvise, potentially decreasing
     I/O wait times.  Unlike dfs.datanode.readahead.bytes, this is a client-side

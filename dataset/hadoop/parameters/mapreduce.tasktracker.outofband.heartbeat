@@ -1,4 +1,4 @@
-mapreduce.tasktracker.outofband.heartbeat
+mapreduce tasktracker outofband heartbeat
 false
 Expert: Set this to true to let the tasktracker send an 
   out-of-band heartbeat on task-completion for better latency.

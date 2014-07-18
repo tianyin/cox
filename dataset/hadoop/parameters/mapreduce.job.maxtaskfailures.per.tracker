@@ -1,4 +1,4 @@
-mapreduce.job.maxtaskfailures.per.tracker
+mapreduce job maxtaskfailures per tracker
 3
 The number of task-failures on a tasktracker of a given job 
                after which new tasks of that job aren't assigned to it. It

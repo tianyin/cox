@@ -1,2 +1,2 @@
-lock_wait_timeout
+lock wait timeout
 lock_wait_timeout does not           apply to delayed inserts, which always execute with a timeout           of 1 year. This is done to avoid unnecessary timeouts because           a session that issues a delayed insert receives no           notification of delayed insert timeouts. 

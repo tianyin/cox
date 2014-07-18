@@ -1,4 +1,4 @@
-dfs.ha.log-roll.period
+dfs ha log-roll period
 120
 How often, in seconds, the StandbyNode should ask the active to
     roll edit logs. Since the StandbyNode only reads from finalized

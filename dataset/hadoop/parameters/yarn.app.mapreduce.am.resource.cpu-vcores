@@ -1,3 +1,3 @@
-yarn.app.mapreduce.am.resource.cpu-vcores
+yarn app mapreduce am resource cpu-vcores
 1
 The number of virtual CPU cores the MR AppMaster needs.

@@ -1,4 +1,4 @@
-mapreduce.job.ubertask.maxbytes
+mapreduce job ubertask maxbytes
 Threshold for number of input bytes, beyond which job is
   considered too big for the ubertasking optimization.  If no value is
   specified, dfs.block.size is used as a default.  Be sure to specify a

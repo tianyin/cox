@@ -1,4 +1,4 @@
-mapreduce.client.output.filter
+mapreduce client output filter
 FAILED
 The filter for controlling the output of the task's userlogs sent
                to the console of the JobClient. 

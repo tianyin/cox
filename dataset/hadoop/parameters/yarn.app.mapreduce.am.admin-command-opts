@@ -1,4 +1,4 @@
-yarn.app.mapreduce.am.admin-command-opts
+yarn app mapreduce am admin-command-opts
 Java opts for the MR App Master processes for admin purposes.
   It will appears before the opts set by yarn.app.mapreduce.am.command-opts and
   thus its options can be overridden user. 

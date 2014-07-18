@@ -1,4 +1,4 @@
-dfs.namenode.checkpoint.check.period
+dfs namenode checkpoint check period
 60
 The SecondaryNameNode and CheckpointNode will poll the NameNode
   every 'dfs.namenode.checkpoint.check.period' seconds to query the number

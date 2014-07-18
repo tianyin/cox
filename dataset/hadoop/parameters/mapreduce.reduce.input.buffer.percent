@@ -1,4 +1,4 @@
-mapreduce.reduce.input.buffer.percent
+mapreduce reduce input buffer percent
 0.0
 The percentage of memory- relative to the maximum heap size- to
   retain map outputs during the reduce. When the shuffle is concluded, any

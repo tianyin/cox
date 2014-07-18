@@ -1,4 +1,4 @@
-mapreduce.job.ubertask.maxreduces
+mapreduce job ubertask maxreduces
 1
 Threshold for number of reduces, beyond which job is considered
   too big for the ubertasking optimization.  CURRENTLY THE CODE CANNOT SUPPORT

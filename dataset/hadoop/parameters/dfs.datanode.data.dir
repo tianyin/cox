@@ -1,4 +1,4 @@
-dfs.datanode.data.dir
+dfs datanode data dir
 file://${hadoop.tmp.dir}/dfs/data
 Determines where on the local filesystem an DFS data node
   should store its blocks.  If this is a comma-delimited

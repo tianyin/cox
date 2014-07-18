@@ -1,3 +1,3 @@
-mapreduce.shuffle.ssl.file.buffer.size
+mapreduce shuffle ssl file buffer size
 65536
 Buffer size for reading spills from file when using SSL.

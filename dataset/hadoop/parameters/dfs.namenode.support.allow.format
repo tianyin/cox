@@ -1,4 +1,4 @@
-dfs.namenode.support.allow.format
+dfs namenode support allow format
 true
 Does HDFS namenode allow itself to be formatted?
                You may consider setting this to false for any production

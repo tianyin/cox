@@ -1,4 +1,4 @@
-dfs.ha.tail-edits.period
+dfs ha tail-edits period
 60
 How often, in seconds, the StandbyNode should check for new
     finalized log segments in the shared edits log.

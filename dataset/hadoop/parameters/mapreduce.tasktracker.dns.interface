@@ -1,4 +1,4 @@
-mapreduce.tasktracker.dns.interface
+mapreduce tasktracker dns interface
 default
 The name of the Network Interface from which a task
   tracker should report its IP address.

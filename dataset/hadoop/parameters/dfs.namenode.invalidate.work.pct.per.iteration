@@ -1,4 +1,4 @@
-dfs.namenode.invalidate.work.pct.per.iteration
+dfs namenode invalidate work pct per iteration
 0.32f
 *Note*: Advanced property. Change with caution.
     This determines the percentage amount of block

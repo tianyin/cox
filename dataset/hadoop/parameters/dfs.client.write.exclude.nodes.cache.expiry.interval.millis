@@ -1,4 +1,4 @@
-dfs.client.write.exclude.nodes.cache.expiry.interval.millis
+dfs client write exclude nodes cache expiry interval millis
 600000
 The maximum period to keep a DN in the excluded nodes list
   at a client. After this period, in milliseconds, the previously excluded node(s) will

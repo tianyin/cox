@@ -1,4 +1,4 @@
-dfs.namenode.avoid.read.stale.datanode
+dfs namenode avoid read stale datanode
 false
 Indicate whether or not to avoid reading from "stale" datanodes whose
     heartbeat messages have not been received by the namenode 

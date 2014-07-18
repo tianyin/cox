@@ -1,4 +1,4 @@
-dfs.namenode.edits.journal-plugin.qjournal
+dfs namenode edits journal-plugin qjournal
 org.apache.hadoop.hdfs.qjournal.client.QuorumJournalManager
 A directory on shared storage between the multiple namenodes
   in an HA cluster. This directory will be written by the active and read

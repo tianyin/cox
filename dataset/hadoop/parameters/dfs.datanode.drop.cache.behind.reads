@@ -1,4 +1,4 @@
-dfs.datanode.drop.cache.behind.reads
+dfs datanode drop cache behind reads
 false
 In some workloads, the data read from HDFS is known to be significantly
         large enough that it is unlikely to be useful to cache it in the

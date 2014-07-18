@@ -1,4 +1,4 @@
-mapreduce.reduce.skip.maxgroups
+mapreduce reduce skip maxgroups
 0
 The number of acceptable skip groups surrounding the bad 
     group PER bad group in reducer. The number includes the bad group as well.

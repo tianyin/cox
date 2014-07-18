@@ -1,4 +1,4 @@
-mapreduce.task.files.preserve.failedtasks
+mapreduce task files preserve failedtasks
 false
 Should the files for failed tasks be kept. This should only be 
                used on jobs that are failing, because the storage is never

@@ -1,4 +1,4 @@
-mapreduce.jobtracker.heartbeats.in.second
+mapreduce jobtracker heartbeats in second
 100
 Expert: Approximate number of heart-beats that could arrive 
                at JobTracker in a second. Assuming each RPC can be processed 

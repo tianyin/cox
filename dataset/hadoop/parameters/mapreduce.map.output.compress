@@ -1,4 +1,4 @@
-mapreduce.map.output.compress
+mapreduce map output compress
 false
 Should the outputs of the maps be compressed before being
                sent across the network. Uses SequenceFile compression.

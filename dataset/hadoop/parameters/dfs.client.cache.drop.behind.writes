@@ -1,4 +1,4 @@
-dfs.client.cache.drop.behind.writes
+dfs client cache drop behind writes
 Just like dfs.datanode.drop.cache.behind.writes, this setting causes the
     page cache to be dropped behind HDFS writes, potentially freeing up more
     memory for other uses.  Unlike dfs.datanode.drop.cache.behind.writes, this

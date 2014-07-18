@@ -1,3 +1,3 @@
-dfs.client-write-packet-size
+dfs client-write-packet-size
 65536
 Packet size for clients to write

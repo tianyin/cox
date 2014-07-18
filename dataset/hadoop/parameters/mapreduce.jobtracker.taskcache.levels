@@ -1,4 +1,4 @@
-mapreduce.jobtracker.taskcache.levels
+mapreduce jobtracker taskcache levels
 2
 This is the max level of the task cache. For example, if
     the level is 2, the tasks cached are at the host level and at the rack

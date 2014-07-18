@@ -1,4 +1,4 @@
-dfs.namenode.edits.dir
+dfs namenode edits dir
 ${dfs.namenode.name.dir}
 Determines where on the local filesystem the DFS name node
       should store the transaction (edits) file. If this is a comma-delimited list

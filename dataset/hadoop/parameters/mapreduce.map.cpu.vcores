@@ -1,3 +1,3 @@
-mapreduce.map.cpu.vcores
+mapreduce map cpu vcores
 1
 The number of virtual cores required for each map task.

@@ -1,4 +1,4 @@
-mapreduce.map.skip.maxrecords
+mapreduce map skip maxrecords
 0
 The number of acceptable skip records surrounding the bad 
     record PER bad record in mapper. The number includes the bad record as well.

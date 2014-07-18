@@ -1,4 +1,4 @@
-mapreduce.jobtracker.address
+mapreduce jobtracker address
 local
 The host and port that the MapReduce job tracker runs
   at.  If "local", then jobs are run in-process as a single map

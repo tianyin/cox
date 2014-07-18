@@ -1,4 +1,4 @@
-dfs.client.use.datanode.hostname
+dfs client use datanode hostname
 false
 Whether clients should use datanode hostnames when
     connecting to datanodes.

@@ -1,4 +1,4 @@
-mapreduce.tasktracker.http.threads
+mapreduce tasktracker http threads
 40
 The number of worker threads that for the http server. This is
                used for map output fetching

@@ -1,4 +1,4 @@
-dfs.datanode.dns.nameserver
+dfs datanode dns nameserver
 default
 The host name or IP address of the name server (DNS)
   which a DataNode should use to determine the host name used by the

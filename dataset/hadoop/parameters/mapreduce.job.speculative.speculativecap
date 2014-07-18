@@ -1,4 +1,4 @@
-mapreduce.job.speculative.speculativecap
+mapreduce job speculative speculativecap
 0.1
 The max percent (0-1) of running tasks that
   can be speculatively re-executed at any time.

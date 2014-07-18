@@ -1,4 +1,4 @@
-dfs.namenode.fs-limits.max-component-length
+dfs namenode fs-limits max-component-length
 0
 Defines the maximum number of characters in each component
       of a path.  A value of 0 will disable the check.

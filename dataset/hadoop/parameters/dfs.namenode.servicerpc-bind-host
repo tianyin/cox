@@ -1,4 +1,4 @@
-dfs.namenode.servicerpc-bind-host
+dfs namenode servicerpc-bind-host
 The actual address the server will bind to. If this optional address is
     set, the service RPC server will bind to this address and the port 
     specified in dfs.namenode.servicerpc-address. It can also be specified

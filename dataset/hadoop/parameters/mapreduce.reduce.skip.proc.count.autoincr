@@ -1,4 +1,4 @@
-mapreduce.reduce.skip.proc.count.autoincr
+mapreduce reduce skip proc count autoincr
 true
 The flag which if set to true, 
     SkipBadRecords.COUNTER_REDUCE_PROCESSED_GROUPS is incremented 

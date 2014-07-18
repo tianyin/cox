@@ -1,3 +1,3 @@
-mapreduce.reduce.cpu.vcores
+mapreduce reduce cpu vcores
 1
 The number of virtual cores required for each reduce task.

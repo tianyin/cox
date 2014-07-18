@@ -1,4 +1,4 @@
-mapreduce.map.maxattempts
+mapreduce map maxattempts
 4
 Expert: The maximum number of attempts per map task.
   In other words, framework will try to execute a map task these many number

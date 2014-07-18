@@ -1,4 +1,4 @@
-mapreduce.task.profile.maps
+mapreduce task profile maps
 0-2
 To set the ranges of map tasks to profile.
     mapreduce.task.profile has to be set to true for the value to be accounted.

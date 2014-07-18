@@ -1,4 +1,4 @@
-dfs.namenode.decommission.nodes.per.interval
+dfs namenode decommission nodes per interval
 5
 The number of nodes namenode checks if decommission is complete
   in each dfs.namenode.decommission.interval.

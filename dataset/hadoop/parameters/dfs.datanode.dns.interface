@@ -1,4 +1,4 @@
-dfs.datanode.dns.interface
+dfs datanode dns interface
 default
 The name of the Network Interface from which a data node should 
   report its IP address.

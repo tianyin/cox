@@ -1,4 +1,4 @@
-dfs.namenode.retrycache.heap.percent
+dfs namenode retrycache heap percent
 0.03f
 This parameter configures the heap size allocated for retry cache
 	  (excluding the response cached). This corresponds to approximately

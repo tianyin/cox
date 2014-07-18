@@ -1,4 +1,4 @@
-mapreduce.tasktracker.resourcecalculatorplugin
+mapreduce tasktracker resourcecalculatorplugin
 Name of the class whose instance will be used to query resource information
    on the tasktracker.
    

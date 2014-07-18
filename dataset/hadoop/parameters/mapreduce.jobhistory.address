@@ -1,3 +1,3 @@
-mapreduce.jobhistory.address
+mapreduce jobhistory address
 0.0.0.0:10020
 MapReduce JobHistory Server IPC host:port

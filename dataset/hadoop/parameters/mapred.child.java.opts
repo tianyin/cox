@@ -1,4 +1,4 @@
-mapred.child.java.opts
+mapred child java opts
 -Xmx200m
 Java opts for the task tracker child processes.  
   The following symbol, if present, will be interpolated: @taskid@ is replaced 

@@ -1,4 +1,4 @@
-mapreduce.tasktracker.tasks.sleeptimebeforesigkill
+mapreduce tasktracker tasks sleeptimebeforesigkill
 5000
 The time, in milliseconds, the tasktracker waits for sending a
   SIGKILL to a task, after it has been sent a SIGTERM. This is currently

@@ -1,4 +1,4 @@
-mapreduce.client.completion.pollinterval
+mapreduce client completion pollinterval
 5000
 The interval (in milliseconds) between which the JobClient
     polls the JobTracker for updates about job status. You may want to set this

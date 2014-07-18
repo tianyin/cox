@@ -1,3 +1,3 @@
-mapreduce.shuffle.ssl.enabled
+mapreduce shuffle ssl enabled
 false
 Whether to use SSL for for the Shuffle HTTP endpoints.

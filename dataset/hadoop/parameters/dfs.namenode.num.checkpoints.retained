@@ -1,4 +1,4 @@
-dfs.namenode.num.checkpoints.retained
+dfs namenode num checkpoints retained
 2
 The number of image checkpoint files that will be retained by
   the NameNode and Secondary NameNode in their storage directories. All edit

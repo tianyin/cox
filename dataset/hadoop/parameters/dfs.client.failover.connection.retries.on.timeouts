@@ -1,4 +1,4 @@
-dfs.client.failover.connection.retries.on.timeouts
+dfs client failover connection retries on timeouts
 0
 Expert only. The number of retry attempts a failover IPC client
     will make on socket timeout when establishing a server connection.

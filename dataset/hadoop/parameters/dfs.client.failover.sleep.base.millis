@@ -1,4 +1,4 @@
-dfs.client.failover.sleep.base.millis
+dfs client failover sleep base millis
 500
 Expert only. The time to wait, in milliseconds, between failover
     attempts increases exponentially as a function of the number of

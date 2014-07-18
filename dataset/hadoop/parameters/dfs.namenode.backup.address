@@ -1,4 +1,4 @@
-dfs.namenode.backup.address
+dfs namenode backup address
 0.0.0.0:50100
 The backup node server address and port.
     If the port is 0 then the server will start on a free port.

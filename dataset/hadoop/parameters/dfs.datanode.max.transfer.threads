@@ -1,4 +1,4 @@
-dfs.datanode.max.transfer.threads
+dfs datanode max transfer threads
 4096
 Specifies the maximum number of threads to use for transferring data
         in and out of the DN.

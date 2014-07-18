@@ -1,4 +1,4 @@
-mapreduce.jobtracker.jobhistory.lru.cache.size
+mapreduce jobtracker jobhistory lru cache size
 5
 The number of job history files loaded in memory. The jobs are 
   loaded when they are first accessed. The cache is cleared based on LRU.

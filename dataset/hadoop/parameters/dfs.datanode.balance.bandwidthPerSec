@@ -1,4 +1,4 @@
-dfs.datanode.balance.bandwidthPerSec
+dfs datanode balance bandwidthPerSec
 1048576
 Specifies the maximum amount of bandwidth that each datanode
         can utilize for the balancing purpose in term of

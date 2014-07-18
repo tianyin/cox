@@ -1,4 +1,4 @@
-dfs.namenode.replication.interval
+dfs namenode replication interval
 3
 The periodicity in seconds with which the namenode computes 
   replication work for datanodes.

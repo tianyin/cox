@@ -1,4 +1,4 @@
-dfs.datanode.available-space-volume-choosing-policy.balanced-space-preference-fraction
+dfs datanode available-space-volume-choosing-policy balanced-space-preference-fraction
 0.75f
 Only used when the dfs.datanode.fsdataset.volume.choosing.policy is set to
     org.apache.hadoop.hdfs.server.datanode.fsdataset.AvailableSpaceVolumeChoosingPolicy.

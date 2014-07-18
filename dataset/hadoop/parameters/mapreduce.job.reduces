@@ -1,4 +1,4 @@
-mapreduce.job.reduces
+mapreduce job reduces
 1
 The default number of reduce tasks per job. Typically set to 99%
   of the cluster's reduce capacity, so that if a node fails the reduces can 

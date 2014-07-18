@@ -1,4 +1,4 @@
-yarn.app.mapreduce.am.job.task.listener.thread-count
+yarn app mapreduce am job task listener thread-count
 30
 The number of threads used to handle RPC calls in the 
     MR AppMaster from remote tasks

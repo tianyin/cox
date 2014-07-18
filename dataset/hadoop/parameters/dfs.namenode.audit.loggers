@@ -1,4 +1,4 @@
-dfs.namenode.audit.loggers
+dfs namenode audit loggers
 default
 List of classes implementing audit loggers that will receive audit events.
     These should be implementations of org.apache.hadoop.hdfs.server.namenode.AuditLogger.

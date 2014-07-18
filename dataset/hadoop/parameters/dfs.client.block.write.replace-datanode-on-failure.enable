@@ -1,4 +1,4 @@
-dfs.client.block.write.replace-datanode-on-failure.enable
+dfs client block write replace-datanode-on-failure enable
 true
 If there is a datanode/network failure in the write pipeline,
     DFSClient will try to remove the failed datanode from the pipeline

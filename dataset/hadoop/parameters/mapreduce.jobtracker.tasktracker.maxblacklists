@@ -1,4 +1,4 @@
-mapreduce.jobtracker.tasktracker.maxblacklists
+mapreduce jobtracker tasktracker maxblacklists
 4
 The number of blacklists for a taskTracker by various jobs
                after which the task tracker could be blacklisted across

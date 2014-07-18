@@ -1,4 +1,4 @@
-dfs.stream-buffer-size
+dfs stream-buffer-size
 4096
 The size of buffer to stream files.
   The size of this buffer should probably be a multiple of hardware

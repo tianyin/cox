@@ -1,4 +1,4 @@
-mapreduce.task.skip.start.attempts
+mapreduce task skip start attempts
 2
 The number of Task attempts AFTER which skip mode 
     will be kicked off. When skip mode is kicked off, the 

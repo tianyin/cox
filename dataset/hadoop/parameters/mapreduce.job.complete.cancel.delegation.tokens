@@ -1,4 +1,4 @@
-mapreduce.job.complete.cancel.delegation.tokens
+mapreduce job complete cancel delegation tokens
 true
 if false - do not unregister/cancel delegation tokens from 
     renewal, because same tokens may be used by spawned jobs

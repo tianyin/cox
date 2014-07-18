@@ -1,4 +1,4 @@
-dfs.image.transfer.timeout
+dfs image transfer timeout
 600000
 Timeout for image transfer in milliseconds. This timeout and the related
         dfs.image.transfer.bandwidthPerSec parameter should be configured such

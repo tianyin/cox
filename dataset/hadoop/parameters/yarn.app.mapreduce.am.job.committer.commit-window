@@ -1,4 +1,4 @@
-yarn.app.mapreduce.am.job.committer.commit-window
+yarn app mapreduce am job committer commit-window
 10000
 Defines a time window in milliseconds for output commit
   operations.  If contact with the RM has occurred within this window then

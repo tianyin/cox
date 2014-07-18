@@ -1,4 +1,4 @@
-mapreduce.job.skip.outdir
+mapreduce job skip outdir
 If no value is specified here, the skipped records are 
     written to the output directory at _logs/skip.
     User can stop writing skipped records by giving the value "none".

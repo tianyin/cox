@@ -1,4 +1,4 @@
-dfs.namenode.checkpoint.max-retries
+dfs namenode checkpoint max-retries
 3
 The SecondaryNameNode retries failed checkpointing. If the 
   failure occurs while loading fsimage or replaying edits, the number of

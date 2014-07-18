@@ -1,4 +1,4 @@
-mapreduce.jobtracker.jobhistory.block.size
+mapreduce jobtracker jobhistory block size
 3145728
 The block size of the job history file. Since the job recovery
                uses job history, its important to dump job history to disk as 

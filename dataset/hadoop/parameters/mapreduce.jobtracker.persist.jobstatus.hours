@@ -1,4 +1,4 @@
-mapreduce.jobtracker.persist.jobstatus.hours
+mapreduce jobtracker persist jobstatus hours
 1
 The number of hours job status information is persisted in DFS.
     The job status information will be available after it drops of the memory

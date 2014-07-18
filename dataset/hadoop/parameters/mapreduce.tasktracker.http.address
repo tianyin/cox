@@ -1,4 +1,4 @@
-mapreduce.tasktracker.http.address
+mapreduce tasktracker http address
 0.0.0.0:50060
 The task tracker http server address and port.
     If the port is 0 then the server will start on a free port.

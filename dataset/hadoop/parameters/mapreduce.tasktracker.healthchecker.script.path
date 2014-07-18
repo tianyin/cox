@@ -1,4 +1,4 @@
-mapreduce.tasktracker.healthchecker.script.path
+mapreduce tasktracker healthchecker script path
 Absolute path to the script which is
   periodicallyrun by the node health monitoring service to determine if
   the node is healthy or not. If the value of this key is empty or the

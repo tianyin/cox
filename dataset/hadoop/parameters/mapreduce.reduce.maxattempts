@@ -1,4 +1,4 @@
-mapreduce.reduce.maxattempts
+mapreduce reduce maxattempts
 4
 Expert: The maximum number of attempts per reduce task.
   In other words, framework will try to execute a reduce task these many number

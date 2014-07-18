@@ -1,4 +1,4 @@
-mapreduce.tasktracker.taskmemorymanager.monitoringinterval
+mapreduce tasktracker taskmemorymanager monitoringinterval
 5000
 The interval, in milliseconds, for which the tasktracker waits
    between two cycles of monitoring its tasks' memory usage. Used only if

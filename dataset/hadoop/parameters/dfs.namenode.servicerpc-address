@@ -1,4 +1,4 @@
-dfs.namenode.servicerpc-address
+dfs namenode servicerpc-address
 RPC address for HDFS Services communication. BackupNode, Datanodes and all other services should be
     connecting to this address if it is configured. In the case of HA/Federation where multiple namenodes exist,
     the name service id is added to the name e.g. dfs.namenode.servicerpc-address.ns1

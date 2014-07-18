@@ -1,4 +1,4 @@
-mapreduce.job.token.tracking.ids.enabled
+mapreduce job token tracking ids enabled
 false
 Whether to write tracking ids of tokens to
     job-conf. When true, the configuration property

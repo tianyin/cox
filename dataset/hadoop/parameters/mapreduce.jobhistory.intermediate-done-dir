@@ -1,2 +1,2 @@
-mapreduce.jobhistory.intermediate-done-dir
+mapreduce jobhistory intermediate-done-dir
 ${yarn.app.mapreduce.am.staging-dir}/history/done_intermediate

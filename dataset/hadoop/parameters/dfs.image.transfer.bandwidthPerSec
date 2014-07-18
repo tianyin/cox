@@ -1,4 +1,4 @@
-dfs.image.transfer.bandwidthPerSec
+dfs image transfer bandwidthPerSec
 0
 Maximum bandwidth used for image transfer in bytes per second.
         This can help keep normal namenode operations responsive during

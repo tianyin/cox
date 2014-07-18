@@ -1,4 +1,4 @@
-mapreduce.task.tmp.dir
+mapreduce task tmp dir
 ./tmp
 To set the value of tmp directory for map and reduce tasks.
   If the value is an absolute path, it is directly assigned. Otherwise, it is
