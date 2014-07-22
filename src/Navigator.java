@@ -38,6 +38,9 @@ import org.apache.lucene.queries.function.valuesource.DoubleFieldSource;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * This class is the navigation client, it takes users' queries and returns the recommended parameters
+ */
 public class Navigator {
 	
 	private static final String name = IndexFiles.class.getName();

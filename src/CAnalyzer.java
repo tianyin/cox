@@ -8,6 +8,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.util.Version;
 
 public class CAnalyzer {
+	
 	PerFieldAnalyzerWrapper analyzer;
 	private final Version matchVersion;
 	
