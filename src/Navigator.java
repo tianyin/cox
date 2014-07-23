@@ -42,7 +42,6 @@ import java.util.logging.SimpleFormatter;
  * This class is the navigation client, it takes users' queries and returns the recommended parameters
  */
 public class Navigator {
-	
 	private static final String name = IndexManualPages.class.getName();
 	private static final Logger log = Logger.getLogger(name);
 	private final String indexReposity;
@@ -55,16 +54,16 @@ public class Navigator {
 	private IndexSearcher searcher;
 	private Analyzer analyzer;
 	private QueryParser parser;
-	private boolean improve;
+	private boolean optimization;
 
 	/**
 	 * Constructor
 	 * @param indexRepo: the place the indices are stored
 	 * @param improve: TODO
 	 */
-	public Navigator(String indexRepo, boolean ipv) {
+	public Navigator(String indexRepo, boolean ipv, boolean strict) {
 		indexReposity = indexRepo;
-		improve       = ipv;
+		optimization  = ipv;
 
 		try {
 			IndexReader reader = DirectoryReader.open(FSDirectory.open(new File(indexReposity)));
@@ -72,8 +71,11 @@ public class Navigator {
 			// analyzer = new StandardAnalyzer(Version.LUCENE_46);
 			// analyzer = new EnglishAnalyzer(Version.LUCENE_46);
 			analyzer = new CAnalyzer(Version.LUCENE_47).getAnalyzer();
+			
 			parser = new QueryParser(Version.LUCENE_47, field, analyzer);
-			// reader.close();
+			if(strict == true) {
+				parser.setDefaultOperator(QueryParser.AND_OPERATOR);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -110,7 +112,7 @@ public class Navigator {
 	private List<String> navigate(Query query) throws IOException {
 		FunctionQuery boostQuery = new FunctionQuery(new DoubleFieldSource("boost"));
 		Query q;
-		if (improve) {
+		if (optimization) {
 			q = new NameOptScoreQuery(query, boostQuery);
 		} else {
 			q = new CustomScoreQuery(query, boostQuery);
@@ -131,7 +133,7 @@ public class Navigator {
 			// System.out.println("[" + hit.toString() + "]" + path);
 		}
 		
-		if (improve) {
+		if (optimization) {
 			res = filter_must_set_opts(res);
 		}
 		
@@ -221,7 +223,7 @@ public class Navigator {
 	protected static void search_main(String[] args) throws Exception {
 		HashMap<String, String> params = parse_args(args);
 		
-		Navigator searcher = new Navigator(params.get("index-path"), params.get("optimization")=="true");
+		Navigator searcher = new Navigator(params.get("index-path"), params.get("optimization")=="true", params.get("strict-mode")=="true");
 		
 		//This list contains all the query strings
 		List<String> queryStrList = new LinkedList<String>();
