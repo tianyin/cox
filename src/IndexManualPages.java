@@ -47,7 +47,6 @@ public class IndexManualPages {
 	private IndexManualPages(String popularity_file) {
 		this.m_oConfigPopularities = new HashMap<String, Double>();
 		if (popularity_file != null) {
-			m_oConfigPopularities.put("RewriteRule", 1.0);
 			try {
 				FileReader read = new FileReader(new File(popularity_file));
 				BufferedReader reader = new BufferedReader(read);
@@ -188,48 +187,34 @@ public class IndexManualPages {
 		new IndexManualPages(popularity_file).indexDir(index_path, dst_dir, create);
 	}
 
-	protected static HashMap<String, String> parse_args(String[] args) {
-		HashMap<String, String> res = new HashMap<String, String>();
+	protected static CommandLine parse_args(String[] args) {
 		CommandLineParser parser = new PosixParser();
 		Options opts = new Options();
 		
 		opts.addOption(new Option("i", true,  "the path of the indexes"));
 		opts.addOption(new Option("d", true,  "destination file dir"));
 		opts.addOption(new Option("p", true,  "the path of the popularity file of the software"));
-		
-//		opts.addOption(OptionBuilder.withArgName("index-path").hasArg().withDescription("indexing file's path").create("i"));
-//		opts.addOption(OptionBuilder.withArgName("dst-dir").hasArg().withDescription("destination file dir").create("d"));
-//		opts.addOption(OptionBuilder.withArgName("popularity-file").hasArg().withDescription("popularity file path").create("p"));
 
 		try {
 			CommandLine cmd = parser.parse(opts, args);
-			if (cmd.hasOption("i")) {
-				res.put("index-path", cmd.getOptionValue("i"));
-			} else {
+			if (cmd.hasOption("i") == false) {
 				System.out.println("index-path is required!");
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("ant", opts);
 				System.exit(-1);
 			}
-			if (cmd.hasOption("d")) {
-				res.put("dst-dir", cmd.getOptionValue("d"));
-			} else {
+			if (cmd.hasOption("d") == false) {
 				System.out.println("dst-dir is required!");
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("ant", opts);
 				System.exit(-1);
 			}
-			if (cmd.hasOption("p")) {
-				res.put("popularity-file", cmd.getOptionValue("p"));
-			} else {
-				res.put("popularity-file", null);
-			}
+			return cmd;
 			
 		} catch (ParseException e) {
 			System.out.println("unexpected exception in parse_args(): " + e.getLocalizedMessage());
+			return null;
 		}
-
-		return res;
 	}
 
 	/** Index all text files under a directory. */
@@ -244,7 +229,7 @@ public class IndexManualPages {
 			System.out.println("Unexpected exception : " + e.getMessage());
 		}
 
-		HashMap<String, String> params = parse_args(args);
-		index_main(params.get("index-path"), params.get("dst-dir"), params.get("popularity-file"));
+		CommandLine cmd = parse_args(args);
+		index_main(cmd.getOptionValue("i"), cmd.getOptionValue("d"), cmd.getOptionValue("p"));
 	}
 }
