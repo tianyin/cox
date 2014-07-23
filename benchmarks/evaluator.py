@@ -42,7 +42,9 @@ def eval(config):
                 None)
         res = cmd_wrapper.execute_search(config.index_path,
                 config.input_file,
-                config.output_file, True, True)
+                config.output_file, 
+                config.filter_path,
+                True, True)
         #for (k, v) in res.items():
         #    print str(k) + ' : ' + str(v)
 
@@ -57,7 +59,9 @@ def eval(config):
                 config.pop_file_path)
         res = cmd_wrapper.execute_search(config.index_pop_path,
                 config.input_file,
-                config.output_w_pop, True, False)
+                config.output_w_pop,
+                config.filter_path,
+                 True, False)
 
         #for (k, v) in res.items():
         #    print str(k) + ' : ' + str(v)

@@ -3,7 +3,7 @@ import os
 import csv
 
 class EvalConfig:
-    def __init__(self, sw, param_path, pop_path, o2mmap, renamemap, testcase, base_dir):
+    def __init__(self, sw, param_path, pop_path, o2mmap, renamemap, filt_path, testcase, base_dir):
         if not os.path.exists(base_dir):
             os.mkdir(base_dir)            
 
@@ -14,6 +14,8 @@ class EvalConfig:
             self.opt2mod_map = Opt2ModuleMapping(o2mmap)
         else:
             self.opt2mod_map = None
+
+        self.filter_path    = filt_path
 
         self.input_file     = os.path.join(base_dir, sw+'_java_input.txt')
 
@@ -80,24 +82,6 @@ class EvalConfig:
         #json_fp = os.path.join(output_data_dir,output_bm)
         #open(json_fp, 'w').write(json.dumps(res))
         return res
-
-#def normalize_apache():
-#    return normalize_general('apache_tc_icon.csv',
-#            'n_apache_java_input.txt', 
-#            'n_apache_benchmark.csv',
-#            #lambda d: d.replace('mod_forensic', 'mod_log_forensic'))
-#            lambda d: d)
-
-#def normalize_hadoop():
-#    return normalize_general('hadoop_tc_icon.csv',
-#            'n_hadoop_java_input.txt',
-#            'n_hadoop_benchmark.csv',
-#            lambda d: rename_opt_due_to_version(d))
-
-#def normalize_mysql():
-#    return normalize_general('mysql_tc_icon.csv',
-#            'n_mysql_java_input.txt', 'n_mysql_benchmark.csv',
-#            lambda d: d.replace('-', '_'))
 
     def build_rename_map(self, rename_file):
         # http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/DeprecatedProperties.html

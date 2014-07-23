@@ -49,19 +49,22 @@ public class Navigator {
 	public String field = "op_desc";
 	public int repeat = 0;
 	public boolean raw = false;
-	public int hitsPerPage = 10;
+	public int numOfResults = 50; //50 is a lot
 
 	private IndexSearcher searcher;
 	private Analyzer analyzer;
 	private QueryParser parser;
 	private boolean optimization;
 
+	//must to set options should not be returned to users, because users are definitely not looking for them
+	private HashSet<String> mustSetOpts = null;
+	
 	/**
 	 * Constructor
 	 * @param indexRepo: the place the indices are stored
 	 * @param improve: TODO
 	 */
-	public Navigator(String indexRepo, boolean ipv, boolean strict) {
+	public Navigator(String indexRepo, String filterFile, boolean ipv, boolean strict) {
 		indexReposity = indexRepo;
 		optimization  = ipv;
 
@@ -76,6 +79,9 @@ public class Navigator {
 			if(strict == true) {
 				parser.setDefaultOperator(QueryParser.AND_OPERATOR);
 			}
+			
+			getMustSetOpts(filterFile);
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -118,8 +124,7 @@ public class Navigator {
 			q = new CustomScoreQuery(query, boostQuery);
 		}
 
-		// Collect enough docs to show 5 pages
-		TopDocs results = searcher.search(q, 5 * hitsPerPage);
+		TopDocs results = searcher.search(q, numOfResults);
 		ScoreDoc[] hits = results.scoreDocs;
 
 		List<String> res = new ArrayList<String>();
@@ -134,36 +139,43 @@ public class Navigator {
 		}
 		
 		if (optimization) {
-			res = filter_must_set_opts(res);
+			filterMustSetOpts(res);
 		}
 		
 		return res;
 	}
-
-	protected static List<String> order_by_name(String query, List<String> res) {
-		return res;
-	}
-
-	protected static List<String> filter_must_set_opts(List<String> opts) {
-		HashSet<String> must_set_opts = new HashSet<String>();
-		must_set_opts.add("ServerRoot");
-		must_set_opts.add("Listen");
-		must_set_opts.add("DocumentRoot");
-		Iterator<String> iter = opts.iterator();
-		while (iter.hasNext()) {
-			String s = iter.next();
-			if (must_set_opts.contains(s)) {
-//				System.out.println(s + " is removed due to must_set_opts!\n");
-				iter.remove();
+	
+	protected void getMustSetOpts(String filterFile) {
+		if (filterFile != null) {
+			mustSetOpts = new HashSet<String>();
+			
+			try{
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(filterFile));
+				String line = null;
+				while( (line = bufferedReader.readLine()) != null) {
+					line = line.trim();
+					mustSetOpts.add(line);
+				}
+				bufferedReader.close();
+			} catch(IOException e) {
+				e.printStackTrace();
 			}
 		}
-
-		return opts;
 	}
 
-	protected static HashMap<String, String> parse_args(String[] args) {
-		HashMap<String, String> res = new HashMap<String, String>();
-		
+	protected void filterMustSetOpts(List<String> opts) {
+		if (mustSetOpts != null) {
+			Iterator<String> iter = opts.iterator();
+			while (iter.hasNext()) {
+				String s = iter.next();
+				if (mustSetOpts.contains(s)) {
+					iter.remove();
+				}
+			}
+		}
+	}
+
+	protected static CommandLine parse_args(String[] args) {		
 		CommandLineParser parser = new PosixParser();
 		Options opts = new Options();
 		opts.addOption(new Option("a", false, "enable all coxy optimization"));
@@ -173,14 +185,20 @@ public class Navigator {
 		opts.addOption(new Option("i", true,  "the path of the indexes"));
 		opts.addOption(new Option("f", true,  "the path of the input file (containing the queries)"));
 		opts.addOption(new Option("o", true,  "the path of the output file (results)"));
+		opts.addOption(new Option("x", true,  "the path of the filter file (containing parameters not to expose to users"));
 		
 		try {
 			CommandLine cmd = parser.parse(opts, args);
 			
-			if (cmd.hasOption("i")) {
-				res.put("index-path", cmd.getOptionValue("i"));
-			} else {
-				System.out.println("index-path is required!");
+			if (cmd.hasOption("i") == false) {
+				System.out.println("index path is required!");
+				HelpFormatter formatter = new HelpFormatter();
+				formatter.printHelp("ant", opts);
+				System.exit(-1);
+			}
+			
+			if (cmd.hasOption("o") == false) {
+				System.out.println("you are required to set an output file. Sorry fot this.");
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("ant", opts);
 				System.exit(-1);
@@ -191,6 +209,7 @@ public class Navigator {
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("ant", opts);
 				System.exit(-1);
+				
 			} else if(cmd.hasOption("f") == true && cmd.hasOption("q") == true) {
 				System.out.println("Please only specify one input method!");
 				HelpFormatter formatter = new HelpFormatter();
@@ -198,42 +217,28 @@ public class Navigator {
 				System.exit(-1);
 			}
 			
-			if (cmd.hasOption("q")) {
-				res.put("query-string", cmd.getOptionValue("q"));
-			}
-			
-			if (cmd.hasOption("f")) {
-				res.put("input-file", cmd.getOptionValue("f"));
-			}
-			
-			if (cmd.hasOption("o")) {
-				res.put("output-file", cmd.getOptionValue("o"));
-			}
-			
-			res.put("optimization", cmd.hasOption("a") ? "true" : "false");
-			res.put("strict-mode",  cmd.hasOption("s") ? "true" : "false");
+			return cmd;
 
 		} catch (org.apache.commons.cli.ParseException e) {
 			System.out.println("unexpected exception in parse_args(): " + e.getLocalizedMessage());
+			return null;
 		}
-
-		return res;
 	}
 
 	protected static void search_main(String[] args) throws Exception {
-		HashMap<String, String> params = parse_args(args);
+		CommandLine cmd = parse_args(args);
 		
-		Navigator searcher = new Navigator(params.get("index-path"), params.get("optimization")=="true", params.get("strict-mode")=="true");
+		Navigator searcher = new Navigator(cmd.getOptionValue("i"), cmd.getOptionValue("x"), cmd.hasOption("a"), cmd.hasOption("s"));
 		
 		//This list contains all the query strings
 		List<String> queryStrList = new LinkedList<String>();
 		
 		//Put the inputed query strings into the list
-		if(params.containsKey("query-string")) {
-			queryStrList.add(params.get("query-string"));
+		if(cmd.hasOption("q")) {
+			queryStrList.add(cmd.getOptionValue("q").trim());
 			
-		} else if(params.containsKey("input-file")) {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(params.get("input-file")));
+		} else if(cmd.hasOption("f")) {
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(cmd.getOptionValue("f")));
 			String line = null;
 			while( (line = bufferedReader.readLine()) != null) {
 				line = line.trim();
@@ -243,7 +248,7 @@ public class Navigator {
 			bufferedReader.close();
 		}
 		
-		BufferedWriter writer = new BufferedWriter(new FileWriter(params.get("output-file")));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(cmd.getOptionValue("o")));
 		
 		//do work
 		Iterator<String> iterator = queryStrList.iterator();

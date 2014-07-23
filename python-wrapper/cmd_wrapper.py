@@ -48,7 +48,7 @@ def extract_search_outputfile(output_file):
 
     return res
 
-def execute_search(index_path, input_file, output_file, optimization, strict_mode):
+def execute_search(index_path, input_file, output_file, filter_file, optimization, strict_mode):
     cmds = ['java',
             #'-cp', os.path.join(poj_dir, 'bin/') + ':' + classpath_for_java(),
             '-cp', get_classpath(),
@@ -56,10 +56,11 @@ def execute_search(index_path, input_file, output_file, optimization, strict_mod
     cmds += ['-i', index_path]
     cmds += ['-f', input_file]
     cmds += ['-o', output_file]
-
+    
+    if filter_file:
+        cmds += ['-x', filter_file]
     if optimization:
         cmds += ['-a']
-    
     if strict_mode:
         cmds += ['-s']
 
