@@ -38,16 +38,12 @@ public class OptionNameAnalyzer extends Analyzer {
 		// text to tokenize
 		final String text = "mapred.reduce.parallel.copies";
 
-		Version matchVersion = Version.LUCENE_47; // Substitute desired Lucene
-													// version for XY
+		Version matchVersion = Version.LUCENE_47; // Substitute desired Lucene version for XY
 		OptionNameAnalyzer analyzer = new OptionNameAnalyzer(matchVersion);
-
-		TokenStream stream = analyzer.tokenStream("field", new StringReader(
-				text));
+		TokenStream stream = analyzer.tokenStream("field", new StringReader(text));
 
 		// get the CharTermAttribute from the TokenStream
-		CharTermAttribute termAtt = stream
-				.addAttribute(CharTermAttribute.class);
+		CharTermAttribute termAtt = stream.addAttribute(CharTermAttribute.class);
 		OffsetAttribute offsetAtt = stream.addAttribute(OffsetAttribute.class);
 		try {
 			stream.reset();
@@ -55,11 +51,8 @@ public class OptionNameAnalyzer extends Analyzer {
 			// print all tokens until stream is exhausted
 			while (stream.incrementToken()) {
 				System.out.println(termAtt.toString());
-				// System.out.println("token: " + stream.reflectAsString(true));
-				System.out.println("token start offset: "
-						+ offsetAtt.startOffset());
-				// System.out.println("  token end offset: " +
-				// offsetAtt.endOffset());
+				System.out.println("token start offset: " + offsetAtt.startOffset());
+				// System.out.println("  token end offset: " + // offsetAtt.endOffset());
 			}
 			stream.end();
 

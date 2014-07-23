@@ -25,7 +25,7 @@ def execute_index(index_path, dst_dir, popularity_file):
     cmds = ['java',
             '-cp', get_classpath(),
             #'-cp', os.path.join(poj_dir, 'bin/') + 'cox.jar',
-            'IndexFiles']
+            'IndexManualPages']
     cmds += ['-i', index_path]
     cmds += ['-d', dst_dir]
     if not popularity_file is None:
