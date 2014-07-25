@@ -22,7 +22,7 @@ Studies show that up to 48.5% of the configuration problems asked on Q&A forums 
 
     "Which knob(s) to set to achieve feature A or performance B?"
 
-Don't blame your users, because it's really hard to find the correct knob from hundreds, especially the users are often not familiar with the system internals.
+Don't blame your users, because it's really hard to find the correct knob from hundreds of knobs, especially the users are often not familiar with the internal system implementation.
 
 
 ### What can Cox do? ###
@@ -33,11 +33,11 @@ If you still have too many left or you don't want to touch the code, you can ask
 
 As a navigation tool, Cox takes the users' query and returns a ranked list of knobs relevant to the queries.
 
-Let me use a [real-world cases](http://serverfault.com/questions/490793/setting-up-mod-proxy-in-apache) as an example, where the user's question is:
+Let's look at a [real-world case](http://serverfault.com/questions/490793/setting-up-mod-proxy-in-apache) as an example, where the user's question is:
 
     "How do I configure the proxy to forward all requests?"
 
-She can type,:
+She can ask Cox:
 
     $./cox "How do I configure the proxy to forward all requests"
 
@@ -45,7 +45,7 @@ which returns (only show the first 5):
 
     ['ProxyRequests', 'SSLProxyEngine', 'ProxyMaxForwards', 'ProxyPass', 'Location', ...]
 
-Wooohooo, the knob desired by the user, ProxyRequests, is ranked #1. 
+Yay, the knob desired by the user, **ProxyRequests**, is ranked #1. 
 
 (This example is inside the *demo* directory)
 
