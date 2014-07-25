@@ -177,7 +177,7 @@ public class Navigator {
 	protected static CommandLine parse_args(String[] args) {		
 		CommandLineParser parser = new PosixParser();
 		Options opts = new Options();
-		opts.addOption(new Option("a", false, "enable all coxy optimization"));
+		opts.addOption(new Option("a", false, "enable all cox optimization"));
 		opts.addOption(new Option("s", false, "use strict mode: all the keywords must be matched"));
 		
 		opts.addOption(new Option("q", true,  "query string to find the parameter"));

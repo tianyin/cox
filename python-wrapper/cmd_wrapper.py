@@ -16,8 +16,8 @@ def get_classpath():
     for jar in jarlist:
         classpath += os.path.join(lib_dir, jar) + ':'
 
-    #add the coxy jar
-    classpath += os.path.join(poj_dir, 'coxy.jar')
+    #add the cox jar
+    classpath += os.path.join(poj_dir, 'cox.jar')
     return classpath
 
 def execute_index(index_path, dst_dir, popularity_file):

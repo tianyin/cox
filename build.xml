@@ -1,4 +1,4 @@
-<project name="coxy" basedir="." default="jar">
+<project name="cox" basedir="." default="jar">
 
     <property name="src.dir"     value="src"/>
 
