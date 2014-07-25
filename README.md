@@ -18,15 +18,37 @@ Usually, system users have to face a big bunch of configuration knobs they have 
 
 Studies show that up to 48.5% of the configuration problems asked on Q&A forums and mailing lists are simply, 
 
-"Which knob(s) to set to achieve feature A or performance B?"
+    "Which knob(s) to set to achieve feature A or performance B?"
 
 Don't blame your users, because it's really hard to find the correct knob from hundreds, especially the users are often not familiar with the system internals.
 
-### OK, then what can I do? ###
+### What can Cox do? ###
 
-The best solution is to cleanup all the parameters your users do not need.
+The best solution to the "too many knobs" problem is to cleanup all the parameters your users do not need.
 
-If you still have too many or you don't want to touch the code, you can ask Cox for help.
+If you still have too many left or you don't want to touch the code, you can ask Cox for help.
+
+As a navigation tool, Cox takes the users' query and returns a ranked list of knobs relevant to the queries.
+
+Let me use a [real-world cases](http://serverfault.com/questions/490793/setting-up-mod-proxy-in-apache) as an example, where the user's question is:
+
+    *"How do I configure the proxy to forward all requests?"*
+
+She can type,:
+
+    $cox "How do I configure the proxy to forward all requests"
+
+which returns (only show the first 5):
+
+    ['ProxyRequests', 'SSLProxyEngine', 'ProxyMaxForwards', 'ProxyPass', 'Location', ...]
+
+Wooohooo, the knob desired by the user, ProxyRequests, is ranked #1. 
+
+
+
+
+
+ 
 
 
 
