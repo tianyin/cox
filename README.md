@@ -1,7 +1,7 @@
 Cox
 =================
 
-A configuration navigation tool and library for a thousands of knobs.
+A configuration navigation tool and library for a thousand of knobs.
 
 
 ### What's the problem? ###
@@ -62,7 +62,7 @@ There are some other optional information you can consider to tell Cox, so it ca
 Checkout the code to see the details.
 
 
-### I really want to use it. Tell me more. ###
+### I deadly want to use it. Tell me more! ###
 
 Cox mainly has two components, indexing and query processing.
 
