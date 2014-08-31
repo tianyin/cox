@@ -49,7 +49,7 @@ Yay, the knob desired by the user, **ProxyRequests**, is ranked #1.
 
 (This example is inside the *demo* directory)
 
-### Have you tried Cox on more real-world cases? ###
+### Have you applied Cox on more real-world cases? ###
 
 Yes, we have. We collect 90 real-world users' navigation issues collected from online Q&A forums and mailing lists: 39 for Apache httpd, 25 for MySQL, and 26 for Hadoop. These issues (including the original URL of the posts, users' original questions, and the keywords used for evaluation) are in the *cases* directory. 
 
