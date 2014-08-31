@@ -49,9 +49,9 @@ Yay, the knob desired by the user, **ProxyRequests**, is ranked #1.
 
 (This example is inside the *demo* directory)
 
-### Do you try on more real-world cases? ###
+### Have you tried Cox on more real-world cases? ###
 
-Yes, we do. We collect 90 real-world users' navigation issues collected from online Q&A forums and mailing lists: 39 for Apache httpd, 25 for MySQL, and 26 for Hadoop. These issues (including the original URL of the posts and users' questions) are in the *cases* directory. 
+Yes, we have. We collect 90 real-world users' navigation issues collected from online Q&A forums and mailing lists: 39 for Apache httpd, 25 for MySQL, and 26 for Hadoop. These issues (including the original URL of the posts, users' original questions, and the keywords used for evaluation) are in the *cases* directory. 
 
 Currently, Cox is able to resolve 59 (28 for httpd, 15 for MySQL, 16 for Hadoop) of these 90 issues (65.5%). Here, we say Cox can resolve a issue if the target knob is among the top-5 returned parameters. 
 
