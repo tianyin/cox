@@ -12,7 +12,7 @@ import cmd_wrapper
 
 #set up the dir
 #you can also try out Hadoop using 'dataset/hadoop'
-httpd_dir = os.path.join(poj_dir, 'dataset/hadoop/')
+httpd_dir = os.path.join(poj_dir, 'dataset/httpd/')
 param_dir = os.path.join(httpd_dir, 'parameters/')
 httpd_index_dir = os.path.join(httpd_dir, 'index/')
 
@@ -20,8 +20,8 @@ httpd_index_dir = os.path.join(httpd_dir, 'index/')
 
 if __name__ == '__main__':
     #assume this is the query for which you want to find related parameters
-    query = "general java options started task"
-    
+    #query = "How do I configure the proxy to forward all requests"
+    query = "remove the server header from the response"
     """
     Cox works in two stages.
     1. Generates indices based on the manuals (this is a one-time effort)
@@ -32,7 +32,8 @@ if __name__ == '__main__':
     if not os.path.exists(httpd_index_dir):
         print 'buiding index at', httpd_index_dir
         os.mkdir(httpd_index_dir)
-        popularity_file = '/home/tixu/Cox/benchmarks/data/hadoop/hadoop_popularity.txt'
+        popularity_file = None
+        #popularity_file = '/home/tixu/Cox/benchmarks/data/hadoop/hadoop_popularity.txt'
         #first we need to generate the indices
         cmd_wrapper.execute_index(httpd_index_dir, param_dir, popularity_file)
     
@@ -42,6 +43,6 @@ if __name__ == '__main__':
     tmp_out_fp = os.path.join(cur_dir, 'tmp.output')
 
     #2. NAVIGATION
-    cmd_wrapper.execute_search(httpd_index_dir, tmp_in_fp, tmp_out_fp, True)
+    cmd_wrapper.execute_search(httpd_index_dir, tmp_in_fp, tmp_out_fp, None)
     res = cmd_wrapper.extract_search_outputfile(tmp_out_fp)
     print res
