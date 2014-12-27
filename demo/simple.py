@@ -11,7 +11,7 @@ sys.path.append(os.path.join(poj_dir, 'python-wrapper/'))
 import cmd_wrapper
 
 #set up the dir
-#you can also try out Hadoop using 'data/hadoop'
+#you can also try out Hadoop using 'dataset/hadoop'
 httpd_dir = os.path.join(poj_dir, 'dataset/hadoop/')
 param_dir = os.path.join(httpd_dir, 'parameters/')
 httpd_index_dir = os.path.join(httpd_dir, 'index/')

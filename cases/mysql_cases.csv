@@ -1,0 +1,26 @@
+Id,URL,Question,Keywords,Target knob(s)
+mysql-1,http://serverfault.com/questions/119858/increasing-the-number-of-mysql-connections,Increase the number of MySQL connections,increasing number mysql connections,max_connections
+mysql-2,http://serverfault.com/questions/313400/datetime-format-changed-between-mysql-5-0-and-5-1,datetime format changed between mysql 5.0 and 5.1,datetime format changed mysql 5.0 5.1,sql_mode
+mysql-3,http://serverfault.com/questions/148800/why-does-mysql-have-utf8-for-collation-on-its-information-schema-but-latin1-sw,utf8 for collation on its information_schema but latin1_swedish on all other databases,utf8 collation information_schema latin1_swedish databases,character_set_server;collation_server
+mysql-4,http://serverfault.com/questions/338291/enabling-general-log-in-mysql-5-1-52-on-rhel6,enable general logging for MySQL,enable general logging mysql,general_log;general_log_file
+mysql-5,http://serverfault.com/questions/243631/mysql-server-running-only-on-unix-socket,Mysql server running only on unix socket,mysql server running unix socket,skip_networking
+mysql-6,http://serverfault.com/questions/261134/is-mysql-port-3306-encrypted-and-if-no-how-can-i-encrypt-it,the connection to MySQL needs to be encrypted,connection mysql encrypted,ssl
+mysql-7,http://serverfault.com/questions/169614/how-to-disable-mysqls-cache,How to disable MySQL cache So that the same queries will take similar amount of time each time,disable mysql cache queries similar amount time time,query_cache_size
+mysql-8,http://serverfault.com/questions/489869/mysql-turning-select-full-join-is-too-high-how-to-identify-the-queries-cau,How to identify the queries causing this  joins that are not using indexes,identify queries causing joins indexes,log_queries_not_using_indexes
+mysql-9,http://lists.mysql.com/mysql/163694,timeout control the session,timeout control session,interactive_timeout;wait_timeout
+mysql-10,http://lists.mysql.com/mysql/158665,Shrinking innodb data files with a big innodb table,shrinking innodb data files big innodb table,innodb_file_per_table
+mysql-11,http://lists.mysql.com/mysql/117075,persistent connections timeout,persistent connections timeout,interactive_timeout;wait_timeout
+mysql-12,http://lists.mysql.com/mysql/76425,can i change the data directory where all the databases are stored,change data directory databases stored,datadir
+mysql-13,http://serverfault.com/questions/270258/mysql-not-accepting-connections-from-wp,MySQL not accepting connections from WP,mysql accepting connections wp,max_connect_errors
+mysql-14,http://serverfault.com/questions/453251/how-to-speed-up-a-mysql-import,How to speed up a MySQL Import,speed mysql import,innodb_buffer_pool_size;innodb_flush_log_at_trx_commit
+mysql-15,http://serverfault.com/questions/140153/mysql-on-windows-how-do-i-set-the-wait-timeout-for-connections-using-named-pip,how do I set the wait_timeout for connections using named pipes,wait_timeout connections named pipes,interactive_timeout
+mysql-16,http://serverfault.com/questions/8293/mysql-connection-security,What do I need to do to encrypt the network channel protocol between the servers at the MySQL,encrypt network channel protocol servers mysql,ssl
+mysql-17,http://serverfault.com/questions/149109/speed-up-mysql-for-inserts-for-testing-purposes,Speed up MySQL for inserts,speed mysql inserts,max_heap_table_size;tmp_table_size
+mysql-18,http://lists.mysql.com/mysql/163004,connect mysql server with the server IP,connect mysql server server ip,skip_networking
+mysql-19,http://lists.mysql.com/mysql/131031,no tcp port openning,tcp port openning,skip_networking
+mysql-20,http://serverfault.com/questions/108741/problems-configuring-mysql-on-ubuntu-for-remote-access,issues connecting remotely,issues connecting remotely,bind_address
+mysql-21,http://serverfault.com/questions/300935/how-to-make-mysql-to-find-old-databases-on-hdd,How to make MySQL to find old databases,make mysql find databases,datadir
+mysql-22,http://serverfault.com/questions/299587/mysql-replication-where-is-data,where is ./data,path url,datadir
+mysql-23,http://serverfault.com/questions/555827/optimal-setup-for-bulk-csv-import,Optimal setup for bulk CSV import,optimal setup bulk csv import,innodb_flush_log_at_trx_commit;innodb_buffer_pool_size
+mysql-24,http://serverfault.com/questions/289336/where-does-the-php-mysql-connection-take-its-default-charset,Where does the MySQL connection take its default character set,mysql connection default character,default_character_set;character_set_server
+mysql-25,http://serverfault.com/questions/146525/how-can-i-speed-up-a-mysql-restore-from-a-dump-file,speed the restore Individual inserts are slow,speed restore individual inserts slow,key_buffer_size

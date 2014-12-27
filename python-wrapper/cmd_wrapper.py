@@ -7,55 +7,25 @@ import subprocess
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 poj_dir = os.path.dirname(cur_dir)
 
-def classpath_for_java():
+def get_classpath():
+    classpath = ''
     lib_dir = os.path.join(poj_dir, 'lib/')
-    libs = ['cox.jar',
-            'lucene-core-4.7.1.jar', 'lucene-analyzers-common-4.7.1.jar', 'lucene-queryparser-4.7.1.jar',
-            'lucene-queries-4.7.1.jar', 'commons-cli-1.2.jar', 'commons-cli-1.2-javadoc.jar']
-    cps1 = ''
-    for x in libs:
-        cps1 += os.path.join(lib_dir, x) + ':'
-    cps1 = cps1.strip(':')
-    return cps1
 
-def compile():
-    cps1 = classpath_for_java()
+    #add the libs    
+    jarlist = os.listdir(lib_dir)
+    for jar in jarlist:
+        classpath += os.path.join(lib_dir, jar) + ':'
 
-    bin_dir = os.path.join(poj_dir, 'bin/')
-    
-    if os.path.exists(bin_dir):
-        shutil.rmtree(bin_dir)
-    os.mkdir(bin_dir)
-    
-    src_dir = os.path.join(poj_dir, 'src/')
-    src_files = os.listdir(src_dir) 
-    
-    build_cmds = ["javac",
-            '-d', bin_dir,
-            '-sourcepath', os.path.join(poj_dir, 'src/'),
-            '-cp', cps1]
-    
-    for src in src_files:
-        s = os.path.join(src_dir, src)
-        cmd = build_cmds + [s]
-        rs = ''
-        for c in cmd:
-            rs += c + ' '
-        print rs
-        subprocess.call(cmd)
-
-    os.chdir(bin_dir);
-    jar_cmd = ['jar', 
-            'cf',  os.path.join(poj_dir, 'lib/cox.jar'),
-            './']
-    subprocess.call(jar_cmd)
+    #add the cox jar
+    classpath += os.path.join(poj_dir, 'cox.jar')
+    return classpath
 
 def execute_index(index_path, dst_dir, popularity_file):
 #java -cp bin/:lib/lucene-core-4.7.1.jar:lib/lucene-analyzers-common-4.7.1.jar:lib/lucene-queryparser-4.7.1.jar:lib/lucene-queries-4.7.1.jar:lib/commons-cli-1.2.jar:lib/commons-cli-1.2-javadoc.jar iconfigure.SearchFiles
     cmds = ['java',
-            '-cp', classpath_for_java(),
+            '-cp', get_classpath(),
             #'-cp', os.path.join(poj_dir, 'bin/') + 'cox.jar',
-            'IndexFiles']
+            'IndexManualPages']
     cmds += ['-i', index_path]
     cmds += ['-d', dst_dir]
     if not popularity_file is None:
@@ -63,6 +33,7 @@ def execute_index(index_path, dst_dir, popularity_file):
 
     if not os.path.exists(index_path):
         os.mkdir(index_path)
+
     subprocess.call(cmds)
 
 def extract_search_outputfile(output_file):
@@ -77,15 +48,21 @@ def extract_search_outputfile(output_file):
 
     return res
 
-def execute_search(index_path, input_file, output_file, use_improve):
+def execute_search(index_path, input_file, output_file, filter_file, optimization, strict_mode):
     cmds = ['java',
             #'-cp', os.path.join(poj_dir, 'bin/') + ':' + classpath_for_java(),
-            '-cp', classpath_for_java(),
+            '-cp', get_classpath(),
             'Navigator']
     cmds += ['-i', index_path]
     cmds += ['-f', input_file]
     cmds += ['-o', output_file]
-    if use_improve:
+    
+    if filter_file:
+        cmds += ['-x', filter_file]
+    if optimization:
         cmds += ['-a']
+    if strict_mode:
+        cmds += ['-s']
+
     subprocess.call(cmds)
     return extract_search_outputfile(output_file)

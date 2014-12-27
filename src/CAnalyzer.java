@@ -18,6 +18,7 @@ public class CAnalyzer {
 		Map<String, Analyzer> analyzerPerField = new HashMap<String, Analyzer>();
 		//for option name
 		analyzerPerField.put("op_name", new OptionNameAnalyzer(matchVersion));
+		
 		//for annotated option description
 		analyzerPerField.put("op_desc", new EnglishAnalyzer(matchVersion));
 		analyzer = new PerFieldAnalyzerWrapper(new StandardAnalyzer(matchVersion), analyzerPerField);

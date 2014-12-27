@@ -10,9 +10,10 @@ output_data_dir = os.path.join(cur_dir, 'output/')
 
 if not os.path.exists(output_data_dir):
     os.mkdir(output_data_dir)
-sys.path.append(os.path.join(poj_dir, 'python-wrapper/'))
 
+sys.path.append(os.path.join(poj_dir, 'python-wrapper/'))
 import cmd_wrapper
+
 from config import EvalConfig
 
 do_popularity = True
@@ -42,7 +43,9 @@ def eval(config):
                 None)
         res = cmd_wrapper.execute_search(config.index_path,
                 config.input_file,
-                config.output_file, False)
+                config.output_file, 
+                config.filter_path,
+                True, True)
         #for (k, v) in res.items():
         #    print str(k) + ' : ' + str(v)
 
@@ -57,7 +60,10 @@ def eval(config):
                 config.pop_file_path)
         res = cmd_wrapper.execute_search(config.index_pop_path,
                 config.input_file,
-                config.output_w_pop, True)
+                config.output_w_pop,
+                config.filter_path,
+                 True, False)
+
         #for (k, v) in res.items():
         #    print str(k) + ' : ' + str(v)
 
