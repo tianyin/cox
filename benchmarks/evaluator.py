@@ -15,13 +15,9 @@ sys.path.append(os.path.join(poj_dir, 'python-wrapper/'))
 import cmd_wrapper
 from config import EvalConfig
 
-do_compile = True
 do_popularity = True
 do_normal = True
-base_path = os.path.join(poj_dir, 'data/')
-
-if do_compile:
-    cmd_wrapper.compile()
+base_path = os.path.join(poj_dir, 'dataset/')
 
 def eval_wrap(config):
     """

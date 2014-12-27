@@ -28,19 +28,20 @@ def compile():
     os.mkdir(bin_dir)
     
     src_dir = os.path.join(poj_dir, 'src/')
-    srcs = ['IndexFiles', 'SearchFiles']
+    src_files = os.listdir(src_dir) 
     
     build_cmds = ["javac",
             '-d', bin_dir,
             '-sourcepath', os.path.join(poj_dir, 'src/'),
             '-cp', cps1]
-    for src in srcs:
-        s = os.path.join(src_dir, src + '.java')
+    
+    for src in src_files:
+        s = os.path.join(src_dir, src)
         cmd = build_cmds + [s]
         rs = ''
         for c in cmd:
             rs += c + ' '
-        #print rs
+        print rs
         subprocess.call(cmd)
 
     os.chdir(bin_dir);
@@ -80,7 +81,7 @@ def execute_search(index_path, input_file, output_file, use_improve):
     cmds = ['java',
             #'-cp', os.path.join(poj_dir, 'bin/') + ':' + classpath_for_java(),
             '-cp', classpath_for_java(),
-            'SearchFiles']
+            'Navigator']
     cmds += ['-i', index_path]
     cmds += ['-f', input_file]
     cmds += ['-o', output_file]
@@ -88,4 +89,3 @@ def execute_search(index_path, input_file, output_file, use_improve):
         cmds += ['-a']
     subprocess.call(cmds)
     return extract_search_outputfile(output_file)
-

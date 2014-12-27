@@ -12,7 +12,7 @@ import cmd_wrapper
 
 #set up the dir
 #you can also try out Hadoop using 'data/hadoop'
-httpd_dir = os.path.join(poj_dir, 'data/hadoop/')
+httpd_dir = os.path.join(poj_dir, 'dataset/hadoop/')
 param_dir = os.path.join(httpd_dir, 'parameters/')
 httpd_index_dir = os.path.join(httpd_dir, 'index/')
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     if not os.path.exists(httpd_index_dir):
         print 'buiding index at', httpd_index_dir
         os.mkdir(httpd_index_dir)
-        popularity_file = '/home/tixu/Cox/benchmarks/data/hadoop/hadoop_popularity.txt'
+        popularity_file = '/home/tianyin/Cox/benchmarks/dataset/hadoop/hadoop_popularity.txt'
         #first we need to generate the indices
         cmd_wrapper.execute_index(httpd_index_dir, param_dir, popularity_file)
     
