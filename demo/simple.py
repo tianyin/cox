@@ -34,6 +34,7 @@ if __name__ == '__main__':
         os.mkdir(httpd_index_dir)
         popularity_file = None
         #popularity_file = '/home/tixu/Cox/benchmarks/data/hadoop/hadoop_popularity.txt'
+        #popularity_file = '/home/tianyin/Cox/benchmarks/dataset/hadoop/hadoop_popularity.txt'
         #first we need to generate the indices
         cmd_wrapper.execute_index(httpd_index_dir, param_dir, popularity_file)
     

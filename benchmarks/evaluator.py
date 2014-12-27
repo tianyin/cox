@@ -18,6 +18,7 @@ from config import EvalConfig
 
 do_popularity = True
 do_normal = True
+base_path = os.path.join(poj_dir, 'dataset/')
 
 def eval_wrap(config):
     """
