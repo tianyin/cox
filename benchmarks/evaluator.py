@@ -16,28 +16,36 @@ import cmd_wrapper
 
 from config import EvalConfig
 
+do_only_pname = True
 do_popularity = True
 do_normal = True
 base_path = os.path.join(poj_dir, 'dataset/')
 
-def eval_wrap(config):
+
+def eval_wrapper(config):
     """
     config is a EvalConfig instance
     """
-    print '\n~~~~~~~~~~~~~~~~~~evaluating ' + config.sw_name + ' start ~~~~~~'
+    print '\n================= Evaluating ' + config.sw_name + ' start ===='
     eval(config)
     compare_result(config)
-    print   '~~~~~~~~~~~~~~~~~~evaluating ' + config.sw_name + ' end ~~~~~~'
+    print   '================= Evaluating ' + config.sw_name + ' end ======'
 
 def eval(config):
+    """
+    Here we evaluate Cox in three settings
+    """
     if not os.path.exists(config.index_path):
         os.mkdir(config.index_path)
 
     if not os.path.exists(config.index_pop_path):
         os.mkdir(config.index_pop_path)
+    
+    if not os.path.exists(config.index_only_pname):
+        os.mkdir(config.index_only_pname)
 
     if do_normal:
-        print 'evaluating Cox purely on manuals'
+        print 'Evaluating Cox purely on manuals (without user statistics)'
         cmd_wrapper.execute_index(config.index_path,
                 config.parameter_dir,
                 None)
@@ -46,15 +54,12 @@ def eval(config):
                 config.output_file, 
                 config.filter_path,
                 True, True)
-        #for (k, v) in res.items():
-        #    print str(k) + ' : ' + str(v)
 
     if do_popularity:
-        print 'evaluating Cox with popularity information'
+        print 'Evaluating Cox on manual with user statistics (popularity info)'
         if not os.path.exists(config.pop_file_path):
-             print 'no popularity file exists, return'
-             return
-        #    config.std_pop()
+             print '[ERROR] no popularity file exists, return'
+             sys.exit(1)
         cmd_wrapper.execute_index(config.index_pop_path,
                 config.parameter_dir,
                 config.pop_file_path)
@@ -64,10 +69,26 @@ def eval(config):
                 config.filter_path,
                  True, False)
 
-        #for (k, v) in res.items():
-        #    print str(k) + ' : ' + str(v)
+    if do_only_pname:
+        print 'Evaluating Cox on only parameter name with user statistics (popularity info)'
+        if not os.path.exists(config.pop_file_path):
+             print '[ERROR] no popularity file exists, return'
+             sys.exit(1)
+        cmd_wrapper.execute_index(config.index_only_pname,
+                config.parameter_dir,
+                config.pop_file_path,
+                True)
+        res = cmd_wrapper.execute_search(config.index_only_pname,
+                config.input_file,
+                config.output_pname,
+                config.filter_path,
+                True, False)
+ 
 
 def compare_result(config):
+    """
+    The results are all written to files
+    """
     print 'start to compare the results'
     #standard result
     std_res = config.std_res
@@ -86,8 +107,19 @@ def compare_result(config):
         print s['brief']
         open(os.path.join(output_data_dir, 'r_' + config.sw_name + 'pop_res.txt'), 'w').write(s['detail'])
         open(os.path.join(output_data_dir, 'res_pop_' + config.sw_name + '.json'), 'w').write(s['structure'])
+    if do_only_pname:
+        opn_res = cmd_wrapper.extract_search_outputfile(config.output_pname)
+        print '**********Only-pname Search Results:'
+        s = generate_result_comp_report(std_res, opn_res, config.opt2mod_map)
+        print s['brief']
+        open(os.path.join(output_data_dir, 'r_' + config.sw_name + 'opn_res.txt'), 'w').write(s['detail'])
+        open(os.path.join(output_data_dir, 'res_opn_' + config.sw_name + '.json'), 'w').write(s['structure'])
+
 
 def generate_result_comp_report(std_res, eval_res, modules):
+    """
+    Utility function which is general to any settings
+    """
     res = {'total':0, 'can-help': 0, 'ratio %': 0}
     d = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
     import cStringIO

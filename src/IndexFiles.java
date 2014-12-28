@@ -226,8 +226,11 @@ public class IndexFiles {
 		}
 	}
 
-	protected static void index_main(String index_path, String dst_dir,
-			String popularity_file) {
+	protected static void index_main(String index_path, 
+            String dst_dir,
+			String popularity_file,
+            String mode) {
+        //TODO
 		boolean create = true;
 		new IndexFiles(popularity_file).indexDir(index_path, dst_dir, create);
 	}
@@ -239,6 +242,7 @@ public class IndexFiles {
 		opts.addOption(OptionBuilder.withArgName("index-path").hasArg().withDescription("indexing file's path").create("i"));
 		opts.addOption(OptionBuilder.withArgName("dst-dir").hasArg().withDescription("destination file dir").create("d"));
 		opts.addOption(OptionBuilder.withArgName("popularity-file").hasArg().withDescription("popularity file path").create("p"));
+		opts.addOption(OptionBuilder.withArgName("eval-mode").hasArg().withDescription("evaluation mode").create("m"));
 
 		try {
 			CommandLine cmd = parser.parse(opts, args);
@@ -263,6 +267,9 @@ public class IndexFiles {
 			} else {
 				res.put("popularity-file", null);
 			}
+            if (cmd.hasOption("m")) {
+                res.put("eval-mode", cmd.getOptionValue("m"));
+            }
 		} catch (ParseException e) {
 			System.out.println("unexpected exception in parse_args(): "
 					+ e.getLocalizedMessage());
@@ -291,7 +298,7 @@ public class IndexFiles {
 		}
 
 		HashMap<String, String> params = parse_args(args);
-		index_main(params.get("index-path"), params.get("dst-dir"), params.get("popularity-file"));
+		index_main(params.get("index-path"), params.get("dst-dir"), params.get("popularity-file"), params.get("eval-mode"));
 
 	}
 }

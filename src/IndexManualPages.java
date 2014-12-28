@@ -194,6 +194,7 @@ public class IndexManualPages {
 		opts.addOption(new Option("i", true,  "the path of the indexes"));
 		opts.addOption(new Option("d", true,  "destination file dir"));
 		opts.addOption(new Option("p", true,  "the path of the popularity file of the software"));
+		opts.addOption(new Option("m", false,  "the mode used for evaluation"));
 
 		try {
 			CommandLine cmd = parser.parse(opts, args);

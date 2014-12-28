@@ -3,7 +3,7 @@ import json
 import csv
 import sys
 from config import EvalConfig
-from evaluator import eval_wrap
+from evaluator import eval_wrapper
 
 if __name__ == '__main__':
     appname  = 'httpd'
@@ -13,8 +13,9 @@ if __name__ == '__main__':
     filtpath = '/home/tixu/Cox/benchmarks/data/apache_must_set_parameters.lst'
     testcase = '../benchmarks/data/apache_tc_icon.csv' 
     base_dir = '../benchmarks/data/' + appname
-    config = EvalConfig(appname, parpath, poppath, p2mmaps, None, filtpath, testcase, base_dir)
-    eval_wrap(config)
+    #config = EvalConfig(appname, parpath, poppath, p2mmaps, None, filtpath, testcase, base_dir)
+    config = EvalConfig(appname, parpath, poppath, p2mmaps, None, None, testcase, base_dir)
+    eval_wrapper(config)
 
     appname  = 'hadoop'
     parpath  = '../dataset/hadoop/parameters'
@@ -24,7 +25,7 @@ if __name__ == '__main__':
     testcase = '../benchmarks/data/hadoop_tc_icon.csv' 
     base_dir = '../benchmarks/data/' + appname
     config = EvalConfig(appname, parpath, poppath, p2mmaps, rnmmaps, None, testcase, base_dir)
-    eval_wrap(config)
+    eval_wrapper(config)
 
     appname  = 'mysql'
     parpath  = '../dataset/mysql/parameters'
@@ -33,5 +34,5 @@ if __name__ == '__main__':
     testcase = '../benchmarks/data/mysql_tc_icon.csv' 
     base_dir = '../benchmarks/data/' + appname
     config = EvalConfig(appname, parpath, poppath, p2mmaps, None, None, testcase, base_dir)
-    eval_wrap(config)
+    eval_wrapper(config)
 

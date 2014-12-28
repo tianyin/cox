@@ -15,21 +15,21 @@ class EvalConfig:
         else:
             self.opt2mod_map = None
 
-        self.filter_path    = filt_path
+        self.filter_path = filt_path
 
-        self.input_file     = os.path.join(base_dir, sw+'_java_input.txt')
+        self.input_file  = os.path.join(base_dir, sw+'_java_input.txt')
 
-        self.index_path     = os.path.join(base_dir, 'index/')
-        print base_dir
-        print self.index_path
-        self.index_pop_path = os.path.join(base_dir, 'index_pop/')
+        self.index_path       = os.path.join(base_dir, 'index/')
+        self.index_pop_path   = os.path.join(base_dir, 'index_pop/')
+        self.index_only_pname = os.path.join(base_dir, 'index_only_pname/')        
 
-        self.output_file    = os.path.join(base_dir, sw+'_java_output.txt')
-        self.output_w_pop   = os.path.join(base_dir, sw+'_java_output_w_pop.txt')
+        self.output_file   = os.path.join(base_dir, sw+'_java_output.txt')
+        self.output_w_pop  = os.path.join(base_dir, sw+'_java_output_w_pop.txt')
+        self.output_pname  = os.path.join(base_dir, sw+'_java_output_onlyname_pop.txt')
         
-        self.std_res        = self.normalize_testcase(testcase, self.input_file, renamemap)
+        self.std_res       = self.normalize_testcase(testcase, self.input_file, renamemap)
         
-        self.pop_file_path  = os.path.join(base_dir, sw+'_popularity.txt')
+        self.pop_file_path = os.path.join(base_dir, sw+'_popularity.txt')
         self.normalize_pop(pop_path, self.pop_file_path)
 
     def normalize_pop(self, org_pop_file, norm_pop_file):
