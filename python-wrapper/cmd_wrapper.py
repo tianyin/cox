@@ -20,7 +20,7 @@ def get_classpath():
     classpath += os.path.join(poj_dir, 'cox.jar')
     return classpath
 
-def execute_index(index_path, dst_dir, popularity_file, only_pname=False):
+def execute_index(index_path, dst_dir, popularity_file):
 #java -cp bin/:lib/lucene-core-4.7.1.jar:lib/lucene-analyzers-common-4.7.1.jar:lib/lucene-queryparser-4.7.1.jar:lib/lucene-queries-4.7.1.jar:lib/commons-cli-1.2.jar:lib/commons-cli-1.2-javadoc.jar iconfigure.SearchFiles
     cmds = ['java',
             '-cp', get_classpath(),
@@ -30,8 +30,6 @@ def execute_index(index_path, dst_dir, popularity_file, only_pname=False):
     cmds += ['-d', dst_dir]
     if not popularity_file is None:
         cmds += ['-p', popularity_file]
-    if only_pname == True:
-        cmds += ['-m', 'onlyname']    
 
     if not os.path.exists(index_path):
         os.mkdir(index_path)

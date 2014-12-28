@@ -16,7 +16,6 @@ import cmd_wrapper
 
 from config import EvalConfig
 
-do_only_pname = True
 do_popularity = True
 do_normal = True
 base_path = os.path.join(poj_dir, 'dataset/')
@@ -40,9 +39,6 @@ def eval(config):
 
     if not os.path.exists(config.index_pop_path):
         os.mkdir(config.index_pop_path)
-    
-    if not os.path.exists(config.index_only_pname):
-        os.mkdir(config.index_only_pname)
 
     if do_normal:
         print 'Evaluating Cox purely on manuals (without user statistics)'
@@ -69,21 +65,6 @@ def eval(config):
                 config.filter_path,
                  True, False)
 
-    if do_only_pname:
-        print 'Evaluating Cox on only parameter name with user statistics (popularity info)'
-        if not os.path.exists(config.pop_file_path):
-             print '[ERROR] no popularity file exists, return'
-             sys.exit(1)
-        cmd_wrapper.execute_index(config.index_only_pname,
-                config.parameter_dir,
-                config.pop_file_path,
-                True)
-        res = cmd_wrapper.execute_search(config.index_only_pname,
-                config.input_file,
-                config.output_pname,
-                config.filter_path,
-                True, False)
- 
 
 def compare_result(config):
     """
@@ -107,14 +88,6 @@ def compare_result(config):
         print s['brief']
         open(os.path.join(output_data_dir, 'r_' + config.sw_name + 'pop_res.txt'), 'w').write(s['detail'])
         open(os.path.join(output_data_dir, 'res_pop_' + config.sw_name + '.json'), 'w').write(s['structure'])
-    if do_only_pname:
-        opn_res = cmd_wrapper.extract_search_outputfile(config.output_pname)
-        print '**********Only-pname Search Results:'
-        s = generate_result_comp_report(std_res, opn_res, config.opt2mod_map)
-        print s['brief']
-        open(os.path.join(output_data_dir, 'r_' + config.sw_name + 'opn_res.txt'), 'w').write(s['detail'])
-        open(os.path.join(output_data_dir, 'res_opn_' + config.sw_name + '.json'), 'w').write(s['structure'])
-
 
 def generate_result_comp_report(std_res, eval_res, modules):
     """
@@ -215,12 +188,3 @@ def collect_results_and_dump_to_csv():
         for item in pop_overall[1:]:
             writer.writerow((item[0], item[1]['0'],item[1]['1'],item[1]['2'],item[1]['3'],item[1]['4'],item[1]['5'],item[1]['6']))
 
-#if __name__ == '__main__':
-#    appname  = 'httpd'
-#    parpath  = '/home/tixu/Cox/data/httpd/parameters'
-#    poppath  = '/home/tixu/Cox/benchmarks/data/apache_popularity.csv' 
-#    p2mmaps  = '/home/tixu/Cox/benchmarks/data/apache_modules.csv'
-#    testcase = '/home/tixu/Cox/benchmarks/data/apache_tc_icon.csv' 
-#    base_dir = '/home/tixu/Cox/benchmarks/data/' + appname
-#    config = EvalConfig(appname, parpath, poppath, p2mmaps, None, testcase, base_dir)
-#    eval_wrap(config)
